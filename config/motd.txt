@@ -1,0 +1,28 @@
+<!-- Most valid html will work in here, excluding images. -->
+
+<h1>Welcome to Monsters and Mazes 13</h1>
+
+<b>This is an 18+ server, do not play if you are underage.</b>
+
+<i>
+<p>Don't be a dick, and <b>read the rules</b> before you play.</p>
+
+<p>This server is new and under development, primarily testing.  Join the discord if you are interested in mapping, spriting, coding, or otherwise supporting this project.</p>
+
+<p>Development is active and we are always looking for more talent, we are open source and you can get involved via the links below.</p>
+
+<p>GitHub: https://github.com/judgex/MonstersAndMazes13/</p>
+<p>Discord: https://discord.gg/qcjvVfK7DX</p>
+
+<p>Visit our discord for appeals, staff applications, and to apply for role whitelists!</p>
+<p></p>
+<p></p>
+
+<p>Patreon:</p>
+<p>TBA</p>
+
+<p>Patreon Supporters:</p>
+<pre>
+
+</pre>
+</i>
