@@ -4,7 +4,7 @@ This is a fan project to create a fantasy-themed SS13 server.
 
 **Monsters and Mazes Information**  
 * **Website:** TBA
-* **Code:** <https://github.com/judgex/MonstersAndMazes13>
+* **Code:** <https://github.com/Monsters-and-Mazes/MonstersAndMazes13>
 * **Wiki:** TBA
 * **Discord:** <https://discord.gg/qcjvVfK7DX>
 
