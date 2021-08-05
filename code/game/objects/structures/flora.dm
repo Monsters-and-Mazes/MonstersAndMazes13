@@ -3,6 +3,13 @@
 	max_integrity = 150
 	anchored = TRUE
 
+// MM13 branches
+/obj/structure/flora/branches
+	name = "branches"
+	desc = "A few branches."
+	icon = 'icons/mm13/vegetation.dmi'
+	icon_state = "branches"
+
 //trees
 /obj/structure/flora/tree
 	name = "tree"
@@ -185,12 +192,8 @@
 	. = ..()
 
 //newbushes
-
 /obj/structure/flora/ausbushes
-	name = "bush"
-	desc = "Some kind of plant."
 	icon = 'icons/obj/flora/ausflora.dmi'
-	icon_state = "firstbush_1"
 
 /obj/structure/flora/ausbushes/Initialize()
 	if(icon_state == "firstbush_1")
