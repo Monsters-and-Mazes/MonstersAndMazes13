@@ -209,4 +209,3 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 /_maps/**/backup/
 /_maps/templates.dm
 "/config/dbconfig.txt" 
-"/config/dbconfig.txt" 
