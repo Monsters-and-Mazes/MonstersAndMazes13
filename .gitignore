@@ -208,3 +208,7 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 #extra map stuff
 /_maps/**/backup/
 /_maps/templates.dm
+<<<<<<< HEAD
+=======
+"/config/dbconfig.txt" 
+>>>>>>> db48f22a2d9e8078ade9e53b2e51e53036598b2c
