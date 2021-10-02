@@ -56,19 +56,6 @@
 		down.update_icon()
 	up = down = null
 
-/obj/structure/ladder/update_icon_state()
-	if(up && down)
-		icon_state = "ladder11"
-
-	else if(up)
-		icon_state = "ladder10"
-
-	else if(down)
-		icon_state = "manhole_open"
-
-	else	//wtf make your ladders properly assholes
-		icon_state = "ladder00"
-
 /obj/structure/ladder/singularity_pull()
 	if (!(resistance_flags & INDESTRUCTIBLE))
 		visible_message("<span class='danger'>[src] is torn to pieces by the gravitational pull!</span>")
