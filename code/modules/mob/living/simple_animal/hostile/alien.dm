@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/alien
-	name = "wanamingo"
-	desc = "Hiss!"
+	name = "Ettercap"
+	desc = "A hideous creatures that resemble a cross between a gangly ape and a bloated spider."
 	icon = 'icons/mob/deathclaw.dmi'
 	icon_state = "wanamingo"
 	icon_living = "wanamingo"
@@ -37,7 +37,7 @@
 	unique_name = 1
 	gold_core_spawnable = NO_SPAWN
 	death_sound = 'sound/voice/hiss6.ogg'
-	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
+	deathmessage = "Lets out a beastly screech, made to hurt the ears. Black goop fell out of their blob-like corpse as it collapsed into a puddle on the floor."
 
 /mob/living/simple_animal/hostile/alien/Initialize()
 	. = ..()
