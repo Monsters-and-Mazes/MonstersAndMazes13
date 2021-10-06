@@ -11,7 +11,7 @@
 
 <p>Development is active and we are always looking for more talent, we are open source and you can get involved via the links below.</p>
 
-<p>GitHub: https://github.com/judgex/MonstersAndMazes13/</p>
+<p>GitHub: https://github.com/Monsters-and-Mazes/MonstersAndMazes13</p>
 <p>Discord: https://discord.gg/qcjvVfK7DX</p>
 
 <p>Visit our discord for appeals, staff applications, and to apply for role whitelists!</p>

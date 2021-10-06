@@ -1,3 +1,3 @@
-sound/f13music/hanging_me.ogg
-sound/f13music/praise_the_lord.ogg
-sound/f13music/ragtime_cowboyjoe.ogg
+sound/mm13music/fromothersuns.ogg
+sound/mm13music/peaceful.ogg
+sound/mm13music/town.ogg
