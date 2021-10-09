@@ -218,9 +218,8 @@
 "fK" = (/obj/structure/bookcase,/obj/item/book/granter/spell/barnyard,/obj/item/book/granter/spell/mindswap,/turf/open/floor/f13/wood,/area/f13/forest)
 "fM" = (/mob/living/simple_animal/hostile/poison/giant_spider/nurse,/turf/open/indestructible/ground/inside/mountain,/area/f13/bunker)
 "fN" = (/obj/item/storage/crayons,/turf/open/floor/wood/f13/oak,/area/f13/village)
-"fQ" = (/turf/closed/indestructible/rock{icon = 'icons/turf/floors.dmi'; icon_state = "dirt_fogul"; name = "dense fog"},/area/ruin/unpowered/elephant_graveyard)
+"fQ" = (/turf/open/floor/plating/f13/outside/dirt{density = 1; icon_state = "dirt_fogul"; name = "dense fog"; opacity = 1},/area/ruin/unpowered/elephant_graveyard)
 "fR" = (/obj/structure/window/bronze/fulltile,/turf/open/floor/engine,/area/f13/bunker)
-"fT" = (/turf/open/indestructible/ground/outside/water{CanAtmosPass = 0; CanAtmosPassVertical = 0; icon_state = "waterfall"},/area/icemoon/surface/outdoors/unexplored/rivers)
 "fV" = (/obj/item/storage/trash_stack,/turf/open/indestructible/ground/outside/dirt,/area/f13/village)
 "fW" = (/obj/effect/turf_decal/weather/dirt,/obj/structure/fence/wooden{dir = 4; icon_state = "post_wood"},/turf/open/indestructible/ground/outside/dirt,/area/f13/farm)
 "fX" = (/obj/structure/rack,/obj/item/clothing/suit/f13/blacksmith_apron,/obj/item/clothing/gloves/f13/blacksmith,/obj/item/stack/sheet/lead/ten,/turf/open/floor/f13/wood,/area/f13/raiders)
@@ -348,7 +347,7 @@
 "lW" = (/obj/structure/ladder/unbreakable{height = 2; icon_state = "woodladder11"; id = "NE"; move_me = 1},/turf/open/floor/wood/f13/oak,/area/crew_quarters/bar)
 "ma" = (/obj/structure/rack,/obj/item/reagent_containers/pill/patch/healingpowder,/obj/item/reagent_containers/pill/patch/healingpowder,/obj/item/reagent_containers/pill/patch/healingpowder,/obj/item/reagent_containers/pill/patch/healingpowder,/obj/item/reagent_containers/pill/patch/healingpowder,/turf/open/floor/f13/wood,/area/f13/raiders)
 "mb" = (/obj/structure/fence/wooden{dir = 1; icon_state = "post_wood"; pixel_x = -20},/turf/open/indestructible/ground/outside/water{icon_state = "cleanwater_motion"},/area/icemoon/surface/outdoors/unexplored/rivers)
-"md" = (/turf/open/indestructible/ground/outside/water{CanAtmosPass = 0; CanAtmosPassVertical = 0; icon_state = "waterfall"; wet = "true"},/area/icemoon/surface/outdoors/unexplored/rivers)
+"md" = (/turf/open/indestructible/ground/outside/water{CanAtmosPass = 0; CanAtmosPassVertical = 0; density = 1; icon_state = "waterfall"; opacity = 1},/area/icemoon/surface/outdoors/unexplored/rivers)
 "me" = (/obj/structure/chair/wood{dir = 8},/turf/open/floor/wood/f13/oak,/area/chapel)
 "mf" = (/obj/effect/decal/cleanable/oil,/turf/open/floor/engine,/area/f13/bunker)
 "mg" = (/obj/structure/spider/cocoon,/turf/open/indestructible/ground/inside/mountain,/area/f13/bunker)
@@ -374,7 +373,7 @@
 "ne" = (/obj/structure/chair/wood/modern,/turf/open/floor/wood/f13/oak,/area/crew_quarters/bar)
 "nf" = (/obj/effect/turf_decal/weather/dirt,/obj/structure/flora/tree/jungle/small,/turf/open/floor/grass,/area/f13/bunker)
 "ni" = (/obj/structure/spider/stickyweb,/obj/structure/spider/stickyweb,/obj/structure/spider/cocoon,/turf/open/indestructible/ground/inside/mountain,/area/f13/bunker)
-"no" = (/turf/closed/indestructible/rock{icon = 'icons/turf/floors.dmi'; icon_state = "dirt_fogl"; name = "dense fog"},/area/f13/wasteland)
+"no" = (/turf/open/floor/plating/f13/outside/dirt{density = 1; icon_state = "dirt_fogl"; name = "dense fog"; opacity = 1},/area/f13/wasteland)
 "nq" = (/turf/open/floor/f13/wood{icon_state = "housebase"},/area/crew_quarters/bar)
 "ns" = (/obj/item/candle/tribal_torch,/obj/item/reagent_containers/food/snacks/grown/rainbow_flower,/turf/open/floor/plasteel/rockvault/sandstone,/area/f13/desert)
 "nt" = (/turf/closed/wall/f13/tentwall,/area/f13/tribe)
@@ -399,7 +398,7 @@
 "or" = (/obj/structure/rack,/obj/item/clothing/suit/hooded/cultrobes/cult_shield,/obj/item/clothing/head/culthood/alt,/obj/item/clothing/suit/hooded/cultrobes/eldritch,/turf/open/floor/plasteel/cult,/area/chapel)
 "ot" = (/obj/structure/junk/small/bed,/turf/open/floor/f13/wood,/area/ruin/unpowered)
 "ou" = (/obj/effect/decal/cleanable/oil,/turf/open/floor/carpet,/area/f13/bunker)
-"ox" = (/turf/closed/indestructible/rock{icon = 'icons/turf/floors.dmi'; icon_state = "dirt_fogu"; name = "dense fog"},/area/ruin/unpowered/elephant_graveyard)
+"ox" = (/turf/open/floor/plating/f13/outside/dirt{density = 1; icon_state = "dirt_fogu"; name = "dense fog"; opacity = 1},/area/ruin/unpowered/elephant_graveyard)
 "oy" = (/obj/structure/closet/crate{icon_state = "crateopen"},/obj/item/stack/sheet/metal/fifty,/obj/item/stack/sheet/metal/fifty,/obj/item/stack/sheet/glass/fifty,/obj/item/stack/sheet/glass/fifty,/obj/item/stack/sheet/mineral/wood/fifty,/obj/item/stack/sheet/mineral/wood/fifty,/obj/item/stack/sheet/mineral/sandstone/thirty,/obj/item/stack/sheet/leather/twenty,/obj/item/stack/sheet/leather/twenty,/obj/item/stack/sheet/hay/fifty,/obj/item/stack/sheet/durathread,/obj/item/stack/sheet/durathread,/obj/item/stack/sheet/cloth/thirty,/obj/item/stack/sheet/cloth/thirty,/obj/item/stack/sheet/bronze/thirty,/obj/item/stack/sheet/bone,/obj/item/stack/sheet/bone,/obj/item/stack/sheet/bone,/obj/item/stack/sheet/bone,/obj/item/stack/sheet/bone,/obj/item/stack/sheet/mineral/silver,/obj/item/stack/sheet/mineral/silver,/obj/item/stack/sheet/paperframes/fifty,/obj/item/stack/sheet/sinew,/obj/item/stack/sheet/sinew,/obj/item/stack/sheet/sinew,/obj/item/stack/sheet/sinew,/obj/item/stack/sheet/sinew,/obj/item/stack/sheet/sinew,/obj/item/stack/sheet/sinew,/obj/item/stack/sheet/sinew,/obj/item/stack/sheet/sinew,/obj/item/stack/sheet/sinew,/turf/open/floor/f13/wood,/area/f13/raiders)
 "oB" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/grass,/area/f13/bunker)
 "oH" = (/obj/structure/simple_door/wood,/turf/open/floor/f13/wood,/area/f13/raiders)
@@ -1081,7 +1080,7 @@
 "Wh" = (/obj/machinery/door/morgue,/turf/open/floor/wood/f13/oak,/area/chapel)
 "Wi" = (/mob/living/simple_animal/hostile/alien{faction = list("spiders")},/obj/structure/spider/stickyweb,/turf/open/indestructible/ground/inside/mountain,/area/f13/bunker)
 "Wm" = (/turf/open/floor/carpet,/area/f13/bunker)
-"Wn" = (/turf/closed/indestructible/rock{icon = 'icons/turf/floors.dmi'; icon_state = "dirt_fogl"; name = "dense fog"},/area/ruin/unpowered/elephant_graveyard)
+"Wn" = (/turf/open/floor/plating/f13/outside/dirt{density = 1; icon_state = "dirt_fogl"; name = "dense fog"; opacity = 1},/area/ruin/unpowered/elephant_graveyard)
 "Ws" = (/obj/structure/closet/crate/freezer/blood,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood/f13/oak,/area/f13/clinic)
 "Wu" = (/obj/structure/barricade/tentleathercorner,/turf/open/floor/plating/f13/outside/desert,/area/f13/tribe)
 "Wv" = (/obj/structure/simple_door/tent,/turf/open/floor/plating/asteroid{color = "#F5F5D4"},/area/f13/tribe)
@@ -1159,7 +1158,7 @@
 "ZZ" = (/obj/structure/ladder/unbreakable{height = 1; icon_state = "woodladder11"; id = "laddertreeblue"; move_me = 1},/turf/open/floor/f13/wood{icon_state = "treehousefloor"},/area/awaymission/cabin)
 
 (1,1,1) = {"
-fQoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOmdfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTfTZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZP
+fQoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZPZP
 WndgdgdgdgdgdqdgdgdgdrdgdgdgdsdgdgdgdgdgdtdgdgdgdqdgdgdgdgdgdgdgdgdrdgdgdgiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOJlJlhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFrtguhFababababababacabacababababababacabababababababacZP
 WndgdgdgdgdgdgdgdgdgdgdgdgdgdgdtdgdgdgdgdgdgdgdgdgdgdrdgdgdqdgdgdgdgdgdgdgJlJliOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOJliOiOiOiOiOJlJlJlJlJlJlJliOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOJlJlJlJlJlJlJlhFhFhFhFhFhFguhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFhFrthFabababababKsabKsababacKsabadababababababacabababZP
 WndgdtdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdrdgdgdgdgdgdgdgdgdgdgJlJliOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOJlJlJliOiOiOJlJlJlJlJlJlJlJlJlJlJlJliOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOJlJlJlJlJlJlJlhFhFrthFhFhFhFhFhFhFhFhFhFhFhFhFhFhFrtgurthFhFhFhFhFhFhFhFhFhFhFhFhFhFguhFhFhFhFhFrthFhFhFababacababKsabKsababababKsabababababababababababZP
