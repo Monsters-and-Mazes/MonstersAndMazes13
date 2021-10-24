@@ -43,6 +43,12 @@
 	. = ..()
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_CLAW)
 
+/mob/living/simple_animal/hostile/alien/AttackingTarget()
+	. = ..()
+	if(. && ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.reagents.add_reagent(/datum/reagent/toxin/cazador_venom, 1)
+
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"
 	icon_state = "aliend"
