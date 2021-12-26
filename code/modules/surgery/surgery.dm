@@ -47,26 +47,30 @@
 
 /datum/surgery/proc/can_start(mob/user, mob/living/patient, obj/item/tool) //FALSE to not show in list
 	. = TRUE
+
+	if(issilicon(user) && requires_trait<3)
+		return TRUE //Simple solution to cyborgs not being able to regular surgery. Still blocks out the extreme stuff.
+
 	if(replaced_by == /datum/surgery)
 		return FALSE
-		//	
-		
+		//
+
 	if(requires_trait>2)
 		if(HAS_TRAIT(user,TRAIT_SURGERY_HIGH))
 			return TRUE
-		else 
+		else
 			return FALSE
 
 	if(requires_trait>1)
 		if(HAS_TRAIT(user,TRAIT_SURGERY_MID)||HAS_TRAIT(user,TRAIT_SURGERY_HIGH))
 			return TRUE
-		else 
+		else
 			return FALSE
 
 	if(requires_trait>0)
 		if(HAS_TRAIT(user,TRAIT_SURGERY_LOW)||HAS_TRAIT(user,TRAIT_SURGERY_MID)||HAS_TRAIT(user,TRAIT_SURGERY_HIGH))
 			return TRUE
-		else 
+		else
 			return FALSE
 		//
 	if(HAS_TRAIT(user, TRAIT_SURGEON) || HAS_TRAIT(user.mind, TRAIT_SURGEON))
@@ -119,7 +123,7 @@
 		if(iscyborg(user) && user.a_intent != INTENT_HARM) //to save asimov borgs a LOT of heartache
 			return TRUE
 		if(tool && tool.item_flags & SURGICAL_TOOL) //Just because you used the wrong tool it doesn't mean you meant to whack the patient with it
-			to_chat(user, "<span class='warning'>This step requires a different tool!</span>")
+			to_chat(user, SPAN_WARNING("This step requires a different tool!"))
 			return TRUE
 
 /datum/surgery/proc/get_surgery_step()
@@ -176,12 +180,11 @@
 		if(initial(beep.requires_tech))
 			surgeries += beep
 
-/obj/item/disk/surgery/oasis 
+/obj/item/disk/surgery/oasis
 	name = "oasis surgery disk"
 	surgeries = list(	/datum/surgery/advanced/lobotomy,
 						/datum/surgery/advanced/pacify,
-						/datum/surgery/advanced/reconstruction,
-						/datum/surgery/advanced/brainwashing)
+						/datum/surgery/advanced/reconstruction)
 
 
 //INFO

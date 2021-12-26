@@ -193,14 +193,20 @@
 		if(is_servant_of_ratvar(L) && L.stat != DEAD)
 			. = TRUE
 			L.forceMove(get_turf(pick(GLOB.servant_spawns)))
-			visible_message("<span class='warning'>[L] vanishes in a flash of red!</span>")
-			L.visible_message("<span class='warning'>[L] appears in a flash of red!</span>", \
+			visible_message(SPAN_WARNING("[L] vanishes in a flash of red!"))
+			L.visible_message(SPAN_WARNING("[L] appears in a flash of red!"), \
 			"<span class='bold cult'>sas'so c'arta forbici</span><br><span class='danger'>You're yanked away from [src]!</span>")
 			playsound(src, 'sound/magic/enter_blood.ogg', 50, TRUE)
 			playsound(L, 'sound/magic/exit_blood.ogg', 50, TRUE)
 			flash_color(L, flash_color = "#C80000", flash_time = 10)
 
 /turf/open/Initialize_Atmos(times_fired)
+	if(!blocks_air)
+		if(!istype(air,/datum/gas_mixture/turf))
+			air = new(2500,src)
+		air.copy_from_turf(src)
+		update_air_ref(planetary_atmos ? 1 : 2)
+
 	update_visuals()
 	ImmediateCalculateAdjacentTurfs()
 
@@ -258,7 +264,7 @@
 				if(!(H.combat_flags & COMBAT_FLAG_SPRINT_ACTIVE) && H.getStaminaLoss() <= 20)
 					return FALSE
 	if(!(lube&SLIDE_ICE))
-		to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
+		to_chat(C, SPAN_NOTICE("You slipped[ O ? " on the [O.name]" : ""]!"))
 		playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
@@ -296,8 +302,8 @@
 
 /turf/open/rad_act(pulse_strength)
 	. = ..()
-	if (air.get_moles(/datum/gas/carbon_dioxide) && air.get_moles(/datum/gas/oxygen))
-		pulse_strength = min(pulse_strength,air.get_moles(/datum/gas/carbon_dioxide)*1000,air.get_moles(/datum/gas/oxygen)*2000) //Ensures matter is conserved properly
-		air.set_moles(/datum/gas/carbon_dioxide, max(air.get_moles(/datum/gas/carbon_dioxide)-(pulse_strength/1000),0))
-		air.set_moles(/datum/gas/oxygen, max(air.get_moles(/datum/gas/oxygen)-(pulse_strength/2000),0))
-		air.adjust_moles(/datum/gas/pluoxium, pulse_strength/4000)
+	if (air.get_moles(GAS_CO2) && air.get_moles(GAS_O2))
+		pulse_strength = min(pulse_strength,air.get_moles(GAS_CO2)*1000,air.get_moles(GAS_O2)*2000) //Ensures matter is conserved properly
+		air.set_moles(GAS_CO2, max(air.get_moles(GAS_CO2)-(pulse_strength/1000),0))
+		air.set_moles(GAS_O2, max(air.get_moles(GAS_O2)-(pulse_strength/2000),0))
+		air.adjust_moles(GAS_PLUOXIUM, pulse_strength/4000)

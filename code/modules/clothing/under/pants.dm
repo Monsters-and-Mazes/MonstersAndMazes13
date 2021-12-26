@@ -11,7 +11,7 @@
 	icon_state = "jeansclassic"
 
 /obj/item/clothing/under/pants/mustangjeans
-	name = "Must Hang jeans"
+	name = "Must-Hang jeans"
 	desc = "Made in the finest space jeans factory this side of Alpha Centauri."
 	icon_state = "jeansmustang"
 	custom_price = PRICE_ABOVE_NORMAL
@@ -22,7 +22,7 @@
 	icon_state = "jeansblack"
 
 /obj/item/clothing/under/pants/youngfolksjeans
-	name = "Young Folks jeans"
+	name = "young folks' jeans"
 	desc = "For those tired of boring old jeans. Relive the passion of your youth!"
 	icon_state = "jeansyoungfolks"
 
@@ -68,23 +68,43 @@
 
 /obj/item/clothing/under/pants/jeanripped
 	name = "ripped jeans"
-	desc = "If you're wearing this you're poor or a rebel"
+	desc = "If you're wearing this, you're either a true rebel, or just poor."
 	icon_state = "jean_ripped"
 
 /obj/item/clothing/under/pants/jeanshort
 	name = "jean shorts"
-	desc = "These are really just jeans cut in half"
+	desc = "Like a sawn-off shotgun, but for jeans."
 	icon_state = "jean_shorts"
+
+/obj/item/clothing/under/pants/jeanbshorts
+	name = "minijorts"
+	desc = "These are really just jorts cut in half. Can you call these shorts anymore?"
+	icon_state = "jeanbshorts"
+
+/obj/item/clothing/under/pants/darkbshorts
+	name = "dark minijorts"
+	desc = "A tiny pair of dark booty shorts. Who would wear these?"
+	icon_state = "darkbshorts"
+
+/obj/item/clothing/under/pants/blackbshorts
+	name = "black denim minishorts"
+	desc = "The black denim does nothing to make you feel like less of a creep."
+	icon_state = "blackbshorts"
+
+/obj/item/clothing/under/pants/brownbshorts
+	name = "brown minishorts"
+	desc = "Dark bown... shorts? Looks small enough to be underwear."
+	icon_state = "brownbshorts"
 
 /obj/item/clothing/under/pants/denimskirt
 	name = "denim skirt"
-	desc = "These are really just a jean leg hole cut from a pair"
+	desc = "These are really just a jean leg hole cut from a pair."
 	icon_state = "denim_skirt"
 
 /obj/item/clothing/under/pants/chaps
 	name = "black chaps"
 	body_parts_covered = LEGS
-	desc = "Yeehaw"
+	desc = "Yeehaw."
 	icon_state = "chaps"
 
 /obj/item/clothing/under/pants/yoga

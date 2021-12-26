@@ -14,7 +14,7 @@
 
 /datum/design/bluespace_pod
 	name = "Supply Drop Pod Upgrade Disk"
-	desc = "Allows the Cargo Express Console to call down the Bluespace Drop Pod, greatly increasing user safety."//who?
+	desc = "Allows the Cargo Express Console to call down the Quantum Drop Pod, greatly increasing user safety."//who?
 	id = "bluespace_pod"//the coder reading this
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 1000)
@@ -79,16 +79,6 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/titanium = 4000)
 	build_path = /obj/item/pickaxe/titanium
-	category = list("Mining Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_CARGO
-
-/datum/design/jackhammer
-	name = "Sonic Jackhammer"
-	desc = "Essentially a handheld planet-cracker. Can drill through walls with ease as well."
-	id = "jackhammer"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 6000, /datum/material/glass = 2000, /datum/material/silver = 2000, /datum/material/diamond = 6000)
-	build_path = /obj/item/pickaxe/drill/jackhammer
 	category = list("Mining Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 

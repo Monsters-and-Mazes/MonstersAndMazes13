@@ -42,6 +42,10 @@
 	name = "5.56 match bullet casing"
 	projectile_type = /obj/item/projectile/bullet/a556/match
 
+/obj/item/ammo_casing/a556/rubber
+	name = "5.56 rubber bullet casing"
+	projectile_type = /obj/item/projectile/bullet/a556/rubber
+
 /obj/item/ammo_casing/a556/sport //.223
 	name = ".223 bullet casing"
 	desc = "A .223 bullet casing."
@@ -61,3 +65,11 @@
 	desc = "A 2mm gauss projectile casing."
 	caliber = "2mm"
 	projectile_type = /obj/item/projectile/bullet/c2mm
+
+// 5mm
+
+/obj/item/ammo_casing/c5mm
+	name = "5mm bullet casing"
+	desc = "A 5mm bullet casing."
+	caliber = "5mm"
+	projectile_type = /obj/item/projectile/bullet/c5mm

@@ -72,7 +72,7 @@
 /obj/item/gun/ballistic/automatic/speargun/attackby(obj/item/A, mob/user, params)
 	var/num_loaded = magazine.attackby(A, user, params, 1)
 	if(num_loaded)
-		to_chat(user, "<span class='notice'>You load [num_loaded] spear\s into \the [src].</span>")
+		to_chat(user, SPAN_NOTICE("You load [num_loaded] spear\s into \the [src]."))
 		update_icon()
 		chamber_round()
 
@@ -120,20 +120,20 @@
 		if(AC)
 			if(!user.put_in_hands(AC))
 				AC.bounce_away(FALSE, NONE)
-			to_chat(user, "<span class='notice'>You remove \the [AC] from \the [src]!</span>")
+			to_chat(user, SPAN_NOTICE("You remove \the [AC] from \the [src]!"))
 			playsound(src, 'sound/weapons/gun_magazine_remove_full.ogg', 70, TRUE)
 			chambered = null
 		else
-			to_chat(user, "<span class='notice'>There's no [magazine_wording] in [src].</span>")
+			to_chat(user, SPAN_NOTICE("There's no [magazine_wording] in [src]."))
 	update_icon()
 
 /obj/item/gun/ballistic/rocketlauncher/attackby(obj/item/A, mob/user, params)
 	if(magazine && istype(A, /obj/item/ammo_casing))
 		if(chambered)
-			to_chat(user, "<span class='notice'>[src] already has a [magazine_wording] chambered.</span>")
+			to_chat(user, SPAN_NOTICE("[src] already has a [magazine_wording] chambered."))
 			return
 		if(magazine.attackby(A, user, silent = TRUE))
-			to_chat(user, "<span class='notice'>You load a new [A] into \the [src].</span>")
+			to_chat(user, SPAN_NOTICE("You load a new [A] into \the [src]."))
 			playsound(src, "gun_insert_full_magazine", 70, 1)
 			chamber_round()
 			update_icon()
@@ -142,7 +142,7 @@
 	icon_state = "[initial(icon_state)]-[chambered ? "1" : "0"]"
 
 /obj/item/gun/ballistic/rocketlauncher/suicide_act(mob/living/user)
-	user.visible_message("<span class='warning'>[user] aims [src] at the ground! It looks like [user.p_theyre()] performing a sick rocket jump!</span>", \
+	user.visible_message(SPAN_WARNING("[user] aims [src] at the ground! It looks like [user.p_theyre()] performing a sick rocket jump!"), \
 		"<span class='userdanger'>You aim [src] at the ground to perform a bisnasty rocket jump...</span>")
 	if(can_shoot())
 		user.mob_transforming = TRUE
@@ -160,14 +160,14 @@
 		sleep(5)
 		shoot_with_empty_chamber(user)
 		sleep(20)
-		user.visible_message("<span class='warning'>[user] looks about the room realizing [user.p_theyre()] still there. [user.p_they(TRUE)] proceed to shove [src] down their throat and choke [user.p_them()]self with it!</span>", \
+		user.visible_message(SPAN_WARNING("[user] looks about the room realizing [user.p_theyre()] still there. [user.p_they(TRUE)] proceed to shove [src] down their throat and choke [user.p_them()]self with it!"), \
 			"<span class='userdanger'>You look around after realizing you're still here, then proceed to choke yourself to death with [src]!</span>")
 		sleep(20)
 		return OXYLOSS
 
 /obj/item/gun/ballistic/automatic/tribalbow
-	name = "tribal bow"
-	desc = "A simple wooden bow with small pieces of turquiose."
+	name = "Wayfarer bow"
+	desc = "A simple wooden short bow with small pieces of turquiose and etched with symbols of the Wayfarer tribe."
 	icon_state = "tribalbow"
 	item_state = "tribalbow"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -176,7 +176,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/tribalbow
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	burst_size = 1
-	fire_delay = 0
+	fire_delay = 0.5
 	select = 0
 	actions_types = list()
 	casing_ejector = FALSE
@@ -191,6 +191,137 @@
 /obj/item/gun/ballistic/automatic/tribalbow/attackby(obj/item/A, mob/user, params)
 	var/num_loaded = magazine.attackby(A, user, params, 1)
 	if(num_loaded)
-		to_chat(user, "<span class='notice'>You load [num_loaded] arrow\s into \the [src].</span>")
+		to_chat(user, SPAN_NOTICE("You load [num_loaded] arrow\s into \the [src]."))
+		update_icon()
+		chamber_round()
+
+//Bone Bow
+/obj/item/gun/ballistic/automatic/bonebow
+	name = "deathclaw bow"
+	desc = "A bone bow, made of pieces of sinew and deathclaw skin for extra structure, it is a fierce weapon that all expert hunters and bowmen carry, allowing for ease of firing many arrows."
+	icon_state = "ashenbow_unloaded"
+	item_state = "ashenbow"
+	w_class = WEIGHT_CLASS_BULKY
+	force = 20
+	can_suppress = FALSE
+	mag_type = /obj/item/ammo_box/magazine/internal/bonebow
+	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	burst_size = 1
+	fire_delay = 2
+	select = 0
+	extra_speed = 100
+	actions_types = list()
+	casing_ejector = FALSE
+	isbow = TRUE
+
+/obj/item/gun/ballistic/automatic/bonebow/update_icon()
+	return
+
+/obj/item/gun/ballistic/automatic/bonebow/attack_self()
+	return
+
+/obj/item/gun/ballistic/automatic/bonebow/attackby(obj/item/A, mob/user, params)
+	var/num_loaded = magazine.attackby(A, user, params, 1)
+	if(num_loaded)
+		to_chat(user, SPAN_NOTICE("You load [num_loaded] arrow\s into \the [src]."))
+		update_icon()
+		chamber_round()
+
+//Sturdy Bow
+/obj/item/gun/ballistic/automatic/sturdybow
+	name = "sturdy bow"
+	desc = "A firm sturdy wooden bow with leather handles and sinew wrapping, for extra stopping power in the shot speed of the arrows."
+	icon_state = "bow_unloaded"
+	item_state = "bow"
+	w_class = WEIGHT_CLASS_NORMAL
+	force = 15
+	can_suppress = FALSE
+	mag_type = /obj/item/ammo_box/magazine/internal/sturdybow
+	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	burst_size = 1
+	fire_delay = 1
+	select = 0
+	extra_speed = 300
+	actions_types = list()
+	casing_ejector = FALSE
+	isbow = TRUE
+
+/obj/item/gun/ballistic/automatic/sturdybow/update_icon()
+	return
+
+/obj/item/gun/ballistic/automatic/sturdybow/attack_self()
+	return
+
+/obj/item/gun/ballistic/automatic/sturdybow/attackby(obj/item/A, mob/user, params)
+	var/num_loaded = magazine.attackby(A, user, params, 1)
+	if(num_loaded)
+		to_chat(user, SPAN_NOTICE("You load [num_loaded] arrow\s into \the [src]."))
+		update_icon()
+		chamber_round()
+
+//Silver Bow
+/obj/item/gun/ballistic/automatic/silverbow
+	name = "silver bow"
+	desc = "A firm sturdy silver bow created by the earth, its durability and rather strong material allow it to be an excellent option for those looking for the ability to fire more arrows than normally."
+	icon_state = "pipebow_unloaded"
+	item_state = "pipebow"
+	w_class = WEIGHT_CLASS_BULKY
+	force = 15
+	can_suppress = FALSE
+	mag_type = /obj/item/ammo_box/magazine/internal/silverbow
+	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	burst_size = 1
+	fire_delay = 1.5
+	select = 0
+	actions_types = list()
+	casing_ejector = FALSE
+	isbow = TRUE
+
+/obj/item/gun/ballistic/automatic/silverbow/update_icon()
+	return
+
+/obj/item/gun/ballistic/automatic/silverbow/attack_self()
+	return
+
+/obj/item/gun/ballistic/automatic/silverbow/attackby(obj/item/A, mob/user, params)
+	var/num_loaded = magazine.attackby(A, user, params, 1)
+	if(num_loaded)
+		to_chat(user, SPAN_NOTICE("You load [num_loaded] arrow\s into \the [src]."))
+		update_icon()
+		chamber_round()
+
+//Crossbow
+/obj/item/gun/ballistic/automatic/crossbow
+	name = "crossbow"
+	desc = "A crossbow."
+	icon_state = "crossbow"
+	item_state = "crossbow"
+	w_class = WEIGHT_CLASS_NORMAL
+	force = 10
+	can_suppress = FALSE
+	mag_type = /obj/item/ammo_box/magazine/internal/crossbow
+	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	burst_size = 1
+	fire_delay = 1.5
+	select = 0
+	extra_speed = 400
+	actions_types = list()
+	casing_ejector = FALSE
+	isbow = TRUE
+	zoomable = TRUE
+	zoom_amt = 10
+	zoom_out_amt = 13
+	can_scope = FALSE
+
+/obj/item/gun/ballistic/automatic/crossbow/update_icon()
+	return
+
+/obj/item/gun/ballistic/automatic/crossbow/attack_self()
+	return
+
+/obj/item/gun/ballistic/automatic/crossbow/attackby(obj/item/A, mob/user, params)
+	var/num_loaded = magazine.attackby(A, user, params, 1)
+	if(num_loaded)
+		to_chat(user, SPAN_NOTICE("You load [num_loaded] arrow\s into \the [src]."))
 		update_icon()
 		chamber_round()

@@ -106,6 +106,13 @@
 	new /obj/item/stack/f13Cash/random/med(src)
 	new /obj/item/stack/f13Cash/random/ncr/low(src)
 
+//Larger Settler money bag. Not too wealthy, but enough to basically buy a loadout.
+/obj/item/storage/bag/money/small/vaultcity/PopulateContents()
+	new /obj/item/stack/f13Cash/random/med(src)
+	new /obj/item/stack/f13Cash/random/med(src)
+	new /obj/item/stack/f13Cash/random/ncr/low(src)
+	new /obj/item/stack/f13Cash/random/aureus/low(src)
+
 // Standard Banker money bag. They are insanely wealthy, Caps only and only for RP purposes.
 /obj/item/storage/bag/money/small/banker/PopulateContents()
 	// ~162 worth of non legion money
@@ -116,3 +123,16 @@
 	// ~12 worth of caps
 	new /obj/item/stack/f13Cash/random/low(src)
 
+// BOS knights. Spawns with Knight caste members.
+/obj/item/storage/bag/money/small/bosknight/PopulateContents()
+	new /obj/item/stack/f13Cash/random/bawls/low(src)
+
+// BOS paladins. Spawns with Paladin caste members.
+/obj/item/storage/bag/money/small/bospaladin/PopulateContents()
+	new /obj/item/stack/f13Cash/random/bawls/med(src)
+	new /obj/item/stack/f13Cash/random/low(src)
+
+// BOS heads. Spawns with heads of caste; scribe, knight and paladin
+/obj/item/storage/bag/money/small/bos/PopulateContents()
+	new /obj/item/stack/f13Cash/random/bawls/high(src)
+	new /obj/item/stack/f13Cash/random/bawls/med(src)

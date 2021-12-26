@@ -22,7 +22,7 @@
 /obj/item/clothing/glasses/examine(mob/user)
 	. = ..()
 	if(glass_colour_type && ishuman(user))
-		. += "<span class='notice'>Alt-click to toggle its colors.</span>"
+		. += SPAN_NOTICE("Alt-click to toggle its colors.")
 
 /obj/item/clothing/glasses/visor_toggling()
 	..()
@@ -45,7 +45,7 @@
 	var/mob/living/carbon/human/H = loc
 	var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
 	if((!HAS_TRAIT(H, TRAIT_BLIND) || !eyes) && H.glasses == src)
-		to_chat(H, "<span class='danger'>[src] overloads and blinds you!</span>")
+		to_chat(H, SPAN_DANGER("[src] overloads and blinds you!"))
 		H.flash_act(visual = 1)
 		H.blind_eyes(3)
 		H.blur_eyes(5)
@@ -252,11 +252,6 @@
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	dog_fashion = /datum/dog_fashion/head
 
-/obj/item/clothing/glasses/sunglasses/reagent
-	name = "beer goggles"
-	desc = "A pair of sunglasses outfitted with apparatus to scan reagents."
-	clothing_flags = SCAN_REAGENTS
-
 /obj/item/clothing/glasses/sunglasses/garb
 	name = "black gar glasses"
 	desc = "Go beyond impossible and kick reason to the curb!"
@@ -314,18 +309,18 @@
 	if (installed && !installed.crit_fail)
 		installed.attack_self(user)
 	else
-		to_chat(user, "<span class = 'danger'>Install a new flash in [src]!</span>")
+		to_chat(user, SPAN_DANGER("Install a new flash in [src]!"))
 
 /obj/item/clothing/glasses/sunglasses/stunglasses/attackby(obj/item/W,mob/user)
 	if (istype(W,/obj/item/screwdriver))
 		if (installed)
 			installed.forceMove(get_turf(src))
-			to_chat(user, "<span class = 'notice'>You remove [installed] from [src].</span>")
+			to_chat(user, SPAN_NOTICE("You remove [installed] from [src]."))
 			installed = null
 	if (istype(W,/obj/item/assembly/flash))
 		if (!installed)
 			W.forceMove(src)
-			to_chat(user, "<span class = 'notice'>You install [W] into [src].</span>")
+			to_chat(user, SPAN_NOTICE("You install [W] into [src]."))
 			installed = W
 	. = ..()
 
@@ -505,7 +500,7 @@
 				var/mob/living/carbon/C = user
 				C.update_inv_wear_mask()
 		else
-			to_chat(user, "<span class='notice'>The eye winks at you and vanishes into the abyss, you feel really unlucky.</span>")
+			to_chat(user, SPAN_NOTICE("The eye winks at you and vanishes into the abyss, you feel really unlucky."))
 		qdel(src)
 	..()
 
@@ -538,6 +533,32 @@
 		add_client_colour(G.glass_colour_type)
 	else
 		remove_client_colour(G.glass_colour_type)
+
+/obj/item/clothing/glasses/sunglasses/reagent
+	name = "beer goggles"
+	icon_state = "sunhudbeer"
+	item_state = "sunhudbeer"
+	desc = "A pair of sunglasses outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion."
+	clothing_flags = SCAN_REAGENTS
+
+/obj/item/clothing/glasses/sunglasses/chemical
+	name = "science glasses"
+	icon_state = "sunhudsci"
+	item_state = "sunhudsci"
+	desc = "A pair of tacky purple sunglasses that allow the wearer to recognize various chemical compounds with only a glance."
+	clothing_flags = SCAN_REAGENTS
+
+/obj/item/clothing/glasses/geist_gazers
+	name = "geist gazers"
+	icon_state = "geist_gazers"
+	item_state = "geist_gazers"
+	glass_colour_type = /datum/client_colour/glass_colour/green
+
+/obj/item/clothing/glasses/psych
+	name = "psych glasses"
+	icon_state = "psych_glasses"
+	item_state = "psych_glasses"
+	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/debug
 	name = "debug glasses"

@@ -137,7 +137,7 @@
 	lace_time = 12 SECONDS
 
 /obj/item/clothing/shoes/jackboots/fast
-	slowdown = -1
+	slowdown = -0.5
 
 /obj/item/clothing/shoes/winterboots
 	name = "winter boots"
@@ -175,7 +175,7 @@
 
 /obj/item/clothing/shoes/workboots
 	name = "work boots"
-	desc = "Nanotrasen-issue Engineering lace-up work boots for the especially blue-collar."
+	desc = "Vault-Tec-issue Engineering lace-up work boots for the especially blue-collar."
 	icon_state = "workboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
@@ -265,7 +265,7 @@
 		return
 
 	if(recharging_time > world.time)
-		to_chat(user, "<span class='warning'>The boot's internal propulsion needs to recharge still!</span>")
+		to_chat(user, SPAN_WARNING("The boot's internal propulsion needs to recharge still!"))
 		return
 
 	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
@@ -273,9 +273,9 @@
 	if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
 		playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
 		recharging_time = world.time + recharging_rate
-		user.visible_message("<span class='warning'>[usr] dashes forward into the air!</span>")
+		user.visible_message(SPAN_WARNING("[usr] dashes forward into the air!"))
 	else
-		to_chat(user, "<span class='warning'>Something prevents you from dashing forward!</span>")
+		to_chat(user, SPAN_WARNING("Something prevents you from dashing forward!"))
 
 /obj/item/clothing/shoes/singery
 	name = "yellow performer's boots"
@@ -316,7 +316,7 @@
 	if(!isliving(user))
 		return
 	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/wheelys))
-		to_chat(user, "<span class='warning'>You must be wearing the wheely-heels to use them!</span>")
+		to_chat(user, SPAN_WARNING("You must be wearing the wheely-heels to use them!"))
 		return
 	if(!(W.is_occupant(user)))
 		wheelToggle = FALSE
@@ -337,6 +337,19 @@
 /obj/item/clothing/shoes/wheelys/Destroy()
 	QDEL_NULL(W)
 	. = ..()
+
+/obj/item/clothing/shoes/thighboot
+	name = "thigh high boots"
+	desc = "A pair of black and blue boots that reach up to a person's thigh."
+	icon_state = "thigh_high"
+	item_state = "thigh_high"
+
+/obj/item/clothing/shoes/thighboot/platform
+	name = "thigh high platform"
+	desc = "A pair of chunky platform heels that reach up to a person's thigh."
+	icon_state = "thigh_high_heel"
+	item_state = "thigh_high_heel"
+	offset = 2
 
 /obj/item/clothing/shoes/kindleKicks
 	name = "Kindle Kicks"
@@ -407,7 +420,7 @@
 
 /obj/item/clothing/shoes/wallwalkers
 	name = "wall walking boots"
-	desc = "Contrary to popular belief, these do not allow you to walk on walls. Through bluespace magic stolen from an organisation that hoards technology, they simply allow you to slip through the atoms that make up anything, but only while walking, for safety reasons. As well as this, they unfortunately cause minor breath loss as the majority of atoms in your lungs are sucked out into any solid object you walk through. Make sure not to overuse them."
+	desc = "Contrary to popular belief, these do not allow you to walk on walls. Through quantum technology stolen from an organisation that hoards technology, they simply allow you to slip through the atoms that make up anything, but only while walking, for safety reasons. As well as this, they unfortunately cause minor breath loss as the majority of atoms in your lungs are sucked out into any solid object you walk through. Make sure not to overuse them."
 	icon_state = "walkboots"
 	var/walkcool = 0
 	var/wallcharges = 4
@@ -429,15 +442,15 @@
 	var/obj/item/bluespacerecharge/ER = W
 	if(ER.uses)
 		wallcharges += ER.uses
-		to_chat(user, "<span class='notice'>You charged the bluespace crystal in the [src]. It now has [wallcharges] charges left.</span>")
+		to_chat(user, SPAN_NOTICE("You charged the quantum crystal in the [src]. It now has [wallcharges] charges left."))
 		ER.uses = 0
 		ER.icon_state = "[initial(ER.icon_state)]0"
 	else
-		to_chat(user, "<span class='warning'>[ER] has no crystal on it.</span>")
+		to_chat(user, SPAN_WARNING("[ER] has no crystal on it."))
 
 /obj/item/clothing/shoes/wallwalkers/examine(mob/user)
 	. = ..()
-	. += "<span class='warning'>It has [wallcharges] charges left.</span>"
+	. += SPAN_WARNING("It has [wallcharges] charges left.")
 
 /obj/item/clothing/shoes/wallwalkers/proc/intercept_user_move(mob/living/m, client/client, dir, newloc, oldloc)
 	if (walkcool >= world.time || m.m_intent != MOVE_INTENT_WALK || wallcharges <= 0)
@@ -466,7 +479,7 @@
 	m.adjustOxyLoss(rand(5,13))
 	if (prob(15))
 		m.adjustBruteLoss(rand(4,7))
-		to_chat(m,"<span class='warning'>You feel as if travelling through the solid object left something behind and it hurts!</span>")
+		to_chat(m,SPAN_WARNING("You feel as if travelling through the solid object left something behind and it hurts!"))
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, oldloc)
 	s.start()
@@ -474,8 +487,8 @@
 	wallcharges--
 
 /obj/item/bluespacerecharge
-	name = "bluespace crystal recharging device"
-	desc = "A small cell with two prongs lazily jabbed into it. It looks like it's made for replacing the crystals in bluespace devices."
+	name = "quantum crystal recharging device"
+	desc = "A small cell with two prongs lazily jabbed into it. It looks like it's made for replacing the crystals in quantum devices."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "bluespace_charge"
 	item_flags = NOBLUDGEON
@@ -485,9 +498,9 @@
 /obj/item/bluespacerecharge/examine(mob/user)
 	. = ..()
 	if(uses)
-		. += "<span class='notice'>It can add up to [uses] charges to compatible devices.</span>"
+		. += SPAN_NOTICE("It can add up to [uses] charges to compatible devices.")
 	else
-		. += "<span class='warning'>The crystal is gone.</span>"
+		. += SPAN_WARNING("The crystal is gone.")
 
 /obj/item/bluespacerecharge/attackby(obj/item/I, mob/user, params)
 	..()
@@ -497,6 +510,11 @@
 	if (B.amount < 10)
 		return
 	uses += 3
-	to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+	to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
 	B.use(10)
 	icon_state = initial(icon_state)
+	
+/obj/item/clothing/shoes/swagshoes
+	name = "swag shoes"
+	desc = "They got me for my foams!"
+	icon_state = "SwagShoes"

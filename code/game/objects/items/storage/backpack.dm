@@ -22,13 +22,13 @@
 	max_integrity = 300
 
 /obj/item/storage/backpack/ComponentInitialize()
-	. = ..()	
+	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	//STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT
 	STR.max_combined_w_class = 21
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_items = 21
-	
+
 
 /*
  * Backpack Types
@@ -84,21 +84,21 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(!length(user.get_empty_held_indexes()))
-		to_chat(user, "<span class='warning'>Your hands are full!</span>")
+		to_chat(user, SPAN_WARNING("Your hands are full!"))
 		return
 	var/obj/item/throwing_star/L = locate() in contents
 	if(L)
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, L, user)
 		user.put_in_hands(L)
-		to_chat(user, "<span class='notice'>You take a spear out of the quiver.</span>")
+		to_chat(user, SPAN_NOTICE("You take a spear out of the quiver."))
 		return TRUE
 	var/obj/item/restraints/legcuffs/W = locate() in contents
 	if(W && contents.len > 0)
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, W, user)
 		user.put_in_hands(W)
-		to_chat(user, "<span class='notice'>You take a bola out of the quiver.</span>")
+		to_chat(user, SPAN_NOTICE("You take a bola out of the quiver."))
 	else
-		to_chat(user, "<span class='notice'>There is nothing left in the quiver.</span>")
+		to_chat(user, SPAN_NOTICE("There is nothing left in the quiver."))
 	return TRUE
 
 /obj/item/storage/backpack/holding/satchel
@@ -635,7 +635,7 @@
 
 /obj/item/storage/backpack/duffelbag/syndie/bulldogbundle/PopulateContents()
 	new /obj/item/ammo_box/magazine/m12g(src)
-	new /obj/item/gun/ballistic/automatic/shotgun/bulldog(src)
+	new /obj/item/gun/ballistic/automatic/shotgun(src)
 	new /obj/item/ammo_box/magazine/m12g/stun(src)
 	new /obj/item/clothing/glasses/thermal/syndi(src)
 
@@ -677,7 +677,7 @@
 	new /obj/item/clothing/under/syndicate/soviet(src)
 	new /obj/item/watertank/op(src)
 	new /obj/item/clothing/suit/space/hardsuit/syndi/elite(src)
-	new /obj/item/gun/ballistic/automatic/pistol/APS(src)
+	new /obj/item/gun/ballistic/automatic/pistol/type17(src)
 	new /obj/item/ammo_box/magazine/pistolm9mm(src)
 	new /obj/item/ammo_box/magazine/pistolm9mm(src)
 	new /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka(src)
@@ -699,7 +699,7 @@
 	new /obj/item/bikehorn(src)
 	new /obj/item/implanter/sad_trombone(src)
 
-obj/item/storage/backpack/duffelbag/syndie/shredderbundle
+/obj/item/storage/backpack/duffelbag/syndie/shredderbundle
 	desc = "A large duffel bag containing two CX Shredders, some magazines, an elite hardsuit, and a chest rig."
 
 /obj/item/storage/backpack/duffelbag/syndie/shredderbundle/PopulateContents()

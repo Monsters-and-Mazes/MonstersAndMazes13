@@ -49,7 +49,7 @@
 	if(default_deconstruction_crowbar(O))
 		return
 	if(!is_operational())
-		to_chat(user, "<span class='notice'>[src] can't accept money when it's not functioning.</span>")
+		to_chat(user, SPAN_NOTICE("[src] can't accept money when it's not functioning."))
 		return
 	if(istype(O, /obj/item/holochip) || istype(O, /obj/item/stack/spacecash))
 		var/deposit_value = O.get_item_credit_value()
@@ -157,7 +157,7 @@
 		return
 	if(gauss_real <= -1)	//Critical Failure
 		say("ERROR: CRITICAL MACHIME MALFUNCTI- ON. CURRENCY IS NOT CRASH. CANNOT COMPUTE COMMAND: 'make bucks'") //not a typo, for once.
-		new /mob/living/simple_animal/deer(dropturf, 1)
+		new /mob/living/simple_animal/radstag(dropturf, 1)
 		use_power(MACHINE_OVERLOAD * power_saver) //To prevent gambling at low cost and also prevent spamming for infinite deer.
 		return
 	//Minor Failure

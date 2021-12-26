@@ -13,7 +13,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(src == C.wear_mask)
-			to_chat(user, "<span class='warning'>You need help taking this off!</span>")
+			to_chat(user, SPAN_WARNING("You need help taking this off!"))
 			return
 	..()
 
@@ -130,8 +130,8 @@
 	return ..()
 
 /obj/item/clothing/mask/cowmask
-	name = "Cow mask with a builtin voice modulator."
-	desc = "A rubber cow mask,"
+	name = "modified cow mask"
+	desc = "A rubber cow mask, with a built-in voice modulator."
 	icon_state = "cowmask"
 	item_state = "cowmask"
 	clothing_flags = VOICEBOX_TOGGLABLE
@@ -146,7 +146,7 @@
 
 /obj/item/clothing/mask/cowmask/cursed
 	name = "cow face"
-	desc = "It looks like a cow mask, but closer inspection reveals it's melded onto this persons face!"
+	desc = "It looks like a cow mask, but closer inspection reveals it's melded onto this person's face!"
 	flags_inv = HIDEFACIALHAIR
 	clothing_flags = NONE
 
@@ -230,6 +230,30 @@
 	icon_state = "bumba"
 	item_state = "bumba"
 
+/obj/item/clothing/mask/rat/redding
+	name = "NCR flag mask"
+	desc = "A mask made of soft vinyl and latex. It seems to be a clown's face plastered with the flag of the New California Republic."
+	icon_state = "redding"
+	item_state = "redding"
+
+/obj/item/clothing/mask/rat/flagstaff
+	name = "Legion banner mask"
+	desc = "A mask made of soft vinyl and latex. It has a ghastly expression and is marked with the banner of Caesar's Legion."
+	icon_state = "flagstaff"
+	item_state = "flagstaff"
+
+/obj/item/clothing/mask/rat/citadel
+	name = "power armor mask"
+	desc = "A mask made of soft vinyl and latex. It seems to be patterned after a Brotherhood T-51 helmet, based on the insignia."
+	icon_state = "citadel"
+	item_state = "citadel"
+
+/obj/item/clothing/mask/rat/vaultboy
+	name = "Vault-Boy mask"
+	desc = "A mask made of soft vinyl and latex. This one is the cheerful face of Vault-Boy. Prepared for the future!"
+	icon_state = "vaultboy"
+	item_state = "vaultboy"
+
 /obj/item/clothing/mask/bandana
 	name = "botany bandana"
 	desc = "A fine bandana with nanotech lining and a hydroponics pattern."
@@ -251,10 +275,10 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if((C.get_item_by_slot(SLOT_HEAD == src)) || (C.get_item_by_slot(SLOT_WEAR_MASK) == src))
-			to_chat(user, "<span class='warning'>You can't tie [src] while wearing it!</span>")
+			to_chat(user, SPAN_WARNING("You can't tie [src] while wearing it!"))
 			return
 	if(slot_flags & ITEM_SLOT_HEAD)
-		to_chat(user, "<span class='warning'>You must undo [src] before you can tie it into a neckerchief!</span>")
+		to_chat(user, SPAN_WARNING("You must undo [src] before you can tie it into a neckerchief!"))
 	else
 		if(user.is_holding(src))
 			var/obj/item/clothing/neck/neckerchief/nk = new(src)
@@ -265,7 +289,7 @@
 			var/currentHandIndex = user.get_held_index_of_item(src)
 			user.transferItemToLoc(src, null)
 			user.put_in_hand(nk, currentHandIndex)
-			user.visible_message("<span class='notice'>You tie [src] up like a neckerchief.</span>", "<span class='notice'>[user] ties [src] up like a neckerchief.</span>")
+			user.visible_message(SPAN_NOTICE("You tie [src] up like a neckerchief."), SPAN_NOTICE("[user] ties [src] up like a neckerchief."))
 			qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You must be holding [src] in order to tie it!")
@@ -392,7 +416,7 @@
 		for(var/X in actions)
 			var/datum/action/A = X
 			A.UpdateButtonIcon()
-		to_chat(user, "<span class='notice'>Your paper mask now has a [choice] symbol!</span>")
+		to_chat(user, SPAN_NOTICE("Your paper mask now has a [choice] symbol!"))
 		return 1
 
 
@@ -405,88 +429,16 @@
 	w_class = WEIGHT_CLASS_TINY
 	flags_inv = HIDEFACE
 	flags_cover = MASKCOVERSMOUTH
+	visor_flags_inv = HIDEFACE
 	visor_flags_cover = MASKCOVERSMOUTH
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.01
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	adjusted_flags = null
 	actions_types = list(/datum/action/item_action/adjust)
 
 /obj/item/clothing/mask/ncr_facewrap/attack_self(mob/user)
 	adjustmask(user)
-
-//Legion Bandanas - We make these as much like normal bandanas as possible without repathing them.
-
-/obj/item/clothing/mask/bandana/auxilia
-	name = "auxilia bandana"
-	desc = "Simple black cloth intended for auxilia."
-	icon_state = "legaux"
-	flags_inv = HIDEFACE
-	visor_flags_inv = HIDEFACE
-	adjusted_flags = null
-	actions_types = list(/datum/action/item_action/adjust)
-
-/obj/item/clothing/mask/bandana/legrecruit
-	name = "recruit bandana"
-	desc = "A fine recruit bandana."
-	icon_state = "legrecruit"
-	flags_inv = HIDEFACE
-	visor_flags_inv = HIDEFACE
-	adjusted_flags = null
-	actions_types = list(/datum/action/item_action/adjust)
-
-/obj/item/clothing/mask/bandana/legdecan
-	name = "decan bandana"
-	desc = "A fine decan bandana."
-	icon_state = "legdecan"
-	flags_inv = HIDEFACE
-	visor_flags_inv = HIDEFACE
-	adjusted_flags = null
-	actions_types = list(/datum/action/item_action/adjust)
-
-/obj/item/clothing/mask/bandana/oldredbandana
-	name = "old bandana"
-	desc = "A fine bandana."
-	icon_state = "legdecan"
-	flags_inv = HIDEFACE
-	visor_flags_inv = HIDEFACE
-	adjusted_flags = null
-	actions_types = list(/datum/action/item_action/adjust)
-
-/obj/item/clothing/mask/bandana/legcenturion
-	name = "centurion bandana"
-	desc = "A fine centurion bandana."
-	icon_state = "legcenturion"
-	flags_inv = HIDEFACE
-	visor_flags_inv = HIDEFACE
-	adjusted_flags = null
-	actions_types = list(/datum/action/item_action/adjust)
-
-/obj/item/clothing/mask/bandana/legvet
-	name = "veteran bandana"
-	desc = "A fine veteran bandana."
-	icon_state = "legvet"
-	flags_inv = HIDEFACE
-	visor_flags_inv = HIDEFACE
-	adjusted_flags = null
-	actions_types = list(/datum/action/item_action/adjust)
-
-/obj/item/clothing/mask/bandana/legprime
-	name = "prime bandana"
-	desc = "A fine prime bandana"
-	icon_state = "legdecan"
-	flags_inv = HIDEFACE
-	visor_flags_inv = HIDEFACE
-	adjusted_flags = null
-	actions_types = list(/datum/action/item_action/adjust)
-
-/obj/item/clothing/mask/bandana/momentobandana
-	name = "momento bandana"
-	desc = "A bandana that serves the user as a reminder of the past."
-	icon_state = "momento"
-	flags_inv = HIDEFACE
-	visor_flags_inv = HIDEFACE
-	adjusted_flags = null
-	actions_types = list(/datum/action/item_action/adjust)
 
 //Desert facewrap
 
@@ -500,6 +452,30 @@
 	visor_flags_inv = HIDEFACE
 	visor_flags_cover = MASKCOVERSMOUTH
 
+/obj/item/clothing/mask/bandana/desert
+	name = "tarnished desert facewrap"
+	desc = "An worn down NCR facewrap, seemingly seared down judging by its colors."
+	icon_state = "ali_cloak"
+	item_state = "ali_cloak"
+	flags_inv = HIDEFACE
+	visor_flags_inv = HIDEFACE
+	adjusted_flags = null
+	actions_types = list(/datum/action/item_action/adjust)
+
+
+//Ranger bandana
+
+/obj/item/clothing/mask/bandana/ranger
+	name = "red ranger bandana"
+	desc = "An worn down, bright red bandana, looks like one a ranger would wear."
+	icon_state = "ranger"
+	item_state = "ranger"
+	flags_inv = HIDEFACE
+	visor_flags_inv = HIDEFACE
+	adjusted_flags = null
+	actions_types = list(/datum/action/item_action/adjust)
+
+
 //Society Mask
 
 /obj/item/clothing/mask/society
@@ -508,3 +484,23 @@
 	icon_state = "societymask"
 	item_state = "societymask"
 	flags_inv = HIDEFACE
+
+//Sancti Vindictam
+
+/obj/item/clothing/mask/aculeo
+	name = "sancti vindictam"
+	desc = "A fearsome, archaic mold of a cruel, sneering face shaped in iron and gilded in the colors of the Legion. Prayers to Mars are carved jaggedly along the interior. It is thick, heavy metal reinforcing some mechanical trophy beneath- the gas mask of a ranger that has been crudely refitted to serve new purpose."
+	icon_state = "sancti_vindictam"
+	item_state = "sancti_vindictam"
+	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS
+	flags_inv = HIDEFACIALHAIR|HIDEFACE
+	w_class = WEIGHT_CLASS_SMALL
+	visor_flags = BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS
+	visor_flags_inv = HIDEFACE
+	flags_cover = MASKCOVERSMOUTH
+	visor_flags_cover = MASKCOVERSMOUTH
+	var/aggressiveness = 2
+	var/cooldown_special
+	var/recent_uses = 0
+	var/broken_hailer = 0
+	var/safety = TRUE

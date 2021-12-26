@@ -23,13 +23,13 @@
 		if(digrange == 0)
 			digrange = initial(digrange)
 			toolspeed = initial(toolspeed)
-			to_chat(user, "<span class='notice'>You increase the tools dig range, decreasing its mining speed.</span>")
+			to_chat(user, SPAN_NOTICE("You increase the tools dig range, decreasing its mining speed."))
 		else
 			digrange = 0
 			toolspeed = toolspeed/2
-			to_chat(user, "<span class='notice'>You decrease the tools dig range, increasing its mining speed.</span>")
+			to_chat(user, SPAN_NOTICE("You decrease the tools dig range, increasing its mining speed."))
 	else
-		to_chat(user, "<span class='notice'>Tool does not have a configureable dig range.</span>")
+		to_chat(user, SPAN_NOTICE("Tool does not have a configureable dig range."))
 
 /obj/item/pickaxe/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] begins digging into [user.p_their()] chest!  It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -124,17 +124,6 @@
 	toolspeed = 0.4
 	digrange = 2
 
-/obj/item/pickaxe/drill/jackhammer
-	name = "sonic jackhammer"
-	icon_state = "jackhammer"
-	item_state = "jackhammer"
-	w_class = WEIGHT_CLASS_HUGE
-	toolspeed = 0.2 //the epitome of powertools. extremely fast mining, laughs at puny walls
-	usesound = 'sound/weapons/sonic_jackhammer.ogg'
-	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
-	desc = "Cracks rocks with sonic blasts, and doubles as a demolition power tool for smashing walls."
-	digrange = 2
-
 /obj/item/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."
@@ -196,6 +185,7 @@
 /obj/item/shovel/trench
 	name = "p81 entrenching tool"
 	desc = "The 'Pattern 2281' Entrenching Tool is a new piece of infantry equipment given in limited quantity to infantry troops. An extremely robust shovel with a serrated edge for chopping wood."
+	icon = 'icons/fallout/objects/melee/weapons.dmi'
 	icon_state = "entrenching_tool"
 	item_state = "trench"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'

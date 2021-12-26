@@ -77,11 +77,11 @@
 
 /obj/item/seeds/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Use a pen on it to rename it or change its description.</span>"
+	. += SPAN_NOTICE("Use a pen on it to rename it or change its description.")
 	if(reagents_add && user.can_see_reagents())
-		. += "<span class='notice'>- Plant Reagents -</span>"
+		. += SPAN_NOTICE("- Plant Reagents -")
 		for(var/datum/plant_gene/reagent/G in genes)
-			. += "<span class='notice'>- [G.get_name()] -</span>"
+			. += SPAN_NOTICE("- [G.get_name()] -")
 
 /obj/item/seeds/proc/Copy()
 	var/obj/item/seeds/S = new type(null, 1)
@@ -106,7 +106,7 @@
 	S.reagents_add = reagents_add.Copy() // Faster than grabbing the list from genes.
 	return S
 
-obj/item/seeds/proc/is_gene_forbidden(typepath)
+/obj/item/seeds/proc/is_gene_forbidden(typepath)
 	return (typepath in forbiddengenes)
 
 
@@ -201,8 +201,7 @@ obj/item/seeds/proc/is_gene_forbidden(typepath)
 			t_prod.seed.name = initial(new_prod.name)
 			t_prod.seed.desc = initial(new_prod.desc)
 			t_prod.seed.plantname = initial(new_prod.plantname)
-			t_prod.transform = initial(t_prod.transform)
-			t_prod.transform *= TRANSFORM_USING_VARIABLE(t_prod.seed.potency, 100) + 0.5
+			t_prod.reset_transform()
 			t_amount++
 			if(t_prod.seed)
 				//t_prod.seed = new new_prod
@@ -431,13 +430,13 @@ obj/item/seeds/proc/is_gene_forbidden(typepath)
 		if(P_analyzer.scan_mode == PLANT_SCANMODE_STATS)
 			text = get_analyzer_text()
 			if(text)
-				to_chat(user, "<span class='notice'>[text]</span>")
+				to_chat(user, SPAN_NOTICE("[text]"))
 		if(reagents_add && P_analyzer.scan_mode == PLANT_SCANMODE_CHEMICALS)
-			to_chat(user, "<span class='notice'>- Plant Reagents -</span>")
-			to_chat(user, "<span class='notice'>*---------*</span>")
+			to_chat(user, SPAN_NOTICE("- Plant Reagents -"))
+			to_chat(user, SPAN_NOTICE("*---------*"))
 			for(var/datum/plant_gene/reagent/G in genes)
-				to_chat(user, "<span class='notice'>- [G.get_name()] -</span>")
-			to_chat(user, "<span class='notice'>*---------*</span>")
+				to_chat(user, SPAN_NOTICE("- [G.get_name()] -"))
+			to_chat(user, SPAN_NOTICE("*---------*"))
 
 
 		return

@@ -166,15 +166,22 @@
 
 /obj/item/ammo_casing/energy/wattz2k
 	projectile_type = /obj/item/projectile/beam/laser/wattz2k
-	e_cost = 125
+	e_cost = 100 //20 shots
 
 /obj/item/ammo_casing/energy/wattz2k/extended
 	projectile_type = /obj/item/projectile/beam/laser/wattz2k
-	e_cost = 62.5
+	e_cost = 80 //25 shots
 
 //musket
 
 /obj/item/ammo_casing/energy/laser/musket
 	projectile_type = /obj/item/projectile/beam/laser/musket
 	e_cost = 250
+	fire_sound = 'sound/f13weapons/aer9fire.ogg'
+
+//Crusader - funny pocket AER-9
+
+/obj/item/ammo_casing/energy/laser/crusader
+	projectile_type = /obj/item/projectile/beam/laser/lasgun
+	e_cost = 200 //10 shots
 	fire_sound = 'sound/f13weapons/aer9fire.ogg'

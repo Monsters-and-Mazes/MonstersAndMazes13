@@ -44,7 +44,7 @@
 
 /mob/living/simple_animal/hostile/russian/ranged/mosin
 	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged,
-				/obj/item/gun/ballistic/shotgun/boltaction)
+				/obj/item/gun/ballistic/rifle/boltaction)
 	casingtype = /obj/item/ammo_casing/a762
 
 /mob/living/simple_animal/hostile/russian/ranged/trooper
@@ -65,7 +65,7 @@
 	rapid = 3
 	casingtype = /obj/item/ammo_casing/c9mm
 	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged/officer,
-				/obj/item/gun/ballistic/automatic/pistol/APS)
+				/obj/item/gun/ballistic/automatic/pistol/type17)
 
 /mob/living/simple_animal/hostile/russian/ranged/officer/Aggro()
 	..()

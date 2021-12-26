@@ -137,16 +137,6 @@
 	tastes = list("fish" = 1, "rice" = 2, "salt" = 1)
 	foodtype = MEAT | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/rawantbrain
-	name = "Raw Ant Brain"
-	desc = "Goppy reddish-grey flesh dug out of the brain case of a giant ant."
-	icon_state = "AntBrain"
-	bitesize = 3
-	filling_color = "#CD853F"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("fat" = 4, "bitter meat" = 1)
-	foodtype = MEAT
-
 /obj/item/reagent_containers/food/snacks/sushi_adv
 	name = "funa nigiri"
 	desc = "A peace  of carp lightly placed on some rice."
@@ -291,7 +281,7 @@
 	desc = "A human meat, on a stick."
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("tender meat" = 3, "metal" = 1)
-	foodtype = MEAT | GROSS
+	foodtype = MEAT | LONGPORK
 
 /obj/item/reagent_containers/food/snacks/kebab/monkey
 	name = "meat-kebab"
@@ -491,10 +481,10 @@
 	var/mob/spammer = get_mob_by_key(fingerprintslast)
 	var/mob/living/water = new dried_being(drop_location(), TRUE, spammer)
 	if (!QDELETED(water))
-		visible_message("<span class='notice'>[src] expands!</span>")
+		visible_message(SPAN_NOTICE("[src] expands!"))
 		water.log_message("Spawned via [src] at [AREACOORD(src)], Last attached mob: [key_name(spammer)].", LOG_ATTACK)
 	else if (!spammer) // Visible message in case there are no fingerprints
-		visible_message("<span class='notice'>[src] fails to expand!</span>")
+		visible_message(SPAN_NOTICE("[src] fails to expand!"))
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/cube/monkey
@@ -536,3 +526,11 @@
 	list_reagents = list(/datum/reagent/consumable/eggyolk = 5)
 	tastes = list("dried eggs" = 1, "confusion" = 1)
 	dried_being = /mob/living/simple_animal/chicken
+
+/obj/item/reagent_containers/food/snacks/lasagna
+	name = "Lasagna"
+	desc = "A slice of lasagna. Perfect for a Monday afternoon."
+	icon_state = "lasagna"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/tomatojuice = 10)
+	tastes = list("meat" = 3, "pasta" = 3, "tomato" = 2, "cheese" = 2)
+	foodtype = MEAT | DAIRY | GRAIN

@@ -4,6 +4,15 @@
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYPART_ORGANIC
 	requires_trait = 2
+
+/datum/surgery/lipoplasty/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
+	if(HAS_TRAIT(user,TRAIT_SURGERY_MID))
+		return TRUE
+	if(HAS_TRAIT(user,TRAIT_SURGERY_HIGH))
+		return TRUE
+	else
+		return FALSE
+
 /datum/surgery/lipoplasty/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	if(HAS_TRAIT(target, TRAIT_FAT))
 		return 1
@@ -16,12 +25,12 @@
 	time = 64
 
 /datum/surgery_step/cut_fat/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You begin to cut away [target]'s excess fat...</span>",
+	display_results(user, target, SPAN_NOTICE("You begin to cut away [target]'s excess fat..."),
 			"[user] begins to cut away [target]'s excess fat.",
 			"[user] begins to cut [target]'s [target_zone] with [tool].")
 
 /datum/surgery_step/cut_fat/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You cut [target]'s excess fat loose.</span>",
+	display_results(user, target, SPAN_NOTICE("You cut [target]'s excess fat loose."),
 			"[user] cuts [target]'s excess fat loose!",
 			"[user] finishes the cut on [target]'s [target_zone].")
 	return 1
@@ -33,12 +42,12 @@
 	time = 32
 
 /datum/surgery_step/remove_fat/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You begin to extract [target]'s loose fat...</span>",
+	display_results(user, target, SPAN_NOTICE("You begin to extract [target]'s loose fat..."),
 			"[user] begins to extract [target]'s loose fat!",
 			"[user] begins to extract something from [target]'s [target_zone].")
 
 /datum/surgery_step/remove_fat/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You extract [target]'s fat.</span>",
+	display_results(user, target, SPAN_NOTICE("You extract [target]'s fat."),
 			"[user] extracts [target]'s fat!",
 			"[user] extracts [target]'s fat!")
 	target.overeatduration = 0 //patient is unfatted

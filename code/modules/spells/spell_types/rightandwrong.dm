@@ -9,25 +9,21 @@ GLOBAL_LIST_INIT(summoned_guns, list(
 	/obj/item/gun/energy/laser,
 	/obj/item/gun/ballistic/revolver,
 	/obj/item/gun/ballistic/revolver/detective,
-	/obj/item/gun/ballistic/automatic/pistol/deagle/camo,
 	/obj/item/gun/ballistic/automatic/gyropistol,
 	/obj/item/gun/energy/pulse,
 	/obj/item/gun/ballistic/automatic/pistol/suppressed,
 	/obj/item/gun/ballistic/revolver/doublebarrel,
 	/obj/item/gun/ballistic/shotgun,
 	/obj/item/gun/ballistic/shotgun/automatic/combat,
-	/obj/item/gun/ballistic/automatic/ar,
 	/obj/item/gun/ballistic/revolver/mateba,
-	/obj/item/gun/ballistic/shotgun/boltaction,
+	/obj/item/gun/ballistic/rifle/boltaction,
 	/obj/item/gun/ballistic/automatic/speargun,
 	/obj/item/gun/ballistic/automatic/mini_uzi,
 	/obj/item/gun/energy/lasercannon,
 	/obj/item/gun/energy/kinetic_accelerator/crossbow/large,
 	/obj/item/gun/energy/e_gun/nuclear,
-	/obj/item/gun/ballistic/automatic/proto,
 	/obj/item/gun/ballistic/automatic/c20r,
 	/obj/item/gun/ballistic/automatic/l6_saw,
-	/obj/item/gun/ballistic/automatic/m90,
 	/obj/item/gun/energy/alien,
 	/obj/item/gun/energy/e_gun/dragnet,
 	/obj/item/gun/energy/e_gun/turret,
@@ -37,11 +33,8 @@ GLOBAL_LIST_INIT(summoned_guns, list(
 	/obj/item/gun/energy/kinetic_accelerator,
 	/obj/item/gun/energy/plasmacutter/adv,
 	/obj/item/gun/energy/wormhole_projector,
-	/obj/item/gun/ballistic/automatic/wt550,
-	/obj/item/gun/ballistic/automatic/shotgun/bulldog,
 	/obj/item/gun/ballistic/revolver/grenadelauncher,
 	/obj/item/gun/ballistic/revolver/golden,
-	/obj/item/gun/ballistic/automatic/sniper_rifle,
 	/obj/item/gun/ballistic/rocketlauncher,
 	/obj/item/gun/medbeam,
 	/obj/item/gun/energy/laser/scatter,
@@ -112,7 +105,7 @@ GLOBAL_VAR_INIT(summon_magic_triggered, FALSE)
 
 	var/in_hand = H.put_in_hands(G) // not always successful
 
-	to_chat(H, "<span class='warning'>\A [G] appears [in_hand ? "in your hand" : "at your feet"]!</span>")
+	to_chat(H, SPAN_WARNING("\A [G] appears [in_hand ? "in your hand" : "at your feet"]!"))
 
 /proc/give_magic(mob/living/carbon/human/H)
 	if(H.stat == DEAD || !(H.client))
@@ -143,14 +136,14 @@ GLOBAL_VAR_INIT(summon_magic_triggered, FALSE)
 
 	var/in_hand = H.put_in_hands(M)
 
-	to_chat(H, "<span class='warning'>\A [M] appears [in_hand ? "in your hand" : "at your feet"]!</span>")
+	to_chat(H, SPAN_WARNING("\A [M] appears [in_hand ? "in your hand" : "at your feet"]!"))
 	if(lucky)
-		to_chat(H, "<span class='notice'>You feel incredibly lucky.</span>")
+		to_chat(H, SPAN_NOTICE("You feel incredibly lucky."))
 
 
 /proc/rightandwrong(summon_type, mob/user, survivor_probability)
 	if(user) //in this case either someone holding a spellbook or a badmin
-		to_chat(user, "<span class='warning'>You summoned [summon_type]!</span>")
+		to_chat(user, SPAN_WARNING("You summoned [summon_type]!"))
 		message_admins("[key_name_admin(user, TRUE)] summoned [summon_type]!")
 		log_game("[key_name(user)] summoned [summon_type]!")
 

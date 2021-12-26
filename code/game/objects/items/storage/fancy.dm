@@ -123,106 +123,15 @@
 /obj/item/storage/fancy/candle_box/attack_self(mob_user)
 	return
 
-//fonky shotgun bullet
-
-/obj/item/storage/fancy/ammobox
-	name = "box of rubber shots"
-	desc = "A box full of rubber shots, designed for riot shotguns."
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "bbox"
-	w_class = WEIGHT_CLASS_SMALL
-	icon_type = "b"
-	spawn_type = /obj/item/ammo_casing/shotgun/rubbershot
-	var/foldable = /obj/item/stack/sheet/cardboard
-	custom_materials = list(/datum/material/iron=4000)
-
-/obj/item/storage/fancy/ammobox/attack_self(mob/user)
-	. = ..()
-
-	if(!foldable)
-		return
-	if(contents.len)
-		to_chat(user, SPAN_WARNING("You can't fold this box with items still inside!"))
-		return
-	if(!ispath(foldable))
-		return
-
-	to_chat(user, SPAN_NOTICE("You fold [src] flat."))
-	var/obj/item/I = new foldable
-	qdel(src)
-	user.put_in_hands(I)
-
-/obj/item/storage/fancy/ammobox/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 14
-	STR.can_hold = typecacheof(list(spawn_type))
-
-/obj/item/storage/fancy/ammobox/AltClick(mob/living/carbon/user)
-	. = ..()
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
-		return
-	if(!length(user.get_empty_held_indexes()))
-		to_chat(user, SPAN_WARNING("Your hands are full!"))
-		return
-	var/obj/item/L = locate(spawn_type) in contents
-	if(L)
-		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, L, user)
-		user.put_in_hands(L)
-		to_chat(user, SPAN_NOTICE("You take \a [L] out of the box."))
-		return TRUE
-	else
-		to_chat(user, SPAN_NOTICE("There is nothing left in the box."))
-	return TRUE
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/obj/item/storage/fancy/ammobox/beanbag
-	name = "box of beanbag slugs"
-	desc = "A box full of beanbag slugs, designed for riot shotguns."
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "stunbox"
-	icon_type = "stun"
-	spawn_type = /obj/item/ammo_casing/shotgun/beanbag
-
-/obj/item/storage/fancy/ammobox/lethalshot
-	name = "box of buckshot shotgun shots"
-	desc = "A box full of lethal buckshot rounds, designed for riot shotguns."
-	icon_state = "gbox"
-	icon_type = "g"
-	spawn_type = /obj/item/ammo_casing/shotgun/buckshot
-
-/obj/item/storage/fancy/ammobox/magnumshot
-	name = "box of magnum buckshot shotgun shots"
-	desc = "A box full of lethal magnum buckshot rounds, designed for hunting shotguns."
-	icon_state = "gbox"
-	icon_type = "g"
-	spawn_type = /obj/item/ammo_casing/shotgun/magnumshot
-
-/obj/item/storage/fancy/ammobox/slugshot
-	name = "box of slug shotgun shots"
-	desc = "A box full of slug rounds, designed for riot shotguns."
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "lbox"
-	icon_type = "l"
-	spawn_type = /obj/item/ammo_casing/shotgun
-
-/obj/item/storage/fancy/ammobox/beanbag
-	name = "box of beanbags"
-	desc = "A box full of beanbag shells."
-	icon_state = "stunbox"
-	icon_type = "stun"
-	spawn_type = /obj/item/ammo_casing/shotgun/beanbag
-
 ////////////
 //CIG PACK//
 ////////////
 /obj/item/storage/fancy/cigarettes
-	name = "\improper Space Cigarettes packet"
-	desc = "The most popular brand of cigarettes, sponsors of the Space Olympics."
+	name = "\improper Clipper Ship packet"
+	desc = "The most popular brand of cigarettes, sponsors of the Olympics."
 	icon = 'icons/obj/cigarettes.dmi'
-	icon_state = "cig"
-	item_state = "cigpacket"
+	icon_state = "clippership"
+	item_state = "clippership"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	slot_flags = ITEM_SLOT_BELT
@@ -233,7 +142,7 @@
 
 /obj/item/storage/fancy/cigarettes/attack_self(mob/user)
 	if(contents.len == 0 && spawn_coupon)
-		to_chat(user, "<span class='notice'>You rip the back off \the [src] and get a coupon!</span>")
+		to_chat(user, SPAN_NOTICE("You rip the back off \the [src] and get a coupon!"))
 		var/obj/item/coupon/attached_coupon = new
 		user.put_in_hands(attached_coupon)
 		attached_coupon.generate()
@@ -254,30 +163,30 @@
 
 /obj/item/storage/fancy/cigarettes/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to extract contents.</span>"
+	. += SPAN_NOTICE("Alt-click to extract contents.")
 	if(spawn_coupon)
-		. += "<span class='notice'>There's a coupon on the back of the pack! You can tear it off once it's empty.</span>"
+		. += SPAN_NOTICE("There's a coupon on the back of the pack! You can tear it off once it's empty.")
 
 /obj/item/storage/fancy/cigarettes/AltClick(mob/living/carbon/user)
 	. = ..()
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(!length(user.get_empty_held_indexes()))
-		to_chat(user, "<span class='warning'>Your hands are full!</span>")
-		return	
+		to_chat(user, SPAN_WARNING("Your hands are full!"))
+		return
 	var/obj/item/lighter/L = locate() in contents
 	if(L)
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, L, user)
 		user.put_in_hands(L)
-		to_chat(user, "<span class='notice'>You take \a [L] out of the pack.</span>")
+		to_chat(user, SPAN_NOTICE("You take \a [L] out of the pack."))
 		return TRUE
 	var/obj/item/clothing/mask/cigarette/W = locate() in contents
 	if(W && contents.len > 0)
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, W, user)
 		user.put_in_hands(W)
-		to_chat(user, "<span class='notice'>You take \a [W] out of the pack.</span>")
+		to_chat(user, SPAN_NOTICE("You take \a [W] out of the pack."))
 	else
-		to_chat(user, "<span class='notice'>There are no [icon_type]s left in the pack.</span>")
+		to_chat(user, SPAN_NOTICE("There are no [icon_type]s left in the pack."))
 	return TRUE
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
@@ -316,11 +225,11 @@
 			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, W, M)
 			M.equip_to_slot_if_possible(W, SLOT_WEAR_MASK)
 			contents -= W
-			to_chat(user, "<span class='notice'>You take \a [W] out of the pack.</span>")
+			to_chat(user, SPAN_NOTICE("You take \a [W] out of the pack."))
 		else
 			return ..()
 	else
-		to_chat(user, "<span class='notice'>There are no [icon_type]s left in the pack.</span>")
+		to_chat(user, SPAN_NOTICE("There are no [icon_type]s left in the pack."))
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper DromedaryCo packet"
@@ -408,7 +317,7 @@
 
 /obj/item/storage/fancy/rollingpapers
 	name = "rolling paper pack"
-	desc = "A pack of Nanotrasen brand rolling papers."
+	desc = "A pack of cheap rolling papers."
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig_paper_pack"

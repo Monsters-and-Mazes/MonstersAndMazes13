@@ -160,7 +160,7 @@
 	resistance_flags = FLAMMABLE
 	magic_flags = NONE
 
-/obj/item/clothing/suit/wizrobe/paper
+/*/obj/item/clothing/suit/wizrobe/paper
 	name = "papier-mache robe" // no non-latin characters!
 	desc = "A robe held together by various bits of clear-tape and paste."
 	icon_state = "wizard-paper"
@@ -229,7 +229,7 @@
 	if(!.)
 		return
 	if(!ready)
-		to_chat(owner, "<span class='warning'>[src]'s internal magic supply is still recharging!</span>")
+		to_chat(owner, SPAN_WARNING("[src]'s internal magic supply is still recharging!"))
 		return FALSE
 	var/summon = TRUE
 	if(length(summoned_stickmen) >= max_stickmen)
@@ -258,7 +258,7 @@
 /datum/action/item_action/stickmen/proc/ready_again()
 	ready = TRUE
 	if(owner)
-		to_chat(owner, "<span class='notice'>[src] hums, its internal magic supply restored.</span>")
+		to_chat(owner, SPAN_NOTICE("[src] hums, its internal magic supply restored."))*/
 
 /**
  * Rallies your army of stickmen to whichever target the user is pointing.
@@ -266,7 +266,7 @@
  * said target will be added to a list of foes which the stickmen will gladly dispose regardless of faction.
  * This is designed so stickmen will move toward whatever you point at even when you don't want to, that's the downside.
  */
-/datum/action/item_action/stickmen/proc/rally(mob/source, atom/A)
+/*/datum/action/item_action/stickmen/proc/rally(mob/source, atom/A)
 	var/turf/T = get_turf(A)
 	var/list/surrounding_turfs = block(locate(T.x - 1, T.y - 1, T.z), locate(T.x + 1, T.y + 1, T.z))
 	if(!surrounding_turfs.len)
@@ -296,7 +296,7 @@
 /datum/action/item_action/stickmen/proc/grudge_settled(mob/living/L)
 	UnregisterSignal(L, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH))
 	book_of_grudges -= L
-
+*/
 //Shielded Armour
 
 /obj/item/clothing/suit/space/hardsuit/shielded/wizard
@@ -346,9 +346,9 @@
 /obj/item/wizard_armour_charge/afterattack(obj/item/clothing/suit/space/hardsuit/shielded/wizard/W, mob/user)
 	. = ..()
 	if(!istype(W))
-		to_chat(user, "<span class='warning'>The rune can only be used on battlemage armour!</span>")
+		to_chat(user, SPAN_WARNING("The rune can only be used on battlemage armour!"))
 		return
 	var/datum/component/shielded/S = GetComponent(/datum/component/shielded)
 	S.adjust_charges(8)
-	to_chat(user, "<span class='notice'>You charge \the [W]. It can now absorb [S.charges] hits.</span>")
+	to_chat(user, SPAN_NOTICE("You charge \the [W]. It can now absorb [S.charges] hits."))
 	qdel(src)

@@ -17,7 +17,7 @@
 	return TRUE
 
 /obj/item/onetankbomb/examine(mob/user)
-	bombtank.examine(user)
+	return bombtank.examine(user)
 
 /obj/item/onetankbomb/update_icon_state()
 	if(bombtank)
@@ -32,7 +32,7 @@
 		. += "bomb_assembly"
 
 /obj/item/onetankbomb/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You disassemble [src]!</span>")
+	to_chat(user, SPAN_NOTICE("You disassemble [src]!"))
 	if(bombassembly)
 		bombassembly.forceMove(drop_location())
 		bombassembly.master = null
@@ -47,7 +47,7 @@
 /obj/item/onetankbomb/welder_act(mob/living/user, obj/item/I)
 	. = FALSE
 	if(status)
-		to_chat(user, "<span class='notice'>[bombtank] already has a pressure hole!</span>")
+		to_chat(user, SPAN_NOTICE("[bombtank] already has a pressure hole!"))
 		return
 	if(!I.tool_start_check(user, amount=0))
 		return
@@ -55,7 +55,7 @@
 		status = TRUE
 		GLOB.bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.return_temperature()-T0C]"
 		message_admins("[ADMIN_LOOKUPFLW(user)] welded a single tank bomb. Temp: [bombtank.air_contents.return_temperature()-T0C]")
-		to_chat(user, "<span class='notice'>A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited.</span>")
+		to_chat(user, SPAN_NOTICE("A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited."))
 		add_fingerprint(user)
 		return TRUE
 
@@ -91,12 +91,12 @@
 	if(bombassembly)
 		bombassembly.on_found(finder)
 
-/obj/item/onetankbomb/on_attack_hand() //also for mousetraps
+/obj/item/onetankbomb/on_attack_hand(user, act_intent) //also for mousetraps
 	. = ..()
 	if(.)
 		return
 	if(bombassembly)
-		bombassembly.attack_hand()
+		bombassembly.attack_hand(user, act_intent)
 
 /obj/item/onetankbomb/Move()
 	. = ..()
@@ -121,11 +121,11 @@
 		return
 
 	if((src in user.get_equipped_items(TRUE)) && !user.canUnEquip(src))
-		to_chat(user, "<span class='warning'>[src] is stuck to you!</span>")
+		to_chat(user, SPAN_WARNING("[src] is stuck to you!"))
 		return
 
 	if(!user.canUnEquip(assembly))
-		to_chat(user, "<span class='warning'>[assembly] is stuck to your hand!</span>")
+		to_chat(user, SPAN_WARNING("[assembly] is stuck to your hand!"))
 		return
 
 	var/obj/item/onetankbomb/bomb = new
@@ -142,11 +142,11 @@
 	bomb.update_icon()
 
 	user.put_in_hands(bomb)		//Equips the bomb if possible, or puts it on the floor.
-	to_chat(user, "<span class='notice'>You attach [assembly] to [src].</span>")
+	to_chat(user, SPAN_NOTICE("You attach [assembly] to [src]."))
 	return
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
-	var/fuel_moles = air_contents.get_moles(/datum/gas/plasma) + air_contents.get_moles(/datum/gas/oxygen)/6
+	var/fuel_moles = air_contents.get_moles(GAS_PLASMA) + air_contents.get_moles(GAS_O2)/6
 	var/datum/gas_mixture/bomb_mixture = air_contents.copy()
 	var/strength = 1
 
@@ -196,9 +196,8 @@
 	ground_zero.air_update_turf()
 
 /obj/item/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
-	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles())
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
-	T.assume_air(removed)
+	T.assume_air(air_contents)
 	air_update_turf()

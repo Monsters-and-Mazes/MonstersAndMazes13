@@ -37,7 +37,7 @@
 				precision = max(rand(1,100)*bagholding.len,100)
 				if(isliving(teleatom))
 					var/mob/living/MM = teleatom
-					to_chat(MM, "<span class='warning'>The bluespace interface on your bag of holding interferes with the teleport!</span>")
+					to_chat(MM, SPAN_WARNING("The bluespace interface on your bag of holding interferes with the teleport!"))
 
 			// if effects are not specified and not explicitly disabled, sparks
 			if ((!effectin || !effectout) && !no_effects)
@@ -127,11 +127,12 @@
 		// Can most things breathe?
 		if(trace_gases)
 			continue
-		if(A.get_moles(/datum/gas/oxygen) < 16)
+		var/oxy_moles = A.get_moles(GAS_O2)
+		if(oxy_moles < 16 || oxy_moles > 50)
 			continue
-		if(A.get_moles(/datum/gas/plasma))
+		if(A.get_moles(GAS_PLASMA))
 			continue
-		if(A.get_moles(/datum/gas/carbon_dioxide) >= 10)
+		if(A.get_moles(GAS_CO2) >= 10)
 			continue
 
 		// Aim for goldilocks temperatures and pressure

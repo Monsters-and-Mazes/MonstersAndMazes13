@@ -3,8 +3,18 @@
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/handle_cavity, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
-	requires_trait = 2
-	
+	requires_trait = 1
+
+/datum/surgery/cavity_implant/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
+	if(HAS_TRAIT(user,TRAIT_SURGERY_LOW))
+		return TRUE
+	if(HAS_TRAIT(user,TRAIT_SURGERY_MID))
+		return TRUE
+	if(HAS_TRAIT(user,TRAIT_SURGERY_HIGH))
+		return TRUE
+	else
+		return FALSE
+
 //handle cavity
 /datum/surgery_step/handle_cavity
 	name = "implant item"
@@ -22,11 +32,11 @@
 	var/obj/item/bodypart/chest/CH = target.get_bodypart(BODY_ZONE_CHEST)
 	IC = CH.cavity_item
 	if(tool)
-		display_results(user, target, "<span class='notice'>You begin to insert [tool] into [target]'s [target_zone]...</span>",
+		display_results(user, target, SPAN_NOTICE("You begin to insert [tool] into [target]'s [target_zone]..."),
 			"[user] begins to insert [tool] into [target]'s [target_zone].",
 			"[user] begins to insert [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] into [target]'s [target_zone].")
 	else
-		display_results(user, target, "<span class='notice'>You check for items in [target]'s [target_zone]...</span>",
+		display_results(user, target, SPAN_NOTICE("You check for items in [target]'s [target_zone]..."),
 			"[user] checks for items in [target]'s [target_zone].",
 			"[user] looks for something in [target]'s [target_zone].")
 
@@ -34,10 +44,10 @@
 	var/obj/item/bodypart/chest/CH = target.get_bodypart(BODY_ZONE_CHEST)
 	if(tool)
 		if(IC || tool.w_class > WEIGHT_CLASS_NORMAL || HAS_TRAIT(tool, TRAIT_NODROP) || istype(tool, /obj/item/organ))
-			to_chat(user, "<span class='warning'>You can't seem to fit [tool] in [target]'s [target_zone]!</span>")
+			to_chat(user, SPAN_WARNING("You can't seem to fit [tool] in [target]'s [target_zone]!"))
 			return 0
 		else
-			display_results(user, target, "<span class='notice'>You stuff [tool] into [target]'s [target_zone].</span>",
+			display_results(user, target, SPAN_NOTICE("You stuff [tool] into [target]'s [target_zone]."),
 				"[user] stuffs [tool] into [target]'s [target_zone]!",
 				"[user] stuffs [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] into [target]'s [target_zone].")
 			user.transferItemToLoc(tool, target, TRUE)
@@ -45,12 +55,12 @@
 			return 1
 	else
 		if(IC)
-			display_results(user, target, "<span class='notice'>You pull [IC] out of [target]'s [target_zone].</span>",
+			display_results(user, target, SPAN_NOTICE("You pull [IC] out of [target]'s [target_zone]."),
 				"[user] pulls [IC] out of [target]'s [target_zone]!",
 				"[user] pulls [IC.w_class > WEIGHT_CLASS_SMALL ? IC : "something"] out of [target]'s [target_zone].")
 			user.put_in_hands(IC)
 			CH.cavity_item = null
 			return 1
 		else
-			to_chat(user, "<span class='warning'>You don't find anything in [target]'s [target_zone].</span>")
+			to_chat(user, SPAN_WARNING("You don't find anything in [target]'s [target_zone]."))
 			return 0

@@ -6,7 +6,7 @@
 //-----------------------------------------------
 /obj/machinery/atmospherics/components/unary/shuttle
 	name = "shuttle atmospherics device"
-	desc = "This does something to do with shuttle atmospherics"
+	desc = "This does something to do with shuttle atmospherics."
 	icon_state = "heater"
 	icon = 'icons/turf/shuttle.dmi'
 
@@ -28,7 +28,7 @@
 
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 
-	var/gas_type = /datum/gas/plasma
+	var/gas_type = GAS_PLASMA
 	var/efficiency_multiplier = 1
 	var/gas_capacity = 0
 

@@ -3,18 +3,6 @@
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_GENERAL
 	slot = SLOT_WEAR_SUIT
 
-/datum/gear/suit/poncho
-	name = "Poncho"
-	path = /obj/item/clothing/suit/poncho
-
-/datum/gear/suit/ponchogreen
-	name = "Green poncho"
-	path = /obj/item/clothing/suit/poncho/green
-
-/datum/gear/suit/ponchored
-	name = "Red poncho"
-	path = /obj/item/clothing/suit/poncho/red
-
 /datum/gear/suit/redhood
 	name = "Red cloak"
 	path = /obj/item/clothing/suit/hooded/cloak/david
@@ -171,84 +159,6 @@
 	path = /obj/item/clothing/suit/flakjack
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
 	cost = 2
-
-/datum/gear/suit/trekds9_coat
-	name = "DS9 Overcoat (use uniform)"
-	path = /obj/item/clothing/suit/storage/trek/ds9
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
-	restricted_desc = "All, barring Service and Civilian"
-	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster",
-							"Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Scientist", "Roboticist",
-							"Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer",
-							"Cargo Technician", "Shaft Miner") //everyone who actually deserves a job.
-//Federation jackets from movies
-/datum/gear/suit/trekcmdcap
-	name = "Fed (movie) uniform, Black"
-	path = /obj/item/clothing/suit/storage/fluff/fedcoat/capt
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
-	restricted_roles = list("Captain","Head of Personnel")
-
-/datum/gear/suit/trekcmdmov
-	name = "Fed (movie) uniform, Red"
-	path = /obj/item/clothing/suit/storage/fluff/fedcoat
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
-	restricted_desc = "Heads of Staff and Security"
-	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster","Warden","Detective","Security Officer")
-
-/datum/gear/suit/trekmedscimov
-	name = "Fed (movie) uniform, Blue"
-	path = /obj/item/clothing/suit/storage/fluff/fedcoat/medsci
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
-	restricted_desc = "Medical and Science"
-	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
-
-/datum/gear/suit/trekengmov
-	name = "Fed (movie) uniform, Yellow"
-	path = /obj/item/clothing/suit/storage/fluff/fedcoat/eng
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
-	restricted_desc = "Engineering and Cargo"
-	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Cargo Technician", "Shaft Miner", "Quartermaster")
-
-/datum/gear/suit/trekcmdcapmod
-	name = "Fed (Modern) uniform, White"
-	path = /obj/item/clothing/suit/storage/fluff/modernfedcoat
-	restricted_roles = list("Captain","Head of Personnel")
-
-/datum/gear/suit/trekcmdmod
-	name = "Fed (Modern) uniform, Red"
-	path = /obj/item/clothing/suit/storage/fluff/modernfedcoat/sec
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
-	restricted_desc = "Heads of Staff and Security"
-	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster","Warden","Detective","Security Officer")
-
-/datum/gear/suit/trekmedscimod
-	name = "Fed (Modern) uniform, Blue"
-	path = /obj/item/clothing/suit/storage/fluff/modernfedcoat/medsci
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
-	restricted_desc = "Medical and Science"
-	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
-
-/datum/gear/suit/trekengmod
-	name = "Fed (Modern) uniform, Yellow"
-	path = /obj/item/clothing/suit/storage/fluff/modernfedcoat/eng
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_JOBS
-	restricted_desc = "Engineering and Cargo"
-	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Cargo Technician", "Shaft Miner", "Quartermaster")
-
-/datum/gear/suit/christmascoatr
-	name = "Red Christmas Coat"
-	path = /obj/item/clothing/suit/hooded/wintercoat/christmascoatr
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_COATS
-
-/datum/gear/suit/christmascoatg
-	name = "Green Christmas Coat"
-	path = /obj/item/clothing/suit/hooded/wintercoat/christmascoatg
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_COATS
-
-/datum/gear/suit/christmascoatrg
-	name = "Red and Green Christmas Coat"
-	path = /obj/item/clothing/suit/hooded/wintercoat/christmascoatrg
-	subcategory = LOADOUT_SUBCATEGORY_SUIT_COATS
 
 /datum/gear/suit/samurai
 	name = "Samurai outfit"

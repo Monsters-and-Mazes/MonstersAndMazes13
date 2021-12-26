@@ -88,7 +88,7 @@
 
 /datum/outfit/russiancorpse/hunter
 	ears = /obj/item/radio/headset
-	r_hand = /obj/item/gun/ballistic/shotgun/boltaction
+	r_hand = /obj/item/gun/ballistic/rifle/boltaction
 
 /datum/outfit/russiancorpse/hunter/pre_equip(mob/living/carbon/human/H)
 	if(prob(50))
@@ -128,7 +128,7 @@
 	mask = /obj/item/clothing/mask/scarecrow
 	r_pocket = /obj/item/restraints/handcuffs/cable
 	id = /obj/item/card/id
-	r_hand = /obj/item/gun/ballistic/shotgun/doublebarrel
+	r_hand = /obj/item/gun/ballistic/revolver/caravan_shotgun
 
 	backpack_contents = list(
 		/obj/item/ammo_casing/shotgun/incapacitate = 6

@@ -391,12 +391,16 @@
 	key_third_person = "surrenders"
 	message = "puts their hands on their head and falls to the ground, they surrender!"
 	emote_type = EMOTE_AUDIBLE
+	stat_allowed = UNCONSCIOUS
+	restraint_check = FALSE
 
 /datum/emote/living/surrender/run_emote(mob/user, params)
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
-		L.DefaultCombatKnockdown(200)
+		L.Knockdown(200)
+		L.Paralyze(200)
+		playsound(L, 'sound/f13effects/surrender1.ogg', 80, 1)
 
 /datum/emote/living/sway
 	key = "sway"
@@ -446,7 +450,7 @@
 
 /datum/emote/living/custom/proc/check_invalid(mob/user, input)
 	if(stop_bad_mime.Find(input, 1, 1))
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
+		to_chat(user, SPAN_DANGER("Invalid emote."))
 		return TRUE
 	return FALSE
 
@@ -530,10 +534,10 @@
 	. = ..()
 	var/obj/item/circlegame/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, "<span class='notice'>You make a circle with your hand.</span>")
+		to_chat(user, SPAN_NOTICE("You make a circle with your hand."))
 	else
 		qdel(N)
-		to_chat(user, "<span class='warning'>You don't have any free hands to make a circle with.</span>")
+		to_chat(user, SPAN_WARNING("You don't have any free hands to make a circle with."))
 
 /datum/emote/living/slap
 	key = "slap"
@@ -546,9 +550,9 @@
 		return
 	var/obj/item/slapper/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, "<span class='notice'>You ready your slapping hand.</span>")
+		to_chat(user, SPAN_NOTICE("You ready your slapping hand."))
 	else
-		to_chat(user, "<span class='warning'>You're incapable of slapping in your current state.</span>")
+		to_chat(user, SPAN_WARNING("You're incapable of slapping in your current state."))
 
 /datum/emote/living/audio_emote/blorble
 	key = "blorble"

@@ -96,7 +96,7 @@
 	if(istype(target, /mob/living/simple_animal/hostile/bear) && proximity_flag)
 		var/mob/living/simple_animal/hostile/bear/A = target
 		if(A.armored)
-			to_chat(user, "<span class='warning'>[A] has already been armored up!</span>")
+			to_chat(user, SPAN_WARNING("[A] has already been armored up!"))
 			return
 		A.armored = TRUE
 		A.maxHealth += 60
@@ -109,7 +109,7 @@
 		to_chat(user, "<span class='info'>You strap the armor plating to [A] and sharpen [A.p_their()] claws with the nail filer. This was a great idea.</span>")
 		qdel(src)
 
-mob/living/simple_animal/hostile/bear/butter //The mighty companion to Cak. Several functions used from it.
+/mob/living/simple_animal/hostile/bear/butter //The mighty companion to Cak. Several functions used from it.
 	name = "Terrygold"
 	icon_state = "butterbear"
 	icon_living = "butterbear"
@@ -152,24 +152,24 @@ mob/living/simple_animal/hostile/bear/butter //The mighty companion to Cak. Seve
 	free butter to the station!</b>")
 	var/new_name = stripped_input(src, "Enter your name, or press \"Cancel\" to stick with Terrygold.", "Name Change")
 	if(new_name)
-		to_chat(src, "<span class='notice'>Your name is now <b>\"new_name\"</b>!</span>")
+		to_chat(src, SPAN_NOTICE("Your name is now <b>\"new_name\"</b>!"))
 		name = new_name
 
-mob/living/simple_animal/hostile/bear/butter/AttackingTarget() //Makes some attacks by the butter bear slip those who dare cross its path.
+/mob/living/simple_animal/hostile/bear/butter/AttackingTarget() //Makes some attacks by the butter bear slip those who dare cross its path.
 	if(isliving(target))
 		var/mob/living/L = target
 		if((L.mobility_flags & MOBILITY_STAND))
 			L.Knockdown(20)
 			playsound(loc, 'sound/misc/slip.ogg', 15)
-			L.visible_message("<span class='danger'>[L] slips on butter!</span>")
+			L.visible_message(SPAN_DANGER("[L] slips on butter!"))
 
 /mob/living/simple_animal/hostile/bear/yaoguai
 	name = "yao guai"
 	desc = "A mutated American black bear, sporting razor sharp teeth, claws, and a nasty temper."
-	icon = 'icons/mob/wastemobs.dmi'
+	icon = 'icons/fallout/mobs/animals/yaoguai.dmi'
 	icon_state = "yaoguai"
 	icon_living = "yaoguai"
-	icon_dead = "yaoguai_d"
+	icon_dead = "yaoguai_dead"
 	maxHealth = 300
 	health = 300
 	melee_damage_lower = 45 //Don't fuck with these, they're god damn BEARS
@@ -181,9 +181,7 @@ mob/living/simple_animal/hostile/bear/butter/AttackingTarget() //Makes some atta
 /mob/living/simple_animal/hostile/bear/yaoguai/frozen
 	name = "frozen yao guai"
 	desc = "A mutated American black bear, sporting razor sharp teeth, claws, and a nasty temper. This one seems to have acclimatized to a harsh, snowy environment."
-	icon_state = "polar_yao_guai"
-	icon_living = "polar_yao_guai"
-	icon_dead = "polar_yao_guai_dead"
+
 
 
 

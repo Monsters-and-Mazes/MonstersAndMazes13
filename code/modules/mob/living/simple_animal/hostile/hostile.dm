@@ -74,7 +74,7 @@
 		walk(src, 0) //stops walking
 		if(decompose)
 			if(prob(0.2)) // 0.2% chance every cycle to decompose
-				visible_message("<span class='notice'>\The dead body of the [src] decomposes!</span>")
+				visible_message(SPAN_NOTICE("\The dead body of the [src] decomposes!"))
 				gib(FALSE, FALSE, FALSE, TRUE)
 		return
 
@@ -143,11 +143,13 @@
 		var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha, /obj/structure/destructible/clockwork/ocular_warden,/obj/item/electronic_assembly))
 
 		for(var/HM in typecache_filter_list(range(vision_range, targets_from), hostile_machines))
+			CHECK_TICK
 			if(can_see(targets_from, HM, vision_range))
 				. += HM
 	else
 		. = list() // The following code is only very slightly slower than just returning oview(vision_range, targets_from), but it saves us much more work down the line, particularly when bees are involved
 		for (var/obj/A in oview(vision_range, targets_from))
+			CHECK_TICK
 			. += A
 		for (var/mob/A in oview(vision_range, targets_from))
 			. += A
@@ -384,8 +386,7 @@
 	..(gibbed)
 
 /mob/living/simple_animal/hostile/proc/summon_backup(distance, exact_faction_match)
-	do_alert_animation(src)
-	playsound(loc, 'sound/machines/chime.ogg', 50, 1, -1)
+	playsound(loc, 'sound/machines/chime.ogg', 60, 1, -1)
 	for(var/mob/living/simple_animal/hostile/M in oview(distance, targets_from))
 		if(faction_check_mob(M, TRUE))
 			if(M.AIStatus == AI_OFF || M.stat == DEAD)
@@ -405,7 +406,7 @@
 /mob/living/simple_animal/hostile/proc/OpenFire(atom/A)
 	if(CheckFriendlyFire(A))
 		return
-	visible_message("<span class='danger'><b>[src]</b> [ranged_message] at [A]!</span>")
+	visible_message(SPAN_DANGER("<b>[src]</b> [ranged_message] at [A]!"))
 
 
 	if(rapid > 1)
@@ -489,7 +490,7 @@
 			DestroyObjectsInDirection(direction)
 
 
-mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with megafauna destroying everything around them
+/mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with megafauna destroying everything around them
 	if(environment_smash)
 		EscapeConfinement()
 		for(var/dir in GLOB.cardinals)

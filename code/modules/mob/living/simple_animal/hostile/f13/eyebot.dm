@@ -3,7 +3,7 @@
 /mob/living/simple_animal/hostile/eyebot
 	name = "eyebot"
 	desc = "A hovering, propaganda-spewing reconnaissance and surveillance robot with radio antennas pointing out its back and loudspeakers blaring out the front."
-	icon = 'icons/fallout/mobs/animal.dmi'
+	icon = 'icons/fallout/mobs/robots/eyebots.dmi'
 	icon_state = "eyebot"
 	icon_living = "eyebot"
 	icon_dead = "eyebot_d"
@@ -20,8 +20,9 @@
 	maxHealth = 70
 	health = 70
 	healable = 0
-	mob_biotypes = MOB_ROBOTIC|MOB_INORGANIC
+	mob_biotypes = MOB_ROBOTIC
 	blood_volume = 0
+	var/heavy_emp_damage = 25
 
 	faction = list("hostile", "enclave", "wastebot", "ghoul", "cazador", "supermutant", "bighorner")
 
@@ -90,7 +91,7 @@
 /mob/living/simple_animal/pet/dog/eyebot //It's a propaganda eyebot, not a dog, but...
 	name = "propaganda eyebot"
 	desc = "This eyebot's weapons module has been removed and replaced with a loudspeaker. It appears to be shouting Pre-War propaganda."
-	icon = 'icons/fallout/mobs/animal.dmi'
+	icon = 'icons/fallout/mobs/robots/eyebots.dmi'
 	icon_state = "eyebot"
 	icon_living = "eyebot"
 	icon_dead = "eyebot_d"

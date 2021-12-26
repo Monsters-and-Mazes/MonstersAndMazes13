@@ -101,7 +101,7 @@
 		if(threats.len)
 			target = pick(threats)
 		else
-			to_chat(owner, "<span class='warning'>There is no potential foe of different faction around to attack</span>")
+			to_chat(owner, SPAN_WARNING("There is no potential foe of different faction around to attack."))
 	if(target)
 		var/mob/living/simple_animal/hostile/boss/paper_wizard/wiz = boss
 		var/directions = GLOB.cardinals.Copy()
@@ -188,7 +188,7 @@
 	playsound(get_turf(src),'sound/magic/mandswap.ogg', 50, 1, 1)
 	playsound(get_turf(src),'sound/hallucinations/wail.ogg', 50, 1, 1)
 
-/obj/effect/temp_visual/paperwiz_dying/Destroy()
+/*/obj/effect/temp_visual/paperwiz_dying/Destroy()
 	for(var/mob/M in range(7,src))
 		shake_camera(M, 7, 1)
 	var/turf/T = get_turf(src)
@@ -196,7 +196,7 @@
 	new /obj/effect/temp_visual/paper_scatter(T)
 	new /obj/item/clothing/suit/wizrobe/paper(T)
 	new /obj/item/clothing/head/collectable/paper(T)
-	return ..()
+	return ..()*/
 
 
 

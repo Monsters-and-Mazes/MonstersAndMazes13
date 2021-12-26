@@ -54,6 +54,9 @@
 /obj/machinery/atmospherics/pipe/remove_air(amount)
 	return parent.air.remove(amount)
 
+/obj/machinery/atmospherics/pipe/remove_air_ratio(ratio)
+	return parent.air.remove_ratio(ratio)
+
 /obj/machinery/atmospherics/pipe/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pipe_meter))
 		var/obj/item/pipe_meter/meter = W
@@ -118,4 +121,4 @@
 	if(parent)
 		atmosanalyzer_scan(parent.air, O, src, FALSE)
 	else
-		to_chat(O, "<span class='warning'>[src] doesn't have a pipenet, which is probably a bug.</span>")
+		to_chat(O, SPAN_WARNING("[src] doesn't have a pipenet, which is probably a bug."))

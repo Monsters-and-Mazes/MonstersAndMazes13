@@ -17,7 +17,7 @@
 		return M.get_top_level_mob()
 	return src
 
-proc/get_top_level_mob(mob/S)
+/proc/get_top_level_mob(mob/S)
 	if(istype(S.loc,/mob)&&S.loc!=S)
 		var/mob/M=S.loc
 		return M.get_top_level_mob()
@@ -34,7 +34,7 @@ proc/get_top_level_mob(mob/S)
 
 /datum/emote/living/subtle/proc/check_invalid(mob/user, input)
 	if(stop_bad_mime.Find(input, 1, 1))
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
+		to_chat(user, SPAN_DANGER("Invalid emote."))
 		return TRUE
 	return FALSE
 
@@ -129,7 +129,7 @@ proc/get_top_level_mob(mob/S)
 
 /datum/emote/living/subtler/proc/check_invalid(mob/user, input)
 	if(stop_bad_mime.Find(input, 1, 1))
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
+		to_chat(user, SPAN_DANGER("Invalid emote."))
 		return TRUE
 	return FALSE
 
@@ -182,7 +182,7 @@ proc/get_top_level_mob(mob/S)
 	set name = "Subtle"
 	set category = "IC"
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
 		return
 	usr.emote("subtle")
 
@@ -191,6 +191,6 @@ proc/get_top_level_mob(mob/S)
 	set name = "Subtler Anti-Ghost"
 	set category = "IC"
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
 		return
 	usr.emote("subtler")

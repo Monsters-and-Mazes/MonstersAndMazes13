@@ -65,7 +65,7 @@
 	item_state = "knight_winged"
 // CITADEL CHANGES ENDS HERE
 
-/obj/item/clothing/suit/armor/riot/chaplain
+/*/obj/item/clothing/suit/armor/riot/chaplain
 	name = "crusader armour"
 	desc = "God wills it!"
 	icon_state = "knight_templar"
@@ -86,7 +86,7 @@
 	icon_state = "knight_hospitaller"
 	item_state = "knight_hospitaller"
 // CITADEL CHANGES ENDS HERE
-
+*/
 /obj/item/choice_beacon/holy
 	name = "armaments beacon"
 	desc = "Contains a set of armaments for the chaplain."
@@ -115,7 +115,7 @@
 		SSblackbox.record_feedback("tally", "chaplain_armor", 1, "[choice]")
 		GLOB.holy_armor_type = choice
 	else
-		to_chat(M, "<span class='warning'>A selection has already been made. Self-Destructing...</span>")
+		to_chat(M, SPAN_WARNING("A selection has already been made. Self-Destructing..."))
 		return
 
 /obj/item/storage/box/holy
@@ -124,7 +124,7 @@
 /obj/item/storage/box/holy/PopulateContents()
 	new /obj/item/clothing/head/helmet/chaplain(src)
 	new /obj/item/clothing/suit/armor/riot/chaplain(src)
-
+/*
 // CITADEL CHANGES: More Variants
 /obj/item/storage/box/holy/teutonic
 	name = "Teutonic Kit"
@@ -140,7 +140,7 @@
 	new /obj/item/clothing/head/helmet/chaplain/bland(src)
 	new /obj/item/clothing/suit/armor/riot/chaplain/hospitaller(src)
 // CITADEL CHANGES ENDS HERE
-
+*/
 /obj/item/storage/box/holy/student
 	name = "Profane Scholar Kit"
 
@@ -216,7 +216,7 @@
 	new /obj/item/clothing/suit/hooded/chaplain_hoodie(src)
 	new /obj/item/clothing/suit/hooded/chaplain_hoodie(src)
 
-/obj/item/clothing/suit/hooded/chaplain_hoodie
+/*/obj/item/clothing/suit/hooded/chaplain_hoodie
 	name = "follower hoodie"
 	desc = "Hoodie made for acolytes of the chaplain."
 	icon_state = "chaplain_hoodie"
@@ -224,7 +224,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/storage/book/bible, HOLY_WEAPONS, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	hoodtype = /obj/item/clothing/head/hooded/chaplain_hood
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON*/
 
 /obj/item/clothing/head/hooded/chaplain_hood
 	name = "follower hood"
@@ -410,6 +410,7 @@
 	hitsound = 'sound/hallucinations/growl1.ogg'
 
 /obj/item/nullrod/claymore/chainsaw_sword
+	icon = 'icons/fallout/objects/melee/weapons.dmi'
 	icon_state = "chainswordon"
 	item_state = "chainswordon"
 	name = "ripper"
@@ -536,7 +537,7 @@
 		else
 			qdel(S)
 	possessed = FALSE
-	visible_message("<span class='warning'>The blade makes a short sigh. The spirit within seems to have passed on...</span>")
+	visible_message(SPAN_WARNING("The blade makes a short sigh. The spirit within seems to have passed on..."))
 	return PROCESS_KILL
 
 /obj/item/nullrod/scythe/talking/relaymove(mob/user)
@@ -656,7 +657,7 @@
 	if(prob(30) && ishuman(A))
 		var/mob/living/carbon/human/H = A
 		user.reagents.trans_to(H, user.reagents.total_volume, 1, 1, 0)
-		to_chat(user, "<span class='notice'>Your pride reflects on [H].</span>")
+		to_chat(user, SPAN_NOTICE("Your pride reflects on [H]."))
 		to_chat(H, "<span class='userdanger'>You feel insecure, taking on [user]'s burden.</span>")
 
 /obj/item/nullrod/whip
@@ -749,7 +750,7 @@
 /obj/item/nullrod/claymore/bostaff/attack(mob/target, mob/living/user)
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
-		to_chat(user, "<span class ='warning'>You club yourself over the head with [src].</span>")
+		to_chat(user, SPAN_WARNING("You club yourself over the head with [src]."))
 		user.DefaultCombatKnockdown(60)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -763,7 +764,7 @@
 		return ..()
 	var/mob/living/carbon/C = target
 	if(C.stat || C.health < 0 || C.staminaloss > 130 )
-		to_chat(user, "<span class='warning'>It would be dishonorable to attack a foe while they cannot retaliate.</span>")
+		to_chat(user, SPAN_WARNING("It would be dishonorable to attack a foe while they cannot retaliate."))
 		return
 	if(user.a_intent == INTENT_DISARM)
 		if(!ishuman(target))
@@ -775,7 +776,7 @@
 									  "[user] smashes [H]'s head with [src]!", \
 									  "[user] beats [H] with front of [src]!", \
 									  "[user] twirls and slams [H] with [src]!")
-		H.visible_message("<span class='warning'>[pick(fluffmessages)]</span>", \
+		H.visible_message(SPAN_WARNING("[pick(fluffmessages)]"), \
 							   "<span class='userdanger'>[pick(fluffmessages)]</span>")
 		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, 1, -1)
 		H.adjustStaminaLoss(rand(12,18))
@@ -854,11 +855,11 @@
 		return ..()
 
 	if(!user.mind || user.mind.assigned_role != "Chaplain")
-		to_chat(user, "<span class='notice'>You are not close enough with [deity_name] to use [src].</span>")
+		to_chat(user, SPAN_NOTICE("You are not close enough with [deity_name] to use [src]."))
 		return
 
 	if(praying)
-		to_chat(user, "<span class='notice'>You are already using [src].</span>")
+		to_chat(user, SPAN_NOTICE("You are already using [src]."))
 		return
 
 	user.visible_message("<span class='info'>[user] kneels[M == user ? null : " next to [M]"] and begins to utter a prayer to [deity_name].</span>", \
@@ -867,12 +868,12 @@
 	praying = TRUE
 	if(do_after(user, 20, target = M))
 		M.reagents?.add_reagent(/datum/reagent/water/holywater, 5)
-		to_chat(M, "<span class='notice'>[user]'s prayer to [deity_name] has eased your pain!</span>")
+		to_chat(M, SPAN_NOTICE("[user]'s prayer to [deity_name] has eased your pain!"))
 		M.adjustToxLoss(-5, TRUE, TRUE)
 		M.adjustOxyLoss(-5)
 		M.adjustBruteLoss(-5)
 		M.adjustFireLoss(-5)
 		praying = FALSE
 	else
-		to_chat(user, "<span class='notice'>Your prayer to [deity_name] was interrupted.</span>")
+		to_chat(user, SPAN_NOTICE("Your prayer to [deity_name] was interrupted."))
 		praying = FALSE

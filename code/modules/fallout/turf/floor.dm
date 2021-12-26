@@ -9,7 +9,7 @@
 	icon = 'icons/fallout/turfs/floors.dmi'
 
 /turf/open/floor/f13/ReplaceWithLattice()
-	ChangeTurf(baseturfs)
+	ScrapeAway()
 
 /turf/open/floor/f13/wood
 	icon_state = "housewood1"
@@ -38,7 +38,7 @@
 			new /obj/item/stack/sheet/mineral/wood(src)
 		else
 			new floor_tile(src)
-		to_chat(user, "<span class='danger'>You unscrew the planks.</span>")
+		to_chat(user, SPAN_DANGER("You unscrew the planks."))
 		make_plating()
 		playsound(src, C.usesound, 80, 1)
 		return

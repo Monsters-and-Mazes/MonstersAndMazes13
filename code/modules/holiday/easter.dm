@@ -114,8 +114,7 @@
 	var/eggcolor = pick("blue","green","mime","orange","purple","rainbow","red","yellow")
 	icon_state = "egg-[eggcolor]"
 /obj/item/reagent_containers/food/snacks/egg/proc/dispensePrize(turf/where)
-	var/won = pick(/obj/item/clothing/head/bunnyhead,
-	/obj/item/clothing/suit/bunnysuit,
+	var/won = pick(/obj/item/clothing/suit/bunnysuit,
 	/obj/item/reagent_containers/food/snacks/grown/carrot,
 	/obj/item/reagent_containers/food/snacks/chocolateegg,
 	/obj/item/toy/balloon,
@@ -133,7 +132,7 @@
 /obj/item/reagent_containers/food/snacks/egg/attack_self(mob/user)
 	..()
 	if(containsPrize)
-		to_chat(user, "<span class='notice'>You unwrap [src] and find a prize inside!</span>")
+		to_chat(user, SPAN_NOTICE("You unwrap [src] and find a prize inside!"))
 		dispensePrize(get_turf(user))
 		containsPrize = FALSE
 		qdel(src)

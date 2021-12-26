@@ -1,100 +1,5 @@
 //Fallout 13 general food directory
 
-//WASTELAND MEATS
-
-/obj/item/reagent_containers/food/snacks/meat/slab/gecko
-	name = "gecko fillet"
-	desc = "A tasty fillet of gecko meat.<br>If you cook it, it tastes like chicken!"
-	icon_state = "fishfillet"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6,  /datum/reagent/toxin  = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
-	bitesize = 2 //Smaller animal
-	filling_color = "#FA8072"
-	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/gecko
-	slice_path = null
-
-/obj/item/reagent_containers/food/snacks/meat/slab/molerat
-	name = "molerat meat"
-	desc = "A slab of smelly molerat meat."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/toxin = 3)
-	bitesize = 3
-	filling_color = "#FA8072"
-	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/molerat
-	slice_path = null
-
-/obj/item/reagent_containers/food/snacks/meat/slab/wolf
-	name = "dog meat"
-	desc = "Some Asians love this stuff.<br>It does not taste too bad actually."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
-	bitesize = 4 //Average animal
-	filling_color = "#FA8072"
-	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/wolf
-	slice_path = null
-
-/obj/item/reagent_containers/food/snacks/meat/slab/deathclaw
-	name = "deathclaw meat"
-	desc = "A slab of hard but delicious deathclaw meat."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/nutriment/vitamin = 9)
-	bitesize = 6 //Big slabs of meat from a massive creature
-	filling_color = "#FA8072"
-	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/deathclaw
-	slice_path = null
-
-/obj/item/reagent_containers/food/snacks/meat/slab/mirelurk
-	name = "mirelurk meat"
-	desc = "Meat from a Mirelurk, still inside its shell.  Going to need pliers for this..."
-	icon_state = "Mirelurk_meat"
-	bitesize = 4 //Big animal, small part of it
-	filling_color = "#406618"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 3)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
-	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/mirelurk
-	tastes = list("crab" = 1)
-	slice_path = null
-
-/obj/item/reagent_containers/food/snacks/meat/slab/squirrel
-	name = "squirrel meat"
-	desc = "Squirrel meat, the staple of many wasteland dishes."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
-	bitesize = 2
-	filling_color = "#FA8072"
-	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/squirrel
-	slice_path = null
-
-
-//WASTELAND STEAKS
-
-/obj/item/reagent_containers/food/snacks/meat/steak/gecko
-	name = "gecko steak"
-	desc = "A delicious steak made of finest gecko meat.<br>Tastes like chicken!"
-
-/obj/item/reagent_containers/food/snacks/meat/steak/molerat
-	name = "molerat steak"
-	desc = "A smelly molerat steak.<br>What did you expect from roasted mutant rodent meat?"
-
-/obj/item/reagent_containers/food/snacks/meat/steak/wolf
-	name = "dog steak"
-	desc = "A dog steak does not look attractive, but some people eat worse things when it comes to survival.<br>What did you expect from roasted dog?"
-
-/obj/item/reagent_containers/food/snacks/meat/steak/deathclaw
-	name = "deathclaw steak"
-	desc = "A piece of hot spicy meat, eaten by only the most worthy hunters - or the most rich clients."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 10) //It wouldn't make sense for it to be worse than the normal
-
-/obj/item/reagent_containers/food/snacks/meat/steak/squirrel
-	name = "squirrel steak"
-	desc = "A steak made from a small slab of squirrel meat. It is, unsurprisingly, small."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4)
-
-/obj/item/reagent_containers/food/snacks/meat/steak/mirelurk
-	name = "mirelurk roast"
-	desc = "Meat from a Mirelurks shell, cracked open and roasted to perfection."
-	icon_state = "Mirelurk_roast"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 3)
-
-
 //WASTELAND JUNK FOOD
 
 /obj/item/reagent_containers/food/snacks/f13
@@ -103,7 +8,7 @@
 	icon = 'icons/obj/food/food.dmi'
 
 /obj/item/reagent_containers/food/snacks/f13/bubblegum
-	name = "Bubblegum"
+	name = "bubblegum"
 	desc = "A Big Pops branded bubblegum."
 	icon_state = "bubblegum"
 	bonus_reagents = list(/datum/reagent/radium = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -202,7 +107,7 @@
 	trash = /obj/item/trash/f13/dandyapples
 
 /obj/item/reagent_containers/food/snacks/f13/blamco
-	name = "BlamCo"
+	name = "BlamCo Mac and Cheese"
 	desc = "BlamCo was a pre-War company in the United States, producing packaged foods.<br>BlamCo Mac & Cheese was their major product.<br>Unlike other foods, like apples or eggs, wheat cannot be freeze-dried. How the macaroni remains edible is unclear."
 	icon_state = "blamco"
 	bonus_reagents = list(/datum/reagent/radium = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -211,7 +116,7 @@
 	trash = /obj/item/trash/f13/blamco
 
 /obj/item/reagent_containers/food/snacks/f13/blamco/large
-	name = "big BlamCo"
+	name = "big BlamCo Mac and Cheese"
 	desc = "BlamCo was a pre-War company in the United States, producing packaged foods.<br>BlamCo Mac & Cheese was their major product.<br>Unlike other foods, like apples or eggs, wheat cannot be freeze-dried. How the macaroni remains edible is unclear."
 	icon_state = "blamco_large"
 	bonus_reagents = list(/datum/reagent/radium = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
@@ -239,7 +144,7 @@
 
 /obj/item/reagent_containers/food/snacks/f13/mre
 	name = "MRE"
-	desc = "The Meal, Ready-to-Eat : commonly known as the MRE - is a self-contained, individual field ration in lightweight packaging.<br>It's commonly used by military groups for service members to use in combat or other field conditions where organized food facilities are not available."
+	desc = "The Meal, Ready-to-Eat, commonly known as the MRE, is a self-contained, individual field ration in lightweight packaging.<br>It's commonly used by military groups for service members to use in combat or other field conditions where organized food facilities are not available."
 	icon_state = "mre"
 	bonus_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 10, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30)
@@ -254,15 +159,35 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	filling_color = "#B22222"
 
+
 //WASTELAND EGGS
 
 /obj/item/reagent_containers/food/snacks/f13/deathclawegg
-	name = "Deathclaw Egg"
+	name = "deathclaw egg"
 	desc = "A deathclaw egg. It has a brownish-red shell. Look at this thing, it's as big as your torso!"
-	icon_state = "deathclawegg"
+	icon = 'icons/fallout/mobs/mob_drops.dmi'
+	icon_state = "egg_deathclaw"
 	bonus_reagents = list(/datum/reagent/toxin = 30)
 	list_reagents = list(/datum/reagent/consumable/eggyolk = 40)
 	filling_color = "#F0E68C"
+
+/obj/item/reagent_containers/food/snacks/f13/egg_nightstalker
+	name = "nightstalker egg"
+	desc = "A shiny, leathery egg."
+	icon = 'icons/fallout/mobs/mob_drops.dmi'
+	icon_state = "egg_nightstalker"
+	bonus_reagents = list(/datum/reagent/toxin = 5)
+	list_reagents = list(/datum/reagent/consumable/eggyolk = 20)
+	filling_color = "#FFDF00"
+
+/obj/item/reagent_containers/food/snacks/f13/egg_mirelurk
+	name = "mirelurk egg"
+	desc = "A bluish egg with very hard shell."
+	icon = 'icons/fallout/mobs/mob_drops.dmi'
+	icon_state = "egg_mirelurk"
+	list_reagents = list(/datum/reagent/consumable/eggyolk = 30)
+	filling_color = "#E6E6FA"
+
 
 //WASTELAND PREPARED MEALS
 
@@ -302,7 +227,7 @@
 /obj/item/reagent_containers/food/snacks/f13/molejerky
 	name = "Molerat Wondermeat"
 	desc = "Molerat meat cured with wonderglue in a metal container. Has a nutty aftertaste."
-	icon_state = "baconcookedb"
+	icon_state = "wondermeat"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12)
 	filling_color = "#B22222"
@@ -325,15 +250,16 @@
 	filling_color = "B#22222"
 
 /obj/item/reagent_containers/food/snacks/f13/deathclawomelette
-	name = "Deathclaw Omelette"
+	name = "deathclaw omelette"
 	desc = "A delicious omelette made from one big deathclaw egg. Hope you're not allergic."
 	icon_state = "deathclawomlette"
+	bitesize = 10
 	bonus_reagents = list (/datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/medicine/omnizine = 40, /datum/reagent/medicine/dexalin = 10)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 60)
 	filling_color = "B#22222"
 
 /obj/item/reagent_containers/food/snacks/f13/moleratstew
-	name = "Molerat Stew"
+	name = "molerat stew"
 	desc = "A hearty stew, simmered in beer with some vegetables. It's good, if you can get over the bitter taste of the meat."
 	icon_state = "moleratstew"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/medicine/tricordrazine = 5)
@@ -341,21 +267,21 @@
 	filling_color = "B#22222"
 
 /obj/item/reagent_containers/food/snacks/f13/crispysquirrel
-	name = "Crispy Squirrel Bits"
+	name = "crispy squirrel bits"
 	desc = "Bits of squirrel meat roasted on a skewer. Tasty."
 	icon_state = "squrrielbits"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12)
 	filling_color = "B#22222"
 
 /obj/item/reagent_containers/food/snacks/f13/squirrelstick
-	name = "Squirrel on a Stick"
+	name = "squirrel on a stick"
 	desc = "It's a whole squirrel roasted on a stick. Tastes of home on the wastes."
 	icon_state = "squrrielstick"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 24)
 	filling_color = "B#22222"
 
 /obj/item/reagent_containers/food/snacks/f13/squirrelstew
-	name = "Squirrel Stew"
+	name = "squirrel stew"
 	desc = "Stewed squirrel meat with veggies. There's more vegetable than meat."
 	icon_state = "squrrielsoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
@@ -364,7 +290,7 @@
 	trash = /obj/item/reagent_containers/glass/bowl
 
 /obj/item/reagent_containers/food/snacks/f13/mirelurkstew
-	name = "Mirelurk Stew"
+	name = "mirelurk stew"
 	desc = "A hearty stew made from de-shelled Mirelurk meat, onions, butter, and other such delights."
 	icon_state = "Mirelurk_stew"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/medicine/tricordrazine = 5)
@@ -374,7 +300,7 @@
 	trash = /obj/item/reagent_containers/glass/bowl
 
 /obj/item/reagent_containers/food/snacks/f13/mirelurkcake
-	name = "Mirelurk Cake"
+	name = "mirelurk cake"
 	desc = "A savory cake made from the meat of a Mirelurk.  A popular dish from the coastlines."
 	bitesize = 5
 	icon_state = "Mirelurk_cake"
@@ -457,14 +383,14 @@
 /obj/item/reagent_containers/food/snacks/f13/canned/attack_self(mob/user)
 	if(!is_open)
 		is_open = TRUE
-		to_chat(user, "<span class='notice'>You open the lid of the can.</span>")
+		to_chat(user, SPAN_NOTICE("You open the lid of the can."))
 		update_icon()
 		return
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/f13/canned/attack(mob/living/M, mob/living/user)
 	if(!is_open)
-		to_chat(user, "<span class='warning'>You need to open [src] first.</span>")
+		to_chat(user, SPAN_WARNING("You need to open [src] first."))
 		return
 	. = ..()
 
@@ -636,3 +562,111 @@
 	tastes = list("beef luncheon loaf" = 3, "jalapeno peppers and spices" = 2)
 	trash = /obj/item/trash/f13/k_ration
 	foodtype = MEAT
+	
+/obj/item/reagent_containers/food/snacks/f13/broiled_death_claw
+	name = "broiled deathclaw"
+	desc = "All the flavor seared in for extra kick."
+	icon_state = "broiled_death_claw"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/medicine/omnizine = 5)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 10)
+	tastes = list("deathclaw meat" = 3, "butter" = 1)
+	foodtype = MEAT
+	
+/obj/item/reagent_containers/food/snacks/f13/fire_ant_fricassee
+	name = "fire ant fricassee"
+	desc = "Breaded fire ant meat soaked in cram."
+	icon_state = "fire_ant_fricassee"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12)
+	tastes = list("Fire Ant Meat" = 2, "flour" = 1, "cram" = 1)
+	foodtype = MEAT | GRAIN 
+	
+/obj/item/reagent_containers/food/snacks/f13/fried_brahmin_skin
+	name = "brahmin cracklings"
+	desc = "Cracklings are the solid material which remains after rendering animal fat and skin to produce lard, tallow, or schmaltz. It is often eaten as a snack food or made into animal feed. It is also used in cooking."
+	icon_state = "fried_brahmin_skin"
+	filling_color = "#CD5C5C"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("crispy skin" = 1)
+	foodtype = MEAT
+	
+/obj/item/reagent_containers/food/snacks/f13/molerat_manicotti
+	name = "molerat manicotti"
+	desc = "Molerat meat wrapped in a pasta tube."
+	icon_state = "molerat_manicotti"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12) 
+	tastes = list("molerat Meat" = 2, "dough" = 1)
+	foodtype = MEAT | GRAIN
+	
+/obj/item/reagent_containers/food/snacks/f13/chitlins_con_carne
+	name = "chitlins con carne"
+	desc = "Uses EVERY part of the cazador!"
+	icon_state = "chitlins_con_carne"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20) 
+	tastes = list("cazador meat" = 2, "dough" = 1)
+	foodtype = MEAT | GRAIN
+	
+/obj/item/reagent_containers/food/snacks/f13/fried_molerat_lung
+	name = "fried molerat lung"
+	desc = "Halfway to molerat haggis."
+	icon_state = "fried_molerat_lung"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12) 
+	tastes = list("molerat lung" = 2)
+	foodtype = MEAT 
+	
+/obj/item/reagent_containers/food/snacks/f13/tato_surpise
+	name = "tato suprise"
+	desc = "The surprise is Tato."
+	icon_state = "tato_surpise"
+	bonus_reagents = list(/datum/reagent/medicine/antitoxin = 0.01, /datum/reagent/medicine/salglu_solution = 0.01, /datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 3) 
+	tastes = list("tato" = 2, "xander" = 1)
+	foodtype = MEAT 
+	
+/obj/item/reagent_containers/food/snacks/f13/radscorpion_en_croute
+	name = "radscorpion en croute"
+	desc = "Radscorpion meat pie, no stingers included."
+	icon_state = "radscorpion_en_croute"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
+	tastes = list("cooked insect guts" = 2, "pastry dough" = 1)
+	foodtype = MEAT | GRAIN
+	
+/obj/item/reagent_containers/food/snacks/f13/deathclaw_egg_omelette
+	name = "deathclaw egg omelette"
+	desc = "An omelette made from a pristine deathclaw eggs."
+	icon_state = "deathclaw_egg_omelette"
+	bonus_reagents = list (/datum/reagent/consumable/nutriment/vitamin = 12, /datum/reagent/medicine/omnizine = 40, /datum/reagent/medicine/dexalin = 10) 
+	list_reagents = list(/datum/reagent/consumable/nutriment = 80)
+	tastes = list("deathclaw eggs" = 2, "deathclaw Meat" = 2, "cheese" = 1)
+	foodtype = MEAT | DAIRY
+	
+/obj/item/reagent_containers/food/snacks/f13/baked_nightstalker_tail
+	name = "baked nightstalker tail"
+	desc = "Shake it to hear it rattle!"
+	icon_state = "baked_nightstalker_tail"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
+	foodtype = MEAT
+	
+/obj/item/reagent_containers/food/snacks/f13/gecko_kebab
+	name = "gecko kebab"
+	desc = "Would you like to buy a nice kebab?"
+	icon_state = "gecko_kebab"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/soup/longpork_stew
+	name = "longpork stew"
+	desc = "A thick, oily stew that tastes and smells weird. Has small pieces of raw, chewy meat."
+	icon_state = "moleratstew"
+	bitesize = 4
+	volume = 30
+	list_reagents = list(/datum/reagent/medicine/longpork_stew = 30)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/medicine/longpork_stew = 5)
+	filling_color = "#a7510b"
+	tastes = list("oily broth" = 5, "chewy meat" = 1)
+	trash = /obj/item/reagent_containers/glass/bowl
+	foodtype = MEAT | LONGPORK

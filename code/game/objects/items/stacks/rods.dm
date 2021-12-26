@@ -4,6 +4,14 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	new/datum/stack_recipe("barred door", /obj/structure/simple_door/metal/barred, 30, time = 40, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("railing", /obj/structure/railing, 3, time = 18, window_checks = TRUE), \
 	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 1), \
+
+	null, \
+	new/datum/stack_recipe_list("fences", list( \
+		new /datum/stack_recipe("fence", /obj/structure/fence,8, time = 20, one_per_turf = 1, on_floor = 1), \
+		new /datum/stack_recipe("fence (corner)", /obj/structure/fence/corner, 8, time = 20, one_per_turf = 1, on_floor = 1), \
+		new /datum/stack_recipe("fence (end)", /obj/structure/fence/end, 8, time = 20, one_per_turf = 1, on_floor = 1), \
+		new /datum/stack_recipe("fence (gate)", /obj/structure/simple_door/metal/fence, 8, time = 20, one_per_turf = 1, on_floor = 1), \
+		)),
 	))
 
 /obj/item/stack/rods
@@ -48,13 +56,13 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 /obj/item/stack/rods/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/weldingtool))
 		if(get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need at least two rods to do this!</span>")
+			to_chat(user, SPAN_WARNING("You need at least two rods to do this!"))
 			return
 
 		if(W.use_tool(src, user, 0, volume=40))
 			var/obj/item/stack/sheet/metal/new_item = new(usr.loc)
 			user.visible_message("[user.name] shaped [src] into metal with [W].", \
-						"<span class='notice'>You shape [src] into metal with [W].</span>", \
+						SPAN_NOTICE("You shape [src] into metal with [W]."), \
 						"<span class='italics'>You hear welding.</span>")
 			var/obj/item/stack/rods/R = src
 			src = null
@@ -66,9 +74,9 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	else if(istype(W, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/S = W
 		if(amount != 1)
-			to_chat(user, "<span class='warning'>You must use a single rod!</span>")
+			to_chat(user, SPAN_WARNING("You must use a single rod!"))
 		else if(S.w_class > WEIGHT_CLASS_SMALL)
-			to_chat(user, "<span class='warning'>The ingredient is too big for [src]!</span>")
+			to_chat(user, SPAN_WARNING("The ingredient is too big for [src]!"))
 		else
 			var/obj/item/reagent_containers/food/snacks/customizable/A = new/obj/item/reagent_containers/food/snacks/customizable/kebab(get_turf(src))
 			A.initialize_custom_food(src, S, user)

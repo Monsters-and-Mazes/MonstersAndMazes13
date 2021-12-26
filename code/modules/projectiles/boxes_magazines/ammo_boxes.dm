@@ -1,7 +1,9 @@
+// .357 magnum and .38 special
 /obj/item/ammo_box/a357
 	name = "speed loader (.357)"
 	desc = "Designed to quickly reload revolvers."
-	icon_state = "357"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	icon_state = "a357"
 	ammo_type = /obj/item/ammo_casing/a357
 	caliber = "357"
 	max_ammo = 6
@@ -18,41 +20,49 @@
 	name = "speed loader (.357 DumDum)"
 	desc = "Designed to quickly reload revolvers. Usage of these rounds will constitute a war crime in your area."
 
-/obj/item/ammo_box/c38
-	name = "speed loader (.38 rubber)"
-	desc = "Designed to quickly reload revolvers."
-	icon_state = "38"
-	caliber = "38"
-	ammo_type = /obj/item/ammo_casing/c38
-	max_ammo = 6
+/obj/item/ammo_box/a357/empty
+	start_empty = 1
+
+/obj/item/ammo_box/tube/a357
+	name = "speed loader tube (.357)"
+	desc = "Designed to quickly reload repeaters."
+	icon_state = "357tube"
+	caliber = "357"
+	ammo_type = /obj/item/ammo_casing/a357
+	max_ammo = 12
 	multiple_sprites = 1
-	custom_materials = list(/datum/material/iron = 20000)
+	custom_materials = list(/datum/material/iron = 40000)
 
-/obj/item/ammo_box/c38/lethal
-	name = "speed loader (.38)"
+/obj/item/ammo_box/tube/a357/empty
+	start_empty = 1
 
-/obj/item/ammo_box/c38/trac
-	name = "speed loader (.38 TRAC)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
+/obj/item/ammo_box/a357box
+	name = "ammo box (.357 Magnum FMJ)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
+	icon_state = "357box"
+	caliber = "357"
+	ammo_type = /obj/item/ammo_casing/a357
+	max_ammo = 30
+	custom_materials = list(/datum/material/iron = 16000, /datum/material/blackpowder = 1500)
+	w_class = WEIGHT_CLASS_NORMAL
 
-/obj/item/ammo_box/c38/hotshot
-	name = "speed loader (.38 Hot Shot)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
+/obj/item/ammo_box/a357box/jhp
+	name = "ammo box (.357 Magnum JHP)"
+	ammo_type = /obj/item/ammo_casing/a357/jhp
+	custom_materials = list(/datum/material/iron = 12000, /datum/material/blackpowder = 1500)
 
-/obj/item/ammo_box/c38/iceblox
-	name = "speed loader (.38 Iceblox)"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
+/obj/item/ammo_box/a357box/jfp
+	name = "ammo box (.357 Magnum JFP)"
+	ammo_type = /obj/item/ammo_casing/a357/jfp
+	custom_materials = list(/datum/material/iron = 19000, /datum/material/blackpowder = 2000)
 
-/obj/item/ammo_box/c38/dumdum
-	name = "speed loader (.38 DumDum)"
-	desc = "Designed to quickly reload revolvers. These rounds expand on impact, allowing them to shred the target and cause massive bleeding. Very weak against armor and distant targets."
 
-/obj/item/ammo_box/c38/match
-	name = "speed loader (.38 Match)"
-	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
-
+//9mm
 /obj/item/ammo_box/c9mm
 	name = "ammo box (9mm)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "9mmbox"
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/c9mm
@@ -76,6 +86,8 @@
 
 /obj/item/ammo_box/c10mm
 	name = "ammo box (10mm)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "10mmbox"
 	ammo_type = /obj/item/ammo_casing/c10mm
 	caliber = "10mm"
@@ -104,6 +116,8 @@
 /obj/item/ammo_box/c45
 	name = "ammo box (.45)"
 	caliber = ".45"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "45box"
 	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 30
@@ -264,7 +278,7 @@
 	icon_state = "44tube"
 	caliber = "44"
 	ammo_type = /obj/item/ammo_casing/m44
-	max_ammo = 8
+	max_ammo = 12
 	multiple_sprites = 1
 	custom_materials = list(/datum/material/iron = 40000)
 
@@ -274,6 +288,8 @@
 //.44 Magnum
 /obj/item/ammo_box/m44box
 	name = "ammo box (.44 Magnum FMJ)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "44box"
 	caliber = "44"
 	ammo_type = /obj/item/ammo_casing/m44
@@ -293,6 +309,8 @@
 
 //7.62x51, .308 Winchester
 /obj/item/ammo_box/a308box
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	name = "ammo box (.308)"
 	icon_state = "308box"
 	caliber = "a762"
@@ -303,6 +321,8 @@
 
 /obj/item/ammo_box/a762box
 	name = "ammo box (7.62x51 FMJ)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "762box"
 	caliber = "a762"
 	ammo_type = /obj/item/ammo_casing/a762
@@ -328,6 +348,8 @@
 //.45-70 Gov't
 /obj/item/ammo_box/c4570box
 	name = "ammo box (.45-70 FMJ)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "4570box"
 	caliber = "4570"
 	ammo_type = /obj/item/ammo_casing/c4570
@@ -370,6 +392,8 @@
 //7.62x51, .308 Winchester
 /obj/item/ammo_box/a308box
 	name = "ammo box (.308)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "308box"
 	caliber = "a762"
 	ammo_type = /obj/item/ammo_casing/a762/sport
@@ -416,6 +440,7 @@
 	name = "Slug shotgun ammo box"
 	desc = "A box full of shotgun shells."
 	max_ammo = 12
+	multiple_sprites = 2
 	ammo_type = /obj/item/ammo_casing/shotgun
 	icon_state = "lbox"
 	start_empty = FALSE
@@ -424,6 +449,7 @@
 	name = "Buckshot shotgun ammo box"
 	desc = "A box full of shotgun shells."
 	max_ammo = 12
+	multiple_sprites = 2
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 	icon_state = "gbox"
 	start_empty = FALSE
@@ -432,6 +458,7 @@
 	name = "Magnum buckshot shotgun ammo box"
 	desc = "A box full of shotgun shells."
 	max_ammo = 12
+	multiple_sprites = 2
 	ammo_type = /obj/item/ammo_casing/shotgun/magnumshot
 	icon_state = "gbox"
 	start_empty = FALSE
@@ -440,6 +467,7 @@
 	name = "Beanbag shotgun ammo box"
 	desc = "A box full of shotgun shells."
 	max_ammo = 12
+	multiple_sprites = 2
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	icon_state = "stunbox"
 	start_empty = FALSE
@@ -448,6 +476,7 @@
 	name = "Rubbershot shotgun ammo box"
 	desc = "A box full of shotgun shells."
 	max_ammo = 12
+	multiple_sprites = 2
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 	icon_state = "stunbox"
 	start_empty = FALSE
@@ -475,6 +504,8 @@
 //5.56x45
 /obj/item/ammo_box/a556
 	name = "ammo box (5.56 FMJ)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "556box"
 	caliber = "a556"
 	ammo_type = /obj/item/ammo_casing/a556
@@ -496,6 +527,11 @@
 	name = "ammo box (5.56 match)"
 	ammo_type = /obj/item/ammo_casing/a556/match
 	custom_materials = list(/datum/material/iron = 28000, /datum/material/blackpowder = 3500)
+
+/obj/item/ammo_box/a556/rubber
+	name = "ammo box (5.56 rubber)"
+	ammo_type = /obj/item/ammo_casing/a556/rubber
+	custom_materials = list(/datum/material/iron = 16000, /datum/material/blackpowder = 1500)
 
 /obj/item/ammo_box/a556/sport
 	name = "ammo box (.223)"
@@ -600,7 +636,7 @@
 	icon_state = "44tube"
 	caliber = "4570"
 	ammo_type = /obj/item/ammo_casing/c4570
-	max_ammo = 8
+	max_ammo = 10
 	multiple_sprites = 1
 	custom_materials = list(/datum/material/iron = 40000)
 
@@ -629,7 +665,7 @@
 
 /*/obj/item/ammo_box/a50MG/AP
 	name = "anti-materiel armor piercing ammo rack (.50MG)"
-	desc = "A .rack of .50 MG ammo, for when you really need (a very big) something dead."
+	desc = "A rack of .50 MG ammo, for when you really need (a very big) something dead."
 	icon_state = "50ap"
 	ammo_type = /obj/item/ammo_casing/a50MG/AP
 	max_ammo = 5
@@ -645,50 +681,14 @@
 	multiple_sprites = 1
 	custom_materials = list(/datum/material/iron = 40000)
 
-/obj/item/ammo_box/tube/a357
-	name = "speed loader tube (.357)"
-	desc = "Designed to quickly reload repeaters."
-	icon_state = "357tube"
-	caliber = "357"
-	ammo_type = /obj/item/ammo_casing/a357
-	max_ammo = 7
-	multiple_sprites = 1
-	custom_materials = list(/datum/material/iron = 40000)
-
-/obj/item/ammo_box/tube/a357/empty
-	start_empty = 1
-
 //Boxes
-//.357 Magnum, .38 Special
-/obj/item/ammo_box/a357box
-	name = "ammo box (.357 Magnum FMJ)"
-	icon_state = "357box"
-	caliber = "357"
-	ammo_type = /obj/item/ammo_casing/a357
-	max_ammo = 30
-	custom_materials = list(/datum/material/iron = 16000, /datum/material/blackpowder = 1500)
-	w_class = WEIGHT_CLASS_NORMAL
 
-/obj/item/ammo_box/a357box/jhp
-	name = "ammo box (.357 Magnum JHP)"
-	ammo_type = /obj/item/ammo_casing/a357/jhp
-	custom_materials = list(/datum/material/iron = 12000, /datum/material/blackpowder = 1500)
-
-/obj/item/ammo_box/a357box/jfp
-	name = "ammo box (.357 Magnum JFP)"
-	ammo_type = /obj/item/ammo_casing/a357/jfp
-	custom_materials = list(/datum/material/iron = 19000, /datum/material/blackpowder = 2000)
-
-/obj/item/ammo_box/box38
-	name = "ammo box (.38 Spl)"
-	icon_state = "38box"
-	max_ammo = 30
-	custom_materials = list(/datum/material/iron = 40000)
-	w_class = WEIGHT_CLASS_NORMAL
 
 //.50 MG and .50 AE
 /obj/item/ammo_box/a50MGbox
 	name = "ammo box (.50 MG)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "50box"
 	caliber = "a50MG"
 	ammo_type = /obj/item/ammo_casing/a50MG
@@ -698,6 +698,8 @@
 
 /obj/item/ammo_box/m127mm
 	name = "ammo box (12.7mm)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
 	icon_state = "50aebox"
 	caliber = "12.7"
 	ammo_type = /obj/item/ammo_casing/a127mm
@@ -713,7 +715,7 @@
 /obj/item/ammo_box/c45rev
 	name = "speed loader (.45 ACP)"
 	desc = "Designed to quickly reload revolvers."
-	icon_state = "38"
+	icon_state = "10mm"
 	caliber = ".45"
 	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 6
@@ -722,9 +724,21 @@
 /obj/item/ammo_box/c45rev/empty
 	start_empty = 1
 
+/obj/item/ammo_box/jerrycan
+	name = "jerry can"
+	desc = "A jerry can full of napalm and diesel fuel, meant for flamethrowers."
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	icon_state = "jerrycan"
+	caliber = "fuel"
+	unloadable = TRUE
+	ammo_type = /obj/item/ammo_casing/caseless/flamethrower
+	max_ammo = 6 // 3 bursts, you need 2 cans
+
 /obj/item/ammo_box/m22
 	name = "ammo box (.22lr)"
-	icon_state = "9mmbox"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
+	icon_state = "22box"
 	ammo_type = /obj/item/ammo_casing/a22
 	max_ammo = 40
 	w_class = WEIGHT_CLASS_SMALL
@@ -742,22 +756,40 @@
 
 /obj/item/ammo_box/m473
 	name = "ammo box (4.73mm caseless)"
-	icon_state = "38box" //temporary until new sprite comes along
+	icon_state = "5mmbox" //i cannot be fucked to make a new sprite for it rn so - someone else can eventually(tm, rights reserved exdee)
 	ammo_type = /obj/item/ammo_casing/caseless/g11
-	max_ammo = 50
+	max_ammo = 100
 
-/obj/item/ammo_box/lasmusket
-	name = "Battery Box (Musket)"
-	icon_state = "Batbox"
-	ammo_type = /obj/item/ammo_casing/caseless/lasermusket
-	max_ammo = 18
-	custom_materials = list(MAT_METAL = 1000)
-	w_class = WEIGHT_CLASS_NORMAL
-
+/*
 /obj/item/ammo_box/plasmamusket
-	name = "Battery Box (Plasma)"
-	icon_state = "Batbox"
+	name = "Plasma canister box"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	icon_state = "plasmusketbox"
+	multiple_sprites = 2
 	ammo_type = /obj/item/ammo_casing/caseless/plasmacaster
 	max_ammo = 6
 	custom_materials = list(MAT_METAL = 1000)
 	w_class = WEIGHT_CLASS_NORMAL
+*/
+
+/obj/item/ammo_box/m473_box
+	name = "ammo box (4.73mm caseless)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
+	icon_state = "5mmbox"
+	caliber = "473mm"
+	ammo_type = /obj/item/ammo_casing/caseless/g11
+	max_ammo = 50
+	w_class = WEIGHT_CLASS_NORMAL
+	custom_materials = list(/datum/material/iron = 20000, /datum/material/blackpowder = 2500)
+
+/obj/item/ammo_box/c5mm
+	name = "ammo box (5mm)"
+	icon = 'icons/fallout/objects/guns/ammo.dmi'
+	multiple_sprites = 2
+	icon_state = "5mmbox"
+	caliber = "5mm"
+	ammo_type = /obj/item/ammo_casing/c5mm
+	max_ammo = 100
+	w_class = WEIGHT_CLASS_NORMAL
+	custom_materials = list(/datum/material/iron = 25000, /datum/material/blackpowder = 3000)

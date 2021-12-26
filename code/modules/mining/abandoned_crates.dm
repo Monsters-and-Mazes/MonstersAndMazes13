@@ -46,7 +46,7 @@
 			for(var/i in 1 to 3)
 				new /obj/item/reagent_containers/glass/beaker/noreact(src)
 		if(31 to 35)
-			new /obj/item/seeds/firelemon(src)
+			new /obj/item/seeds/random(src)
 		if(36 to 40)
 			new /obj/item/melee/baton(src)
 		if(41 to 45)
@@ -85,10 +85,8 @@
 				new newitem(src)
 		if(69 to 70)
 			new /obj/item/stack/ore/bluespace_crystal(src, 5)
-		if(71 to 72)
+		if(71 to 74)
 			new /obj/item/pickaxe/drill(src)
-		if(73 to 74)
-			new /obj/item/pickaxe/drill/jackhammer(src)
 		if(75 to 76)
 			new /obj/item/pickaxe/diamond(src)
 		if(77 to 78)
@@ -107,15 +105,15 @@
 		if(88)
 			new /obj/item/organ/brain(src)
 		if(89)
-			new /obj/item/organ/brain/alien(src)
+			new /obj/item/gun/ballistic/automatic/pistol/m1911 (src)
 		if(90)
 			new /obj/item/organ/heart(src)
 		if(91)
-			new /obj/item/soulstone/anybody(src)
+			new /obj/effect/spawner/lootdrop/f13/armor/tier5(src)
 		if(92)
 			new /obj/item/katana(src)
 		if(93)
-			new /obj/item/dnainjector/xraymut(src)
+			new /obj/effect/spawner/lootdrop/f13/weapon/gun/unique(src)
 		if(94)
 			new /obj/item/storage/backpack/clown(src)
 			new /obj/item/clothing/under/rank/civilian/clown(src)
@@ -136,13 +134,13 @@
 			new /obj/item/toy/crayon/mime(src)
 			new /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing(src)
 		if(96)
-			new /obj/item/hand_tele(src)
+			new /obj/effect/spawner/lootdrop/f13/weapon/gun/tier10(src)
 		if(97)
 			new /obj/item/clothing/mask/balaclava
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
 		if(98)
-			new /obj/item/katana/cursed(src)
+			new /obj/item/melee/powerfist(src)
 		if(99)
 			new /obj/item/storage/belt/champion(src)
 			new /obj/item/clothing/mask/luchador(src)
@@ -151,7 +149,7 @@
 
 /obj/structure/closet/crate/secure/loot/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
 	if(locked)
-		to_chat(user, "<span class='notice'>The crate is locked with a Deca-code lock.</span>")
+		to_chat(user, SPAN_NOTICE("The crate is locked with a Deca-code lock."))
 		var/input = input(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "") as text
 		if(user.canUseTopic(src, BE_CLOSE))
 			var/list/sanitised = list()
@@ -166,15 +164,15 @@
 					if(sanitised[i] == sanitised[j])
 						sanitycheck = FALSE //if a digit is repeated, reject the input
 			if(input == code)
-				to_chat(user, "<span class='notice'>The crate unlocks!</span>")
+				to_chat(user, SPAN_NOTICE("The crate unlocks!"))
 				locked = FALSE
 				cut_overlays()
 				add_overlay("securecrateg")
 				tamperproof = 0 // set explosion chance to zero, so we dont accidently hit it with a multitool and instantly die
 			else if(!input || !sanitycheck || length(sanitised) != codelen)
-				to_chat(user, "<span class='notice'>You leave the crate alone.</span>")
+				to_chat(user, SPAN_NOTICE("You leave the crate alone."))
 			else
-				to_chat(user, "<span class='warning'>A red light flashes.</span>")
+				to_chat(user, SPAN_WARNING("A red light flashes."))
 				lastattempt = input
 				attempts--
 				if(attempts == 0)
@@ -191,11 +189,11 @@
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/W, mob/user)
 	if(locked)
 		if(istype(W, /obj/item/multitool))
-			to_chat(user, "<span class='notice'>DECA-CODE LOCK REPORT:</span>")
+			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK REPORT:"))
 			if(attempts == 1)
-				to_chat(user, "<span class='warning'>* Anti-Tamper Bomb will activate on next failed access attempt.</span>")
+				to_chat(user, SPAN_WARNING("* Anti-Tamper Bomb will activate on next failed access attempt."))
 			else
-				to_chat(user, "<span class='notice'>* Anti-Tamper Bomb will activate after [attempts] failed access attempts.</span>")
+				to_chat(user, SPAN_NOTICE("* Anti-Tamper Bomb will activate after [attempts] failed access attempts."))
 			if(lastattempt != null)
 				var/bulls = 0 //right position, right number
 				var/cows = 0 //wrong position but in the puzzle
@@ -219,14 +217,14 @@
 					lastattempt_it += length(lastattempt_char)
 					code_it += length(code_char)
 
-				to_chat(user, "<span class='notice'>Last code attempt, [lastattempt], had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions.</span>")
+				to_chat(user, SPAN_NOTICE("Last code attempt, [lastattempt], had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions."))
 			return
 	return ..()
 
 /obj/structure/closet/secure/loot/dive_into(mob/living/user)
 	if(!locked)
 		return ..()
-	to_chat(user, "<span class='notice'>That seems like a stupid idea.</span>")
+	to_chat(user, SPAN_NOTICE("That seems like a stupid idea."))
 	return FALSE
 
 /obj/structure/closet/crate/secure/loot/emag_act(mob/user)

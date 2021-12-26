@@ -14,14 +14,16 @@
 	var/expected_price = 0
 	var/list/prize_list = list()  //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
 
-	var/list/goods_list = list( /obj/item/stack/ore/diamond = 25,
+	var/list/goods_list = list( /obj/item/stack/ore/diamond = 50,
 								/obj/item/stack/ore/gold = 7,
 								/obj/item/stack/ore/silver = 2,
 								/obj/item/stack/ore/iron = 1,
 								/obj/item/stack/sheet/leather = 3,
 								/obj/item/reagent_containers/pill/patch/jet = 5,
 								/obj/item/reagent_containers/hypospray/medipen/psycho = 15,
-								/obj/item/reagent_containers/syringe/medx = 15
+								/obj/item/reagent_containers/pill/patch/medx = 10,
+								/obj/item/invention = 25,
+								/obj/item/experimental = 25
 								)
 
 /obj/machinery/mineral/wasteland_trader/general
@@ -55,7 +57,8 @@
 	dat += "Diamond : 50 caps<br>"
 	dat += "Leather : 5 caps<br>"
 	dat += "Jet/Psycho/MedX : 5-15 caps<br>"
-	dat += ""
+	dat += "Inventions : 25 caps"
+	dat += "Tinker Kits : 25 caps"
 	dat += "</div>"
 
 	var/datum/browser/popup = new(user, "tradingvendor", "Trading point", 400, 500)
@@ -71,14 +74,14 @@
 	if(href_list["purchase"])
 		var/datum/data/wasteland_equipment/prize = locate(href_list["purchase"])
 		if (!prize || !(prize in prize_list))
-			to_chat(usr, "<span class='warning'>Error: Invalid choice!</span>")
+			to_chat(usr, SPAN_WARNING("Error: Invalid choice!"))
 			return
 		if(prize.cost > stored_caps)
-			to_chat(usr, "<span class='warning'>Error: Insufficent bottle caps value for [prize.equipment_name]!</span>")
+			to_chat(usr, SPAN_WARNING("Error: Insufficent bottle caps value for [prize.equipment_name]!"))
 		else
 			stored_caps -= prize.cost
 			GLOB.vendor_cash += prize.cost
-			to_chat(usr, "<span class='notice'>[src] clanks to life briefly before vending [prize.equipment_name]!</span>")
+			to_chat(usr, SPAN_NOTICE("[src] clanks to life briefly before vending [prize.equipment_name]!"))
 			new prize.equipment_path(src.loc)
 			SSblackbox.record_feedback("nested tally", "wasteland_equipment_bought", 1, list("[type]", "[prize.equipment_path]"))
 	updateUsrDialog()
@@ -94,7 +97,7 @@
 	var/value_per = 0
 
 	if(!(I?.type in goods_list))
-		to_chat(usr, "<span class='notice'>[src] is not buying that!</span>")
+		to_chat(usr, SPAN_NOTICE("[src] is not buying that!"))
 		return
 
 	value_per = goods_list[I.type]

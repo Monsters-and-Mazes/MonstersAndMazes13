@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(mapping)
 		var/old_config = config
 		config = global.config.defaultmap
 		if(!config || config.defaulted)
-			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to Monsters and Mazes...</span>")
+			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to Pahrump...</span>")
 			config = old_config
 	GLOB.year_integer += config.year_offset
 	GLOB.announcertype = (config.announcertype == "standard" ? (prob(1) ? "medibot" : "classic") : config.announcertype)
@@ -496,12 +496,12 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			if(!mapfile)
 				return
 			away_name = "[mapfile] custom"
-			to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+			to_chat(usr,SPAN_NOTICE("Loading [away_name]..."))
 			var/datum/map_template/template = new(mapfile, choice, ztraits)
 			away_level = template.load_new_z(ztraits)
 		else
 			away_name = answer
-			to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+			to_chat(usr,SPAN_NOTICE("Loading [away_name]..."))
 			var/datum/map_template/template = new(away_name, choice)
 			away_level = template.load_new_z(ztraits)
 

@@ -40,8 +40,8 @@
 	if(hotspot && istype(T) && T.air)
 		qdel(hotspot)
 		var/datum/gas_mixture/G = T.air
-		var/plas_amt = min(30,G.get_moles(/datum/gas/plasma))  //Absorb some plasma
-		G.adjust_moles(/datum/gas/plasma,-plas_amt)
+		var/plas_amt = min(30,G.get_moles(GAS_PLASMA))  //Absorb some plasma
+		G.adjust_moles(GAS_PLASMA,-plas_amt)
 		absorbed_plasma += plas_amt
 		if(G.return_temperature() > T20C)
 			G.set_temperature(max(G.return_temperature()/2,T20C))
@@ -288,7 +288,7 @@
 
 /obj/structure/foamedmetal/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-	to_chat(user, "<span class='warning'>You hit [src] but bounce off it!</span>")
+	to_chat(user, SPAN_WARNING("You hit [src] but bounce off it!"))
 	playsound(src.loc, 'sound/weapons/tap.ogg', 100, 1)
 
 /obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target)
@@ -318,7 +318,7 @@
 			for(var/obj/effect/hotspot/H in O)
 				qdel(H)
 			for(var/I in G.get_gases())
-				if(I == /datum/gas/oxygen || I == /datum/gas/nitrogen)
+				if(I == GAS_O2 || I == GAS_N2)
 					continue
 				G.set_moles(I, 0)
 			O.air_update_turf()
@@ -326,7 +326,7 @@
 			if(!U.welded)
 				U.welded = TRUE
 				U.update_icon()
-				U.visible_message("<span class='danger'>[U] sealed shut!</span>")
+				U.visible_message(SPAN_DANGER("[U] sealed shut!"))
 		for(var/mob/living/L in O)
 			L.ExtinguishMob()
 		for(var/obj/item/Item in O)

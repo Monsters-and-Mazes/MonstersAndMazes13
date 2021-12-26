@@ -78,7 +78,7 @@
 		J.mybag=src
 		J.update_icon()
 	else
-		to_chat(user, "<span class='warning'>You are unable to fit your [name] into the [J.name].</span>")
+		to_chat(user, SPAN_WARNING("You are unable to fit your [name] into the [J.name]."))
 		return
 
 /obj/item/storage/bag/trash/bluespace
@@ -168,17 +168,17 @@
 				show_message = TRUE
 			else
 				if(!spam_protection)
-					to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
+					to_chat(user, SPAN_WARNING("Your [name] is full and can't hold any more!"))
 					spam_protection = TRUE
 					continue
 	if(show_message)
 		playsound(user, "rustle", 50, TRUE)
 		if (box)
-			user.visible_message("<span class='notice'>[user] offloads the ores beneath [user.p_them()] into [box].</span>", \
-			"<span class='notice'>You offload the ores beneath you into your [box].</span>")
+			user.visible_message(SPAN_NOTICE("[user] offloads the ores beneath [user.p_them()] into [box]."), \
+			SPAN_NOTICE("You offload the ores beneath you into your [box]."))
 		else
-			user.visible_message("<span class='notice'>[user] scoops up the ores beneath [user.p_them()].</span>", \
-				"<span class='notice'>You scoop up the ores beneath you with your [name].</span>")
+			user.visible_message(SPAN_NOTICE("[user] scoops up the ores beneath [user.p_them()]."), \
+				SPAN_NOTICE("You scoop up the ores beneath you with your [name]."))
 	spam_protection = FALSE
 
 /obj/item/storage/bag/ore/cyborg
@@ -261,7 +261,7 @@
 
 /obj/item/storage/bag/sheetsnatcher
 	name = "sheet snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
+	desc = "A patented Vault-Tec storage system designed for any kind of mineral sheet."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 
@@ -378,9 +378,9 @@
 
 //bluespace tray, holds more items
 /obj/item/storage/bag/tray/bluespace
-	name = "bluespace tray"
+	name = "quantum tray"
 	icon_state = "bluespace_tray"
-	desc = "A tray created using bluespace technology to fit more food on it."
+	desc = "A tray created using quantum technology to fit more food on it."
 	max_items = 30 // far more items
 	custom_materials = list(/datum/material/iron = 2000, /datum/material/bluespace = 500)
 
@@ -406,7 +406,7 @@
 
 /*	Now in tribal mode!*/
 
-obj/item/storage/bag/chemistry/tribal
+/obj/item/storage/bag/chemistry/tribal
 	name = "tribal medicinal bag"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "tribal_chembag"
@@ -493,3 +493,19 @@ obj/item/storage/bag/chemistry/tribal
 	STR.max_items = 2
 	STR.display_numerical_stacking = TRUE
 	STR.can_hold = typecacheof(list(/obj/item/rcd_ammo, /obj/item/stack/sheet))
+
+/obj/item/storage/bag/plushie
+	name = "Plushie Satchel"
+	desc = "An ugly yet adorable handmade satchel that seems to only serve the purpose of storing plushies. It is entirely made of a plush fabric and has absolutely no structure."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "plushbag"
+	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = FLAMMABLE
+
+/obj/item/storage/bag/plushie/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 100
+	STR.max_items = 100
+	STR.can_hold = typecacheof(list(/obj/item/toy/plush,/obj/item/choice_beacon/box/plushie))

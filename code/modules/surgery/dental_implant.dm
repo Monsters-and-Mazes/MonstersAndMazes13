@@ -3,15 +3,25 @@
 	steps = list(/datum/surgery_step/drill, /datum/surgery_step/insert_pill)
 	possible_locs = list(BODY_ZONE_PRECISE_MOUTH)
 	requires_bodypart_type = BODYPART_ORGANIC
-	requires_trait = 2
-	
+	requires_trait = 1
+
+/datum/surgery/dental_implant/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
+	if(HAS_TRAIT(user,TRAIT_SURGERY_LOW))
+		return TRUE
+	if(HAS_TRAIT(user,TRAIT_SURGERY_MID))
+		return TRUE
+	if(HAS_TRAIT(user,TRAIT_SURGERY_HIGH))
+		return TRUE
+	else
+		return FALSE
+
 /datum/surgery_step/insert_pill
 	name = "insert pill"
 	implements = list(/obj/item/reagent_containers/pill = 100)
 	time = 16
 
 /datum/surgery_step/insert_pill/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] begins to wedge \the [tool] in [target]'s [parse_zone(target_zone)].", "<span class='notice'>You begin to wedge [tool] in [target]'s [parse_zone(target_zone)]...</span>")
+	user.visible_message("[user] begins to wedge \the [tool] in [target]'s [parse_zone(target_zone)].", SPAN_NOTICE("You begin to wedge [tool] in [target]'s [parse_zone(target_zone)]..."))
 
 /datum/surgery_step/insert_pill/success(mob/user, mob/living/carbon/target, target_zone, obj/item/reagent_containers/pill/tool, datum/surgery/surgery)
 	if(!istype(tool))
@@ -24,7 +34,7 @@
 	P.target = tool
 	P.Grant(target)	//The pill never actually goes in an inventory slot, so the owner doesn't inherit actions from it
 
-	user.visible_message("[user] wedges \the [tool] into [target]'s [parse_zone(target_zone)]!", "<span class='notice'>You wedge [tool] into [target]'s [parse_zone(target_zone)].</span>")
+	user.visible_message("[user] wedges \the [tool] into [target]'s [parse_zone(target_zone)]!", SPAN_NOTICE("You wedge [tool] into [target]'s [parse_zone(target_zone)]."))
 	return 1
 
 /datum/action/item_action/hands_free/activate_pill

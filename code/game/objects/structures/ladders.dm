@@ -7,7 +7,11 @@
 	anchored = TRUE
 	var/obj/structure/ladder/down   //the ladder below this one
 	var/obj/structure/ladder/up     //the ladder above this one
+	/// Associative lazy list of mobs peeking through the ladder. list[direction] -> list(watchers)
+	var/list/ladder_watchers
 	var/move_me = TRUE
+	var/in_use = FALSE // To avoid message spam
+	var/timetouse = 15
 
 /obj/structure/ladder/Initialize(mapload, obj/structure/ladder/up, obj/structure/ladder/down)
 	..()
@@ -47,6 +51,94 @@
 
 	update_icon()
 
+
+//Peeking up/down
+/obj/structure/ladder/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	if(over != usr || !Adjacent(src, over))
+		return
+	var/mob/peeker = usr
+	if((peeker in (LAZYACCESS(ladder_watchers, "[UP]"))) || (peeker in (LAZYACCESS(ladder_watchers, "[DOWN]"))))
+		return
+	if(peeker.incapacitated())
+		to_chat(peeker, "You can't do that in your current state.")
+		return
+
+	var/peek_dir = NONE
+	if(up && down)
+		switch(alert(peeker, "Look up or down the ladder?", "Ladder", list("Up", "Down", "Cancel")))
+			if("Up")
+				peeker.visible_message(SPAN_NOTICE("[peeker] looks up [peeker]!"),
+				SPAN_NOTICE("You look up [peeker]!"))
+				peek_dir = UP
+			if("Down")
+				usr.visible_message(SPAN_NOTICE("[usr] looks down [src]!"),
+				SPAN_NOTICE("You look down [src]!"))
+				peek_dir = DOWN
+			else
+				return
+	else if(up)
+		usr.visible_message(SPAN_NOTICE("[usr] looks up [src]!"),
+		SPAN_NOTICE("You look up [src]!"))
+		peek_dir = UP
+	else if(down)
+		usr.visible_message(SPAN_NOTICE("[usr] looks down [src]!"),
+		SPAN_NOTICE("You look down [src]!"))
+		peek_dir = DOWN
+	else
+		return
+
+	if(!Adjacent(src, over))
+		return
+	if((peeker in (LAZYACCESS(ladder_watchers, "[UP]"))) || (peeker in (LAZYACCESS(ladder_watchers, "[DOWN]"))))
+		return
+	if(peeker.incapacitated())
+		to_chat(peeker, "You can't do that in your current state.")
+		return
+
+	switch(peek_dir)
+		if(UP)
+			peeker.reset_perspective(up.loc)
+			if(!LAZYACCESS(ladder_watchers, "[peek_dir]"))
+				RegisterSignal(up, COMSIG_CLICK, .proc/on_connected_ladder_clicked)
+		if(DOWN)
+			peeker.reset_perspective(down.loc)
+			if(!LAZYACCESS(ladder_watchers, "[peek_dir]"))
+				RegisterSignal(down, COMSIG_CLICK, .proc/on_connected_ladder_clicked)
+		else
+			return
+
+	LAZYADDASSOC(ladder_watchers, "[peek_dir]", peeker)
+	RegisterSignal(peeker, COMSIG_MOVABLE_MOVED, .proc/on_peeker_move)
+	// This is the closest thing this codebase has to an incapacitation signal.
+	RegisterSignal(peeker, COMSIG_DISABLE_COMBAT_MODE, .proc/stop_peeking)
+
+
+/obj/structure/ladder/proc/on_peeker_move(mob/source)
+	SIGNAL_HANDLER
+	if(Adjacent(source))
+		return // Moved, but still nearby.
+	stop_peeking(source)
+
+
+/obj/structure/ladder/proc/stop_peeking(mob/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_DISABLE_COMBAT_MODE))
+	if(source in (LAZYACCESS(ladder_watchers, "[UP]")))
+		LAZYREMOVEASSOC(ladder_watchers, "[UP]", source)
+		if(!LAZYACCESS(ladder_watchers, "[UP]"))
+			UnregisterSignal(up, list(COMSIG_CLICK))
+	if(source in (LAZYACCESS(ladder_watchers, "[DOWN]")))
+		LAZYREMOVEASSOC(ladder_watchers, "[DOWN]", source)
+		if(!LAZYACCESS(ladder_watchers, "[DOWN]"))
+			UnregisterSignal(down, list(COMSIG_CLICK))
+	source.reset_perspective(null)
+
+
+/obj/structure/ladder/proc/on_connected_ladder_clicked(atom/source, location, control, params, mob/user)
+	if((user in (LAZYACCESS(ladder_watchers, "[UP]"))) || (user in (LAZYACCESS(ladder_watchers, "[DOWN]"))))
+		stop_peeking(user)
+
+
 /obj/structure/ladder/proc/disconnect()
 	if(up && up.down == src)
 		up.down = null
@@ -56,13 +148,34 @@
 		down.update_icon()
 	up = down = null
 
+/obj/structure/ladder/update_icon_state()
+	if(up && down)
+		icon_state = "ladder11"
+
+	else if(up)
+		icon_state = "ladder10"
+
+	else if(down)
+		icon_state = "manhole_open"
+
+	else	//wtf make your ladders properly assholes
+		icon_state = "ladder00"
+
 /obj/structure/ladder/singularity_pull()
 	if (!(resistance_flags & INDESTRUCTIBLE))
-		visible_message("<span class='danger'>[src] is torn to pieces by the gravitational pull!</span>")
+		visible_message(SPAN_DANGER("[src] is torn to pieces by the gravitational pull!"))
 		qdel(src)
 
 /obj/structure/ladder/proc/travel(going_up, mob/user, is_ghost, obj/structure/ladder/ladder)
 	if(!is_ghost)
+		if(in_use)
+			return
+		in_use = TRUE
+		user.visible_message("[user] begins to climb [going_up ? "up" : "down"] [src].", SPAN_NOTICE("You begin to climb [going_up ? "up" : "down"] [src]."))
+		if(!do_after(user, timetouse, target = src))
+			in_use = FALSE
+			return
+		in_use = FALSE
 		show_fluff_message(going_up, user)
 		ladder.add_fingerprint(user)
 
@@ -100,7 +213,7 @@
 	else if(down)
 		travel(FALSE, user, is_ghost, down)
 	else
-		to_chat(user, "<span class='warning'>[src] doesn't seem to lead anywhere!</span>")
+		to_chat(user, SPAN_WARNING("[src] doesn't seem to lead anywhere!"))
 
 	if(!is_ghost)
 		add_fingerprint(user)
@@ -130,9 +243,9 @@
 
 /obj/structure/ladder/proc/show_fluff_message(going_up, mob/user)
 	if(going_up)
-		user.visible_message("[user] climbs up [src].","<span class='notice'>You climb up [src].</span>")
+		user.visible_message("[user] climbs up [src].",SPAN_NOTICE("You climb up [src]."))
 	else
-		user.visible_message("[user] climbs down [src].","<span class='notice'>You climb down [src].</span>")
+		user.visible_message("[user] climbs down [src].",SPAN_NOTICE("You climb down [src]."))
 
 
 // Indestructible away mission ladders which link based on a mapped ID and height value rather than X/Y/Z.
@@ -225,3 +338,74 @@
 /obj/structure/ladder/unbreakable/binary/unlinked //Crew gets to complete one
 	id = "unlinked_binary"
 	area_to_place = null
+
+/obj/structure/ladder/unbreakable/well
+	name = "ladder"
+	desc = "A dried up well with a sturdy metal ladder heading down."
+	icon = 'icons/obj/Ritas.dmi'
+	icon_state = "wellwheel"
+
+/obj/structure/ladder/unbreakable/transition
+	name = "transition zone"
+	desc = "<font color='#6eaa2c'>Head to the other side.</font>"
+	icon = 'icons/turf/overlays.dmi'
+	icon_state = "transOverlay"
+	alpha = 135
+	timetouse = 30
+
+/obj/structure/ladder/unbreakable/transition/update_icon_state()
+	if(up && down)
+		icon_state = "transOverlay"
+
+	else if(up)
+		icon_state = "transOverlay"
+
+	else if(down)
+		icon_state = "transOverlay"
+
+	else
+		icon_state = "transOverlay"
+
+/obj/structure/ladder/unbreakable/transition/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+	return
+
+/obj/structure/ladder/unbreakable/transition/attack_paw(mob/user)
+	return
+
+/obj/structure/ladder/unbreakable/transition/attackby(obj/item/W, mob/user, params)
+	return
+
+/obj/structure/ladder/unbreakable/transition/attack_robot(mob/living/silicon/robot/R)
+	if(R.Adjacent(src))
+		return
+
+/obj/structure/ladder/unbreakable/transition/show_fluff_message(going_up, mob/user)
+	if(going_up)
+		user.visible_message("[user] walks up to [src].",SPAN_NOTICE("You walk up to [src]."))
+	else
+		user.visible_message("[user] walks down to [src].",SPAN_NOTICE("You walk down to [src]."))
+
+/obj/structure/ladder/unbreakable/transition/travel(going_up, mob/user, is_ghost, obj/structure/ladder/ladder)
+	if(!is_ghost)
+		if(in_use)
+			return
+		in_use = TRUE
+		user.visible_message("[user] begins to walk [going_up ? "up to" : "down to"] [src].", SPAN_NOTICE("You begin to walk [going_up ? "up to" : "down to"] [src]."))
+		if(!do_after(user, timetouse, target = src))
+			in_use = FALSE
+			return
+		in_use = FALSE
+		show_fluff_message(going_up, user)
+		ladder.add_fingerprint(user)
+
+	var/turf/T = get_turf(ladder)
+	var/atom/movable/AM
+	if(user.pulling)
+		AM = user.pulling
+		AM.forceMove(T)
+	user.forceMove(T)
+	if(AM)
+		user.start_pulling(AM)
+
+/obj/structure/ladder/unbreakable/transition/Cross(atom/movable/AM)
+	use(AM)

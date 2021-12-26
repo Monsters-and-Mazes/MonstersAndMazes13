@@ -3,10 +3,10 @@
 	desc = "A super mutant who has grown to an incredible size, it's skin is pulled tight! This one wields two lamposts that have had car doors tied to the ends creating deadly axes."
 	health = 3000
 	maxHealth = 3000
+	icon = 'icons/fallout/mobs/behemoth.dmi'
 	icon_state = "behemoth_axe"
 	icon_living = "behemoth_axe"
 	icon_dead = "behemoth_dead"
-	icon = 'icons/mob/Behemoth.dmi'
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slams"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
@@ -132,7 +132,7 @@
 	animate(pixel_z = 0, time = 1)
 	for(var/mob/living/L in get_hearers_in_view(7, src) - src)
 		shake_camera(L, 30, 1)
-		to_chat(L, "<span class='danger'>The behemoth screams loudly!</span>")
+		to_chat(L, SPAN_DANGER("The behemoth screams loudly!"))
 	SetRecoveryTime(30, 0)
 	SLEEP_CHECK_DEATH(12)
 	can_move = TRUE

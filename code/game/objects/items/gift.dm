@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/attack_self(mob/M)
 	if(M && M.mind && M.mind.special_role == "Santa")
-		to_chat(M, "<span class='warning'>You're supposed to be spreading gifts, not opening them yourself!</span>")
+		to_chat(M, SPAN_WARNING("You're supposed to be spreading gifts, not opening them yourself!"))
 		return
 
 	var/gift_type = get_gift_type()
@@ -71,9 +71,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/neck/tie/horrible,
 		/obj/item/clothing/suit/jacket/leather,
 		/obj/item/clothing/suit/jacket/leather/overcoat,
-		/obj/item/clothing/suit/poncho,
-		/obj/item/clothing/suit/poncho/green,
-		/obj/item/clothing/suit/poncho/red,
+		/obj/item/clothing/neck/mantle/poncho,
 		/obj/item/clothing/suit/snowman,
 		/obj/item/clothing/head/snowman,
 		/obj/item/stack/sheet/mineral/coal)

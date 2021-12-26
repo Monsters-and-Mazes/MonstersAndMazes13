@@ -48,7 +48,6 @@
 #define MOB_EPIC		(1 << 7) //megafauna
 #define MOB_REPTILE		(1 << 8)
 #define MOB_SPIRIT		(1 << 9)
-#define MOB_INORGANIC 	(1 << 10)
 //Organ defines for carbon mobs
 #define ORGAN_ORGANIC   1
 #define ORGAN_ROBOTIC   2
@@ -336,3 +335,7 @@
 
 //Respawn timer
 #define RESPAWN_TIMER 6000 // in deciseconds, the time to wait before allowing respawn. 15 minutes = 15 * 60 (seconds in minute) * 15 (seconds to deciseconds)
+
+// / Breathing types. Lungs can access either by these or by a string, which will be considered a gas ID.
+#define BREATH_OXY		/datum/breathing_class/oxygen
+#define BREATH_PLASMA	/datum/breathing_class/plasma

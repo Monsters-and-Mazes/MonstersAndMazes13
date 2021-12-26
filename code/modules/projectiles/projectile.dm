@@ -276,7 +276,7 @@
 			if(hitsound)
 				var/volume = vol_by_damage()
 				playsound(loc, hitsound, volume, 1, -1)
-			L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
+			L.visible_message(SPAN_DANGER("[L] is hit by \a [src][organ_hit_text]!"), \
 					"<span class='userdanger'>[L] is hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
 		if(candink && def_zone == BODY_ZONE_HEAD)
 			playsound(src, 'sound/weapons/dink.ogg', 30, 1)
@@ -696,8 +696,9 @@
 			return FALSE
 	else
 		var/mob/living/L = target
-		if(!direct_target && !L.density)
-			return FALSE
+		if(!direct_target)
+			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_USE | MOBILITY_STAND | MOBILITY_MOVE) || !(L.stat == CONSCIOUS))		//If they're able to 1. stand or 2. use items or 3. move, AND they are not softcrit,  they are not stunned enough to dodge projectiles passing over.
+				return FALSE
 	return TRUE
 
 //Spread is FORCED!

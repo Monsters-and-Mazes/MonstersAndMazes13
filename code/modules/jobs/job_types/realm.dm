@@ -78,12 +78,12 @@
 
 /datum/outfit/loadout/salvager
 	name = "Salvager"
-	suit = /obj/item/clothing/suit/apron
+//	suit = /obj/item/clothing/suit/apron
 	shoes = /obj/item/clothing/shoes/f13/explorer
 	gloves = /obj/item/clothing/gloves/f13/blacksmith
 	head = /obj/item/clothing/head/welding
 	r_hand = /obj/item/weldingtool/largetank
-	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/m1911/compact=1)
+//	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/m1911/compact=1)
 
 /datum/outfit/loadout/scavenger
 	name = "Scavenger"
@@ -93,8 +93,7 @@
 	belt = /obj/item/storage/belt/utility
 	backpack_contents = list(/obj/item/mining_scanner=1,
 							/obj/item/metaldetector=1,
-							/obj/item/shovel=1,
-							/obj/item/gun/ballistic/automatic/pistol/m1911/compact=1)
+							/obj/item/shovel=1)
 
 /datum/outfit/loadout/medic
 	name = "Wasteland Doctor"
@@ -109,8 +108,6 @@
 							/obj/item/smelling_salts/crafted=1,
 							/obj/item/healthanalyzer=1,
 							/obj/item/stack/sheet/mineral/silver=1,
-							/obj/item/gun/ballistic/automatic/pistol/m1911/compact=1,
-							/obj/item/lighter=1,
 							/obj/item/screwdriver=1,
 							/obj/item/wirecutters=1,
 							/obj/item/hatchet=1

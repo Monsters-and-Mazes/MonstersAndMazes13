@@ -109,9 +109,7 @@
 			if(air_contents.return_temperature() > 0)
 				var/transfer_moles = pressure_delta*environment.return_volume()/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
 
-				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
-
-				loc.assume_air(removed)
+				loc.assume_air_moles(air_contents, transfer_moles)
 				air_update_turf()
 
 	else // external -> internal
@@ -124,11 +122,7 @@
 				moles_delta = min(moles_delta, (internal_pressure_bound - air_contents.return_pressure()) * our_multiplier)
 
 			if(moles_delta > 0)
-				var/datum/gas_mixture/removed = loc.remove_air(moles_delta)
-				if (isnull(removed)) // in space
-					return
-
-				air_contents.merge(removed)
+				loc.transfer_air(air_contents, moles_delta)
 				air_update_turf()
 	update_parents()
 
@@ -249,13 +243,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/welder_act(mob/living/user, obj/item/I)
 	if(!I.tool_start_check(user, amount=0))
 		return TRUE
-	to_chat(user, "<span class='notice'>You begin welding the vent...</span>")
+	to_chat(user, SPAN_NOTICE("You begin welding the vent..."))
 	if(I.use_tool(src, user, 20, volume=50))
 		if(!welded)
-			user.visible_message("[user] welds the vent shut.", "<span class='notice'>You weld the vent shut.</span>", "<span class='italics'>You hear welding.</span>")
+			user.visible_message("[user] welds the vent shut.", SPAN_NOTICE("You weld the vent shut."), "<span class='italics'>You hear welding.</span>")
 			welded = TRUE
 		else
-			user.visible_message("[user] unwelded the vent.", "<span class='notice'>You unweld the vent.</span>", "<span class='italics'>You hear welding.</span>")
+			user.visible_message("[user] unwelded the vent.", SPAN_NOTICE("You unweld the vent."), "<span class='italics'>You hear welding.</span>")
 			welded = FALSE
 		update_icon()
 		pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
@@ -265,7 +259,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
-		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
+		to_chat(user, SPAN_WARNING("You cannot unwrench [src], turn it off first!"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/examine(mob/user)

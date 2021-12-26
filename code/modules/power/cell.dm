@@ -99,7 +99,7 @@
 /obj/item/stock_parts/cell/examine(mob/user)
 	. = ..()
 	if(rigged)
-		to_chat(user, "<span class='danger'>This power cell seems to be faulty!</span>")
+		to_chat(user, SPAN_DANGER("This power cell seems to be faulty!"))
 	else
 		to_chat(user, "The charge meter reads [round(src.percent() )]%.")
 
@@ -156,22 +156,22 @@
 	if(isethereal(user))
 		var/mob/living/carbon/human/H = user
 		if(charge < 100)
-			to_chat(H, "<span class='warning'>The [src] doesn't have enough power!</span>")
+			to_chat(H, SPAN_WARNING("The [src] doesn't have enough power!"))
 			return
 		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 		if(stomach.crystal_charge > 146)
-			to_chat(H, "<span class='warning'>Your charge is full!</span>")
+			to_chat(H, SPAN_WARNING("Your charge is full!"))
 			return
-		to_chat(H, "<span class='notice'>You clumsily channel power through the [src] and into your body, wasting some in the process.</span>")
+		to_chat(H, SPAN_NOTICE("You clumsily channel power through the [src] and into your body, wasting some in the process."))
 		if(do_after(user, 5, target = src))
 			if((charge < 100) || (stomach.crystal_charge > 146))
 				return
 			if(istype(stomach))
-				to_chat(H, "<span class='notice'>You receive some charge from the [src].</span>")
+				to_chat(H, SPAN_NOTICE("You receive some charge from the [src]."))
 				stomach.adjust_charge(3)
 				charge -= 100 //you waste way more than you receive, so that ethereals cant just steal one cell and forget about hunger
 			else
-				to_chat(H, "<span class='warning'>You can't receive charge from the [src]!</span>")
+				to_chat(H, SPAN_WARNING("You can't receive charge from the [src]!"))
 		return
 
 /obj/item/stock_parts/cell/blob_act(obj/structure/blob/B)
@@ -245,12 +245,6 @@
 	maxcharge = 40000
 	chargerate = 1500
 
-/obj/item/stock_parts/cell/ammo/ecp
-	name = "electron charge pack"
-	desc = "An electron charge pack, typically used as ammunition for rapidly-firing energy weapons."
-	icon_state = "icell"
-	maxcharge = 2400
-
 /obj/item/stock_parts/cell/pulse/carbine //25 pulse shots
 	name = "pulse carbine power cell"
 	maxcharge = 5000
@@ -300,7 +294,7 @@
 	start_charged = FALSE
 
 /obj/item/stock_parts/cell/bluespace
-	name = "bluespace power cell"
+	name = "quantum power cell"
 	desc = "A rechargeable transdimensional power cell."
 	icon_state = "bscell"
 	maxcharge = 40000
@@ -415,9 +409,13 @@
 	name = "toy mag burst rifle power supply"
 	maxcharge = 4000
 
+
+// FALLOUT POWER CELLS //
+
 /obj/item/stock_parts/cell/ammo
-	name = "ammo cell"
-	desc = "You shouldn't be holding this."
+	name = "ammo cell template"
+	desc = "Bugreport please."
+	icon = 'icons/fallout/objects/powercells.dmi'
 	cancharge = 0
 	w_class = WEIGHT_CLASS_TINY
 
@@ -434,17 +432,17 @@
 
 /obj/item/stock_parts/cell/ammo/mfc
 	name = "microfusion cell"
-	desc = "A microfusion cell, typically used as ammunition for large energy weapons."
+	desc = "A microfusion cell, powerful enough to be used as ammunition for large energy weapons."
 	icon_state = "mfc-full"
 	maxcharge = 2000
 
 /obj/item/stock_parts/cell/ammo/mfc/update_icon()
 	switch(charge)
-		if (1001 to 2000)
+		if (1251 to 2000)
 			icon_state = "mfc-full"
-		if (51 to 1000)
+		if (101 to 1250)
 			icon_state = "mfc-half"
-		if (0 to 50)
+		if (0 to 100)
 			icon_state = "mfc-empty"
 	. = ..()
 
@@ -455,8 +453,8 @@
 	maxcharge = 2000
 
 /obj/item/stock_parts/cell/ammo/ec
-	name = "energy cell"
-	desc = "An energy cell, typically used as ammunition for small-arms energy weapons."
+	name = "small energy cell"
+	desc = "Energy cells are small, self-contained energy storage units often associated with one-handed energy weapons and act essentially as a very powerful battery or capacitor. They are the standard ammunition used by the majority of pistol-sized energy weapons, and as such are widely available across the Mojave Wasteland."
 	icon_state = "ec-full"
 	maxcharge = 1600
 
@@ -470,6 +468,22 @@
 			icon_state = "ec-onethirds"
 		if (0 to 50)
 			icon_state = "ec-empty"
+	. = ..()
+
+/obj/item/stock_parts/cell/ammo/ecp
+	name = "electron charge pack"
+	desc = "A electron charge pack, for rapidly-firing energy weapons."
+	icon_state = "ecp-full"
+	maxcharge = 2400
+
+/obj/item/stock_parts/cell/ammo/ecp/update_icon()
+	switch(charge)
+		if (1501 to 2400)
+			icon_state = "mfc-full"
+		if (101 to 1500)
+			icon_state = "mfc-half"
+		if (0 to 100)
+			icon_state = "mfc-empty"
 	. = ..()
 
 /obj/item/stock_parts/cell/ammo/alien

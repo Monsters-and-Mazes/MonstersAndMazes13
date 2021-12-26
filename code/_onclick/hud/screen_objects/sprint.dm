@@ -1,18 +1,18 @@
 /obj/screen/mov_intent
-	icon = 'modular_citadel/icons/ui/screen_midnight.dmi'
+	icon = 'modular_citadel/icons/ui/screen_fallout2.dmi'
 
 /obj/screen/sprintbutton
 	name = "toggle sprint"
-	icon = 'modular_citadel/icons/ui/screen_midnight.dmi'
+	icon = 'modular_citadel/icons/ui/screen_fallout2.dmi'
 	icon_state = "act_sprint"
 	layer = HUD_LAYER - 0.1
 	var/mutable_appearance/flashy
-
+/*
 /obj/screen/sprintbutton/Click()
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.default_toggle_sprint()
-
+*/
 /obj/screen/sprintbutton/update_icon_state()
 	var/mob/living/user = hud?.mymob
 	if(!istype(user))
@@ -42,7 +42,7 @@
 
 /obj/screen/sprint_buffer
 	name = "sprint buffer"
-	icon = 'icons/effects/progessbar.dmi'
+	icon = 'icons/fallout/UI/sprintbar.dmi'
 	icon_state = "prog_bar_100"
 
 /obj/screen/sprint_buffer/Click()

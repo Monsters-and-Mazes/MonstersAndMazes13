@@ -1213,14 +1213,6 @@
 /obj/structure/flora/junglebush/b,
 /turf/open/indestructible/ground/outside/desert,
 /area/f13/caves)
-"adI" = (
-/obj/structure/barricade/wooden/snowed,
-/turf/open/indestructible/ground/outside/desert,
-/area/f13/caves)
-"adJ" = (
-/obj/structure/barricade/wooden/snowed,
-/turf/open/floor/plasteel/f13/vault_floor/plating,
-/area/f13/caves)
 "adK" = (
 /mob/living/simple_animal/hostile/deathclaw,
 /turf/open/indestructible/ground/outside/desert,
@@ -6461,9 +6453,7 @@
 /area/f13/wasteland)
 "atx" = (
 /obj/structure/closet,
-/obj/item/clothing/suit/poncho,
-/obj/item/clothing/suit/poncho,
-/obj/item/clothing/suit/poncho,
+/obj/item/clothing/neck/mantle/poncho,
 /obj/item/clothing/suit/hooded/cloak/goliath{
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15);
 	name = "red cloak"
@@ -6903,7 +6893,7 @@
 /area/f13/brotherhood)
 "auL" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron/surgical,
+/obj/item/clothing/suit/hooded/surgical,
 /obj/item/reagent_containers/blood/OMinus,
 /obj/item/clothing/gloves/color/latex/nitrile,
 /obj/item/cautery,
@@ -8281,7 +8271,7 @@
 /area/f13/klamat)
 "azi" = (
 /obj/structure/table/wood/settler,
-/obj/item/clothing/suit/apron/chef,
+/obj/item/clothing/neck/apron/chef,
 /turf/open/floor/f13/wood,
 /area/f13/klamat)
 "azj" = (
@@ -11162,20 +11152,6 @@
 	},
 /turf/open/floor/wood/f13/old,
 /area/f13/klamat)
-"aJw" = (
-/obj/machinery/door/airlock/glass_large,
-/obj/structure/barricade/wooden/snowed,
-/turf/open/floor/wood/f13/old,
-/area/f13/klamat)
-"aJx" = (
-/obj/structure/barricade/wooden/snowed,
-/turf/open/floor/wood/f13/old,
-/area/f13/klamat)
-"aJy" = (
-/obj/structure/barricade/wooden/snowed,
-/obj/structure/barricade/wooden/snowed,
-/turf/open/floor/wood/f13/old,
-/area/f13/klamat)
 "aJz" = (
 /obj/machinery/light/small,
 /turf/open/floor/carpet,
@@ -12900,8 +12876,7 @@
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/f13/weapon/melee/random,
 /obj/effect/spawner/lootdrop/clothing_low,
-//obj/vehicle/ridden/scooter/skateboard,
-/turf/open/floor/f13/wood,
+//turf/open/floor/f13/wood,
 /area/f13/city)
 "aPw" = (
 /obj/structure/chair{
@@ -13082,10 +13057,6 @@
 /area/f13/wasteland)
 "aQc" = (
 /mob/living/simple_animal/hostile/wolf,
-/turf/open/floor/grass/snow,
-/area/f13/underground/mountain)
-"aQd" = (
-/mob/living/simple_animal/hostile/wolf/cold,
 /turf/open/floor/grass/snow,
 /area/f13/underground/mountain)
 "aQe" = (
@@ -17373,10 +17344,6 @@
 	icon_state = "transition1"
 	},
 /area/f13/wasteland)
-"bdJ" = (
-/obj/structure/barricade/wooden/snowed,
-/turf/open/indestructible/ground/outside/sidewalk,
-/area/f13/city/museum)
 "bdK" = (
 /obj/machinery/light/lampost{
 	dir = 1;
@@ -17427,7 +17394,7 @@
 /turf/open/floor/wood/f13/old,
 /area/f13/ahs)
 "bdT" = (
-/mob/living/simple_animal/hostile/wolf/cold,
+/mob/living/simple_animal/hostile/wolf,
 /turf/open/floor/grass/snow,
 /area/f13/wasteland)
 "bdU" = (
@@ -17783,10 +17750,6 @@
 /obj/structure/chair/f13foldupchair,
 /turf/open/floor/f13/wood,
 /area/f13/city)
-"bfj" = (
-/mob/living/simple_animal/hostile/wolf,
-/turf/open/floor/grass/snow,
-/area/f13/wasteland)
 "bfk" = (
 /turf/open/indestructible/ground/outside/ruins{
 	icon_state = "rubbleslab"
@@ -17993,10 +17956,6 @@
 /mob/living/simple_animal/hostile/ghoul,
 /turf/open/indestructible/ground/outside/ruins,
 /area/f13/ruins)
-"bfX" = (
-/obj/structure/simple_door/fakeglass,
-/turf/open/floor/f13/wood,
-/area/f13/city)
 "bfY" = (
 /obj/structure/simple_door/brokenglass,
 /turf/open/floor/f13/wood,
@@ -18971,10 +18930,6 @@
 	icon_state = "outerborder"
 	},
 /area/f13/city)
-"bjq" = (
-/obj/structure/barricade/wooden/snowed,
-/turf/open/floor/grass/snow,
-/area/f13/underground/mountain)
 "bjr" = (
 /obj/effect/decal/marking{
 	icon_state = "doublehorizontal"
@@ -20112,7 +20067,7 @@
 /obj/item/cautery,
 /obj/item/clothing/neck/stethoscope,
 /obj/item/retractor,
-/obj/item/clothing/suit/apron/surgical,
+/obj/item/clothing/suit/hooded/surgical,
 /obj/item/clothing/mask/surgical,
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/f13{
@@ -20332,6 +20287,40 @@
 /obj/machinery/power/supermatter_crystal/shard/engine,
 /turf/open/floor/plasteel/f13/vault_floor/yellow,
 /area/f13/vault/reactor)
+"dAo" = (
+/obj/machinery/door/airlock/glass_large,
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/floor/wood/f13/old,
+/area/f13/klamat)
+"eIt" = (
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/indestructible/ground/outside/sidewalk,
+/area/f13/city/museum)
+"rvy" = (
+/obj/structure/simple_door/repaired,
+/turf/open/floor/f13/wood,
+/area/f13/city)
+"sWq" = (
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/floor/grass/snow,
+/area/f13/underground/mountain)
+"uxc" = (
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/floor/wood/f13/old,
+/area/f13/klamat)
+"uNG" = (
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/indestructible/ground/outside/desert,
+/area/f13/caves)
+"xaU" = (
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/floor/plasteel/f13/vault_floor/plating,
+/area/f13/caves)
+"xjG" = (
+/obj/structure/barricade/wooden/crude/snow,
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/floor/wood/f13/old,
+/area/f13/klamat)
 
 (1,1,1) = {"
 agS
@@ -28540,7 +28529,7 @@ aab
 adA
 adA
 adC
-adI
+uNG
 bgy
 bgA
 bgG
@@ -28742,7 +28731,7 @@ aab
 adA
 adA
 adC
-adJ
+xaU
 bgz
 bgB
 bgB
@@ -28944,7 +28933,7 @@ aab
 adB
 adE
 adC
-adI
+uNG
 bgy
 bgC
 bgB
@@ -119632,11 +119621,11 @@ aQY
 aRh
 aQZ
 aQZ
-bdJ
-bdJ
-bdJ
-bdJ
-bdJ
+eIt
+eIt
+eIt
+eIt
+eIt
 aQz
 aQx
 aQx
@@ -125916,7 +125905,7 @@ aRS
 aSd
 aSd
 aQN
-bdJ
+eIt
 aUS
 aUX
 aUM
@@ -126118,7 +126107,7 @@ aRS
 aSd
 aSd
 aSq
-bdJ
+eIt
 aUT
 aQZ
 aQx
@@ -126320,7 +126309,7 @@ aRS
 aSd
 aSd
 aQN
-bdJ
+eIt
 aUT
 aQZ
 aQZ
@@ -126522,7 +126511,7 @@ aRS
 aSd
 aSd
 aSq
-bdJ
+eIt
 aUT
 aQx
 aQZ
@@ -126724,7 +126713,7 @@ aSd
 aSd
 aSd
 aQN
-bdJ
+eIt
 aUT
 aVi
 aQZ
@@ -141826,7 +141815,7 @@ ayH
 ayH
 aIJ
 aAN
-aJw
+dAo
 aAK
 aAK
 aAK
@@ -142028,7 +142017,7 @@ ayH
 ayH
 aAN
 aAN
-aJx
+uxc
 aAK
 aAK
 aAK
@@ -142432,7 +142421,7 @@ aFR
 ayH
 aAN
 aAN
-aJw
+dAo
 aAK
 aAK
 aAK
@@ -142634,7 +142623,7 @@ ayH
 ayH
 aIJ
 aAN
-aJy
+xjG
 aAK
 aAK
 aAK
@@ -146704,7 +146693,7 @@ bed
 aGt
 beL
 asO
-bfj
+bdT
 asO
 asO
 asO
@@ -157168,7 +157157,7 @@ asa
 asa
 asa
 aOf
-aQd
+aQc
 aOf
 aOf
 aOf
@@ -158989,7 +158978,7 @@ asa
 asa
 aOf
 aOf
-aQd
+aQc
 aOf
 aOf
 aOf
@@ -159076,7 +159065,7 @@ asO
 aOf
 aOf
 aOf
-bjq
+sWq
 asa
 bki
 bki
@@ -159278,7 +159267,7 @@ asO
 aOf
 aOf
 aOf
-bjq
+sWq
 aOf
 bki
 bki
@@ -159479,8 +159468,8 @@ asO
 asa
 asa
 asa
-bjq
-bjq
+sWq
+sWq
 aOf
 bnx
 bkj
@@ -160021,7 +160010,7 @@ aOd
 aOd
 aOd
 aOf
-aQd
+aQc
 aOf
 aOf
 asO
@@ -171757,7 +171746,7 @@ aOy
 aOy
 aPG
 bfR
-bfX
+rvy
 bgl
 aOy
 aOy

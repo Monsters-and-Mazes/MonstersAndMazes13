@@ -29,7 +29,7 @@
 	. = ..()
 
 /obj/structure/reagent_dispensers/proc/boom()
-	visible_message("<span class='danger'>\The [src] ruptures!</span>")
+	visible_message(SPAN_DANGER("\The [src] ruptures!"))
 	chem_splash(loc, 5, list(reagents))
 	qdel(src)
 
@@ -85,9 +85,9 @@
 	if(.)
 		return
 	if(!paper_cups)
-		to_chat(user, "<span class='warning'>There aren't any cups left!</span>")
+		to_chat(user, SPAN_WARNING("There aren't any cups left!"))
 		return
-	user.visible_message("<span class='notice'>[user] takes a cup from [src].</span>", "<span class='notice'>You take a paper cup from [src].</span>")
+	user.visible_message(SPAN_NOTICE("[user] takes a cup from [src]."), SPAN_NOTICE("You take a paper cup from [src]."))
 	var/obj/item/reagent_containers/food/drinks/sillycup/S = new(get_turf(src))
 	user.put_in_hands(S)
 	paper_cups--
@@ -105,8 +105,8 @@
 /obj/structure/reagent_dispensers/plumbed/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
 	. = ..()
 	if(. == SUCCESSFUL_UNFASTEN)
-		user.visible_message("<span class='notice'>[user.name] [anchored ? "fasten" : "unfasten"] [src]</span>", \
-		"<span class='notice'>You [anchored ? "fasten" : "unfasten"] [src]</span>")
+		user.visible_message(SPAN_NOTICE("[user.name] [anchored ? "fasten" : "unfasten"] [src]"), \
+		SPAN_NOTICE("You [anchored ? "fasten" : "unfasten"] [src]"))
 		var/datum/component/plumbing/CP = GetComponent(/datum/component/plumbing)
 		if(anchored)
 			CP.enable()
@@ -171,20 +171,20 @@
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/weldingtool))
 		if(!reagents.has_reagent(/datum/reagent/fuel))
-			to_chat(user, "<span class='warning'>[src] is out of fuel!</span>")
+			to_chat(user, SPAN_WARNING("[src] is out of fuel!"))
 			return
 		var/obj/item/weldingtool/W = I
 		if(!W.welding)
 			if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-				to_chat(user, "<span class='warning'>Your [W.name] is already full!</span>")
+				to_chat(user, SPAN_WARNING("Your [W.name] is already full!"))
 				return
 			reagents.trans_to(W, W.max_fuel)
-			user.visible_message("<span class='notice'>[user] refills [user.p_their()] [W.name].</span>", "<span class='notice'>You refill [W].</span>")
+			user.visible_message(SPAN_NOTICE("[user] refills [user.p_their()] [W.name]."), SPAN_NOTICE("You refill [W]."))
 			playsound(src, 'sound/effects/refill.ogg', 50, 1)
 			W.update_icon()
 		else
 			var/turf/T = get_turf(src)
-			user.visible_message("<span class='warning'>[user] catastrophically fails at refilling [user.p_their()] [W.name]!</span>", "<span class='userdanger'>That was stupid of you.</span>")
+			user.visible_message(SPAN_WARNING("[user] catastrophically fails at refilling [user.p_their()] [W.name]!"), "<span class='userdanger'>That was stupid of you.</span>")
 
 			var/message_admins = "[ADMIN_LOOKUPFLW(user)] triggered a fueltank explosion via welding tool at [ADMIN_VERBOSEJMP(T)]."
 			GLOB.bombers += message_admins
@@ -284,13 +284,6 @@
 	reagent_id = /datum/reagent/consumable/ethanol/narsour
 	tank_volume = 250
 
-/obj/structure/reagent_dispensers/keg/red_queen
-	name = "keg of red queen"
-	desc = "A strange keg, filled with a kind of tea."
-	icon_state = "redkeg"
-	reagent_id = /datum/reagent/consumable/red_queen
-	tank_volume = 250
-
 /obj/structure/reagent_dispensers/keg/hearty_punch
 	name = "keg of hearty punch"
 	desc = "A keg that will get you right back on your feet."
@@ -321,15 +314,15 @@
 	if(W.is_refillable())
 		return 0 //so we can refill them via their afterattack.
 	if(reagents.total_volume == tank_volume)
-		to_chat(user,"<span class='warning'>The [src] is filled to capacity!</span>")
+		to_chat(user,SPAN_WARNING("The [src] is filled to capacity!"))
 		return
 	if(istype(W, /obj/item/seeds) || istype(W, /obj/item/reagent_containers/food/snacks/grown))
 		if(user.transferItemToLoc(W, src))
-			to_chat(user, "<span class='notice'>You load the [W] into the [src].</span>")
+			to_chat(user, SPAN_NOTICE("You load the [W] into the [src]."))
 			playsound(loc, 'sound/effects/blobattack.ogg', 25, 1, -1)
 			process_compost()
 		else
-			to_chat(user, "<span class='warning'>That's not compostable! Try seeds or flowers instead.</span>")
+			to_chat(user, SPAN_WARNING("That's not compostable! Try seeds or flowers instead."))
 	else if(istype(W, /obj/item/storage/bag/plants))
 		var/obj/item/storage/bag/plants/PB = W
 		for(var/obj/item/G in PB.contents)// This check can be less than thorough because the bag has already authenticated the contents, hopefully

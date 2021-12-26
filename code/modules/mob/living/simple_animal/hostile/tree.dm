@@ -49,12 +49,12 @@
 	if(isopenturf(loc))
 		var/turf/open/T = src.loc
 		if(T.air)
-			var/co2 = T.air.get_moles(/datum/gas/carbon_dioxide)
+			var/co2 = T.air.get_moles(GAS_CO2)
 			if(co2 > 0)
 				if(prob(25))
 					var/amt = min(co2, 9)
-					T.air.adjust_moles(/datum/gas/carbon_dioxide, -amt)
-					T.atmos_spawn_air("o2=[amt]")
+					T.air.adjust_moles(GAS_CO2, -amt)
+					T.atmos_spawn_air("o2=[amt];TEMP=293.15")
 
 /mob/living/simple_animal/hostile/tree/AttackingTarget()
 	. = ..()
@@ -62,7 +62,7 @@
 		var/mob/living/carbon/C = target
 		if(prob(15))
 			C.DefaultCombatKnockdown(60)
-			C.visible_message("<span class='danger'>\The [src] knocks down \the [C]!</span>", \
+			C.visible_message(SPAN_DANGER("\The [src] knocks down \the [C]!"), \
 					"<span class='userdanger'>\The [src] knocks you down!</span>")
 
 /mob/living/simple_animal/hostile/tree/festivus

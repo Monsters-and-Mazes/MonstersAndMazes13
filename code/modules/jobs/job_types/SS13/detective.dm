@@ -3,7 +3,6 @@
 	flag = DETECTIVE
 //	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
-	department_flag = ENGSEC
 
 	total_positions = 1
 	spawn_positions = 1
@@ -23,7 +22,7 @@
 
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
-//	display_order = JOB_DISPLAY_ORDER_DETECTIVE
+	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 	blacklisted_quirks = list(/datum/quirk/mute, /datum/quirk/brainproblems, /datum/quirk/nonviolent, /datum/quirk/paraplegic, /datum/quirk/monophobia)
 	threat = 1
 

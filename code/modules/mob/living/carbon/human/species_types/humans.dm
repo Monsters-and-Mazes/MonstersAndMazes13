@@ -7,7 +7,7 @@
 	mutant_bodyparts = list("mcolor" = "FFFFFF", "mcolor2" = "FFFFFF","mcolor3" = "FFFFFF","tail_human" = "None", "ears" = "None", "taur" = "None", "deco_wings" = "None")
 	use_skintones = USE_SKINTONES_GRAYSCALE_CUSTOM
 	skinned_type = /obj/item/stack/sheet/animalhide/human
-	disliked_food = GROSS | RAW
+	disliked_food = GROSS | RAW | LONGPORK
 	liked_food = JUNKFOOD | FRIED
 
 	tail_type = "tail_human"
@@ -22,3 +22,10 @@
 	if(H)
 		stop_wagging_tail(H)
 	. = ..()
+
+/datum/species/human/spec_life(mob/living/carbon/human/H)
+	if (H.radiation>2500 && prob(10))
+		to_chat(H, SPAN_DANGER("Your skin becomes to peel and fall off from radiation, also turning your voice into a rasp..."))
+		H.set_species(/datum/species/ghoul)
+		H.Stun(40)
+		H.radiation = 0

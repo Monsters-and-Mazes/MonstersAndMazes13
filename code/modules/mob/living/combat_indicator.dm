@@ -36,7 +36,7 @@
 		nextcombatpopup = world.time + 10 SECONDS
 		playsound(src, 'sound/machines/chime.ogg', 10)
 		//flick_overlay(src, "combat", 20)
-		visible_message("<span class='warning'>[src] gets ready for combat!</span>")
+		visible_message(SPAN_WARNING("[src] gets ready for combat!"))
 	set_combat_indicator(state)
 
 /mob/living/proc/disable_combat_mode(silent = TRUE, was_forced = FALSE, visible = FALSE, update_icon = TRUE)
@@ -47,7 +47,7 @@
 	set_combat_indicator(TRUE)
 	change_combat_indicator(TRUE)
 
-mob/living/proc/toggle_combat_mode(silent = TRUE, was_forced = FALSE, visible = FALSE, update_icon = TRUE)
+/mob/living/proc/toggle_combat_mode(silent = TRUE, was_forced = FALSE, visible = FALSE, update_icon = TRUE)
 	if (!enabled_combat_indicator)
 		//set_combat_indicator(TRUE)
 		log_attack("[src] has toggled on the combat indicator")

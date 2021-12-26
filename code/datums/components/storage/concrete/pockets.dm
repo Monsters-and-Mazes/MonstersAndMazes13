@@ -8,12 +8,16 @@
 	. = ..()
 	if(. && silent && !prevent_warning)
 		if(quickdraw)
-			to_chat(user, "<span class='notice'>You discreetly slip [I] into [parent]. Alt-click [parent] to remove it.</span>")
+			to_chat(user, SPAN_NOTICE("You discreetly slip [I] into [parent]. Alt-click [parent] to remove it."))
 		else
-			to_chat(user, "<span class='notice'>You discreetly slip [I] into [parent].</span>")
+			to_chat(user, SPAN_NOTICE("You discreetly slip [I] into [parent]."))
 
 /datum/component/storage/concrete/pockets
 	max_w_class = WEIGHT_CLASS_NORMAL
+
+/datum/component/storage/concrete/pockets/pothead
+	max_items = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 
 /datum/component/storage/concrete/pockets/small
 	max_items = 1
@@ -42,23 +46,6 @@
 
 /datum/component/storage/concrete/pockets/small/detective
 	attack_hand_interact = TRUE // so the detectives would discover pockets in their hats
-
-/datum/component/storage/concrete/pockets/shoes
-	attack_hand_interact = FALSE
-	quickdraw = TRUE
-	silent = TRUE
-
-/datum/component/storage/concrete/pockets/shoes/Initialize()
-	. = ..()
-	cant_hold = typecacheof(list(/obj/item/screwdriver/power))
-	can_hold = typecacheof(list(
-		/obj/item/kitchen/knife, /obj/item/switchblade, /obj/item/pen, /obj/item/melee/cultblade/dagger,
-		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
-		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
-		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/firing_pin, /*/obj/item/throwing_star/throwingknife,*/ /obj/item/gun/ballistic/revolver/detective,
-		/obj/item/gun/ballistic/revolver/police, /obj/item/gun/ballistic/revolver/needler
-		))
 
 /datum/component/storage/concrete/pockets/shoes/clown/Initialize()
 	. = ..()
@@ -97,37 +84,3 @@
 	. = ..()
 	can_hold = typecacheof(list(/obj/item/reagent_containers/glass/bottle,
 								/obj/item/ammo_box/a762))
-
-/datum/component/storage/concrete/pockets/bos/paladin/Initialize()
-	. = ..()
-	max_items = 4
-	max_w_class = WEIGHT_CLASS_NORMAL
-	can_hold = typecacheof(list(
-		/obj/item/gun/ballistic/automatic/pistol,
-		/obj/item/gun/ballistic/revolver,
-		/obj/item/ammo_box/magazine,
-		/obj/item/ammo_box/tube,
-		/obj/item/ammo_box/a357,
-		/obj/item/ammo_box/c38,
-		/obj/item/ammo_box/l10mm,
-		/obj/item/ammo_box/a762,
-		/obj/item/ammo_box/shotgun,
-		/obj/item/ammo_box/m44,
-		/obj/item/ammo_box/a762,
-		/obj/item/ammo_box/a556/stripper,
-		/obj/item/ammo_box/needle,
-		/obj/item/ammo_box/needleap,
-		/obj/item/ammo_box/needleultra,
-		/obj/item/ammo_box/a308,
-		/obj/item/ammo_box/c4570,
-		/obj/item/ammo_box/a50MG,
-		/obj/item/gun/energy/laser/solar,
-		/obj/item/gun/energy/laser/pistol,
-		/obj/item/gun/energy/laser/plasma/pistol,
-		/obj/item/gun/energy/laser/plasma/glock,
-		/obj/item/gun/energy/laser/plasma/glock/extended,
-		/obj/item/gun/energy/laser/wattz,
-		/obj/item/gun/energy/laser/wattz/magneto,
-		/obj/item/gun/energy/laser/plasma/alien,
-		/obj/item/stock_parts/cell/ammo/ec
-		))

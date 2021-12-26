@@ -62,6 +62,13 @@
 	build_path = /obj/item/ammo_box/m44/empty
 	category = list("initial", "Simple Magazines")
 
+/datum/design/ammolathe/speedloader357
+	name = "empty speed loader (.357)"
+	id = "speedloader357"
+	materials = list(/datum/material/iron = 2000)
+	build_path = /obj/item/ammo_box/a357/empty
+	category = list("initial", "Simple Magazines")
+
 /datum/design/ammolathe/rifle556
 	name = "empty 20rd rifle magazine (5.56mm)"
 	id = "rifle556"
@@ -206,10 +213,10 @@
 	category = list("initial", "Basic Magazines")
 
 /datum/design/ammolathe/m45expmagazine
-	name = "empty socom magazine (.45)"
+	name = "empty extended pistol magazine (.45)"
 	id = "m45expmagazine"
 	materials = list(/datum/material/iron = 4000)
-	build_path = /obj/item/ammo_box/magazine/m45exp/empty
+	build_path = /obj/item/ammo_box/magazine/m45/extended/empty
 	category = list("initial", "Basic Magazines")
 
 //Tier 2 Ammo
@@ -267,6 +274,13 @@
 	id = "a556jhp"
 	materials = list(/datum/material/iron = 16000, /datum/material/blackpowder = 1500)
 	build_path = /obj/item/ammo_box/a556/jhp
+	category = list("initial", "Basic Ammo")
+
+/datum/design/ammolathe/a556rubber
+	name = "5.56 rubber ammo box"
+	id = "a556rubber"
+	materials = list(/datum/material/iron = 16000, /datum/material/blackpowder = 1500)
+	build_path = /obj/item/ammo_box/a556/rubber
 	category = list("initial", "Basic Ammo")
 
 /datum/design/ammolathe/magnumshot
@@ -405,6 +419,13 @@
 	build_path = /obj/item/ammo_box/magazine/garand308/empty
 	category = list("initial", "Intermediate Magazines")
 
+/datum/design/ammolathe/amr50
+	name = "empty anti-materiel rifle magazine (.50MG)"
+	id = "amr50"
+	materials = list(/datum/material/iron = 10000)
+	build_path = /obj/item/ammo_box/magazine/amr/empty
+	category = list("initial", "Intermediate Magazines")
+
 //Tier 3 Ammo
 /datum/design/ammolathe/c4570
 	name = ".45-70 FMJ ammo box"
@@ -468,6 +489,41 @@
 	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 5000, /datum/material/blackpowder = 2000)
 	build_path = /obj/item/ammo_box/a762box/ap
 	category = list("initial", "Intermediate Ammo")
+
+/datum/design/ammolathe/c5mm
+	name = "5mm ammo box"
+	id = "c5mm_box"
+	materials = list(/datum/material/iron = 25000, /datum/material/blackpowder = 3000)
+	build_path = /obj/item/ammo_box/c5mm
+	category = list("initial", "Intermediate Ammo")
+
+/datum/design/ammolathe/m473
+	name = "empty g11 magazine (4.73mm)"
+	id = "4.73mm_mag"
+	materials = list(/datum/material/iron = 6000)
+	build_path = /obj/item/ammo_box/magazine/m473/empty
+	category = list("initial", "Intermediate Magazines")
+
+/datum/design/ammolathe/
+	name = "empty caseless pistol mag (4.73mm)"
+	id = "4.73mm_pistolmag"
+	materials = list(/datum/material/iron = 3000)
+	build_path = /obj/item/ammo_box/magazine/m473_pistol/empty
+	category = list("initial", "Intermediate Magazines")
+
+/datum/design/ammolathe/m473box
+	name = "ammo box (4.73mm)"
+	id = "4.73mm_box"
+	materials = list(/datum/material/iron = 20000, /datum/material/blackpowder = 2500)
+	build_path = /obj/item/ammo_box/m473_box
+	category = list("initial", "Intermediate Ammo")
+
+/datum/design/ammolathe/c5mmag
+	name = "empty 5mm gun magazine"
+	id = "c5mm_mag"
+	materials = list(/datum/material/iron = 6000)
+	build_path = /obj/item/ammo_box/magazine/c5mm/empty
+	category = list("initial", "Intermediate Magazines")
 
 /*/datum/design/ammolathe/a45op
 	name = ".45 ACP +P ammo box"
@@ -562,4 +618,18 @@
 	id = "a556match"
 	materials = list(/datum/material/iron = 28000, /datum/material/blackpowder = 3500)
 	build_path = /obj/item/ammo_box/a556/match
+	category = list("initial", "Advanced Ammo")
+
+/datum/design/ammolathe/c5mmag/extended
+	name = "empty extended 5mm gun magazine (5mm)"
+	id = "c5mm_extended"
+	materials = list(/datum/material/iron = 8000)
+	build_path = /obj/item/ammo_box/magazine/c5mm/extended/empty
+	category = list("initial", "Advanced Magazines")
+
+/datum/design/ammolathe/needler
+	name = "needler stripper clip"
+	id = "needler"
+	materials = list(/datum/material/iron = 8000, /datum/material/titanium = 10000)
+	build_path = /obj/item/ammo_box/needle
 	category = list("initial", "Advanced Ammo")
