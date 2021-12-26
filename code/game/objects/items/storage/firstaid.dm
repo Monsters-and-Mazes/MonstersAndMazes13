@@ -204,7 +204,7 @@
 	new /obj/item/reagent_containers/medspray/styptic(src)
 	new /obj/item/reagent_containers/medspray/silver_sulf(src)
 	new /obj/item/healthanalyzer/advanced(src)
-	new /obj/item/reagent_containers/syringe/lethal/choral(src) // what the fuck does anyone use this piece of shit for
+	//new /obj/item/reagent_containers/syringe/lethal/choral(src) // what the fuck does anyone use this piece of shit for
 	new /obj/item/clothing/glasses/hud/health/night/syndicate(src)
 
 /obj/item/storage/firstaid/tactical/nukeop
@@ -219,7 +219,7 @@
 	new /obj/item/reagent_containers/medspray/styptic(src)
 	new /obj/item/reagent_containers/medspray/silver_sulf(src)
 	new /obj/item/healthanalyzer/advanced(src)
-	new /obj/item/reagent_containers/syringe/lethal/choral(src) // what the fuck does anyone use this piece of shit for
+	//new /obj/item/reagent_containers/syringe/lethal/choral(src) // what the fuck does anyone use this piece of shit for
 	new /obj/item/clothing/glasses/hud/health/night/syndicate(src)
 
 /*
@@ -250,18 +250,18 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(!length(user.get_empty_held_indexes()))
-		to_chat(user, "<span class='warning'>Your hands are full!</span>")
+		to_chat(user, SPAN_WARNING("Your hands are full!"))
 		return
 	var/obj/item/reagent_containers/pill/P = locate() in contents
 	if(P)
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, P, user)
 		if(!user.put_in_hands(P))
 			P.forceMove(user.drop_location())	// make sure it's not stuck in the user if the put in hands somehow fails
-			to_chat(user, "<span class='warning'>[P] drops to the floor!</span>")
+			to_chat(user, SPAN_WARNING("[P] drops to the floor!"))
 		else
-			to_chat(user, "<span class='notice'>You take \a [P] out of [src].</span>")
+			to_chat(user, SPAN_NOTICE("You take \a [P] out of [src]."))
 	else
-		to_chat(user, "<span class='notice'>There are no pills left in the bottle.</span>")
+		to_chat(user, SPAN_NOTICE("There are no pills left in the bottle."))
 	return TRUE
 
 
@@ -420,7 +420,7 @@
 
 /obj/item/storage/belt/organbox
 	name = "Organ Storage"
-	desc = "A compact box that helps hold massive amounts of implants, organs, and some tools. Has a belt clip for easy carrying"
+	desc = "A compact box that helps hold massive amounts of implants, organs, and some tools. Has a belt clip for easy carrying."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/mysterybox.dmi'
 	icon_state = "organbox_open"
@@ -646,4 +646,13 @@
 /obj/item/storage/pill_bottle/chem_tin/buffout/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/buffout(src)
-	
+
+//Sprite of Cateye done by Yonsi
+/obj/item/storage/pill_bottle/chem_tin/cateye
+	name = "Cateye"
+	icon_state = "pill_canister_cateye"
+	desc = "Contains pills used to increase one's senses."
+
+/obj/item/storage/pill_bottle/chem_tin/cateye/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/reagent_containers/pill/cateye(src)

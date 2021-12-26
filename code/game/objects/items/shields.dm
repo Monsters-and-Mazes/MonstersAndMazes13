@@ -1,6 +1,8 @@
+//In this document: Shield template, riot shield, bulletproof shield, buckler, legion shield, scrap shield, energy shield.
+
 /obj/item/shield
-	name = "shield"
-	icon = 'icons/obj/shields.dmi'
+	name = "shield template"
+	icon = 'icons/fallout/objects/melee/shields.dmi'
 	item_flags = ITEM_CAN_BLOCK
 	block_parry_data = /datum/block_parry_data/shield
 	armor = list("linemelee" = 150, "linebullet" = 150, "linelaser" = 150, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
@@ -38,9 +40,9 @@
 /obj/item/shield/examine(mob/user)
 	. = ..()
 	if(shield_flags & SHIELD_CAN_BASH)
-		. += "<span class='notice'>Right click on combat mode attack with [src] to shield bash!</span>"
+		. += SPAN_NOTICE("Right click on combat mode attack with [src] to shield bash!")
 		if(shield_flags & SHIELD_BASH_GROUND_SLAM)
-			. += "<span class='notice'>Directly rightclicking on a downed target with [src] will slam them instead of bashing.</span>"
+			. += SPAN_NOTICE("Directly rightclicking on a downed target with [src] will slam them instead of bashing.")
 
 /obj/item/shield/proc/on_shield_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance)
 	return TRUE
@@ -68,7 +70,7 @@
 	var/obj/effect/temp_visual/dir_setting/shield_bash/effect = new(user.loc, dir)
 	effect.pixel_x = user.pixel_x - 32		//96x96 effect, -32.
 	effect.pixel_y = user.pixel_y - 32
-	user.visible_message("<span class='warning'>[user] [harmful? "charges forwards with" : "sweeps"] [src]!</span>")
+	user.visible_message(SPAN_WARNING("[user] [harmful? "charges forwards with" : "sweeps"] [src]!"))
 	animate(user, pixel_x = px, pixel_y = py, time = 3, easing = SINE_EASING | EASE_OUT, flags = ANIMATION_PARALLEL | ANIMATION_RELATIVE)
 	animate(user, pixel_x = -px, pixel_y = -py, time = 3, flags = ANIMATION_RELATIVE)
 	animate(effect, alpha = 0, pixel_x = px * 1.5, pixel_y = py * 1.5, time = 3, flags = ANIMATION_PARALLEL | ANIMATION_RELATIVE)
@@ -76,22 +78,22 @@
 /obj/item/shield/proc/bash_target(mob/living/user, mob/living/target, bashdir, harmful)
 	if(!(target.status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE))	// should probably add stun absorption check at some point I guess..
 		// unified stun absorption system when lol
-		target.visible_message("<span class='warning'>[user] slams [target] with [src], but [target] doesn't falter!</span>", "<span class='userdanger'>[user] slams you with [src], but it barely fazes you!</span>")
+		target.visible_message(SPAN_WARNING("[user] slams [target] with [src], but [target] doesn't falter!"), "<span class='userdanger'>[user] slams you with [src], but it barely fazes you!</span>")
 		return FALSE
 	var/target_downed = !CHECK_MOBILITY(target, MOBILITY_STAND)
 	var/wallhit = FALSE
 	var/turf/target_current_turf = get_turf(target)
 	if(harmful)
-		target.visible_message("<span class='warning'>[target_downed? "[user] slams [src] into [target]" : "[user] bashes [target] with [src]"]!</span>",
-		"<span class='warning'>[target_downed? "[user] slams [src] into you" : "[user] bashes you with [src]"]!</span>")
+		target.visible_message(SPAN_WARNING("[target_downed? "[user] slams [src] into [target]" : "[user] bashes [target] with [src]"]!"),
+		SPAN_WARNING("[target_downed? "[user] slams [src] into you" : "[user] bashes you with [src]"]!"))
 	else
-		target.visible_message("<span class='warning'>[user] shoves [target] with [src]!</span>",
-		"<span class='warning'>[user] shoves you with [src]!</span>")
+		target.visible_message(SPAN_WARNING("[user] shoves [target] with [src]!"),
+		SPAN_WARNING("[user] shoves you with [src]!"))
 	for(var/i in 1 to harmful? shieldbash_knockback : shieldbash_push_distance)
 		var/turf/new_turf = get_step(target, bashdir)
 		var/mob/living/carbon/human/H = locate() in (new_turf.contents - target)
 		if(H && harmful)
-			H.visible_message("<span class='warning'>[target] is sent crashing into [H]!</span>",
+			H.visible_message(SPAN_WARNING("[target] is sent crashing into [H]!"),
 			"<span class='userdanger'>[target] is sent crashing into you!</span>")
 			H.KnockToFloor()
 			wallhit = TRUE
@@ -106,7 +108,7 @@
 	var/disarming = (target_downed && (shield_flags & SHIELD_BASH_GROUND_SLAM_DISARM)) || (shield_flags & SHIELD_BASH_ALWAYS_DISARM) || (wallhit && (shield_flags & SHIELD_BASH_WALL_DISARM))
 	var/knockdown = !target_downed && ((shield_flags & SHIELD_BASH_ALWAYS_KNOCKDOWN) || (wallhit && (shield_flags & SHIELD_BASH_WALL_KNOCKDOWN)))
 	if(shieldbash_stagger_duration || knockdown)
-		target.visible_message("<span class='warning'>[target] is knocked [knockdown? "to the floor" : "off balance"]!</span>",
+		target.visible_message(SPAN_WARNING("[target] is knocked [knockdown? "to the floor" : "off balance"]!"),
 		"<span class='userdanger'>You are knocked [knockdown? "to the floor" : "off balance"]!</span>")
 	if(knockdown)
 		target.KnockToFloor(disarming)
@@ -123,18 +125,18 @@
 	if(!SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE)) //Combat mode has to be enabled for shield bashing
 		return FALSE
 	if(!(shield_flags & SHIELD_CAN_BASH))
-		to_chat(user, "<span class='warning'>[src] can't be used to shield bash!</span>")
+		to_chat(user, SPAN_WARNING("[src] can't be used to shield bash!"))
 		return FALSE
 	if(!CHECK_MOBILITY(user, MOBILITY_STAND))
-		to_chat(user, "<span class='warning'>You can't bash with [src] while on the ground!</span>")
+		to_chat(user, SPAN_WARNING("You can't bash with [src] while on the ground!"))
 		return FALSE
 	if(world.time < last_shieldbash + shieldbash_cooldown)
-		to_chat(user, "<span class='warning'>You can't bash with [src] again so soon!</span>")
+		to_chat(user, SPAN_WARNING("You can't bash with [src] again so soon!"))
 		return FALSE
 	var/mob/living/livingtarget = target		//only access after an isliving check!
 	if(isliving(target) && !CHECK_MOBILITY(livingtarget, MOBILITY_STAND))		//GROUND SLAAAM
 		if(!(shield_flags & SHIELD_BASH_GROUND_SLAM))
-			to_chat(user, "<span class='warning'>You can't ground slam with [src]!</span>")
+			to_chat(user, SPAN_WARNING("You can't ground slam with [src]!"))
 			return FALSE
 		bash_target(user, target, NONE, harmful)
 		user.do_attack_animation(target, used_item = src)
@@ -183,6 +185,7 @@
 /obj/item/shield/on_active_block(mob/living/owner, atom/object, damage, damage_blocked, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return, override_direction)
 	on_shield_block(owner, object, damage, attack_text, attack_type, armour_penetration, attacker, def_zone, final_block_chance)
 
+//Basic riotshield, meant to protect from melee and thrown weapons.
 /obj/item/shield/riot
 	name = "riot shield"
 	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
@@ -206,17 +209,17 @@
 /obj/item/shield/riot/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/melee/baton))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else if(istype(W, repair_material))
 		if(obj_integrity >= max_integrity)
-			to_chat(user, "<span class='warning'>[src] is already in perfect condition.</span>")
+			to_chat(user, SPAN_WARNING("[src] is already in perfect condition."))
 		else
 			var/obj/item/stack/S = W
 			S.use(1)
 			obj_integrity = max_integrity
-			to_chat(user, "<span class='notice'>You repair [src] with [S].</span>")
+			to_chat(user, SPAN_NOTICE("You repair [src] with [S]."))
 	else
 		return ..()
 
@@ -229,7 +232,7 @@
 		if(25 to 50)
 			. += "<span class='info'>It appears heavily damaged.</span>"
 		if(0 to 25)
-			. += "<span class='warning'>It's falling apart!</span>"
+			. += SPAN_WARNING("It's falling apart!")
 
 /obj/item/shield/riot/proc/shatter(mob/living/carbon/human/owner)
 	playsound(owner, 'sound/effects/glassbr3.ogg', 100)
@@ -238,13 +241,14 @@
 /obj/item/shield/riot/on_shield_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	if(can_shatter && (obj_integrity <= damage))
 		var/turf/T = get_turf(owner)
-		T.visible_message("<span class='warning'>[attack_text] destroys [src]!</span>")
+		T.visible_message(SPAN_WARNING("[attack_text] destroys [src]!"))
 		shatter(owner)
 		qdel(src)
 		return FALSE
 	take_damage(damage)
 	return ..()
 
+//Laserproof riot shield 				- Basically unused. Maybe one day or for events. Has a decent sprite too.
 /obj/item/shield/riot/laser_proof
 	name = "laser resistant shield"
 	desc = "A far more frail shield made of dark glass meant to block lasers but suffers from being being weak to ballistic projectiles."
@@ -256,62 +260,30 @@
 	shield_flags = SHIELD_FLAGS_DEFAULT
 	max_integrity = 300
 
-obj/item/shield/riot/bullet_proof
+//Bulletproof riot shield
+/obj/item/shield/riot/bullet_proof
 	name = "bullet resistant shield"
 	desc = "A far more frail shield made of resistant plastics and kevlar meant to block ballistics."
 	armor = list("linemelee" = 80, "linebullet" = 400, "laser" = 0, "energy" = 0, "bomb" = -40, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
+	icon_state = "riot_bulletproof"
+	item_state = "riot_bulletproof"
+	shield_flags = SHIELD_FLAGS_DEFAULT
 	max_integrity = 300
 
-/obj/item/shield/riot/roman
-	name = "\improper Roman shield"
-	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>."
-	icon_state = "roman_shield"
-	item_state = "roman_shield"
-	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-	repair_material = /obj/item/stack/sheet/mineral/wood
-	shield_flags = SHIELD_FLAGS_DEFAULT
-	max_integrity = 250
-
-/obj/item/shield/riot/roman/fake
-	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>. It appears to be a bit flimsy."
-	block_chance = 0
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	max_integrity = 40
-
-/obj/item/shield/riot/roman/shatter(mob/living/carbon/human/owner)
-	playsound(owner, 'sound/effects/grillehit.ogg', 100)
-	new /obj/item/stack/sheet/metal(get_turf(src))
-
-/obj/item/shield/riot/buckler
-	name = "wooden buckler"
-	desc = "A medieval wooden buckler."
-	icon_state = "buckler"
-	item_state = "buckler"
-	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 10)
-	resistance_flags = FLAMMABLE
-	repair_material = /obj/item/stack/sheet/mineral/wood
-	block_chance = 30
-	shield_flags = SHIELD_FLAGS_DEFAULT
-	max_integrity = 150
-
-/obj/item/shield/riot/buckler/shatter(mob/living/carbon/human/owner)
-	playsound(owner, 'sound/effects/bang.ogg', 50)
-	new /obj/item/stack/sheet/mineral/wood(get_turf(src))
-
+//Telescopic Riot Shield				- Printed at protolathes. Keep weak due to its compact nature.
 /obj/item/shield/riot/tele
 	name = "telescopic shield"
 	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
 	icon_state = "teleriot0"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	armor = list("linemelee" = 60, "linebullet" = -40, "laser" = 200, "energy" = 40, "bomb" = -60, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
 	slot_flags = null
 	force = 3
 	throwforce = 3
 	throw_speed = 3
 	throw_range = 4
+	max_integrity = 270
 	w_class = WEIGHT_CLASS_NORMAL
 	var/active = FALSE
 
@@ -334,121 +306,37 @@ obj/item/shield/riot/bullet_proof
 		throw_speed = 2
 		w_class = WEIGHT_CLASS_BULKY
 		slot_flags = ITEM_SLOT_BACK
-		to_chat(user, "<span class='notice'>You extend \the [src].</span>")
+		to_chat(user, SPAN_NOTICE("You extend \the [src]."))
 	else
 		force = 3
 		throwforce = 3
 		throw_speed = 3
 		w_class = WEIGHT_CLASS_NORMAL
 		slot_flags = null
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+		to_chat(user, SPAN_NOTICE("[src] can now be concealed."))
 	add_fingerprint(user)
 
-/obj/item/shield/makeshift
-	name = "metal shield"
-	desc = "A large shield made of wired and welded sheets of metal. The handle is made of cloth and leather making it unwieldy."
-	armor = list("linemelee" = 70, "linebullet" = 70, "linelaser" = 70, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 80)
-	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-	item_state = "metal"
-	icon_state = "makeshift_shield"
-	custom_materials = list(/datum/material/iron = 18000)
-	slot_flags = null
-	max_integrity = 300 //Made of metal welded together its strong but not unkillable
-	force = 10
-	throwforce = 7
-
-/obj/item/shield/riot/tower
-	name = "tower shield"
-	desc = "A massive shield that can block a lot of attacks, can take a lot of abuse before braking."
-	armor = list("linemelee" = 900, "linebullet" = 900, "linelaser" = 300, "energy" = 60, "bomb" = 90, "bio" = 90, "rad" = 0, "fire" = 90, "acid" = 10) //Armor for the item, dosnt transfer to user
-	item_state = "metal"
-	icon_state = "metal"
-	force = 16
-	slowdown = 2
-	throwforce = 15 //Massive pice of metal
-	w_class = WEIGHT_CLASS_HUGE
-	item_flags = SLOWS_WHILE_IN_HAND
-	shield_flags = SHIELD_FLAGS_DEFAULT
-
-/obj/item/shield/riot/tower/swat
-	name = "swat shield"
-	desc = "A massive, heavy shield that can block a lot of attacks, can take a lot of abuse before breaking."
-	max_integrity = 250
-
-/obj/item/shield/riot/implant
-	name = "telescoping shield implant"
-	desc = "A compact, arm-mounted telescopic shield. While nigh-indestructible when powered by a host user, it will eventually overload from damage. Recharges while inside its implant."
-	item_state = "metal"
-	icon_state = "metal"
-	slowdown = 1
-	shield_flags = SHIELD_FLAGS_DEFAULT
-	max_integrity = 100
-	obj_integrity = 100
-	can_shatter = FALSE
-	item_flags = SLOWS_WHILE_IN_HAND | ITEM_CAN_BLOCK
-	var/recharge_timerid
-	var/recharge_delay = 15 SECONDS
-
-/// Entirely overriden take_damage. This shouldn't exist outside of an implant (other than maybe christmas).
-/obj/item/shield/riot/implant/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
-	obj_integrity -= damage_amount
-	if(obj_integrity < 0)
-		obj_integrity = 0
-	if(obj_integrity == 0)
-		if(ismob(loc))
-			var/mob/living/L = loc
-			playsound(src, 'sound/effects/glassbr3.ogg', 100)
-			L.visible_message("<span class='boldwarning'>[src] overloads from the damage sustained!</span>")
-			L.dropItemToGround(src)			//implant component catch hook will grab it.
-
-/obj/item/shield/riot/implant/Moved()
-	. = ..()
-	if(istype(loc, /obj/item/organ/cyberimp/arm/shield))
-		recharge_timerid = addtimer(CALLBACK(src, .proc/recharge), recharge_delay, flags = TIMER_STOPPABLE)
-	else		//extending
-		if(recharge_timerid)
-			deltimer(recharge_timerid)
-			recharge_timerid = null
-
-/obj/item/shield/riot/implant/proc/recharge()
-	if(obj_integrity == max_integrity)
-		return
-	obj_integrity = max_integrity
-	if(ismob(loc.loc))		//cyberimplant.user
-		to_chat(loc, "<span class='notice'>[src] has recharged its reinforcement matrix and is ready for use!</span>")
-
-/obj/item/shield/legion
-	name = "legion shield"
-	desc = "A well balanced hard wood shield, fashioned together with long iron bands. It has a legion emblem charred into the inside."
-	icon_state = "roman_shield"
-	item_state = "roman_shield"
+//Legion shield					- Superior version of the Legion shield.
+/obj/item/shield/riot/legion
+	name = "Legion shield"
+	desc = "Heavy shield with metal pieces bolted to a wood backing, with a painted yellow bull insignia in the centre. Bears an inscription on the inside: <i>\"Legio, Aeterna! Aeterna, Victrix! \"</i>."
+	icon_state = "legion_shield"
+	item_state = "legion_shield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
-	force = 20
-	throwforce = 5
-	throw_speed = 2
-	throw_range = 3
-	block_chance = 40
+	force = 13
+	max_integrity = 300
+	custom_materials = list(/datum/material/wood = 16000, /datum/material/iron= 16000)
+	repair_material = /obj/item/stack/sheet/mineral/wood
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("shoved", "bashed")
-	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-/obj/item/shield/legion/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item))
-		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
-			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
-			cooldown = world.time
-	else
-		return ..()
+/obj/item/shield/riot/legion/shatter(mob/living/carbon/human/owner)
+	playsound(owner, 'sound/effects/grillehit.ogg', 100)
+	new /obj/item/stack/sheet/metal(get_turf(src))
 
-/obj/item/shield/riot/roman/fake
-	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>. It appears to be a bit flimsy."
-	block_chance = 0
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-
+//Legion buckler shield			- Inferior version of the Legion shield.
 /obj/item/shield/legion/buckler
 	name = "legion buckler"
 	desc = "A lightweight well balanced shield made out of a hard oak and lashed together with solid iron bands. It has a legion emblem charred onto the inside."
@@ -458,6 +346,7 @@ obj/item/shield/riot/bullet_proof
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	custom_materials = list()
 	resistance_flags = FLAMMABLE
+	max_integrity = 200
 	force = 15
 	throwforce = 15
 	throw_speed = 4
@@ -465,6 +354,74 @@ obj/item/shield/riot/bullet_proof
 	block_chance = 25
 	armor = list("linemelee" = 80, "linebullet" = 80, "linelaser" = 80, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 70)
 
+
+//Buckler Wooden Shield			- Cheapest, shittiest shield there is. Found on raider corpses from time to time as well as trash.
+/obj/item/shield/riot/buckler
+	name = "wooden buckler"
+	desc = "A medieval wooden buckler."
+	icon_state = "buckler"
+	item_state = "buckler"
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 10)
+	resistance_flags = FLAMMABLE
+	repair_material = /obj/item/stack/sheet/mineral/wood
+	block_chance = 30
+	shield_flags = SHIELD_FLAGS_DEFAULT
+	max_integrity = 150
+
+/obj/item/shield/riot/buckler/shatter(mob/living/carbon/human/owner)
+	playsound(owner, 'sound/effects/bang.ogg', 50)
+	new /obj/item/stack/sheet/mineral/wood(get_turf(src))
+
+//Improvised metal shield				- Not exactly a bad shield but it's made of literal scrap.
+/obj/item/shield/makeshift
+	name = "scrap shield"
+	desc = "A shield made of welded, riveted and glued metal sheets. Crude yet reliant for its cost, having cloth protecting the user from the sharp edges and a leather strap for the wearer to grip it by."
+	armor = list("linemelee" = 70, "linebullet" = 70, "linelaser" = 70, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 80)
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	item_state = "metal"
+	icon_state = "makeshift_shield"
+	custom_materials = list(/datum/material/iron = 18000)
+	slot_flags = null
+	max_integrity = 250 //Made of metal welded together its strong but not unkillable
+	force = 10
+	throwforce = 7
+	w_class = WEIGHT_CLASS_BULKY
+
+//Tribal shield							- It's literally a scrap stopsign. Weak, but funny and setting appropriate.
+/obj/item/shield/tribal
+	name = "tribal shield"
+	desc = "A hexagonal based shield that bears some strange words of the Old World on it. Or maybe it just says 'stop'.. either-or."
+	icon_state = "shield_tribal"
+	item_state = "shield_tribal"
+	force = 20
+	throwforce = 5
+	throw_speed = 2
+	throw_range = 3
+	block_chance = 40
+	max_integrity = 200
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+
+//Tribal nightmare stalker lined siheld
+/obj/item/shield/riot/tribal/nightstalker
+	name = "nightstalker shield"
+	desc = "An oval shaped shield made of strong wood and nightstalker skin."
+	icon_state = "bnightstalker"
+	item_state = "bnightstalker"
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	max_integrity = 300
+
+
+
+
+
+
+//Old legacy snowflake shield for admin events or maybe Enclave garbage. Should possibly be removed but it holds potential for usage.
 
 /obj/item/shield/energy
 	name = "energy combat shield"
@@ -513,28 +470,12 @@ obj/item/shield/riot/bullet_proof
 		throw_speed = on_throw_speed
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 35, TRUE)
-		to_chat(user, "<span class='notice'>[src] is now active.</span>")
+		to_chat(user, SPAN_NOTICE("[src] is now active."))
 	else
 		force = initial(force)
 		throwforce = initial(throwforce)
 		throw_speed = initial(throw_speed)
 		w_class = WEIGHT_CLASS_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 35, TRUE)
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+		to_chat(user, SPAN_NOTICE("[src] can now be concealed."))
 	add_fingerprint(user)
-
-/obj/item/shield/riot/tribal
-	name = "tribal shield"
-	desc = "An oval shaped shield made of strong wood and brahmin skin."
-	icon_state = "btribal"
-	item_state = "btribal"
-	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-
-/obj/item/shield/riot/tribal/nightstalker
-	name = "nightstalker shield"
-	desc = "An oval shaped shield made of strong wood and nightstalker skin."
-	icon_state = "bnightstalker"
-	item_state = "bnightstalker"
-	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'

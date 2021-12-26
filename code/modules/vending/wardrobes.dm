@@ -70,7 +70,7 @@
 					/obj/item/clothing/head/fedora = 2,
 					/obj/item/clothing/gloves/color/black = 2,
 					/obj/item/clothing/gloves/color/latex = 2,
-					/obj/item/reagent_containers/food/drinks/flask/det = 2,
+					/obj/item/reagent_containers/food/drinks/flask/fancy = 2,
 					/obj/item/storage/fancy/cigarettes = 5)
 	premium = list(/obj/item/clothing/head/flatcap = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/det_wardrobe
@@ -110,7 +110,7 @@
 					/obj/item/clothing/suit/toggle/labcoat/depjacket/med = 5,
 					/obj/item/clothing/shoes/sneakers/white = 5,
 					/obj/item/clothing/head/soft/emt = 5,
-					/obj/item/clothing/suit/apron/surgical = 5,
+					/obj/item/clothing/suit/hooded/surgical = 5,
 					/obj/item/clothing/mask/surgical = 5,
 					/obj/item/clothing/under/rank/medical/doctor/util = 5,
 					/obj/item/clothing/under/rank/medical/paramedic/red = 5,
@@ -263,8 +263,8 @@
 	products = list(/obj/item/storage/backpack/botany = 3,
 					/obj/item/storage/backpack/satchel/hyd = 3,
 					/obj/item/clothing/suit/hooded/wintercoat/hydro = 2,
-					/obj/item/clothing/suit/apron = 3,
-					/obj/item/clothing/suit/apron/overalls = 5,
+					/obj/item/clothing/neck/apron/labor = 3,
+					/obj/item/clothing/suit/overalls = 2,
 					/obj/item/clothing/under/rank/civilian/hydroponics = 5,
 					/obj/item/clothing/under/rank/civilian/hydroponics/skirt = 5,
 					/obj/item/clothing/mask/bandana = 4)
@@ -315,11 +315,11 @@
 					/obj/item/clothing/under/rank/civilian/bartender/skirt = 2,
 					/obj/item/clothing/under/rank/civilian/bartender/purple = 2,
 					/obj/item/clothing/accessory/waistcoat = 3,
-					/obj/item/clothing/suit/apron/purple_bartender = 2,
+					/obj/item/clothing/neck/apron/bartender = 2,
 					/obj/item/clothing/head/soft/black = 4,
 					/obj/item/clothing/shoes/sneakers/black = 4,
 					/obj/item/reagent_containers/rag = 4,
-					/obj/item/storage/fancy/ammobox/beanbag = 1,
+					/obj/item/ammo_box/shotgun/bean = 1,
 					/obj/item/clothing/suit/armor/vest/alt = 1,
 					/obj/item/circuitboard/machine/dish_drive = 1,
 					/obj/item/clothing/glasses/sunglasses/reagent = 1,
@@ -341,7 +341,7 @@
 	products = list(/obj/item/clothing/under/suit/waiter = 3,
 					/obj/item/radio/headset/headset_srv = 4,
 					/obj/item/clothing/accessory/waistcoat = 3,
-					/obj/item/clothing/suit/apron/chef = 3,
+					/obj/item/clothing/neck/apron/chef = 3,
 					/obj/item/clothing/head/soft/mime = 2,
 					/obj/item/storage/box/mousetraps = 2,
 					/obj/item/circuitboard/machine/dish_drive = 1,
@@ -519,8 +519,8 @@
 	machine_name = "ViroDrobe"
 
 /obj/machinery/vending/wardrobe/cap_wardrobe
-	name = "Captain's Wardrobe"
-	desc = "The latest and greatest in Nanotrasen fashion for your great leader."
+	name = "Overseer's Wardrobe"
+	desc = "The latest and greatest in Vault-Tec fashion for your great leader."
 	icon_state = "capsdrobe"
 	icon_deny = "capsdrobe-deny"
 	product_ads = "Only the greatest for a commander such as ours."
@@ -529,7 +529,7 @@
 					/obj/item/storage/backpack/captain = 1,
 					/obj/item/storage/backpack/satchel/cap = 1,
 					/obj/item/storage/backpack/duffelbag/captain = 1,
-					/obj/item/clothing/neck/cloak/cap = 1,
+					/obj/item/clothing/neck/mantle/cap = 1,
 					/obj/item/clothing/shoes/sneakers/brown = 2,
 					/obj/item/clothing/under/rank/captain = 1,
 					/obj/item/clothing/under/rank/captain/util = 1,
@@ -542,7 +542,10 @@
 					/obj/item/clothing/suit/captunic = 1,
 					/obj/item/clothing/under/rank/captain/femformal = 1,
 					/obj/item/clothing/glasses/sunglasses/gar/supergar = 1,
-					/obj/item/clothing/gloves/color/captain = 1)
+					/obj/item/clothing/gloves/color/captain = 1,
+					/obj/item/clothing/suit/toggle/captains_parade = 1,
+					/obj/item/clothing/suit/toggle/armor/vest/centcom_formal = 1,
+					/obj/item/clothing/suit/toggle/armor/hos/hos_formal = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/cap_wardrobe
 	payment_department = ACCOUNT_CIV
 	default_price = PRICE_ALMOST_EXPENSIVE

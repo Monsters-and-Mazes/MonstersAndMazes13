@@ -126,14 +126,6 @@
 	new /obj/item/modkit/erinarmor(src)
 	new /obj/item/clothing/shoes/f13/military/desert
 
-//Kainat Ali - muhsollini
-/obj/item/storage/box/large/custom_kit/kainatali/PopulateContents()
-	new /obj/item/clothing/under/f13/ncr/scout(src)
-	new /obj/item/clothing/gloves/patrol/burned(src)
-	new /obj/item/clothing/glasses/regular/protected(src)
-	new /obj/item/clothing/neck/cloak/ranger(src)
-	new /obj/item/modkit/kainatarmor(src)
-
 //Bird Blackhawk - octus
 /obj/item/storage/box/large/custom_kit/birdblackhawk/PopulateContents()
 	new /obj/item/modkit/birdarmor(src)

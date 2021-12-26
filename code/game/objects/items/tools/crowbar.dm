@@ -11,6 +11,13 @@
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
+	unique_reskin = list("Brass" = "crowbar_clock",
+					"Bronze" = "crowbar_brass",
+					"Caravan" = "crowbar_caravan",
+					"Powergame" = "crowbar_powergame",
+					"Red" = "crowbar_red",
+					"Large" = "crowbar_large"
+					)
 	custom_materials = list(/datum/material/iron=50)
 
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
@@ -94,7 +101,7 @@
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
 	var/obj/item/wirecutters/power/cutjaws = new /obj/item/wirecutters/power(drop_location())
 	cutjaws.name = name
-	to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
+	to_chat(user, SPAN_NOTICE("You attach the cutting jaws to [src]."))
 	qdel(src)
 	user.put_in_active_hand(cutjaws)
 

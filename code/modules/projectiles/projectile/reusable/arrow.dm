@@ -2,7 +2,7 @@
 	name = "metal arrow"
 	desc = "a simple arrow with a metal head."
 	damage = 40
-	armour_penetration = 0.1
+	armour_penetration = 0.2
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow
 
@@ -12,13 +12,6 @@
 	desc = "Fire harderned arrow."
 	damage = 0.5
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/ash
-
-/obj/item/projectile/bullet/reusable/arrow/bone //AP for ashwalkers
-	name = "bone arrow"
-	desc = "Arrow made of bone and sinew."
-	damage = 35
-	armour_penetration = 0.75
-	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
 
 /obj/item/projectile/bullet/reusable/arrow/bronze //Just some AP shots
 	name = "bronze arrow"
@@ -38,7 +31,7 @@
 /obj/item/projectile/bullet/reusable/arrow/poison
 	name = "poison arrow"
 	desc = "A simple arrow, tipped in a poisonous paste."
-	damage = 10 //really gotta balance this, holy cow
+	damage = 20 //really gotta balance this, holy cow
 	armour_penetration = 0.1
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/poison
@@ -52,7 +45,7 @@
 /obj/item/projectile/bullet/reusable/arrow/burning
 	name = "burn arrow"
 	desc = "A sumple arrow slathered in a paste that burns skin on contact."
-	damage = 10 //gotta balance it!
+	damage = 20 //gotta balance it!
 	armour_penetration = 0.1
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/burning
@@ -63,3 +56,10 @@
 		var/mob/living/carbon/human/targetHuman = target
 		targetHuman.adjust_fire_stacks(5)
 		targetHuman.IgniteMob() //you just got burned!
+
+/obj/item/projectile/bullet/reusable/arrow/bone //JHP for arrows
+	name = "jagged barbed bone arrow"
+	desc = "Arrow made of bone and sinew."
+	damage = 45
+	armour_penetration = 0.1
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone

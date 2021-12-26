@@ -20,6 +20,10 @@
 					CAT_AMMO,
 					CAT_MISCWEP
 				),
+				CAT_THROWABLE = list(
+					CAT_REGULAR,
+					CAT_EXPLOSIVE,
+				),
 				CAT_ROBOT = CAT_NONE,
 				CAT_MISC = list(
 					CAT_MISCELLANEOUS,
@@ -45,6 +49,7 @@
 					CAT_SANDWICH,
 					CAT_SOUP,
 					CAT_SPAGHETTI,
+					CAT_WASTEFOOD,
 				),
 				CAT_DRINK = CAT_NONE,
 				CAT_CLOTHING = list(
@@ -429,9 +434,9 @@
 					user.put_in_hands(result)
 				else
 					result.forceMove(user.drop_location())
-				to_chat(user, "<span class='notice'>[TR.name] constructed.</span>")
+				to_chat(user, SPAN_NOTICE("[TR.name] constructed."))
 			else
-				to_chat(user, "<span class='warning'>Construction failed[result]</span>")
+				to_chat(user, SPAN_WARNING("Construction failed[result]"))
 			busy = FALSE
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only

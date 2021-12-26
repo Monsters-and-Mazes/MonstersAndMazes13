@@ -29,10 +29,10 @@
 		var/obj/item/stack/tile/plasteel/S = C
 		if(S.use(1))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			to_chat(user, "<span class='notice'>You build a floor.</span>")
+			to_chat(user, SPAN_NOTICE("You build a floor."))
 			ChangeTurf(/turf/open/floor/plating)
 		else
-			to_chat(user, "<span class='warning'>You need one floor tile to build a floor!</span>")
+			to_chat(user, SPAN_WARNING("You need one floor tile to build a floor!"))
 	else
 		return ..()
 /*
@@ -58,6 +58,11 @@
 /turf/open/indestructible/ground/outside/Initialize()
 	. = ..()
 	flags_2 |= GLOBAL_LIGHT_TURF_2
+
+#define GRASS_SPONTANEOUS_GROUND 		2
+#define GRASS_WEIGHT_GROUND			4
+#define LUSH_PLANT_SPAWN_LIST_GROUND list(/obj/structure/flora/grass/wasteland = 10, /obj/structure/flora/wasteplant/wild_broc = 7, /obj/structure/flora/wasteplant/wild_mesquite = 4, /obj/structure/flora/wasteplant/wild_feracactus = 5, /obj/structure/flora/wasteplant/wild_punga = 5, /obj/structure/flora/wasteplant/wild_coyote = 5, /obj/structure/flora/wasteplant/wild_tato = 5, /obj/structure/flora/wasteplant/wild_yucca = 5, /obj/structure/flora/wasteplant/wild_mutfruit = 5, /obj/structure/flora/wasteplant/wild_prickly = 5, /obj/structure/flora/wasteplant/wild_datura = 5, /obj/structure/flora/wasteplant/wild_buffalogourd = 5, /obj/structure/flora/wasteplant/wild_pinyon = 3, /obj/structure/flora/wasteplant/wild_xander = 5, /obj/structure/flora/wasteplant/wild_agave = 5, /obj/structure/flora/tree/joshua = 3, /obj/structure/flora/tree/cactus = 2, /obj/structure/flora/tree/wasteland = 2)
+#define DESOLATE_PLANT_SPAWN_LIST_GROUND list(/obj/structure/flora/grass/wasteland = 1)
 
 #define GRASS_SPONTANEOUS_GROUND 		2
 #define GRASS_WEIGHT_GROUND			4
@@ -216,16 +221,15 @@
 	contents_explosion(severity, target)
 	switch(severity)
 		if(4)
-			if(prob(5))
-				ChangeTurf(baseturfs)
+			if(prob(95))
+				return
 		if(3)
-			if(prob(25))
-				ChangeTurf(baseturfs)
+			if(prob(75))
+				return
 		if(2)
 			if(prob(50))
-				ChangeTurf(baseturfs)
-		if(1)
-			ChangeTurf(baseturfs)
+				return
+	ScrapeAway()
 
 /////////////////////////////////////////////////////////
 

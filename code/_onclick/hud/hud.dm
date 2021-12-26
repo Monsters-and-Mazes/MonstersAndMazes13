@@ -6,6 +6,7 @@
 
 // The default UI style is the first one in the list
 GLOBAL_LIST_INIT(available_ui_styles, list(
+	"Fallout" = 'icons/mob/screen_fallout2.dmi', // Fallout 2 Pip-boy style UI. Walk the wasteland with style. Done by Pebbles for F13.
 	"Midnight" = 'icons/mob/screen_midnight.dmi',
 	"Retro" = 'icons/mob/screen_retro.dmi',
 	"Plasmafire" = 'icons/mob/screen_plasmafire.dmi',
@@ -253,7 +254,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		hud_used.show_hud() //Shows the next hud preset
 		to_chat(usr, "<span class ='info'>Switched HUD mode. Press F12 to toggle.</span>")
 	else
-		to_chat(usr, "<span class ='warning'>This mob type does not use a HUD.</span>")
+		to_chat(usr, SPAN_WARNING("This mob type does not use a HUD."))
 
 
 //(re)builds the hand ui slots, throwing away old ones

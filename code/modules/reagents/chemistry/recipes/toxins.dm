@@ -64,11 +64,11 @@
 	results = list(/datum/reagent/toxin/lexorin = 3)
 	required_reagents = list(/datum/reagent/toxin/plasma = 1, /datum/reagent/hydrogen = 1, /datum/reagent/oxygen = 1)
 
-/datum/chemical_reaction/chloralhydrate
+/*/datum/chemical_reaction/chloralhydrate
 	name = "Chloral Hydrate"
 	id = /datum/reagent/toxin/chloralhydrate
 	results = list(/datum/reagent/toxin/chloralhydrate = 1)
-	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/chlorine = 3, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/chlorine = 3, /datum/reagent/water = 1)*/
 
 /datum/chemical_reaction/mutetoxin //i'll just fit this in here snugly between other unfun chemicals :v
 	name = "Mute Toxin"
@@ -99,21 +99,21 @@
 	id = /datum/reagent/toxin/heparin
 	results = list(/datum/reagent/toxin/heparin = 4)
 	required_reagents = list(/datum/reagent/toxin/formaldehyde = 1, /datum/reagent/sodium = 1, /datum/reagent/chlorine = 1, /datum/reagent/lithium = 1)
-	mix_message = "<span class='danger'>The mixture thins and loses all color.</span>"
+	mix_message = SPAN_DANGER("The mixture thins and loses all color.")
 
 /datum/chemical_reaction/rotatium
 	name = "Rotatium"
 	id = /datum/reagent/toxin/rotatium
 	results = list(/datum/reagent/toxin/rotatium = 3)
 	required_reagents = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/teslium = 1, /datum/reagent/toxin/fentanyl = 1)
-	mix_message = "<span class='danger'>After sparks, fire, and the smell of mindbreaker, the mix is constantly spinning with no stop in sight.</span>"
+	mix_message = SPAN_DANGER("After sparks, fire, and the smell of mindbreaker, the mix is constantly spinning with no stop in sight.")
 
 /datum/chemical_reaction/skewium
 	name = "Skewium"
 	id = /datum/reagent/toxin/skewium
 	results = list(/datum/reagent/toxin/skewium = 5)
 	required_reagents = list(/datum/reagent/toxin/rotatium = 2, /datum/reagent/toxin/plasma = 2, /datum/reagent/toxin/acid = 1)
-	mix_message = "<span class='danger'>Wow! it turns out if you mix rotatium with some plasma and sulphuric acid, it gets even worse!</span>"
+	mix_message = SPAN_DANGER("Wow! it turns out if you mix rotatium with some plasma and sulphuric acid, it gets even worse!")
 
 /datum/chemical_reaction/anacea
 	name = "Anacea"
@@ -132,4 +132,4 @@
 	id = /datum/reagent/toxin/bonehurtingjuice
 	results = list(/datum/reagent/toxin/bonehurtingjuice = 5)
 	required_reagents = list(/datum/reagent/toxin/mutagen = 1, /datum/reagent/toxin/itching_powder = 3, /datum/reagent/consumable/milk = 1)
-	mix_message = "<span class='danger'>The mixture suddenly becomes clear and looks a lot like water. You feel a strong urge to drink it.</span>"
+	mix_message = SPAN_DANGER("The mixture suddenly becomes clear and looks a lot like water. You feel a strong urge to drink it.")

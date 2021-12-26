@@ -8,7 +8,7 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_slug
 	custom_materials = list(/datum/material/iron=250, /datum/material/blackpowder=70)
 
-obj/item/ammo_casing/shotgun/executioner
+/obj/item/ammo_casing/shotgun/executioner
 	name = "executioner slug"
 	desc = "A 12 gauge lead slug purpose built to annihilate flesh on impact."
 	icon_state = "stunshell"
@@ -99,7 +99,7 @@ obj/item/ammo_casing/shotgun/executioner
 	desc = "An advanced shotgun shell which uses a subspace ansible crystal to produce an effect similar to a standard ion rifle. \
 	The unique properties of the crystal split the pulse into a spread of individually weaker bolts."
 	icon_state = "ionshell"
-	projectile_type = /obj/item/projectile/ion/weak
+	projectile_type = /obj/item/projectile/ion/mid
 	pellets = 4
 	variance = 35
 
@@ -149,7 +149,7 @@ obj/item/ammo_casing/shotgun/executioner
 /obj/item/ammo_casing/shotgun/dart/bioterror/Initialize()
 	. = ..()
 	reagents.add_reagent(/datum/reagent/toxin/amanitin, 12) //for a nasty surprise after you get shot and somehow escape and don't think to quickly purge, and even shock those who are loaded up on purging agents
-	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 6)
+	//reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 6)
 	reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 6) //;HELPIES OPS IN MAINT
 	reagents.add_reagent(/datum/reagent/impedrezene, 6)
 	reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 5) //this and the acid equal about 25ish burn, not counting the minute toxin damage dealt by their metabolism, this makes each dart about as lethal as a stechkin shot in upfront damage

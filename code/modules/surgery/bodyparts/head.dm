@@ -39,7 +39,8 @@
 	scars_covered_by_clothes = FALSE
 
 /obj/item/bodypart/head/can_dismember(obj/item/I)
-	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
+	// Can't decap people alive or with some kind of headgear less headaches for staff.
+	if(owner && (owner.stat != DEAD || owner.head))
 		return FALSE
 	return ..()
 
@@ -50,7 +51,7 @@
 	for(var/obj/item/I in src)
 		if(I == brain)
 			if(user)
-				user.visible_message("<span class='warning'>[user] saws [src] open and pulls out a brain!</span>", "<span class='notice'>You saw [src] open and pull out a brain.</span>")
+				user.visible_message(SPAN_WARNING("[user] saws [src] open and pulls out a brain!"), SPAN_NOTICE("You saw [src] open and pull out a brain."))
 			if(brainmob)
 				brainmob.container = null
 				brainmob.forceMove(brain)

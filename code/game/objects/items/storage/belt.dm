@@ -123,6 +123,13 @@
 	new /obj/item/multitool/advanced/brass(src)
 	new /obj/item/stack/cable_coil(src, 30, "yellow")
 
+/obj/item/storage/belt/utility/bos/PopulateContents()
+	new /obj/item/screwdriver/power(src)
+	new /obj/item/crowbar/power(src)
+	new /obj/item/weldingtool/experimental(src)
+	new /obj/item/stack/cable_coil(src, 30, "yellow")
+	new /obj/item/multitool/advanced/brass(src)
+
 /obj/item/storage/belt/medical
 	name = "medical belt"
 	desc = "Can hold various medical equipment."
@@ -240,7 +247,7 @@
 	new /obj/item/restraints/handcuffs(src)
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
-	new /obj/item/melee/baton/loaded(src)
+	new /obj/item/melee/classic_baton/telescopic(src)
 	update_icon()
 
 /obj/item/storage/belt/mining
@@ -706,7 +713,7 @@
 
 	for(var/obj/item/reagent_containers/syringe/dart/D in contents)
 		if(round(target.reagents.total_volume, 1) <= 0)
-			to_chat(user, "<span class='notice'>You soak as many of the darts as you can with the contents from [target].</span>")
+			to_chat(user, SPAN_NOTICE("You soak as many of the darts as you can with the contents from [target]."))
 			return
 		if(D.mode == SYRINGE_INJECT)
 			continue
@@ -716,12 +723,18 @@
 	..()
 
 /obj/item/storage/belt/holster
-	name = "shoulder holster"
-	desc = "A holster to carry a handgun and ammo. WARNING: Badasses only."
+	name = "holster"
+	desc = "A holster to carry a handgun and ammo."
 	icon_state = "holster"
 	item_state = "holster"
 	alternate_worn_layer = UNDER_SUIT_LAYER
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_NECK
+	always_reskinnable = TRUE
+	unique_reskin = list(
+						"Shoulder" = "holster",
+						"Thigh" = "holster_leg",
+						"Hip" = "holster_hip"
+						)
 
 /obj/item/storage/belt/holster/ComponentInitialize()
 	. = ..()
@@ -734,7 +747,6 @@
 		/obj/item/ammo_box/magazine,
 		/obj/item/ammo_box/tube,
 		/obj/item/ammo_box/a357,
-		/obj/item/ammo_box/c38,
 		/obj/item/ammo_box/l10mm,
 		/obj/item/ammo_box/a762,
 		/obj/item/ammo_box/shotgun,
@@ -750,7 +762,9 @@
 		/obj/item/ammo_box/c45rev,
 		/obj/item/gun/energy/laser/solar,
 		/obj/item/gun/energy/laser/pistol,
+		/obj/item/gun/energy/laser/crusader,
 		/obj/item/gun/energy/laser/plasma/pistol,
+		/obj/item/gun/energy/plasma/crusader,
 		/obj/item/gun/energy/laser/plasma/glock,
 		/obj/item/gun/energy/laser/plasma/glock/extended,
 		/obj/item/gun/energy/laser/wattz,
@@ -760,24 +774,22 @@
 		))
 
 /obj/item/storage/belt/holster/full/PopulateContents()
-	new /obj/item/gun/ballistic/revolver/detective(src)
-	new /obj/item/ammo_box/c38(src)
-	new /obj/item/ammo_box/c38(src)
+	new /obj/item/gun/ballistic/revolver/police(src)
 
 /obj/item/storage/belt/holster/ranger44/PopulateContents()
-	new /obj/item/gun/ballistic/revolver/revolver44(src)
+	new /obj/item/gun/ballistic/revolver/revolver44/ranger(src)
 	new /obj/item/ammo_box/m44(src)
 	new /obj/item/ammo_box/m44(src)
 	new /obj/item/ammo_box/m44(src)
 
 /obj/item/storage/belt/holster/ranger357/PopulateContents()
-	new /obj/item/gun/ballistic/revolver/colt357(src)
+	new /obj/item/gun/ballistic/revolver/colt357/ranger(src)
 	new /obj/item/ammo_box/a357(src)
 	new /obj/item/ammo_box/a357(src)
 	new /obj/item/ammo_box/a357(src)
 
 /obj/item/storage/belt/holster/ranger45/PopulateContents()
-	new /obj/item/gun/ballistic/revolver/revolver45(src)
+	new /obj/item/gun/ballistic/revolver/revolver45/ranger(src)
 	new /obj/item/ammo_box/c45rev(src)
 	new /obj/item/ammo_box/c45rev(src)
 	new /obj/item/ammo_box/c45rev(src)
@@ -795,11 +807,42 @@
 	new /obj/item/ammo_box/c4570(src)
 
 /obj/item/storage/belt/holster/ranger10mm/PopulateContents()
-	new /obj/item/gun/ballistic/revolver/colt6520(src)
+	new /obj/item/gun/ballistic/revolver/colt6520/ranger(src)
 	new /obj/item/ammo_box/l10mm(src)
 	new /obj/item/ammo_box/l10mm(src)
 	new /obj/item/ammo_box/l10mm(src)
 
+/obj/item/storage/belt/holster/ncr/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/pistol/ninemil(src)
+	new /obj/item/ammo_box/magazine/m9mm(src)
+	new /obj/item/ammo_box/magazine/m9mm(src)
+	new /obj/item/ammo_box/magazine/m9mm(src)
+
+/obj/item/storage/belt/holster/ncr_officer/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/pistol/m1911(src)
+	new /obj/item/ammo_box/magazine/m45(src)
+	new /obj/item/ammo_box/magazine/m45(src)
+	new /obj/item/ammo_box/magazine/m45(src)
+
+/obj/item/storage/belt/holster/med_lt/PopulateContents()
+	new /obj/item/gun/ballistic/revolver/thatgun(src)
+	new /obj/item/ammo_box/a556/stripper(src)
+	new /obj/item/ammo_box/a556/stripper(src)
+	new /obj/item/ammo_box/a556/stripper(src)
+
+/obj/item/storage/belt/holster/hip
+	name = "hip holster"
+	desc = "A low hanging holster to carry a handgun and ammo."
+	icon_state = "holster_hip"
+	item_state = "holster_hip"
+
+/obj/item/storage/belt/holster/ncrcf_w
+	name = "Worn NCRCF Women's Jacket"
+	desc = "A worn, torn women's NCRCF jacket with 'pockets' slit into the inside, letting you hide some things in the seam. Somehow, it fills you with vague feelings of rebellion and mommy and daddy issues. You kind of wish you could fit drugs in this..."
+	icon_state = "ncrcf_w"
+	item_state = "ncrcf_w"
+	alternate_worn_layer = MANTLE_LAYER
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_NECK
 
 /obj/item/storage/belt/fannypack
 	name = "fannypack"
@@ -888,7 +931,7 @@
 /obj/item/storage/belt/sabre/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		. += "<span class='notice'>Alt-click it to quickly draw the blade.</span>"
+		. += SPAN_NOTICE("Alt-click it to quickly draw the blade.")
 
 /obj/item/storage/belt/sabre/PopulateContents()
 	new starting_sword(src)
@@ -907,11 +950,11 @@
 
 /obj/item/storage/belt/sabre/twin
 	name = "twin sheath"
-	desc = "Two sheaths. One is capable of holding a katana (or bokken) and the other a wakizashi. You could put two wakizashis in if you really wanted to. Now you can really roleplay as a samurai."
-	icon_state = "twinsheath"
+	desc = "Two sheaths. One is capable of holding everything and the other one is two."
+	icon_state = "2sheath"
 	item_state = "quiver" //this'll do.
 	w_class = WEIGHT_CLASS_BULKY
-	fitting_swords = list(/obj/item/melee/smith/wakizashi, /obj/item/melee/smith/twohand/katana, /obj/item/melee/bokken)
+	fitting_swords = list(/obj/item/melee/smith/wakizashi, /obj/item/melee/smith/twohand/katana, /obj/item/melee/bokken, /obj/item/melee/smith, /obj/item/melee/smith/twohand)
 	starting_sword = null
 
 /obj/item/storage/belt/sabre/twin/ComponentInitialize()
@@ -945,11 +988,23 @@
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 
+/obj/item/storage/belt/military/assault/ncr/crossbelt
+	name = "NCR officer cross-belt"
+	desc = "A polished leather claw belt with cross-strap designed for officers."
+	icon_state = "crossbelt"
+	item_state = "crossbelt"
+
+/obj/item/storage/belt/military/assault/ncr/crossbelt/reverse
+	name = "NCR ranger cross-belt"
+	desc = "A polished leather belt with cross-strap."
+	icon_state = "crossbelt_reverse"
+	item_state = "crossbelt_reverse"
+
 /obj/item/storage/belt/military/reconbandolier
-	name = "NCR recon ranger bandolier"
-	desc = "A belt with many pockets, now at an angle."
-	icon_state = "reconbandolier"
-	item_state = "reconbandolier"
+	name = "NCR recon bandolier"
+	desc = "A leather bandolier for specialized NCR units."
+	icon_state = "recon_bandolier"
+	item_state = "recon_bandolier"
 
 /obj/item/storage/belt/military/ComponentInitialize()
 	. = ..()
@@ -996,19 +1051,19 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(!length(user.get_empty_held_indexes()))
-		to_chat(user, "<span class='warning'>Your hands are full!</span>")
+		to_chat(user, SPAN_WARNING("Your hands are full!"))
 		return
 	var/obj/item/ammo_casing/caseless/arrow/L = locate() in contents
 	if(L)
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, L, user)
 		user.put_in_hands(L)
-		to_chat(user, "<span class='notice'>You take \a [L] out of the quiver.</span>")
+		to_chat(user, SPAN_NOTICE("You take \a [L] out of the quiver."))
 		return TRUE
 	var/obj/item/ammo_casing/caseless/W = locate() in contents
 	if(W && contents.len > 0)
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, W, user)
 		user.put_in_hands(W)
-		to_chat(user, "<span class='notice'>You take \a [W] out of the quiver.</span>")
+		to_chat(user, SPAN_NOTICE("You take \a [W] out of the quiver."))
 	else
-		to_chat(user, "<span class='notice'>There is nothing left in the quiver.</span>")
+		to_chat(user, SPAN_NOTICE("There is nothing left in the quiver."))
 	return TRUE

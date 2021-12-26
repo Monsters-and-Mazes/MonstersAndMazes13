@@ -70,14 +70,14 @@
 /obj/item/storage/belt/waistsheath/examine(mob/user)
 	..()
 	if(length(contents))
-		to_chat(user, "<span class='notice'>Alt-click it to quickly draw the blade.</span>")
+		to_chat(user, SPAN_NOTICE("Alt-click it to quickly draw the blade."))
 
 /obj/item/storage/belt/waistsheath/AltClick(mob/user)
 	if(!iscarbon(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(length(contents))
 		var/obj/item/I = contents[2]
-		user.visible_message("[user] takes [I] out of [src].", "<span class='notice'>You take [I] out of [src].</span>")
+		user.visible_message("[user] takes [I] out of [src].", SPAN_NOTICE("You take [I] out of [src]."))
 		user.put_in_hands(I)
 		update_icon()
 	else
@@ -180,13 +180,13 @@
 				show_message = TRUE
 			else
 				if(!spam_protection)
-					to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
+					to_chat(user, SPAN_WARNING("Your [name] is full and can't hold any more!"))
 					spam_protection = TRUE
 					continue
 	if(show_message)
 		playsound(user, "rustle", 50, TRUE)
-		user.visible_message("<span class='notice'>[user] scoops up the casings beneath [user.p_them()].</span>", \
-			"<span class='notice'>You scoop up the casings beneath you with your [name].</span>")
+		user.visible_message(SPAN_NOTICE("[user] scoops up the casings beneath [user.p_them()]."), \
+			SPAN_NOTICE("You scoop up the casings beneath you with your [name]."))
 	spam_protection = FALSE
 
 /*
@@ -376,7 +376,7 @@
 /obj/item/storage/box/ration/menu_twelve
 	name = "c-ration box - 'Menu 12'"
 
-/obj/item/storage/box/ration/menu_eleven/PopulateContents()
+/obj/item/storage/box/ration/menu_twelve/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/pizza(src)
 	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/cranberry_cobbler(src)
@@ -438,8 +438,90 @@
 	new /obj/item/storage/box/matches(src)
 	new /obj/item/clothing/mask/cigarette/cigar/ncr(src)
 	
-	
+//	
+//Healing Items
+/obj/item/storage/box/medicine
+	name = "box of medication"
+	desc = "A box full of medication. Base item so you shouldn't be seeing this."
+	icon_state = "secbox"
+	illustration = "syringe_f13"
 
-	
-	
-	
+/obj/item/storage/box/medicine/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/syringe(src)
+
+/obj/item/storage/box/medicine/update_icon_state()
+	if(contents.len == 0)
+		qdel(src)
+
+//Powders
+/obj/item/storage/box/medicine/powder5
+	name = "box of five powders"
+	desc = "A box full of powders."
+
+/obj/item/storage/box/medicine/powder5/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/reagent_containers/pill/patch/healingpowder(src)
+
+/obj/item/storage/box/medicine/powder10
+	name = "box of ten powders"
+	desc = "A box full of powders."
+
+/obj/item/storage/box/medicine/powder10/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/reagent_containers/pill/patch/healingpowder(src)
+//		
+
+//Poultices
+/obj/item/storage/box/medicine/poultice5
+	name = "box of five poultices"
+	desc = "A box full of poultices."
+
+/obj/item/storage/box/medicine/poultice5/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/reagent_containers/pill/patch/healpoultice(src)
+
+/obj/item/storage/box/medicine/poultice10
+	name = "box of ten poultices"
+	desc = "A box full of poultices."
+
+/obj/item/storage/box/medicine/poultice10/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/reagent_containers/pill/patch/healpoultice(src)
+//
+
+//Regular Stimpak
+/obj/item/storage/box/medicine/stimpak5
+	name = "box of five stimpaks"
+	desc = "A box full of regular stimpaks."
+
+/obj/item/storage/box/medicine/stimpak5/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
+
+/obj/item/storage/box/medicine/stimpak10
+	name = "box of ten stimpaks"
+	desc = "A box full of regular stimpaks."
+
+/obj/item/storage/box/medicine/stimpak10/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
+//
+
+//Super Stimpaks
+/obj/item/storage/box/medicine/superstimpak5
+	name = "box of five super stimpaks"
+	desc = "A box full of regular stimpaks."
+
+/obj/item/storage/box/medicine/superstimpak5/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/reagent_containers/hypospray/medipen/stimpak/super(src)
+
+/obj/item/storage/box/medicine/superstimpak10
+	name = "box of ten super stimpaks"
+	desc = "A box full of regular stimpaks."
+
+/obj/item/storage/box/medicine/superstimpak10/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/reagent_containers/hypospray/medipen/stimpak/super(src)
+//		

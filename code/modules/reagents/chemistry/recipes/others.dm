@@ -118,7 +118,7 @@
 		new /obj/item/stack/sheet/mineral/uranium(location)
 
 /datum/chemical_reaction/bluespacecrystalifaction
-	name = "Crystallized Bluespace"
+	name = "Crystallized Quantum"
 	id = "crystalbluespace"
 	required_reagents = list(/datum/reagent/consumable/frostoil = 5, /datum/reagent/bluespace = 20, /datum/reagent/iron = 1)
 	mob_react = FALSE
@@ -189,15 +189,7 @@
 	results = list(/datum/reagent/nitrous_oxide = 5)
 	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 2)
 	required_temp = 525
-
-//Technically a mutation toxin
-/datum/chemical_reaction/mulligan
-	name = "Mulligan"
-	id = "mulligan"
-	results = list(/datum/reagent/mulligan = 1)
-	required_reagents = list(/datum/reagent/slime_toxin = 1, /datum/reagent/toxin/mutagen = 1)
-
-
+	
 /datum/chemical_reaction/fermis_plush
 	name = "Fermis plush"
 	id = "fermis_plush"
@@ -472,7 +464,7 @@
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, multiplier)
 	var/turf/location = get_turf(holder.my_atom)
-	location.visible_message("<span class='danger'>The solution spews out foam!</span>")
+	location.visible_message(SPAN_DANGER("The solution spews out foam!"))
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(multiplier*2, location, holder)
 	s.start()
@@ -488,7 +480,7 @@
 
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, multiplier)
 	var/turf/location = get_turf(holder.my_atom)
-	location.visible_message("<span class='danger'>The solution spews out a metallic foam!</span>")
+	location.visible_message(SPAN_DANGER("The solution spews out a metallic foam!"))
 	var/datum/effect_system/foam_spread/metal/s = new()
 	s.set_up(multiplier*5, location, holder, 1)
 	s.start()
@@ -502,7 +494,7 @@
 
 /datum/chemical_reaction/smart_foam/on_reaction(datum/reagents/holder, multiplier)
 	var/turf/location = get_turf(holder.my_atom)
-	location.visible_message("<span class='danger'>The solution spews out metallic foam!</span>")
+	location.visible_message(SPAN_DANGER("The solution spews out metallic foam!"))
 	var/datum/effect_system/foam_spread/metal/smart/s = new()
 	s.set_up(multiplier * 5, location, holder, TRUE)
 	s.start()
@@ -516,7 +508,7 @@
 
 /datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, multiplier)
 	var/turf/location = get_turf(holder.my_atom)
-	location.visible_message("<span class='danger'>The solution spews out metallic foam!</span>")
+	location.visible_message(SPAN_DANGER("The solution spews out metallic foam!"))
 	var/datum/effect_system/foam_spread/metal/s = new()
 	s.set_up(multiplier*5, location, holder, 2)
 	s.start()
@@ -708,12 +700,12 @@
 	for(var/i in 1 to multiplier)
 		new /obj/item/stack/sheet/plastic(location)
 
-/datum/chemical_reaction/pax
+/*/datum/chemical_reaction/pax
 	name = "pax"
 	id = /datum/reagent/pax
 	results = list(/datum/reagent/pax = 3)
 	required_reagents  = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/medicine/synaptizine = 1, /datum/reagent/water = 1)
-
+*/
 // TODO: Add some kind of ghoulification mutation toxin? Iunno.
 
 // Liquid Carpets

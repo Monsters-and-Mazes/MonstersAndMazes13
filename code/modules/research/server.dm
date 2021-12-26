@@ -4,12 +4,11 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
 	var/datum/techweb/stored_research
-	var/heat_health = 100
 	//Code for point mining here.
 	var/working = TRUE			//temperature should break it.
 	var/server_id = 0
 	var/base_mining_income = 2
-	var/heat_gen = 100
+	var/heat_gen = 1
 	var/heating_power = 40000
 	var/delay = 5
 	var/temp_tolerance_low = 0
@@ -32,7 +31,7 @@
 	var/tot_rating = 0
 	for(var/obj/item/stock_parts/SP in src)
 		tot_rating += SP.rating
-	heat_gen /= max(1, tot_rating)
+	heat_gen = initial(src.heat_gen) / max(1, tot_rating)
 
 /obj/machinery/rnd/server/proc/refresh_working()
 	if(stat & EMPED)
@@ -56,31 +55,19 @@
 	. = base_mining_income
 	var/penalty = max((get_env_temp() - temp_tolerance_high), 0) * temp_penalty_coefficient
 	. = max(. - penalty, 0)
+	produce_heat(. / base_mining_income)
 
 /obj/machinery/rnd/server/proc/get_env_temp()
 	var/datum/gas_mixture/environment = loc.return_air()
 	return environment.return_temperature()
 
-/obj/machinery/rnd/server/proc/produce_heat(heat_amt)
+/obj/machinery/rnd/server/proc/produce_heat(perc)
 	if(!(stat & (NOPOWER|BROKEN))) //Blatently stolen from space heater.
 		var/turf/L = loc
 		if(istype(L))
 			var/datum/gas_mixture/env = L.return_air()
-			if(env.return_temperature() < (heat_amt+T0C))
-
-				var/transfer_moles = 0.25 * env.total_moles()
-
-				var/datum/gas_mixture/removed = env.remove(transfer_moles)
-
-				if(removed)
-
-					var/heat_capacity = removed.heat_capacity()
-					if(heat_capacity == 0 || heat_capacity == null)
-						heat_capacity = 1
-					removed.set_temperature(min((removed.return_temperature()*heat_capacity + heating_power)/heat_capacity, 1000))
-
-				env.merge(removed)
-				air_update_turf()
+			env.adjust_heat(heating_power * perc * heat_gen)
+			air_update_turf()
 
 /proc/fix_noid_research_servers()
 	var/list/no_id_servers = list()
@@ -124,7 +111,7 @@
 	add_fingerprint(usr)
 	usr.set_machine(src)
 	if(!src.allowed(usr) && !(obj_flags & EMAGGED))
-		to_chat(usr, "<span class='danger'>You do not have the required access level.</span>")
+		to_chat(usr, SPAN_DANGER("You do not have the required access level."))
 		return
 
 	if(href_list["main"])
@@ -160,7 +147,7 @@
 		return
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='notice'>You disable the security protocols.</span>")
+	to_chat(user, SPAN_NOTICE("You disable the security protocols."))
 	return TRUE
 
 
@@ -190,5 +177,5 @@
 	if(istype(I, /obj/item/multitool))
 		var/obj/item/multitool/M = I
 		M.buffer = src
-		to_chat(user, "<span class='notice'>You store server information in [I]'s buffer.</span>")
+		to_chat(user, SPAN_NOTICE("You store server information in [I]'s buffer."))
 		return TRUE

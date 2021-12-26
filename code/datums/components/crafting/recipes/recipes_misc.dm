@@ -467,18 +467,6 @@
 	subcategory = CAT_MISCELLANEOUS
 	category = CAT_MISC
 
-/*
-/datum/crafting_recipe/bluespacehonker
-	name = "Bluespace Bike horn"
-	result = /obj/item/bikehorn/bluespacehonker
-	time = 10
-	reqs = list(/obj/item/stack/ore/bluespace_crystal = 1,
-				/obj/item/toy/crayon/blue = 1,
-				/obj/item/bikehorn = 1)
-	subcategory = CAT_MISCELLANEOUS
-	category = CAT_MISC
-*/
-
 /datum/crafting_recipe/mousetrap
 	name = "Mouse Trap"
 	result = /obj/item/assembly/mousetrap
@@ -509,14 +497,6 @@
 				  /obj/item/stack/tile/plasteel = 1,
 				  /obj/item/stack/cable_coil = 2,
 				  /obj/item/assembly/igniter = 1)
-	subcategory = CAT_MISCELLANEOUS
-	category = CAT_MISC
-
-/datum/crafting_recipe/compressedpowder
-	name = "Compressed blackpowder"
-	result = /obj/item/stack/ore/blackpowder
-	time = 5
-	reqs = list(/datum/reagent/blackpowder = 50)
 	subcategory = CAT_MISCELLANEOUS
 	category = CAT_MISC
 
@@ -552,17 +532,23 @@
 	name = "Binoculars"
 	result = /obj/item/binoculars
 	time = 60
-	reqs = list(/obj/item/stack/sheet/metal = 10,
-				/obj/item/stack/sheet/glass = 5)
-	tools = list(TOOL_SCREWDRIVER,TOOL_WORKBENCH)
+	reqs = list(/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/sheet/glass = 5,
+				/obj/item/crafting/duct_tape = 1)
+	tools = list(TOOL_WORKBENCH)
 	subcategory = CAT_MISCELLANEOUS
 	category = CAT_MISC
 
 /datum/crafting_recipe/experimental
-	name = "Tinker"
+	name = "Servo repair kit"
 	result = /obj/item/experimental
 	time = 30
-	reqs = list(/obj/item/crafting = 5)
+	reqs = list(/obj/item/crafting/frame = 1,
+				/obj/item/crafting/board = 1,
+				/obj/item/crafting/capacitor = 1,
+				/obj/item/crafting/transistor = 1,
+				/obj/item/crafting/servo = 1
+				)
 	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WORKBENCH)
 	subcategory = CAT_MISCELLANEOUS
 	category = CAT_MISC
@@ -703,3 +689,27 @@
 				/obj/item/stack/cable_coil = 3)
 	subcategory = CAT_MISCELLANEOUS
 	category = CAT_CLOTHING
+
+/datum/crafting_recipe/shutters
+	name = "Shutters"
+	reqs = list(/obj/item/stack/sheet/plasteel = 10,
+				/obj/item/stack/cable_coil = 10,
+				/obj/item/electronics/airlock = 1
+				)
+	result = /obj/machinery/door/poddoor/shutters/old/preopen
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER, TOOL_WELDER)
+	time = 15 SECONDS
+	subcategory = CAT_FURNITURE
+	category = CAT_MISC
+
+/datum/crafting_recipe/blast_doors
+	name = "Blast Door"
+	reqs = list(/obj/item/stack/sheet/plasteel = 15,
+				/obj/item/stack/cable_coil = 15,
+				/obj/item/electronics/airlock = 1
+				)
+	result = /obj/machinery/door/poddoor/preopen
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER, TOOL_WELDER)
+	time = 30 SECONDS
+	subcategory = CAT_FURNITURE
+	category = CAT_MISC

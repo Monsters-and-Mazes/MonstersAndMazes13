@@ -86,19 +86,6 @@
 	if(heated && the_rcd.canRturf)
 		return ..()
 
-/turf/closed/wall/clockwork/try_destroy(obj/item/I, mob/user, turf/T)
-	if(!heated)
-		return ..()
-	if(!istype(I, /obj/item/pickaxe/drill/jackhammer))
-		return FALSE
-	to_chat(user, "<span class='notice'>You begin to smash though [src]...</span>")
-	if(!do_after(user, 70, TRUE, src))
-		return FALSE
-	I.play_tool_sound(src)
-	visible_message("<span class='warning'>[user] smashes through [src] with [I]!</span>", "<span class='italics'>You hear the grinding of metal.</span>")
-	dismantle_wall()
-	return TRUE
-
 /turf/closed/wall/clockwork/ReplaceWithLattice()
 	..()
 	for(var/obj/structure/lattice/L in src)
@@ -154,7 +141,7 @@
 /turf/closed/wall/clockwork/proc/turn_up_the_heat()
 	if(!heated)
 		name = "superheated [name]"
-		visible_message("<span class='warning'>[src] sizzles with heat!</span>")
+		visible_message(SPAN_WARNING("[src] sizzles with heat!"))
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 		heated = TRUE
 		hardness = -100 //Lower numbers are tougher, so this makes the wall essentially impervious to smashing
@@ -162,7 +149,7 @@
 		animate(realappearance, color = "#FFC3C3", time = 5)
 	else
 		name = initial(name)
-		visible_message("<span class='notice'>[src] cools down.</span>")
+		visible_message(SPAN_NOTICE("[src] cools down."))
 		heated = FALSE
 		hardness = initial(hardness)
 		slicing_duration = initial(slicing_duration)

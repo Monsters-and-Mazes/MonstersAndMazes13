@@ -141,6 +141,11 @@
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
 			H.apply_pref_name("human", preference_source)
+	// F13 EDIT: GHOULS AND MUTANTS CANNOT BE LEGION, BROTHERHOOD OR VAULT
+//	if((title in GLOB.legion_positions) || (title in GLOB.vault_positions) || (title in GLOB.brotherhood_positions))
+//		if(H.dna.species.id == "ghoul" || H.dna.species.id == "smutant")
+//			H.set_species(/datum/species/human)
+//			H.apply_pref_name("human", H.client)
 
 	//Equip the rest of the gear
 	H.dna.species.before_equip_job(src, H, visualsOnly)

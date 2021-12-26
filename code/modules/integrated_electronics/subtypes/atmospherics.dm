@@ -115,10 +115,10 @@
 		source_air = air_contents
 
 	// Move gas from one place to another
-	move_gas(source_air, target_air)
+	move_gas(source_air, target_air, (istype(target, /obj/item/tank) ? target : null))
 	air_update_turf()
 
-/obj/item/integrated_circuit/atmospherics/pump/proc/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
+/obj/item/integrated_circuit/atmospherics/pump/proc/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air, obj/item/tank/snowflake)
 
 	// No moles = nothing to pump
 	if(source_air.total_moles() <= 0  || target_air.return_pressure() >= PUMP_MAX_PRESSURE)
@@ -131,8 +131,10 @@
 	var/pressure_delta = target_pressure - target_air.return_pressure()
 	if(pressure_delta > 0.1)
 		var/transfer_moles = (pressure_delta*target_air.return_volume()/(source_air.return_temperature() * R_IDEAL_GAS_EQUATION))*PUMP_EFFICIENCY
-		var/datum/gas_mixture/removed = source_air.remove(transfer_moles)
-		target_air.merge(removed)
+		if(istype(snowflake)) //Snowflake check for tanks specifically, because tank ruptures are handled in a very snowflakey way that expects all tank interactions to be handled via the tank's procs
+			snowflake.assume_air_moles(source_air, transfer_moles)
+		else
+			source_air.transfer_to(target_air, transfer_moles)
 
 
 // - volume pump - // **Works**
@@ -165,7 +167,7 @@
 		direction = SOURCE_TO_TARGET
 	target_pressure = min(PUMP_MAX_VOLUME,abs(new_amount))
 
-/obj/item/integrated_circuit/atmospherics/pump/volume/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
+/obj/item/integrated_circuit/atmospherics/pump/volume/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air, obj/item/tank/snowflake)
 	// No moles = nothing to pump
 	if(source_air.total_moles() <= 0)
 		return
@@ -180,9 +182,10 @@
 	//The second part of the min caps the pressure built by the volume pumps to the max pump pressure
 	var/transfer_ratio = min(transfer_rate,target_air.return_volume()*PUMP_MAX_PRESSURE/source_air.return_pressure())/source_air.return_volume()
 
-	var/datum/gas_mixture/removed = source_air.remove_ratio(transfer_ratio * PUMP_EFFICIENCY)
-
-	target_air.merge(removed)
+	if(istype(snowflake))
+		snowflake.assume_air_ratio(source_air, transfer_ratio * PUMP_EFFICIENCY)
+	else
+		source_air.transfer_ratio_to(target_air, transfer_ratio * PUMP_EFFICIENCY)
 
 
 // - gas vent - // **works**
@@ -286,7 +289,7 @@
 	activate_pin(2)
 
 // Required for making the connector port script work
-obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
+/obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	return air_contents
 
 
@@ -370,7 +373,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 
 	for(var/filtered_gas in removed.get_gases())
 		//Get the name of the gas and see if it is in the list
-		if(GLOB.meta_gas_names[filtered_gas] in wanted)
+		if(GLOB.gas_data.names[filtered_gas] in wanted)
 			//The gas that is put in all the filtered out gases
 			filtered_out.set_temperature(removed.return_temperature())
 			filtered_out.set_moles(filtered_gas, removed.get_moles(filtered_gas))
@@ -449,10 +452,14 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	if(transfer_moles <= 0)
 		return
 
-	var/datum/gas_mixture/mix = source_1_gases.remove(transfer_moles * gas_percentage)
-	output_gases.merge(mix)
-	mix = source_2_gases.remove(transfer_moles * (1-gas_percentage))
-	output_gases.merge(mix)
+	var/snowflakecheck = istype(gas_output, /obj/item/tank)
+
+	if(snowflakecheck)
+		gas_output.assume_air_moles(source_1_gases, transfer_moles * gas_percentage)
+		gas_output.assume_air_moles(source_2_gases, transfer_moles * (1-gas_percentage))
+	else
+		source_1_gases.transfer_to(output_gases, transfer_moles * gas_percentage)
+		source_2_gases.transfer_to(output_gases, transfer_moles * (1-gas_percentage))
 
 
 // - integrated tank - // **works**
@@ -489,7 +496,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	//Check if tank broken
 	if(!broken && tank_pressure > TANK_FAILURE_PRESSURE)
 		broken = TRUE
-		to_chat(view(2),"<span class='notice'>The [name] ruptures, releasing its gases!</span>")
+		to_chat(view(2),SPAN_NOTICE("The [name] ruptures, releasing its gases!"))
 	if(broken)
 		release()
 
@@ -693,18 +700,18 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 /obj/item/integrated_circuit/input/tank_slot/attackby(obj/item/tank/internals/I, mob/living/user)
 	//Check if it truly is a tank
 	if(!istype(I,/obj/item/tank/internals))
-		to_chat(user,"<span class='warning'>The [I.name] doesn't seem to fit in here.</span>")
+		to_chat(user,SPAN_WARNING("The [I.name] doesn't seem to fit in here."))
 		return
 
 	//Check if there is no other tank already inside
 	if(current_tank)
-		to_chat(user,"<span class='warning'>There is already a gas tank inside.</span>")
+		to_chat(user,SPAN_WARNING("There is already a gas tank inside."))
 		return
 
 	//The current tank is the one we just attached, its location is inside the circuit
 	current_tank = I
 	user.transferItemToLoc(I,src)
-	to_chat(user,"<span class='warning'>You put the [I.name] inside the tank slot.</span>")
+	to_chat(user,SPAN_WARNING("You put the [I.name] inside the tank slot."))
 
 	//Set the pin to a weak reference of the current tank
 	push_pressure()
@@ -719,11 +726,11 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 /obj/item/integrated_circuit/input/tank_slot/attack_self(mob/user)
 	//Check if no tank attached
 	if(!current_tank)
-		to_chat(user, "<span class='notice'>There is currently no tank attached.</span>")
+		to_chat(user, SPAN_NOTICE("There is currently no tank attached."))
 		return
 
 	//Remove tank and put in user's hands/location
-	to_chat(user, "<span class='notice'>You take [current_tank] out of the tank slot.</span>")
+	to_chat(user, SPAN_NOTICE("You take [current_tank] out of the tank slot."))
 	user.put_in_hands(current_tank)
 	current_tank = null
 

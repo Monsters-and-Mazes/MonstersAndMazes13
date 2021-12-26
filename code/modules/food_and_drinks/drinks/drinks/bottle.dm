@@ -25,7 +25,7 @@
 		return ..()
 
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, "<span class='warning'>You don't want to harm [target]!</span>")
+		to_chat(user, SPAN_WARNING("You don't want to harm [target]!"))
 		return
 
 	var/obj/item/bodypart/affecting = user.zone_selected //Find what the player is aiming at
@@ -55,10 +55,10 @@
 
 	//Display an attack message.
 	if(target != user)
-		target.visible_message("<span class='danger'>[user] has hit [target][head_attack_message] with a bottle of [src.name]!</span>", \
+		target.visible_message(SPAN_DANGER("[user] has hit [target][head_attack_message] with a bottle of [src.name]!"), \
 				"<span class='userdanger'>[user] has hit [target][head_attack_message] with a bottle of [src.name]!</span>")
 	else
-		user.visible_message("<span class='danger'>[target] hits [target.p_them()]self with a bottle of [src.name][head_attack_message]!</span>", \
+		user.visible_message(SPAN_DANGER("[target] hits [target.p_them()]self with a bottle of [src.name][head_attack_message]!"), \
 				"<span class='userdanger'>[target] hits [target.p_them()]self with a bottle of [src.name][head_attack_message]!</span>")
 
 	//Attack logs
@@ -259,7 +259,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe
 	name = "extra-strong absinthe"
-	desc = "An strong alcoholic drink brewed and distributed by"
+	desc = "A strong alcoholic drink."
 	icon_state = "absinthebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 100)
 
@@ -359,7 +359,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/fernet
 	name = "Fernet Bronca"
-	desc = "A bottle of pure Fernet Bronca, produced in Cordoba Space Station"
+	desc = "A bottle of pure Fernet Bronca. It's a wonder this survived the Great War."
 	icon_state = "fernetbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/fernet = 100)
 
@@ -404,6 +404,24 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/trappist/empty
+	list_reagents = null
+	
+/obj/item/reagent_containers/food/drinks/bottle/hooch
+	name = "hooch bottle"
+	desc = "A bottle of rotgut. Its owner has applied some street wisdom to cleverly disguise it as a brown paper bag."
+	icon_state = "hoochbottle"
+	list_reagents = list(/datum/reagent/consumable/ethanol/hooch = 100)
+	
+/obj/item/reagent_containers/food/drinks/bottle/hooch/empty
+	list_reagents = null
+	
+/obj/item/reagent_containers/food/drinks/bottle/amaretto
+	name = "Luini Amaretto"
+	desc = "A gentle and syrup-like drink, tastes of almonds and apricots."
+	icon_state = "disaronno"
+	list_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 100)
+	
+/obj/item/reagent_containers/food/drinks/bottle/amaretto/empty
 	list_reagents = null
 
 //////////////////////////JUICES AND STUFF ///////////////////////
@@ -568,6 +586,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/grenadine/empty
 	list_reagents = null
 
+/*
 ////////////////////////// MOLOTOV ///////////////////////
 /obj/item/reagent_containers/food/drinks/bottle/molotov
 	name = "molotov cocktail"
@@ -629,19 +648,20 @@
 /obj/item/reagent_containers/food/drinks/bottle/molotov/attack_self(mob/user)
 	if(active)
 		if(!isGlass)
-			to_chat(user, "<span class='danger'>The flame's spread too far on it!</span>")
+			to_chat(user, SPAN_DANGER("The flame's spread too far on it!"))
 			return
 		to_chat(user, "<span class='info'>You snuff out the flame on [src].</span>")
 		cut_overlay(GLOB.fire_overlay)
 		active = 0
+*/
 
 /obj/item/export/bottle/attack_self(mob/user)
-	to_chat(user, "<span class='danger'>The seal seems fine. Best to not open it.</span>")
+	to_chat(user, SPAN_DANGER("The seal seems fine. Best to not open it."))
 	return
 
 /obj/item/export/bottle
 	name = "Report this please"
-	desc = "A sealed bottle of alcohol, ready to be exported"
+	desc = "A sealed bottle of alcohol, ready to be exported."
 	icon = 'icons/obj/drinks.dmi'
 	force = 0
 	throwforce = 0

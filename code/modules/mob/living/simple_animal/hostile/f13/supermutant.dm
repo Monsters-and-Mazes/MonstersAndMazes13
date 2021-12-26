@@ -62,7 +62,7 @@
 	if(prob(85) || Proj.damage > 26)
 		return ..()
 	else
-		visible_message("<span class='danger'>\The [Proj] is deflected harmlessly by \the [src]'s thick skin!</span>")
+		visible_message(SPAN_DANGER("\The [Proj] is deflected harmlessly by \the [src]'s thick skin!"))
 		return FALSE
 
 /mob/living/simple_animal/hostile/supermutant/death(gibbed)
@@ -96,7 +96,7 @@
 	icon_state = icon_dead
 	anchored = FALSE
 	if(!gibbed)
-		visible_message("<span class='danger'>\the [src] shouts something incoherent about brahmins for the last time and stops moving...</span>")
+		visible_message(SPAN_DANGER("\the [src] shouts something incoherent about brahmins for the last time and stops moving..."))
 	..()
 
 /mob/living/simple_animal/hostile/supermutant/meleemutant
@@ -141,7 +141,7 @@
 
 /mob/living/simple_animal/hostile/supermutant/legendary
 	name = "legendary super mutant"
-	desc = "A huge and ugly mutant humanoid.He has a faint yellow glow to him, scars adorn his body. This super mutant is a grizzled vetern of combat. Look out!"
+	desc = "A huge and ugly mutant humanoid. He has a faint yellow glow to him, and scars adorn his body. This super mutant is a grizzled vetern of combat. Look out!"
 	color = "#FFFF00"
 	icon_state = "hulk_113_s"
 	icon_living = "hulk_113_s"
@@ -255,3 +255,58 @@
 	if(prob(40))
 		new /obj/item/gun/energy/laser/plasma(T)
 	. = ..()
+
+/mob/living/simple_animal/hostile/supermutant/suicider
+	name = "super mutant suicider"
+	desc = "A huge and ugly mutant humanoid. Wait is that a mininuke in it's hand ?"
+	icon_state = "hulk_suicider_s"
+	icon_living = "hulk_suicider_s"
+	icon_dead = null
+	maxHealth = 500
+	health = 500
+	del_on_death = 1
+	loot = list(/obj/effect/decal/cleanable/blood/gibs/core, /obj/effect/decal/cleanable/blood/gibs)
+
+/mob/living/simple_animal/hostile/supermutant/suicider/Aggro()
+	..()
+	visible_message("With anger stares at it's target, pressing down on their nuke as it starts violently beeping.")
+	do_sparks(6, TRUE, src)
+	for(var/i in 1 to 3)
+		addtimer(CALLBACK(src, .proc/do_death_beep), i * 1 SECONDS)
+	addtimer(CALLBACK(src, .proc/self_destruct), 6 SECONDS)
+	return ..()
+
+/mob/living/simple_animal/hostile/supermutant/suicider/proc/do_death_beep()
+	playsound(src, 'sound/machines/triple_beep.ogg', 100, TRUE)
+	visible_message(SPAN_WARNING("You hear an ominous beep coming from [src]!"), SPAN_WARNING("You hear an ominous beep!"))
+
+/mob/living/simple_animal/hostile/supermutant/suicider/proc/self_destruct()
+	explosion(src,1,1,8,8)
+	qdel(src)
+
+/mob/living/simple_animal/hostile/supermutant/rangedmutant/enclave
+	name = "enclave super mutant"
+	desc = "A huge and ugly mutant humanoid.  This one is armed with a laser gatling and suited up in T-51b."
+	icon_state = "hulk_enclave"
+	icon_living = "hulk_enclave"
+	icon_dead = "hulk_enclave_dead"
+	ranged = 1
+	maxHealth = 2500
+	health = 2500
+	speed = 1.4
+	retreat_distance = 2
+	minimum_distance = 6
+	projectiletype = /obj/item/projectile/beam/mutant
+	projectilesound = 'sound/weapons/laser.ogg'
+	extra_projectiles = 8
+	ranged_cooldown_time = 20
+	loot = list()
+	taunt_chance = 0
+	idlesound = list()
+	death_sound = list('sound/f13npc/supermutant/death1.ogg', 'sound/f13npc/supermutant/death2.ogg')
+	aggrosound = list('sound/f13npc/supermutant/alert1.ogg', 'sound/f13npc/supermutant/alert2.ogg', 'sound/f13npc/supermutant/alert3.ogg', 'sound/f13npc/supermutant/alert4.ogg')
+
+/mob/living/simple_animal/hostile/supermutant/rangedmutant/enclave/minigun
+	desc = "A huge and ugly mutant humanoid.  This one is armed with a minigun and suited up in T-51b."
+	projectiletype = /obj/item/projectile/bullet/c5mm
+	projectilesound = 'sound/f13weapons/assault_carbine.ogg'

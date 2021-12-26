@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/alien
-	name = "Ettercap"
-	desc = "A hideous creatures that resemble a cross between a gangly ape and a bloated spider."
-	icon = 'icons/mob/deathclaw.dmi'
+	name = "wanamingo"
+	desc = "Hiss!"
+	icon = 'icons/fallout/mobs/monsters/wanamingo.dmi'
 	icon_state = "wanamingo"
 	icon_living = "wanamingo"
 	icon_dead = "wanamingo_dead"
@@ -37,17 +37,11 @@
 	unique_name = 1
 	gold_core_spawnable = NO_SPAWN
 	death_sound = 'sound/voice/hiss6.ogg'
-	deathmessage = "Lets out a beastly screech, made to hurt the ears. Black goop fell out of their blob-like corpse as it collapsed into a puddle on the floor."
+	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
 
 /mob/living/simple_animal/hostile/alien/Initialize()
 	. = ..()
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_CLAW)
-
-/mob/living/simple_animal/hostile/alien/AttackingTarget()
-	. = ..()
-	if(. && ishuman(target))
-		var/mob/living/carbon/human/H = target
-		H.reagents.add_reagent(/datum/reagent/toxin/cazador_venom, 1)
 
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"

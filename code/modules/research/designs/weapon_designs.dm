@@ -229,7 +229,7 @@
 	build_path = /obj/item/firing_pin/test_range
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
-
+/*
 /datum/design/pin_mindshield
 	name = "Mindshield Firing Pin"
 	desc = "This is a security firing pin which only authorizes users who are mindshield-implanted."
@@ -239,7 +239,7 @@
 	build_path = /obj/item/firing_pin/implant/mindshield
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
+*/
 /datum/design/pin_explorer
 	name = "Outback Firing Pin"
 	desc = "This firing pin only shoots while ya ain't on station, fair dinkum!"
@@ -294,7 +294,7 @@
 	build_path = /obj/item/gun/energy/beam_rifle
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-*/
+
 
 /datum/design/decloner
 	name = "Decloner"
@@ -307,6 +307,7 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+
 /datum/design/rapidsyringe
 	name = "Rapid Syringe Gun"
 	desc = "A gun that fires many syringes."
@@ -316,6 +317,7 @@
 	build_path = /obj/item/gun/syringe/rapidsyringe
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+*/
 
 /datum/design/temp_gun
 	name = "Temperature Gun"
@@ -361,8 +363,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/wormhole_projector
-	name = "Bluespace Wormhole Projector"
-	desc = "A projector that emits high density quantum-coupled bluespace beams."
+	name = "Quantum Wormhole Projector"
+	desc = "A projector that emits high density quantum-coupled quantum beams."
 	id = "wormholeprojector"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/silver = 2000, /datum/material/iron = 5000, /datum/material/diamond = 2000, /datum/material/bluespace = 3000)
@@ -371,8 +373,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/gravitygun
-	name = "One-point Bluespace-gravitational Manipulator"
-	desc = "A multi-mode device that blasts one-point bluespace-gravitational bolts that locally distort gravity."
+	name = "One-point Quantum-gravitational Manipulator"
+	desc = "A multi-mode device that blasts one-point quantum-gravitational bolts that locally distort gravity."
 	id = "gravitygun"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/silver = 8000, /datum/material/uranium = 8000, /datum/material/glass = 12000, /datum/material/iron = 12000, /datum/material/diamond = 3000, /datum/material/bluespace = 3000)
@@ -415,7 +417,7 @@
 ///////////
 //Grenades/
 ///////////
-
+/*
 /datum/design/large_grenade
 	name = "Large Grenade"
 	desc = "A grenade that affects a larger area and use larger containers."
@@ -455,7 +457,7 @@
 	build_path = /obj/item/grenade/chem_grenade/adv_release
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
-
+*/
 ///////////
 //Shields//
 ///////////
@@ -524,7 +526,7 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 */
-
+/*
 /datum/design/mindshield
 	name = "Mindshield Implant"
 	desc = "A mindshield implant."
@@ -534,7 +536,7 @@
 	build_path = /obj/item/implantcase/mindshield
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
+*/
 /datum/design/mfc
 	name = "Microfusion Cell"
 	id = "mfc"
@@ -622,3 +624,63 @@
 	build_path = /obj/item/advanced_crafting_components/alloys
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/crusader_pistol
+	name = "crusader pistol 10mm conversion kit"
+	desc = "A conversion kit for crusader pistols."
+	id = "crusader_pistol"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 10000)
+	build_path = /obj/item/modkit/crusader_10mm
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/crusader_rifle
+	name = "crusader pistol 5.56mm conversion kit"
+	desc = "A conversion kit for crusader pistols."
+	id = "crusader_rifle"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 10000, /datum/material/gold = 2500, /datum/material/silver = 2500)
+	build_path = /obj/item/modkit/crusader_556
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/crusader_caseless
+	name = "crusader pistol 4.73mm conversion kit"
+	desc = "A conversion kit for crusader pistols."
+	id = "crusader_caseless"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 10000, /datum/material/gold = 2500, /datum/material/silver = 2500)
+	build_path = /obj/item/modkit/crusader_473
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/crusader_laser
+	name = "crusader pistol laser conversion kit"
+	desc = "A conversion kit for crusader pistols."
+	id = "crusader_laser"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 10000, /datum/material/gold = 2500, /datum/material/silver = 2500)
+	build_path = /obj/item/modkit/crusader_laser
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/maxson
+	name = "maxson carbine 5.56mm conversion kit"
+	desc = "A conversion kit for maxson carbines."
+	id = "maxson"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/plastic = 10000, /datum/material/glass = 10000, /datum/material/titanium = 5000)
+	build_path = /obj/item/modkit/maxson
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/maxson_c5mm
+	name = "maxson carbine 5mm conversion kit"
+	desc = "A conversion kit for maxson carbines."
+	id = "maxson_5mm"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/plastic = 10000, /datum/material/glass = 10000, /datum/material/titanium = 15000)
+	build_path = /obj/item/modkit/maxson_c5mm
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

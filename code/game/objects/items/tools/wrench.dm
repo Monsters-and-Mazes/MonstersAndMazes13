@@ -10,6 +10,10 @@
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
+	unique_reskin = list("Brass" = "wrench_clock",
+					"Bronze" = "wrench_brass",
+					"Caravan" = "wrench_caravan"
+					)
 	usesound = 'sound/items/ratchet.ogg'
 	custom_materials = list(/datum/material/iron=150)
 
@@ -73,7 +77,7 @@
 /obj/item/wrench/power/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	var/obj/item/wirecutters/power/s_drill = new /obj/item/screwdriver/power(drop_location())
-	to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
+	to_chat(user, SPAN_NOTICE("You attach the screw driver bit to [src]."))
 	qdel(src)
 	user.put_in_active_hand(s_drill)
 

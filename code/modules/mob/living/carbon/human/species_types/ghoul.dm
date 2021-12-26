@@ -3,9 +3,9 @@
 	id = "ghoul"
 	say_mod = "rasps"
 	limbs_id = "ghoul"
-	species_traits = list(HAIR,FACEHAIR)
+	species_traits = list(HAIR, FACEHAIR, NOGENITALS)
 	inherent_traits = list(TRAIT_RADIMMUNE, TRAIT_NOBREATH)
-	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	inherent_biotypes = list(MOB_HUMANOID)
 	punchstunthreshold = 9
 	use_skintones = 0
 	sexes = 1
@@ -24,16 +24,16 @@
 	for(var/obj/item/bodypart/b in C.bodyparts)
 		b.max_damage = initial(b.max_damage)
 
-/*
 /datum/species/ghoul/qualifies_for_rank(rank, list/features)
-	if(rank in GLOB.legion_positions) /* legion HATES these ghoul */
+/*	if(rank in GLOB.legion_positions) /* legion HATES these ghoul */
 		return 0
 	if(rank in GLOB.brotherhood_positions) //don't hate them, just tolorate.
 		return 0
 	if(rank in GLOB.vault_positions) //purest humans left in america. supposedly.
-		return 0
+		return 0*/
+//commented as an example for how to deny access to certain jobs for a given race
 	return ..()
-*/
+
 /*/datum/species/ghoul/glowing
 	name = "Glowing Ghoul"
 	id = "glowing ghoul"

@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/deathclaw
 	name = "deathclaw"
 	desc = "A massive, reptilian creature with powerful muscles, razor-sharp claws, and aggression to match."
-	icon = 'icons/mob/deathclaw.dmi'
+	icon = 'icons/fallout/mobs/monsters/deathclaw.dmi'
 	icon_state = "deathclaw"
 	icon_living = "deathclaw"
 	icon_dead = "deathclaw_dead"
@@ -24,13 +24,13 @@
 	response_help_simple  = "pets"
 	response_disarm_simple = "gently pushes aside"
 	response_harm_simple   = "hits"
-	maxHealth = 750
-	health = 750
+	maxHealth = 600
+	health = 600
 	obj_damage = 300
 	environment_smash = 2 //wall-busts
 	armour_penetration = 0.7
-	melee_damage_lower = 80
-	melee_damage_upper = 85
+	melee_damage_lower = 75
+	melee_damage_upper = 75
 	attack_verb_simple = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = list("deathclaw")
@@ -60,26 +60,27 @@
 	name = "mother deathclaw"
 	desc = "A massive, reptilian creature with powerful muscles, razor-sharp claws, and aggression to match. This one is an angry mother."
 	gender = FEMALE
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 800
+	health = 800
 	stat_attack = UNCONSCIOUS
-	melee_damage_lower = 76
-	melee_damage_upper = 78
+	melee_damage_lower = 80
+	melee_damage_upper = 80
 	armour_penetration = 0.75
 	color = rgb(95,104,94)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/deathclaw = 6,
-							/obj/item/stack/sheet/animalhide/deathclaw = 3)
+		/obj/item/reagent_containers/food/snacks/f13/deathclawegg = 1,
+		/obj/item/stack/sheet/animalhide/deathclaw = 3)
 
 /mob/living/simple_animal/hostile/deathclaw/legendary
 	name = "legendary deathclaw"
 	desc = "A massive, reptilian creature with powerful muscles, razor-sharp claws, and aggression to match. This one is a legendary enemy."
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 1200
+	health = 1200
 	color = "#FFFF00"
 	stat_attack = UNCONSCIOUS
-	melee_damage_lower = 80
-	melee_damage_upper = 85
-	armour_penetration = 0.85
+	melee_damage_lower = 90
+	melee_damage_upper = 90
+	armour_penetration = 0.9
 
 /mob/living/simple_animal/hostile/deathclaw/legendary/death(gibbed)
 	var/turf/T = get_turf(src)
@@ -91,13 +92,13 @@
 	if(!Proj)
 		return
 	if(prob(10))
-		visible_message("<span class='danger'>\The [src] growls, enraged!</span>")
+		visible_message(SPAN_DANGER("\The [src] growls, enraged!"))
 		sleep(3)
 		Charge()
 	if(prob(85) || Proj.damage > 30) //prob(x) = chance for proj to actually do something, adjust depending on how OP you want deathclaws to be
 		return ..()
 	else
-		visible_message("<span class='danger'>\The [Proj] bounces off \the [src]'s thick hide!</span>")
+		visible_message(SPAN_DANGER("\The [Proj] bounces off \the [src]'s thick hide!"))
 		return 0
 
 /mob/living/simple_animal/hostile/deathclaw/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
@@ -125,7 +126,7 @@
 	if(!T || T == loc)
 		return
 	charging = TRUE
-	visible_message("<span class='danger'>[src] charges!</span>")
+	visible_message(SPAN_DANGER("[src] charges!"))
 	DestroySurroundings()
 	walk(src, 0)
 	setDir(get_dir(src, T))
@@ -152,7 +153,7 @@
 
 	else if(isliving(A))
 		var/mob/living/L = A
-		L.visible_message("<span class='danger'>[src] slams into [L]!</span>", "<span class='userdanger'>[src] slams into you!</span>")
+		L.visible_message(SPAN_DANGER("[src] slams into [L]!"), "<span class='userdanger'>[src] slams into you!</span>")
 		L.apply_damage(melee_damage_lower/2, BRUTE)
 		playsound(get_turf(L), 'sound/effects/meteorimpact.ogg', 100, 1)
 		shake_camera(L, 4, 3)

@@ -4,6 +4,7 @@
 #define CASH_AUR_GANG 100 /* 100 caps to 1 AUR */
 #define CASH_DEN_GANG 4 /* 4 caps to 1 DEN */
 #define CASH_NCR_GANG 0.4 /* $100 to 40 caps */
+#define CASH_BOS_GANG 2 /* 2 caps to 1 BAWLS */
 
 //Gangtool device
 /obj/item/device/gangtool
@@ -25,7 +26,7 @@
 /obj/item/device/gangtool/attack_self(mob/user)
 	var/datum/gang/GA = user.gang
 	if(!GA || GA.leader != user || GA != gang)
-		to_chat(user, "<span class='warning'>Underground suppliers refuse to talk with you!</span>")
+		to_chat(user, SPAN_WARNING("Underground suppliers refuse to talk with you!"))
 		return
 
 	var/dat
@@ -41,6 +42,7 @@
 	dat += "1 NCR dollar = [CASH_NCR_GANG] influence <br>"
 	dat += "1 Denarius = [CASH_DEN_GANG] influence <br>"
 	dat += "1 Aureus = [CASH_AUR_GANG] influence <br>"
+	dat += "1 BAWLS cap = [CASH_BOS_GANG] influence <br>"
 	dat += "</div>"
 	dat += "<br>"
 
@@ -71,7 +73,7 @@
 /obj/item/device/gangtool/Topic(href, href_list)
 	var/datum/gang/GA = usr.gang
 	if(!GA || GA.leader != usr)
-		to_chat(usr, "<span class='warning'>Underground suppliers refuse to talk with you!</span>")
+		to_chat(usr, SPAN_WARNING("Underground suppliers refuse to talk with you!"))
 		return
 
 	add_fingerprint(usr)
@@ -118,6 +120,14 @@
 	else if(istype(I, /obj/item/stack/f13Cash/aureus))
 		var/obj/item/stack/f13Cash/aureus/currency = I
 		var/inserted_value = currency.amount * CASH_AUR_GANG
+		gang.influence += inserted_value
+		I.use(currency.amount)
+		playsound(src, 'sound/items/change_jaws.ogg', 60, 1)
+		to_chat(usr, "You gain [inserted_value] gang influence by bribing underground suppliers.")
+		attack_self(usr)
+	else if(istype(I, /obj/item/stack/f13Cash/bawls))
+		var/obj/item/stack/f13Cash/bawls/currency = I
+		var/inserted_value = currency.amount * CASH_BOS_GANG
 		gang.influence += inserted_value
 		I.use(currency.amount)
 		playsound(src, 'sound/items/change_jaws.ogg', 60, 1)

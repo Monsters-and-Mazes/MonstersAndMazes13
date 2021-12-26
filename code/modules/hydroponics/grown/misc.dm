@@ -58,7 +58,7 @@
 		return
 
 	var/datum/gas_mixture/stank = new
-	stank.adjust_moles(/datum/gas/miasma,(yield + 6)*7*0.02) // this process is only being called about 2/7 as much as corpses so this is 12-32 times a corpses
+	stank.adjust_moles(GAS_MIASMA,(yield + 6)*0.14) // 0.14 = 7*0.02, this process is only being called about 2/7 as much as corpses so this is 12-32 times a corpses
 	stank.set_temperature(T20C) // without this the room would eventually freeze and miasma mining would be easier
 	T.assume_air(stank)
 	T.air_update_turf()
@@ -116,7 +116,6 @@
 	growthstages = 1
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/replicapod)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/reagent_containers/food/snacks/grown/cabbage
@@ -212,7 +211,7 @@
 	wine_power = 80
 
 /obj/item/reagent_containers/food/snacks/grown/cherry_bomb/attack_self(mob/living/user)
-	user.visible_message("<span class='warning'>[user] plucks the stem from [src]!</span>", "<span class='userdanger'>You pluck the stem from [src], which begins to hiss loudly!</span>")
+	user.visible_message(SPAN_WARNING("[user] plucks the stem from [src]!"), "<span class='userdanger'>You pluck the stem from [src], which begins to hiss loudly!</span>")
 	message_admins("[ADMIN_LOOKUPFLW(user)] primed a cherry bomb for detonation at [ADMIN_VERBOSEJMP(user)]")
 	log_game("[key_name(user)] primed a cherry bomb for detonation at [AREACOORD(user)].")
 	prime()
@@ -285,8 +284,6 @@
 	reagents.maximum_volume = newvolume
 	reagents.update_total()
 
-	transform *= TRANSFORM_USING_VARIABLE(40, 100) + 0.5 //temporary fix for size?
-
 /obj/item/reagent_containers/food/snacks/grown/coconut/attack_self(mob/user)
 	if (!opened)
 		return
@@ -302,54 +299,13 @@
 			amount_per_transfer_from_this = possible_transfer_amounts[i+1]
 		else
 			amount_per_transfer_from_this = possible_transfer_amounts[1]
-		to_chat(user, "<span class='notice'>[src]'s transfer amount is now [amount_per_transfer_from_this] units.</span>")
+		to_chat(user, SPAN_NOTICE("[src]'s transfer amount is now [amount_per_transfer_from_this] units."))
 		return
 
 /obj/item/reagent_containers/food/snacks/grown/coconut/attackby(obj/item/W, mob/user, params)
-	//DEFUSING NADE LOGIC
-	if (W.tool_behaviour == TOOL_WIRECUTTER && fused)
-		user.show_message("<span class='notice'>You cut the fuse!</span>", MSG_VISUAL)
-		playsound(user, W.hitsound, 50, 1, -1)
-		icon_state = "coconut_carved"
-		desc = "A coconut. This one's got a hole in it."
-		name = "coconut"
-		defused = TRUE
-		fused = FALSE
-		fusedactive = FALSE
-		if(!seed.get_gene(/datum/plant_gene/trait/glow))
-			set_light(0, 0.0)
-		return
-	//IGNITING NADE LOGIC
-	if(!fusedactive && fused)
-		var/lighting_text = W.ignition_effect(src, user)
-		if(lighting_text)
-			user.visible_message("<span class='warning'>[user] ignites [src]'s fuse!</span>", "<span class='userdanger'>You ignite the [src]'s fuse!</span>")
-			fusedactive = TRUE
-			defused = FALSE
-			playsound(src, 'sound/effects/fuse.ogg', 100, 0)
-			message_admins("[ADMIN_LOOKUPFLW(user)] ignited a coconut bomb for detonation at [ADMIN_VERBOSEJMP(user)] [pretty_string_from_reagent_list(reagents.reagent_list)]")
-			log_game("[key_name(user)] primed a coconut grenade for detonation at [AREACOORD(user)].")
-			addtimer(CALLBACK(src, .proc/prime), 5 SECONDS)
-			icon_state = "coconut_grenade_active"
-			desc = "RUN!"
-			if(!seed.get_gene(/datum/plant_gene/trait/glow))
-				light_color = "#FFCC66" //for the fuse
-				set_light(3, 0.8)
-			return
-
-	//ADDING A FUSE, NADE LOGIC
-	if (istype(W,/obj/item/stack/sheet/cloth) || istype(W,/obj/item/stack/sheet/durathread))
-		if (carved && !straw && !fused)
-			user.show_message("<span class='notice'>You add a fuse to the coconut!</span>", 1)
-			W.use(1)
-			fused = TRUE
-			icon_state = "coconut_grenade"
-			desc = "A makeshift bomb made out of a coconut. You estimate the fuse is long enough for 5 seconds."
-			name = "coconut bomb"
-			return
 	//ADDING STRAW LOGIC
 	if (istype(W,/obj/item/stack/sheet/mineral/bamboo) && opened && !straw && fused)
-		user.show_message("<span class='notice'>You add a bamboo straw to the coconut!</span>", 1)
+		user.show_message(SPAN_NOTICE("You add a bamboo straw to the coconut!"), 1)
 		straw = TRUE
 		W.use(1)
 		icon_state += "_straw"
@@ -359,7 +315,7 @@
 	if (!carved && !chopped)
 		var/screwdrivered = W.tool_behaviour == TOOL_SCREWDRIVER
 		if(screwdrivered || W.sharpness)
-			user.show_message("<span class='notice'>You [screwdrivered ? "make a hole in the coconut" : "slice the coconut open"]!</span>", 1)
+			user.show_message(SPAN_NOTICE("You [screwdrivered ? "make a hole in the coconut" : "slice the coconut open"]!"), 1)
 			carved = TRUE
 			opened = TRUE
 			spillable = !screwdrivered
@@ -387,10 +343,10 @@
 
 			//Display an attack message.
 			if(M != user)
-				M.visible_message("<span class='danger'>[user] has cracked open a [name] on [M]'s head!</span>", \
+				M.visible_message(SPAN_DANGER("[user] has cracked open a [name] on [M]'s head!"), \
 						"<span class='userdanger'>[user] has cracked open a [name] on [M]'s head!</span>")
 			else
-				user.visible_message("<span class='danger'>[M] cracks open a [name] on their [M.p_them()] head!</span>", \
+				user.visible_message(SPAN_DANGER("[M] cracks open a [name] on their [M.p_them()] head!"), \
 						"<span class='userdanger'>[M] cracks open a [name] on [M.p_their()] head!</span>")
 
 			//The coconut breaks open so splash its reagents
@@ -413,12 +369,12 @@
 		return
 
 	if(!reagents || !reagents.total_volume)
-		to_chat(user, "<span class='warning'>[src] is empty!</span>")
+		to_chat(user, SPAN_WARNING("[src] is empty!"))
 		return
 
 	if(user.a_intent == INTENT_HARM && spillable)
 		var/R
-		M.visible_message("<span class='danger'>[user] splashes the contents of [src] onto [M]!</span>", \
+		M.visible_message(SPAN_DANGER("[user] splashes the contents of [src] onto [M]!"), \
 						"<span class='userdanger'>[user] splashes the contents of [src] onto [M]!</span>")
 		if(reagents)
 			for(var/datum/reagent/A in reagents.reagent_list)
@@ -432,16 +388,16 @@
 		reagents.clear_reagents()
 	else
 		if(M != user)
-			M.visible_message("<span class='danger'>[user] attempts to feed something to [M].</span>", \
+			M.visible_message(SPAN_DANGER("[user] attempts to feed something to [M]."), \
 						"<span class='userdanger'>[user] attempts to feed something to you.</span>")
 			if(!do_mob(user, M))
 				return
 			if(!reagents || !reagents.total_volume)
 				return // The drink might be empty after the delay, such as by spam-feeding
-			M.visible_message("<span class='danger'>[user] feeds something to [M].</span>", "<span class='userdanger'>[user] feeds something to you.</span>")
+			M.visible_message(SPAN_DANGER("[user] feeds something to [M]."), "<span class='userdanger'>[user] feeds something to you.</span>")
 			log_combat(user, M, "fed", reagents.log_list())
 		else
-			to_chat(user, "<span class='notice'>You swallow a gulp of [src].</span>")
+			to_chat(user, SPAN_NOTICE("You swallow a gulp of [src]."))
 		var/fraction = min(5/reagents.total_volume, 1)
 		reagents.reaction(M, INGEST, fraction)
 		addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, M, 5), 5)
@@ -457,56 +413,37 @@
 
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!reagents.total_volume)
-			to_chat(user, "<span class='warning'>[src] is empty!</span>")
+			to_chat(user, SPAN_WARNING("[src] is empty!"))
 			return
 
 		if(target.reagents.holder_full())
-			to_chat(user, "<span class='warning'>[target] is full.</span>")
+			to_chat(user, SPAN_WARNING("[target] is full."))
 			return
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>")
+		to_chat(user, SPAN_NOTICE("You transfer [trans] unit\s of the solution to [target]."))
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[target] is empty and can't be refilled!</span>")
+			to_chat(user, SPAN_WARNING("[target] is empty and can't be refilled!"))
 			return
 
 		if(reagents.holder_full())
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, SPAN_WARNING("[src] is full."))
 			return
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
+		to_chat(user, SPAN_NOTICE("You fill [src] with [trans] unit\s of the contents of [target]."))
 
 	else if(reagents.total_volume)
 		if(user.a_intent == INTENT_HARM && spillable == TRUE)
-			user.visible_message("<span class='danger'>[user] splashes the contents of [src] onto [target]!</span>", \
-								"<span class='notice'>You splash the contents of [src] onto [target].</span>")
+			user.visible_message(SPAN_DANGER("[user] splashes the contents of [src] onto [target]!"), \
+								SPAN_NOTICE("You splash the contents of [src] onto [target]."))
 			reagents.reaction(target, TOUCH)
 			reagents.clear_reagents()
 
-/obj/item/reagent_containers/food/snacks/grown/coconut/dropped(mob/user)
-	. = ..()
-	transform *= TRANSFORM_USING_VARIABLE(40, 100) + 0.5 //temporary fix for size?
-
-/obj/item/reagent_containers/food/snacks/grown/coconut/proc/prime()
-	if (defused)
-		return
-	var/turf/T = get_turf(src)
-	reagents.chem_temp = 1000
-	reagents.handle_reactions()
-	log_game("Coconut bomb detonation at [AREACOORD(T)], location [loc]")
-	qdel(src)
-
 /obj/item/reagent_containers/food/snacks/grown/coconut/ex_act(severity)
 	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/grown/coconut/deconstruct(disassembled = TRUE)
-	if(!disassembled && fused)
-		prime()
-	if(!QDELETED(src))
-		qdel(src)
 
 /obj/item/seeds/aloe
 	name = "pack of aloe seeds"
@@ -538,3 +475,64 @@
 /obj/item/reagent_containers/food/snacks/grown/aloe/microwave_act(obj/machinery/microwave/M)
 	new /obj/item/stack/medical/aloe(drop_location(), 2)
 	qdel(src)
+
+///Star Cactus seeds, mutation of lavaland cactus.
+/obj/item/seeds/star_cactus
+	name = "pack of star cacti seeds"
+	desc = "These seeds grow into star cacti."
+	icon_state = "seed-starcactus"
+	species = "starcactus"
+	plantname = "Star Cactus Cluster"
+	product = /obj/item/reagent_containers/food/snacks/grown/star_cactus
+	lifespan = 60
+	endurance = 30
+	maturation = 7
+	production = 6
+	yield = 3
+	growthstages = 4
+	genes = list(/datum/plant_gene/trait/stinging)
+	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
+	reagents_add = list(/datum/reagent/water = 0.08, /datum/reagent/consumable/nutriment = 0.05)
+
+///Star Cactus Plants.
+/obj/item/reagent_containers/food/snacks/grown/star_cactus
+	seed = /obj/item/seeds/star_cactus
+	name = "star cacti"
+	desc = "A small cluster of prickly star-shaped cacti."
+	icon_state = "starcactus"
+	filling_color = "#1c801c"
+	foodtype = VEGETABLES
+	distill_reagent = /datum/reagent/consumable/ethanol/tequila
+	
+///Shrubs
+/obj/item/seeds/shrub
+	name = "pack of shrub seeds"
+	desc = "These seeds grow into hedge shrubs."
+	icon_state = "seed-shrub"
+	species = "shrub"
+	plantname = "Shrubbery"
+	product = /obj/item/grown/shrub
+	lifespan = 40
+	endurance = 30
+	maturation = 4
+	production = 6
+	yield = 2
+	instability = 10
+	growthstages = 3
+	reagents_add = list()
+	
+/obj/item/grown/shrub
+	seed = /obj/item/seeds/shrub
+	name = "shrub"
+	desc = "A shrubbery, it looks nice and it was only a few credits too. Plant it on the ground to grow a hedge, shrubbing skills not required."
+	icon_state = "shrub"
+	
+/obj/item/grown/shrub/attack_self(mob/user)
+//	var/turf/player_turf = get_turf(user)
+//	if(player_turf?.is_blocked_turf(TRUE))
+//		return FALSE
+	user.visible_message(SPAN_DANGER("[user] begins to plant \the [src]."))
+	if(do_after(user, 8 SECONDS, target = user.drop_location(), progress = TRUE))
+		new /obj/structure/fluff/hedge/opaque(user.drop_location())
+		to_chat(user, SPAN_NOTICE("You plant \the [src]."))
+		qdel(src)

@@ -1,4 +1,5 @@
 // Used for translating channels to tokens on examination
+/* // Superseded by telecomms_overrides.dm
 GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_COMMON = RADIO_KEY_COMMON,
 	RADIO_CHANNEL_SCIENCE = RADIO_TOKEN_SCIENCE,
@@ -18,8 +19,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_ENCLAVE = RADIO_TOKEN_ENCLAVE,
 	RADIO_CHANNEL_TOWN = RADIO_TOKEN_TOWN,
 	RADIO_CHANNEL_LEGION = RADIO_TOKEN_LEGION,
-	RADIO_CHANNEL_RANGER = RADIO_TOKEN_RANGER
+	RADIO_CHANNEL_RANGER = RADIO_TOKEN_RANGER,
+	RADIO_CHANNEL_KHANS = RADIO_TOKEN_KHANS
 ))
+*/
 
 /obj/item/radio/headset
 	name = "radio headset"
@@ -58,7 +61,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		if(command)
 			. += "<span class='info'>Alt-click to toggle the high-volume mode.</span>"
 	else
-		. += "<span class='notice'>A small screen on the headset flashes, it's too small to read without holding or wearing the headset.</span>"
+		. += SPAN_NOTICE("A small screen on the headset flashes, it's too small to read without holding or wearing the headset.")
 
 /obj/item/radio/headset/ComponentInitialize()
 	. = ..()
@@ -261,133 +264,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = null
 	bowman = TRUE
 
-//FALLOUT
-/obj/item/radio/headset/headset_overseer
-	name = "\proper the overseer's radio headset"
-	desc = "This is used by the vault overseer.\nChannels are as follows: :v - vault, :c - command, :s - security, :e - engineering, :m - medical, :n - science."
-	icon_state = "com_headset"
-	keyslot = new /obj/item/encryptionkey/headset_overseer
-
-/obj/item/radio/headset/headset_vault_hos
-	name = "\proper the chief of security's radio headset"
-	desc = "The headset of the man in charge of keeping order and protecting the vault.\nChannels are as follows: :v - vault, :c - command, :s - security."
-	icon_state = "com_headset"
-	keyslot = new /obj/item/encryptionkey/headset_vault_hos
-
-/obj/item/radio/headset/headset_vault_hos/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
-
-/obj/item/radio/headset/headset_vault
-	name = "\proper vault radio headset"
-	desc = "A vault-tec radio.\nChannels are as follows: :v - vault."
-	keyslot = new /obj/item/encryptionkey/headset_vault
-
-/obj/item/radio/headset/headset_vaultsec
-	name = "security radio headset"
-	desc = "This is used by your elite security force.\nTo access the security channel, use :s. To access the vault channel, use :v."
-	icon_state = "sec_headset"
-	keyslot = new /obj/item/encryptionkey/headset_vault_security
-
-/obj/item/radio/headset/headset_vaultsec/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
-
-/obj/item/radio/headset/headset_vault_hos/alt
-	name = "\proper the head of security's bowman headset"
-	desc = "The headset of the man in charge of keeping order and protecting the station. Protects ears from flashbangs.\nTo access the security channel, use :s. For command, use :c. For vault, use :v"
-	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
-
-/obj/item/radio/headset/headset_ncr
-	name = "NCR radio headset"
-	desc = "This is used by the New California Republic.\nTo access the NCR channel, use :w."
-	icon_state = "mine_headset"
-	keyslot = new /obj/item/encryptionkey/headset_ncr
-
-/obj/item/radio/headset/headset_ncr/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
-
-/obj/item/radio/headset/headset_ranger
-	name = "Ranger radio headset"
-	desc = "This is used by the New California Republic.\nTo access the NCR channel, use :w. \nTo access the Ranger channel, use :r"
-	icon_state = "mine_headset"
-	keyslot = new /obj/item/encryptionkey/headset_ranger
-
-/obj/item/radio/headset/headset_ranger/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
-
-/obj/item/radio/headset/headset_ncr_com
-	name = "NCR Command radio headset"
-	desc = "This is used by the New California Republic.\nTo access the NCR channel, use :w. \nTo access the Ranger channel, use :r"
-	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
-	keyslot = new /obj/item/encryptionkey/headset_ranger
-
-/obj/item/radio/headset/headset_ncr_com/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
-
-/obj/item/radio/headset/headset_legion
-	name = "Legion radio headset"
-	desc = "This is used by Caesar's Legion.\nTo access the Legion channel, use :l."
-	icon_state = "sec_headset"
-	item_state = "headset_alt"
-	keyslot = new /obj/item/encryptionkey/headset_legion
-
-/obj/item/radio/headset/headset_legion/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
-
-/obj/item/radio/headset/headset_bos
-	name = "brotherhood radio headset"
-	desc = "This is used by the brotherhood of steel.\nTo access the BOS channel, use :q."
-	icon_state = "cent_headset"
-	keyslot = new /obj/item/encryptionkey/headset_bos
-
-/obj/item/radio/headset/headset_bos/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
-
-/obj/item/radio/headset/headset_enclave
-	name = "enclave radio headset"
-	desc = "This is used by the enclave.\nTo access the enclave channel, use :z."
-	icon_state = "sec_headset"
-	keyslot = new /obj/item/encryptionkey/headset_enclave
-
-/obj/item/radio/headset/headset_enclave/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
-
-/obj/item/radio/headset/headset_den
-	name = "town radio headset"
-	desc = "This is used by the town.\nTo access the town channel, use :f."
-	icon_state = "mine_headset"
-	keyslot = new /obj/item/encryptionkey/headset_den
-
-/obj/item/radio/headset/headset_cent
-	name = "\improper Vault-Tec headset"
-	desc = "A headset used by the upper echelons of Vault-Tec.\nTo access the Vault-Tec channel, use :y."
-	icon_state = "cent_headset"
-	keyslot = new /obj/item/encryptionkey/headset_com
-	keyslot2 = new /obj/item/encryptionkey/headset_cent
-
-/obj/item/radio/headset/headset_cent/empty
-	keyslot = null
-	keyslot2 = null
-
-/obj/item/radio/headset/headset_cent/commander
-	keyslot = new /obj/item/encryptionkey/heads/captain
-
-/obj/item/radio/headset/headset_cent/alt
-	name = "\improper Vault-Tec bowman headset"
-	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs.\nTo access the Vault-Tec channel, use :y."
-	icon_state = "cent_headset_alt"
-	item_state = "cent_headset_alt"
-	keyslot = null
-
 /obj/item/radio/headset/silicon/pai
 	name = "\proper mini Integrated Subspace Transceiver "
 	subspace_transmission = FALSE
@@ -408,7 +284,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	user.set_machine(src)
 	if (istype(W,/obj/item/headsetupgrader))
 		if (!bowman)
-			to_chat(user,"<span class='notice'>You upgrade [src].</span>")
+			to_chat(user,SPAN_NOTICE("You upgrade [src]."))
 			bowmanize()
 			qdel(W)
 	if(istype(W, /obj/item/screwdriver))
@@ -427,14 +303,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 					keyslot2 = null
 
 			recalculateChannels()
-			to_chat(user, "<span class='notice'>You pop out the encryption keys in the headset.</span>")
+			to_chat(user, SPAN_NOTICE("You pop out the encryption keys in the headset."))
 
 		else
-			to_chat(user, "<span class='warning'>This headset doesn't have any unique encryption keys!  How useless...</span>")
+			to_chat(user, SPAN_WARNING("This headset doesn't have any unique encryption keys!  How useless..."))
 
 	else if(istype(W, /obj/item/encryptionkey))
 		if(keyslot && keyslot2)
-			to_chat(user, "<span class='warning'>The headset can't hold another key!</span>")
+			to_chat(user, SPAN_WARNING("The headset can't hold another key!"))
 			return
 
 		if(!keyslot)
@@ -476,7 +352,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 	if (command)
 		use_command = !use_command
-		to_chat(user, "<span class='notice'>You toggle high-volume mode [use_command ? "on" : "off"].</span>")
+		to_chat(user, SPAN_NOTICE("You toggle high-volume mode [use_command ? "on" : "off"]."))
 		return TRUE
 
 /obj/item/radio/headset/proc/bowmanize()

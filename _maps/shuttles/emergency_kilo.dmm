@@ -41,7 +41,6 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "ai" = (
-/obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "aj" = (
@@ -971,7 +970,7 @@
 /obj/item/book/manual/wiki/surgery,
 /obj/item/razor,
 /obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/apron/surgical,
+/obj/item/clothing/suit/hooded/surgical,
 /obj/item/clothing/gloves/color/latex,
 /obj/item/reagent_containers/medspray/sterilizine,
 /turf/open/floor/plasteel/dark,

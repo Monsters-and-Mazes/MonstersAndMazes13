@@ -112,13 +112,13 @@
 	for(var/datum/data/record/t in GLOB.data_core.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
-		var/department = 0
+//		var/department = 0
 		if(rank in GLOB.command_positions)
 			command[name] = rank
-			department = 1
+//			department = 1
 		if(rank in GLOB.town_positions)
 			town[name] = rank
-			department = 1
+//			department = 1
 //		if(rank in GLOB.ncr_rangervet_positions)
 //			command[name] = rank
 //			department = 1

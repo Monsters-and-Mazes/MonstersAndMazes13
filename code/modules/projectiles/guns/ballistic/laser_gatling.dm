@@ -14,7 +14,7 @@
 	var/obj/item/gun/ballistic/minigun/gun
 	var/armed = 0 //whether the gun is attached, 0 is attached, 1 is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 40
+	var/overheat_max = 25
 	var/heat_diffusion = 1
 
 /obj/item/minigunpack/Initialize()
@@ -36,12 +36,12 @@
 				armed = 1
 				if(!user.put_in_hands(gun))
 					armed = 0
-					to_chat(user, "<span class='warning'>You need a free hand to hold the gun!</span>")
+					to_chat(user, SPAN_WARNING("You need a free hand to hold the gun!"))
 					return
 				update_icon()
 				user.update_inv_back()
 		else
-			to_chat(user, "<span class='warning'>You are already holding the gun!</span>")
+			to_chat(user, SPAN_WARNING("You are already holding the gun!"))
 	else
 		..()
 
@@ -85,9 +85,9 @@
 	gun.forceMove(src)
 	armed = 0
 	if(user)
-		to_chat(user, "<span class='notice'>You attach the [gun.name] to the [name].</span>")
+		to_chat(user, SPAN_NOTICE("You attach the [gun.name] to the [name]."))
 	else
-		src.visible_message("<span class='warning'>The [gun.name] snaps back onto the [name]!</span>")
+		src.visible_message(SPAN_WARNING("The [gun.name] snaps back onto the [name]!"))
 	update_icon()
 	user.update_inv_back()
 
@@ -103,9 +103,9 @@
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	custom_materials = null
-	burst_size = 3
-	//automatic = 0
-	fire_delay = 1
+	burst_size = 5
+	burst_shot_delay = 1.5
+	fire_delay = 2
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/laser.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/minigun

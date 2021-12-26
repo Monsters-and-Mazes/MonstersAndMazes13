@@ -59,7 +59,6 @@ Tribal Chief
 	head = 			/obj/item/clothing/head/helmet/f13/wayfarer/chief/green
 	uniform = 		/obj/item/clothing/under/f13/tribe_chief
 	belt = 			/obj/item/storage/backpack/spearquiver
-	neck =			/obj/item/clothing/neck/cloak/chiefcloak
 	id = 			/obj/item/card/id/tribetattoo
 	suit =			/obj/item/clothing/suit/armor/f13/tribe_armor
 	suit_store =	/obj/item/twohanded/spear/bonespear/deathclaw

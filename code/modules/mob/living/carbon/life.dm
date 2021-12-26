@@ -108,16 +108,18 @@
 				breath = loc_as_obj.handle_internal_lifeform(src, BREATH_VOLUME)
 
 			else if(isturf(loc)) //Breathe from loc as turf
-				var/breath_moles = 0
+				var/breath_ratio = 0
 				if(environment)
-					breath_moles = environment.total_moles()*BREATH_PERCENTAGE
+					breath_ratio = BREATH_VOLUME/environment.return_volume()
 
-				breath = loc.remove_air(breath_moles)
+				breath = loc.remove_air_ratio(breath_ratio)
 		else //Breathe from loc as obj again
 			if(istype(loc, /obj/))
 				var/obj/loc_as_obj = loc
 				loc_as_obj.handle_internal_lifeform(src,0)
 
+	if(breath)
+		breath.set_volume(BREATH_VOLUME)
 	check_breath(breath)
 
 	if(breath)
@@ -156,11 +158,11 @@
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
 	var/oxygen_used = 0
-	var/breath_pressure = (breath.total_moles()*R_IDEAL_GAS_EQUATION*breath.return_temperature())/BREATH_VOLUME
-
-	var/O2_partialpressure = (breath.get_moles(/datum/gas/oxygen)/breath.total_moles())*breath_pressure
-	var/Toxins_partialpressure = (breath.get_moles(/datum/gas/plasma)/breath.total_moles())*breath_pressure
-	var/CO2_partialpressure = (breath.get_moles(/datum/gas/carbon_dioxide)/breath.total_moles())*breath_pressure
+	var/moles = breath.total_moles()
+	var/breath_pressure = (moles*R_IDEAL_GAS_EQUATION*breath.return_temperature())/BREATH_VOLUME
+	var/O2_partialpressure = ((breath.get_moles(GAS_O2)/moles)*breath_pressure) + (((breath.get_moles(GAS_PLUOXIUM)*8)/moles)*breath_pressure)
+	var/Toxins_partialpressure = (breath.get_moles(GAS_PLASMA)/moles)*breath_pressure
+	var/CO2_partialpressure = (breath.get_moles(GAS_CO2)/moles)*breath_pressure
 
 
 	//OXYGEN
@@ -184,7 +186,7 @@
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
 			failed_last_breath = 1
-			oxygen_used = breath.get_moles(/datum/gas/oxygen)*ratio
+			oxygen_used = breath.get_moles(GAS_O2)*ratio
 		else
 			adjustOxyLoss(3)
 			failed_last_breath = 1
@@ -196,12 +198,12 @@
 		o2overloadtime = 0 //reset our counter for this too
 		if(health >= crit_threshold)
 			adjustOxyLoss(-5)
-		oxygen_used = breath.get_moles(/datum/gas/oxygen)
+		oxygen_used = breath.get_moles(GAS_O2)
 		clear_alert("not_enough_oxy")
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "suffocation")
 
-	breath.adjust_moles(/datum/gas/oxygen, -oxygen_used)
-	breath.adjust_moles(/datum/gas/carbon_dioxide, oxygen_used)
+	breath.adjust_moles(GAS_O2, -oxygen_used)
+	breath.adjust_moles(GAS_CO2, oxygen_used)
 
 	//CARBON DIOXIDE
 	if(CO2_partialpressure > safe_co2_max)
@@ -220,15 +222,15 @@
 
 	//TOXINS/PLASMA
 	if(Toxins_partialpressure > safe_tox_max)
-		var/ratio = (breath.get_moles(/datum/gas/plasma)/safe_tox_max) * 10
+		var/ratio = (breath.get_moles(GAS_PLASMA)/safe_tox_max) * 10
 		adjustToxLoss(clamp(ratio, MIN_TOXIC_GAS_DAMAGE, MAX_TOXIC_GAS_DAMAGE))
 		throw_alert("too_much_tox", /obj/screen/alert/too_much_tox)
 	else
 		clear_alert("too_much_tox")
 
 	//NITROUS OXIDE
-	if(breath.get_moles(/datum/gas/nitrous_oxide))
-		var/SA_partialpressure = (breath.get_moles(/datum/gas/nitrous_oxide)/breath.total_moles())*breath_pressure
+	if(breath.get_moles(GAS_NITROUS))
+		var/SA_partialpressure = (breath.get_moles(GAS_NITROUS)/breath.total_moles())*breath_pressure
 		if(SA_partialpressure > SA_para_min)
 			Unconscious(60)
 			if(SA_partialpressure > SA_sleep_min)
@@ -241,26 +243,26 @@
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "chemical_euphoria")
 
 	//BZ (Facepunch port of their Agent B)
-	if(breath.get_moles(/datum/gas/bz))
-		var/bz_partialpressure = (breath.get_moles(/datum/gas/bz)/breath.total_moles())*breath_pressure
+	if(breath.get_moles(GAS_BZ))
+		var/bz_partialpressure = (breath.get_moles(GAS_BZ)/breath.total_moles())*breath_pressure
 		if(bz_partialpressure > 1)
 			hallucination += 10
 		else if(bz_partialpressure > 0.01)
 			hallucination += 5
 
 	//TRITIUM
-	if(breath.get_moles(/datum/gas/tritium))
-		var/tritium_partialpressure = (breath.get_moles(/datum/gas/tritium)/breath.total_moles())*breath_pressure
+	if(breath.get_moles(GAS_TRITIUM))
+		var/tritium_partialpressure = (breath.get_moles(GAS_TRITIUM)/breath.total_moles())*breath_pressure
 		radiation += tritium_partialpressure/10
 
 	//NITRYL
-	if(breath.get_moles(/datum/gas/nitryl))
-		var/nitryl_partialpressure = (breath.get_moles(/datum/gas/nitryl)/breath.total_moles())*breath_pressure
+	if(breath.get_moles(GAS_NITRYL))
+		var/nitryl_partialpressure = (breath.get_moles(GAS_NITRYL)/breath.total_moles())*breath_pressure
 		adjustFireLoss(nitryl_partialpressure/4)
 
 	//MIASMA
-	if(breath.get_moles(/datum/gas/miasma))
-		var/miasma_partialpressure = (breath.get_moles(/datum/gas/miasma)/breath.total_moles())*breath_pressure
+	if(breath.get_moles(GAS_MIASMA))
+		var/miasma_partialpressure = (breath.get_moles(GAS_MIASMA)/breath.total_moles())*breath_pressure
 		if(miasma_partialpressure > MINIMUM_MOLES_DELTA_TO_MOVE)
 			//Miasma side effects
 			switch(miasma_partialpressure)
@@ -268,22 +270,22 @@
 					// At lower pp, give out a little warning
 					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "smell")
 					if(prob(5))
-						to_chat(src, "<span class='notice'>There is an unpleasant smell in the air.</span>")
+						to_chat(src, SPAN_NOTICE("There is an unpleasant smell in the air."))
 				if(5 to 20)
 					//At somewhat higher pp, warning becomes more obvious
 					if(prob(15))
-						to_chat(src, "<span class='warning'>You smell something horribly decayed inside this room.</span>")
+						to_chat(src, SPAN_WARNING("You smell something horribly decayed inside this room."))
 						SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/bad_smell)
 				if(15 to 30)
 					//Small chance to vomit. By now, people have internals on anyway
 					if(prob(5))
-						to_chat(src, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
+						to_chat(src, SPAN_WARNING("The stench of rotting carcasses is unbearable!"))
 						SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
 						vomit()
 				if(30 to INFINITY)
 					//Higher chance to vomit. Let the horror start
 					if(prob(25))
-						to_chat(src, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
+						to_chat(src, SPAN_WARNING("The stench of rotting carcasses is unbearable!"))
 						SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
 						vomit()
 				else
@@ -352,7 +354,7 @@
 
 	var/datum/gas_mixture/stank = new
 
-	stank.set_moles(/datum/gas/miasma,0.1)
+	stank.set_moles(GAS_MIASMA,0.1)
 
 	stank.set_temperature(BODYTEMP_NORMAL)
 
@@ -492,7 +494,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 //this updates all special effects: stun, sleeping, knockdown, druggy, stuttering, etc..
 /mob/living/carbon/handle_status_effects()
 	..()
-	if(getStaminaLoss() && !SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))		//CIT CHANGE - prevents stamina regen while combat mode is active
+	if(getStaminaLoss())		//CIT CHANGE - prevents stamina regen while combat mode is active // WHY ARE YOU LIKE THIS
 		adjustStaminaLoss(!CHECK_MOBILITY(src, MOBILITY_STAND) ? ((combat_flags & COMBAT_FLAG_HARD_STAMCRIT) ? STAM_RECOVERY_STAM_CRIT : STAM_RECOVERY_RESTING) : STAM_RECOVERY_NORMAL)
 
 	if(!(combat_flags & COMBAT_FLAG_HARD_STAMCRIT) && incomingstammult != 1)
@@ -630,15 +632,15 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		if(drunkenness >= 81)
 			adjustToxLoss(0.2)
 			if(prob(5) && !stat)
-				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
+				to_chat(src, SPAN_WARNING("Maybe you should lie down for a bit..."))
 
 		if(drunkenness >= 91)
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4, 60)
 			if(prob(20) && !stat)
 				if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
-					to_chat(src, "<span class='warning'>You're so tired... but you can't miss that shuttle...</span>")
+					to_chat(src, SPAN_WARNING("You're so tired... but you can't miss that shuttle..."))
 				else
-					to_chat(src, "<span class='warning'>Just a quick nap...</span>")
+					to_chat(src, SPAN_WARNING("Just a quick nap..."))
 					Sleeping(900)
 
 		if(drunkenness >= 101)
@@ -679,7 +681,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		return
 	adjustToxLoss(4, TRUE,  TRUE)
 	if(prob(15))
-		to_chat(src, "<span class='danger'>You feel a stabbing pain in your abdomen!</span>")
+		to_chat(src, SPAN_DANGER("You feel a stabbing pain in your abdomen!"))
 
 
 ////////////////

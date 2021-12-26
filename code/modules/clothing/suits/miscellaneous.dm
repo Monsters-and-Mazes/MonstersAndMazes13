@@ -73,7 +73,7 @@
 
 /obj/item/clothing/suit/justice
 	name = "justice suit"
-	desc = "(I) this pretty much looks ridiculous" //Needs no fixing
+	desc = "(I) This pretty much looks ridiculous." //Needs no fixing
 	icon_state = "justice"
 	item_state = "justice"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
@@ -106,18 +106,11 @@
 	icon_state = "vickyred"
 	item_state = "vickyred"
 
-/obj/item/clothing/suit/apron/overalls
+/obj/item/clothing/suit/overalls
 	name = "coveralls"
 	desc = "(I) A set of denim overalls."
 	icon_state = "overalls"
 	item_state = "overalls"
-
-/obj/item/clothing/suit/apron/purple_bartender
-	name = "purple bartender apron"
-	desc = "(I) A fancy purple apron for a stylish person."
-	icon_state = "purplebartenderapron"
-	item_state = "purplebartenderapron"
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/suit/syndicatefake
 	name = "black and red space suit replica"
@@ -215,32 +208,13 @@
 	flags_inv = HIDEJUMPSUIT
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
-/obj/item/clothing/suit/poncho
-	name = "poncho"
-	desc = "(I) Your classic, non-racist poncho."
-	icon_state = "classicponcho"
-	item_state = "classicponcho"
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
-
-/obj/item/clothing/suit/poncho/green
-	name = "green poncho"
-	desc = "(I) Your classic, non-racist poncho. This one is green."
-	icon_state = "greenponcho"
-	item_state = "greenponcho"
-
-/obj/item/clothing/suit/poncho/red
-	name = "red poncho"
-	desc = "(I) Your classic, non-racist poncho. This one is red."
-	icon_state = "redponcho"
-	item_state = "redponcho"
-
-/obj/item/clothing/suit/poncho/ponchoshame
+/obj/item/clothing/suit/ponchoshame
 	name = "poncho of shame"
 	desc = "(I) Forced to live on your shameful acting as a fake Mexican, you and your poncho have grown inseparable. Literally."
 	icon_state = "ponchoshame"
 	item_state = "ponchoshame"
 
-/obj/item/clothing/suit/poncho/ponchoshame/Initialize()
+/obj/item/clothing/suit/ponchoshame/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SHAMEBRERO_TRAIT)
 
@@ -553,7 +527,7 @@
 
 /obj/item/clothing/suit/hooded/wintercoat/captain
 	name = "captain's winter coat"
-	desc = "(III) A luxurious winter coat, stuffed with the down of the endangered Uka bird and trimmed with genuine sable. The fabric is an indulgently soft micro-fiber, and the deep ultramarine color is only one that could be achieved with minute amounts of crystalline bluespace dust woven into the thread between the plectrums. Extremely lavish, and extremely durable. The tiny flakes of protective material make it nothing short of extremely light lamellar armor."
+	desc = "(III) A luxurious winter coat, stuffed with the down of the endangered Uka bird and trimmed with genuine sable. The fabric is an indulgently soft micro-fiber, and the deep ultramarine color is only one that could be achieved with minute amounts of crystalline quantum dust woven into the thread between the plectrums. Extremely lavish, and extremely durable. The tiny flakes of protective material make it nothing short of extremely light lamellar armor."
 	icon_state = "coatcaptain"
 	item_state = "coatcaptain"
 	armor = list("tier" = 3, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
@@ -822,7 +796,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/qm
 
 /obj/item/clothing/head/hooded/winterhood/qm
-	desc = "(I) A dark brown winter hood"
+	desc = "(I) A dark brown winter hood."
 	icon_state = "winterhood_qm"
 
 /obj/item/clothing/suit/hooded/wintercoat/aformal
@@ -1050,3 +1024,9 @@
 	icon_state = "bomberalt"
 	item_state = "bomberalt"
 	armor = list("tier" = 2)
+
+/obj/item/clothing/suit/apron/overalls
+	name = "coveralls"
+	desc = "(I) A set of denim overalls."
+	icon_state = "overalls"
+	item_state = "overalls"

@@ -108,7 +108,7 @@
 	items = list(
 		/obj/item/clothing/under/suit/waiter,
 		/obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears,
-		/obj/item/clothing/suit/apron)
+		/obj/item/clothing/neck/apron/labor)
 
 /obj/effect/spawner/bundle/costume/pirate
 	name = "pirate costume spawner"
@@ -182,16 +182,9 @@
 				new path(LC)
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/spawner/bundle/crate/mosin
-	name = "Mosin-Nagant spawner"
+/obj/effect/spawner/bundle/crate/enfield
+	name = "Lee-Enfield spawner"
 	items = list(
-		/obj/item/gun/ballistic/shotgun/mosin,
+		/obj/item/gun/ballistic/rifle/enfield,
 		/obj/item/ammo_box/a762
-	)
-
-/obj/effect/spawner/bundle/crate/surplusrifle
-	name = "surplus rifle spawner"
-	items = list(
-		/obj/item/gun/ballistic/automatic/surplus,
-		/obj/item/ammo_box/magazine/m10mm/rifle
 	)

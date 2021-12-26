@@ -1,19 +1,37 @@
+//IN THIS DOCUMENT: Shotgun template, Double barrel shotguns, Pump-action shotguns, Semi-auto shotgun
+// See gun.dm for keywords and the system used for gun balance
+
+
+//////////////////////
+// SHOTGUN TEMPLATE //
+//////////////////////
+
+
 /obj/item/gun/ballistic/shotgun
-	name = "shotgun"
-	desc = "A traditional shotgun with wood furniture and a four-shell capacity underneath."
+	slowdown = 0.4 //Bulky gun slowdown with rebate since generally smaller than assault rifles
+	name = "shotgun template"
+	desc = "Should not exist"
+	icon = 'icons/obj/guns/projectile.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	w_class = WEIGHT_CLASS_BULKY
-	force = 10
-	flags_1 =  CONDUCT_1
+	weapon_weight = WEAPON_HEAVY
 	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/shot
+	force = 15 //Decent clubs generally speaking
+	fire_delay = 6 //Typical pump action, pretty fast.
+	spread = 2
+	recoil = 0.1
+	can_scope = FALSE
+	flags_1 =  CONDUCT_1
 	casing_ejector = FALSE
 	var/recentpump = 0 // to prevent spammage
-	weapon_weight = WEAPON_HEAVY
 	spawnwithmagazine = TRUE
 	var/pump_sound = 'sound/weapons/shotgunpump.ogg'
 	fire_sound = 'sound/f13weapons/shotgun.ogg'
+
 
 /obj/item/gun/ballistic/shotgun/process_chamber(mob/living/user, empty_chamber = 0)
 	return ..() //changed argument value
@@ -25,7 +43,7 @@
 	if(recentpump > world.time)
 		return
 	if(IS_STAMCRIT(user))//CIT CHANGE - makes pumping shotguns impossible in stamina softcrit
-		to_chat(user, "<span class='warning'>You're too exhausted for that.</span>")//CIT CHANGE - ditto
+		to_chat(user, SPAN_WARNING("You're too exhausted for that."))//CIT CHANGE - ditto
 		return//CIT CHANGE - ditto
 	pump(user, TRUE)
 	if(HAS_TRAIT(user, TRAIT_FAST_PUMP))
@@ -44,7 +62,7 @@
 
 /obj/item/gun/ballistic/shotgun/proc/pump(mob/M, visible = TRUE)
 	if(visible)
-		M.visible_message("<span class='warning'>[M] racks [src].</span>", "<span class='warning'>You rack [src].</span>")
+		M.visible_message(SPAN_WARNING("[M] racks [src]."), SPAN_WARNING("You rack [src]."))
 	playsound(M, pump_sound, 60, 1)
 	pump_unload(M)
 	pump_reload(M)
@@ -71,290 +89,13 @@
 /obj/item/gun/ballistic/shotgun/lethal
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal
 
-// RIOT SHOTGUN //
 
-/obj/item/gun/ballistic/shotgun/riot //for spawn in the armory
-	name = "riot shotgun"
-	desc = "A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control."
-	icon_state = "riotshotgun"
-	fire_delay = 7
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
-	sawn_desc = "Come with me if you want to live."
-	unique_reskin = list("Tactical" = "riotshotgun",
-						"Wood Stock" = "wood_riotshotgun"
-						)
+////////////////////////////////////////
+//DOUBLE BARREL & PUMP ACTION SHOTGUNS//
+////////////////////////////////////////
 
-/obj/item/gun/ballistic/shotgun/riot/attackby(obj/item/A, mob/user, params)
-	..()
-	if(A.tool_behaviour == TOOL_SAW || istype(A, /obj/item/gun/energy/plasmacutter))
-		sawoff(user)
-	if(istype(A, /obj/item/melee/transforming/energy))
-		var/obj/item/melee/transforming/energy/W = A
-		if(W.active)
-			sawoff(user)
 
-///////////////////////
-// BOLT ACTION RIFLE //
-///////////////////////
-
-/obj/item/gun/ballistic/shotgun/boltaction
-	name = "\improper Mosin Nagant"
-	desc = "This piece of junk looks like something that could have been used 700 years ago. It feels slightly moist."
-	icon_state = "moistnugget"
-	item_state = "moistnugget"
-	slot_flags = 0 //no ITEM_SLOT_BACK sprite, alas
-	inaccuracy_modifier = 0.5
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction
-	var/bolt_open = FALSE
-	can_bayonet = TRUE
-	knife_x_offset = 27
-	knife_y_offset = 13
-
-/obj/item/gun/ballistic/shotgun/boltaction/improvised
-	name = "Makeshift 7.62mm Rifle"
-	icon_state = "ishotgun"
-	icon_state = "irifle"
-	item_state = "shotgun"
-	desc = "A bolt-action breechloaded rifle that takes 7.62mm bullets."
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/improvised
-	can_bayonet = FALSE
-	var/slung = FALSE
-
-/*/obj/item/gun/ballistic/shotgun/boltaction/pump(mob/M)
-	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
-	if(bolt_open)
-		pump_reload(M)
-	else
-		pump_unload(M)
-	bolt_open = !bolt_open
-	update_icon()	//I.E. fix the desc
-	return 1*/
-/obj/item/gun/ballistic/shotgun/boltaction/pump(mob/M)
-	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
-	pump_unload(M)
-	pump_reload(M)
-	update_icon()	//I.E. fix the desc
-	return 1
-
-/obj/item/gun/ballistic/shotgun/boltaction/attackby(obj/item/A, mob/user, params)
-	if(!bolt_open)
-		to_chat(user, "<span class='notice'>The bolt is closed!</span>")
-		return
-	. = ..()
-
-/obj/item/gun/ballistic/shotgun/boltaction/examine(mob/user)
-	. = ..()
-	. += "The bolt is [bolt_open ? "open" : "closed"]."
-
-/obj/item/gun/ballistic/shotgun/boltaction/improvised/attackby(obj/item/A, mob/user, params)
-	..()
-	if(istype(A, /obj/item/stack/cable_coil) && !sawn_off)
-		if(A.use_tool(src, user, 0, 10, skill_gain_mult = EASY_USE_TOOL_MULT))
-			slot_flags = ITEM_SLOT_BACK
-			to_chat(user, "<span class='notice'>You tie the lengths of cable to the rifle, making a sling.</span>")
-			slung = TRUE
-			update_icon()
-		else
-			to_chat(user, "<span class='warning'>You need at least ten lengths of cable if you want to make a sling!</span>")
-
-/obj/item/gun/ballistic/shotgun/boltaction/improvised/update_overlays()
-	. = ..()
-	if(slung)
-		. += "[icon_state]sling"
-
-/obj/item/gun/ballistic/shotgun/boltaction/enchanted
-	name = "enchanted bolt action rifle"
-	desc = "Careful not to lose your head."
-	var/guns_left = 30
-	var/gun_type
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
-
-/obj/item/gun/ballistic/shotgun/boltaction/enchanted/arcane_barrage
-	name = "arcane barrage"
-	desc = "Pew Pew Pew."
-	fire_sound = 'sound/weapons/emitter.ogg'
-	pin = /obj/item/firing_pin/magic
-	icon_state = "arcane_barrage"
-	item_state = "arcane_barrage"
-	can_bayonet = FALSE
-	item_flags = NEEDS_PERMIT | DROPDEL
-	flags_1 = NONE
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage
-
-/obj/item/gun/ballistic/shotgun/boltaction/enchanted/Initialize()
-	. = ..()
-	bolt_open = TRUE
-	pump()
-	gun_type = type
-
-/obj/item/gun/ballistic/shotgun/boltaction/enchanted/dropped(mob/user)
-	..()
-	guns_left = 0
-
-/obj/item/gun/ballistic/shotgun/boltaction/enchanted/proc/discard_gun(mob/user)
-	throw_at(pick(oview(7,get_turf(user))),1,1)
-	user.visible_message("<span class='warning'>[user] tosses aside the spent rifle!</span>")
-
-/obj/item/gun/ballistic/shotgun/boltaction/enchanted/arcane_barrage/discard_gun(mob/user)
-	return
-
-/obj/item/gun/ballistic/shotgun/boltaction/enchanted/attack_self()
-	return
-
-/obj/item/gun/ballistic/shotgun/boltaction/enchanted/shoot_live_shot(mob/living/user, pointblank = FALSE, mob/pbtarget, message = 1, stam_cost = 0)
-	..()
-	if(guns_left)
-		var/obj/item/gun/ballistic/shotgun/boltaction/enchanted/GUN = new gun_type
-		GUN.guns_left = guns_left - 1
-		user.dropItemToGround(src, TRUE)
-		user.swap_hand()
-		user.put_in_hands(GUN)
-	else
-		user.dropItemToGround(src, TRUE)
-	discard_gun(user)
-
-// Automatic Shotguns//
-
-/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user, pointblank = FALSE, mob/pbtarget, message = 1, stam_cost = 0)
-	..()
-	src.pump(user)
-
-/obj/item/gun/ballistic/shotgun/automatic/combat
-	name = "combat shotgun"
-	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
-	icon_state = "cshotgun"
-	fire_delay = 5
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
-	w_class = WEIGHT_CLASS_HUGE
-	unique_reskin = list("Tactical" = "cshotgun",
-						"Slick" = "cshotgun_slick"
-						)
-
-/obj/item/gun/ballistic/shotgun/automatic/combat/compact
-	name = "warden's combat shotgun"
-	desc = "A modified version of the semi automatic combat shotgun with a collapsible stock. For close encounters."
-	icon_state = "cshotgunc"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
-	w_class = WEIGHT_CLASS_NORMAL
-	var/stock = FALSE
-	recoil = 5
-	spread = 2
-
-/obj/item/gun/ballistic/shotgun/automatic/combat/compact/AltClick(mob/living/user)
-	. = ..()
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
-		return
-	toggle_stock(user)
-	return TRUE
-
-/obj/item/gun/ballistic/shotgun/automatic/combat/compact/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>Alt-click to toggle the stock.</span>"
-
-/obj/item/gun/ballistic/shotgun/automatic/combat/compact/proc/toggle_stock(mob/living/user)
-	stock = !stock
-	if(stock)
-		w_class = WEIGHT_CLASS_HUGE
-		to_chat(user, "You unfold the stock.")
-		recoil = 1
-		spread = 0
-	else
-		w_class = WEIGHT_CLASS_NORMAL
-		to_chat(user, "You fold the stock.")
-		recoil = 5
-		spread = 2
-	update_icon()
-
-/obj/item/gun/ballistic/shotgun/automatic/combat/compact/update_icon_state()
-	icon_state = "[current_skin ? unique_reskin[current_skin] : "cshotgun"][stock ? "" : "c"]"
-
-//Dual Feed Shotgun
-
-/obj/item/gun/ballistic/shotgun/automatic/dual_tube
-	name = "cycler shotgun"
-	desc = "An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types."
-	icon_state = "cycler"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube
-	w_class = WEIGHT_CLASS_HUGE
-	var/toggled = FALSE
-	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
-
-/obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>Alt-click to pump it.</span>"
-
-/obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize()
-	. = ..()
-	if (!alternate_magazine)
-		alternate_magazine = new mag_type(src)
-
-/obj/item/gun/ballistic/shotgun/automatic/dual_tube/attack_self(mob/living/user)
-	if(!chambered && magazine.contents.len)
-		pump()
-	else
-		toggle_tube(user)
-
-/obj/item/gun/ballistic/shotgun/automatic/dual_tube/proc/toggle_tube(mob/living/user)
-	var/current_mag = magazine
-	var/alt_mag = alternate_magazine
-	magazine = alt_mag
-	alternate_magazine = current_mag
-	toggled = !toggled
-	if(toggled)
-		to_chat(user, "You switch to tube B.")
-	else
-		to_chat(user, "You switch to tube A.")
-
-/obj/item/gun/ballistic/shotgun/automatic/dual_tube/AltClick(mob/living/user)
-	. = ..()
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
-		return
-	pump()
-	return TRUE
-
-// DOUBLE BARRELED SHOTGUN and IMPROVISED SHOTGUN are in revolver.dm
-
-/obj/item/gun/ballistic/shotgun/doublebarrel/hook
-	name = "hook modified sawn-off shotgun"
-	desc = "Range isn't an issue when you can bring your victim to you."
-	icon_state = "hookshotgun"
-	item_state = "shotgun"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/bounty
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_MEDIUM
-	force = 16 //it has a hook on it
-	attack_verb = list("slashed", "hooked", "stabbed")
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	//our hook gun!
-	var/obj/item/gun/magic/hook/bounty/hook
-	var/toggled = FALSE
-
-// Fallout 13 //
-
-/obj/item/gun/ballistic/revolver/caravan_shotgun
-	name = "caravan shotgun"
-	desc = "An common over-under double barreled shotgun."
-	icon_state = "caravan_shotgun"
-	item_state = "dshotgun1"
-	force = 20
-	extra_damage = 3
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
-	sawn_desc = "Omar's coming!"
-	fire_sound = 'sound/f13weapons/caravan_shotgun.ogg'
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 1
-//	distro = 1
-
-/obj/item/gun/ballistic/revolver/caravan_shotgun/attackby(obj/item/A, mob/user, params)
-	..()
-	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter))
-		sawoff(user)
-	if(istype(A, /obj/item/melee/transforming/energy))
-		var/obj/item/melee/transforming/energy/W = A
-		if(W.active)
-			sawoff(user)
-
+//Single shotgun							Keywords: shotgun, single barrel, saw-off.
 /obj/item/gun/ballistic/revolver/single_shotgun
 	name = "single shotgun"
 	desc = "A dirt cheap single shot shotgun."
@@ -366,7 +107,6 @@
 	fire_sound = 'sound/f13weapons/caravan_shotgun.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
-//	distro = 1
 
 /obj/item/gun/ballistic/revolver/single_shotgun/attackby(obj/item/A, mob/user, params)
 	..()
@@ -377,11 +117,219 @@
 		if(W.active)
 			sawoff(user)
 
+/obj/item/gun/ballistic/revolver/single_shotgun/update_icon_state()
+	if(sawn_off)
+		icon_state = "[initial(icon_state)]-sawn"
+	else if(!magazine || !magazine.ammo_count(0))
+		icon_state = "[initial(icon_state)]-e"
+	else
+		icon_state = "[initial(icon_state)]"
+
+
+//Caravan shotgun							Keywords: Shotgun, Double barrel, saw-off, extra damage +3
+/obj/item/gun/ballistic/revolver/caravan_shotgun
+	name = "caravan shotgun"
+	desc = "An common over-under double barreled shotgun."
+	icon_state = "caravan_shotgun"
+	item_state = "shotgundouble"
+	force = 20
+	extra_damage = 3
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
+	sawn_desc = "Omar's coming!"
+	fire_sound = 'sound/f13weapons/caravan_shotgun.ogg'
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 1
+
+/obj/item/gun/ballistic/revolver/caravan_shotgun/attackby(obj/item/A, mob/user, params)
+	..()
+	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter) | istype(A, /obj/item/twohanded/chainsaw))
+		sawoff(user)
+	if(istype(A, /obj/item/melee/transforming/energy))
+		var/obj/item/melee/transforming/energy/W = A
+		if(W.active)
+			sawoff(user)
+
+/obj/item/gun/ballistic/revolver/caravan_shotgun/update_icon_state()
+	if(sawn_off)
+		icon_state = "[initial(icon_state)]-sawn"
+	else if(!magazine || !magazine.ammo_count(0))
+		icon_state = "[initial(icon_state)]-e"
+	else
+		icon_state = "[initial(icon_state)]"
+
+
+//Widowmaker					Keywords: Shotgun, Double barrel, saw-off
+/obj/item/gun/ballistic/revolver/widowmaker
+	name = "winchester widowmaker"
+	desc = "A Winchester Widowmaker double-barreled 12 gauge shotgun, with mahogany furniture."
+	icon_state = "widowmaker"
+	item_state = "shotgundouble"
+	force = 20
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
+	sawn_desc = "Someone took the time to chop the last few inches off the barrel and stock of this shotgun. Now, the wide spread of this hand-cannon's short-barreled shots makes it perfect for short-range crowd control."
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 1
+	fire_sound = 'sound/f13weapons/max_sawn_off.ogg'
+	untinkerable = TRUE
+
+/obj/item/gun/ballistic/revolver/widowmaker/attackby(obj/item/A, mob/user, params)
+	..()
+	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter))
+		sawoff(user)
+	if(istype(A, /obj/item/melee/transforming/energy))
+		var/obj/item/melee/transforming/energy/W = A
+		if(W.active)
+			sawoff(user)
+
+/obj/item/gun/ballistic/revolver/widowmaker/update_icon_state()
+	if(sawn_off)
+		icon_state = "[initial(icon_state)]-sawn"
+	else if(!magazine || !magazine.ammo_count(0))
+		icon_state = "[initial(icon_state)]-e"
+	else
+		icon_state = "[initial(icon_state)]"
+
+//Hunting shotgun					Keywords: Shotgun, Pump-action, 4 rounds, saw-off
+/obj/item/gun/ballistic/shotgun/hunting
+	name = "hunting shotgun"
+	desc = "A traditional hunting shotgun with wood furniture and a four-shell capacity underneath."
+	icon_state = "hunting"
+	item_state = "shotgunpump"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	sawn_desc = "A concealed hand blaster, for any situation."
+
+/obj/item/gun/ballistic/shotgun/hunting/attackby(obj/item/A, mob/user, params)
+	..()
+	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter))
+		sawoff(user)
+	if(istype(A, /obj/item/melee/transforming/energy))
+		var/obj/item/melee/transforming/energy/W = A
+		if(W.active)
+			sawoff(user)
+
+/obj/item/gun/ballistic/shotgun/hunting/update_icon_state()
+	if(sawn_off)
+		icon_state = "[initial(icon_state)]-sawn"
+	else if(!magazine || !magazine.ammo_count(0))
+		icon_state = "[initial(icon_state)]-e"
+	else
+		icon_state = "[initial(icon_state)]"
+
+
+//Trench shotgun					Keywords: Shotgun, Pump-action, 5 rounds, Bayonet, Extra firemode, Extra damage +2
+/obj/item/gun/ballistic/shotgun/trench
+	name = "trench shotgun"
+	desc = "A military shotgun designed for close-quarters sweeping. A relic of WW2, equipped with a bayonet lug for closer quarters combat."
+	icon_state = "trench"
+	item_state = "shotguntrench"
+	can_bayonet = TRUE
+	bayonet_state = "rifles"
+	extra_damage = 2
+	bayonet_state = "trenchgun"
+	knife_x_offset = 23
+	knife_y_offset = 14
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	actions_types = list(/datum/action/item_action/toggle_firemode)
+	var/select = 1
+
+/obj/item/gun/ballistic/shotgun/trench/update_icon_state()
+	if(!magazine || !magazine.ammo_count(0))
+		icon_state = "[initial(icon_state)]-e"
+	else
+		icon_state = "[initial(icon_state)]"
+
+/obj/item/gun/ballistic/shotgun/trench/ui_action_click()
+	burst_select()
+
+//has a mode to let it pump much faster, at the cost of terrible accuracy and less damage
+/obj/item/gun/ballistic/shotgun/trench/proc/burst_select()
+	var/mob/living/carbon/human/user = usr
+	switch(select)
+		if(0)
+			select = 1
+			spread = 12
+			burst_size = 1
+			fire_delay = 3
+			burst_shot_delay = 4
+			extra_damage = 0
+			to_chat(user, SPAN_NOTICE("You prepare to slamfire the shotgun for a rapid burst of shots."))
+		if(1)
+			select = 0
+			burst_size = 1
+			spread = 2
+			extra_damage = 1
+			to_chat(user, SPAN_NOTICE("You go back to firing the shotgun one round at a time."))
+
+///////////////////////////
+//SEMI-AUTOMATIC SHOTGUNS//
+///////////////////////////
+
+//Semi-auto shotgun template
+/obj/item/gun/ballistic/shotgun/automatic/combat
+	name = "semi-auto shotgun template"
+	fire_delay = 5
+	extra_damage = 0
+	recoil = 0.1
+	spread = 2
+
+/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user, pointblank = FALSE, mob/pbtarget, message = 1, stam_cost = 0)
+	..()
+	src.pump(user)
+
+/obj/item/gun/ballistic/shotgun/automatic/combat/update_icon_state()
+	if(!magazine || !magazine.ammo_count(0))
+		icon_state = "[initial(icon_state)]-e"
+	else
+		icon_state = "[initial(icon_state)]"
+
+//Browning Auto-5			Keywords: Shotgun, Semi-auto, 4 rounds internal
+/obj/item/gun/ballistic/shotgun/automatic/combat/auto5
+	name = "Browning Auto-5"
+	desc = "A semi automatic shotgun with a four round tube."
+	fire_delay = 6
+	icon_state = "auto5"
+	item_state = "shotgunauto5"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/f13weapons/auto5.ogg'
+	always_reskinnable = TRUE
+	unique_reskin = list("Browning Auto" = "auto5",
+						"Pre-War Police" = "shotgunpolice"
+						)
+
+//Lever action shotgun		Keywords: Shotgun, lever-action, 5 round internal mag.
+/obj/item/gun/ballistic/shotgun/lever
+	name = "lever action shotgun"
+	desc = "A lever action hunting shotgun with a five-shell capacity underneath plus one in chamber."
+	icon_state = "lever"
+	item_state = "shotgunlever"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
+	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_MEDIUM
+	pump_sound = 'sound/f13weapons/cowboyrepeaterreload.ogg'
+	fire_delay = 5
+	recoil = 0.5
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+	fire_sound = 'sound/f13weapons/shotgun.ogg'
+	can_bayonet = TRUE
+	bayonet_state = "bayonet"
+	knife_x_offset = 23
+	knife_y_offset = 23
+
+//Neostead 2000							Keywords: Shotgun, Semi-auto, 12 rounds internal
 /obj/item/gun/ballistic/shotgun/automatic/combat/neostead
 	name = "neostead 2000"
 	desc = "An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types."
 	icon_state = "neostead"
-	fire_delay = 4
+	item_state = "shotguncity"
+	fire_delay = 5
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
@@ -390,7 +338,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/neostead/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to switch tubes.</span>"
+	. += SPAN_NOTICE("Alt-click to switch tubes.")
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/neostead/Initialize()
 	. = ..()
@@ -419,300 +367,30 @@
 	toggle_tube(user)
 
 
+//City-Killer				Keywords: Shotgun, Semi-auto, 12 rounds internal
 /obj/item/gun/ballistic/shotgun/automatic/combat/citykiller
-	name = "city-killer combat shotgun"
+	name = "City-Killer Shotgun"
 	desc = "A semi automatic shotgun with black tactical furniture made by Winchester Arms. This particular model uses an internal feeding tube instead of a magazine."
 	icon_state = "citykiller"
-	item_state = "cshotgun1"
+	item_state = "shotguncity"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/citykiller
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
 
-/obj/item/gun/ballistic/shotgun/automatic/combat/auto5
-	name = "browning auto-5"
-	desc = "A semi automatic shotgun with a four round tube."
-	icon_state = "auto5"
-	item_state = "huntingshotgun"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
+//Riot Shotgun				Keywords: Shotgun, Semi-Auto, 12 round capacity drums.
+/obj/item/gun/ballistic/automatic/shotgun/riot
+	name = "Riot Shotgun"
+	desc = "A compact riot shotgun designed to fight in close quarters."
+	icon_state = "riot_shotgun"
+	item_state = "shotgunriot"
+	fire_sound = 'sound/f13weapons/riot_shotgun.ogg'
+	burst_size = 1
+	fire_delay = 4
+	recoil = 0.75
+	mag_type = /obj/item/ammo_box/magazine/d12g
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
-	fire_sound = 'sound/f13weapons/auto5.ogg'
-
-/obj/item/gun/ballistic/shotgun/hunting
-	name = "hunting shotgun"
-	desc = "A traditional hunting shotgun with wood furniture and a four-shell capacity underneath."
-	icon_state = "hunting"
-	item_state = "huntingshotgun"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	sawn_desc = "A concealed hand blaster, for any situation."
-
-/obj/item/gun/ballistic/shotgun/hunting/attackby(obj/item/A, mob/user, params)
-	..()
-	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter))
-		sawoff(user)
-	if(istype(A, /obj/item/melee/transforming/energy))
-		var/obj/item/melee/transforming/energy/W = A
-		if(W.active)
-			sawoff(user)
-
-/obj/item/gun/ballistic/shotgun/lever
-	name = "lever action shotgun"
-	desc = "A lever action hunting shotgun with a five-shell capacity underneath plus one in chamber."
-	icon_state = "lever"
-	item_state = "trenchgun"
-	//can_scope = TRUE //why tho
-	//scopestate = "AEP7_scope"
-	//scope_x_offset = 8
-	//scope_y_offset = 19
-	//can_bayonet = TRUE
-	//bayonetstate = "trenchgun"
-	//knife_x_offset = 23
-	//knife_y_offset = 14
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
-	w_class = WEIGHT_CLASS_NORMAL
-	weapon_weight = WEAPON_LIGHT
-	pump_sound = 'sound/f13weapons/cowboyrepeaterreload.ogg'
-
-/obj/item/gun/ballistic/shotgun/trench
-	name = "trench shotgun"
-	desc = "A military shotgun designed for close-quarters sweeping. A relic of WW2, equipped with a bayonet lug for closer quarters combat."
-	icon_state = "trench"
-	item_state = "trenchgun"
-	can_bayonet = TRUE
-	bayonet_state = "rifles"
-	extra_damage = 6
-	bayonet_state = "trenchgun"
-	knife_x_offset = 23
-	knife_y_offset = 14
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-
-
-/obj/item/gun/ballistic/shotgun/remington
-	name = "hunting rifle"
-	desc = "A sturdy hunting rifle, chambered in .308. and in use before the war."
-	icon_state = "308"
-	item_state = "308"
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/remington
-	sawn_desc = "A hunting rifle, crudely shortened with a saw. It's far from accurate, but the short barrel makes it quite portable."
-	fire_sound = 'sound/f13weapons/hunting_rifle.ogg'
-	fire_delay = 3
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	can_scope = TRUE
-	scope_state = "rifle_scope"
-	scope_x_offset = 4
-	scope_y_offset = 12
-	pump_sound = 'sound/weapons/boltpump.ogg'
-
-/obj/item/gun/ballistic/shotgun/remington/attackby(obj/item/A, mob/user, params)
-	..()
-	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter))
-		sawoff(user)
-	if(istype(A, /obj/item/melee/transforming/energy))
-		var/obj/item/melee/transforming/energy/W = A
-		if(W.active)
-			sawoff(user)
-
-/obj/item/gun/ballistic/shotgun/remington/paciencia
-	name = "Paciencia"
-	desc = "A modified .308 hunting rifle with a reduced magazine but an augmented receiver. A Mexican flag is wrapped around the stock. You only have three shots- make them count."
-	icon_state = "paciencia"
-	item_state = "paciencia"
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/remington/paciencia
-	fire_delay = 5
-	extra_damage = 20 //60 damage- hits as hard as an AMR!
-	extra_penetration = 0.2
-
-/obj/item/gun/ballistic/shotgun/remington/paciencia/attackby(obj/item/A, mob/user, params) //no sawing off this one
-	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter))
-		return
-	else if(istype(A, /obj/item/melee/transforming/energy))
-		var/obj/item/melee/transforming/energy/W = A
-		if(W.active)
-			return
-	else
-		..()
-
-/obj/item/gun/ballistic/shotgun/automatic/hunting/cowboy
-	name = "cowboy repeater"
-	desc = "A lever action rifle chambered in .357 Magnum. Smells vaguely of whiskey and cigarettes."
-	icon_state = "cowboyrepeater"
-	item_state = "cowboyrepeater"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube357
-	fire_sound = 'sound/f13weapons/cowboyrepeaterfire.ogg'
-	pump_sound = 'sound/f13weapons/cowboyrepeaterreload.ogg'
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 3
-	can_scope = TRUE
-	scope_state = "leveraction_scope"
-	scope_x_offset = 11
-	scope_y_offset = 21
-	extra_damage = 5
-
-/obj/item/gun/ballistic/shotgun/automatic/hunting/trail
-	name = "trail carbine"
-	desc = "A lever action rifle chambered in .44 Magnum."
-	icon_state = "trailcarbine"
-	item_state = "trailcarbine"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube44
-	fire_sound = 'sound/f13weapons/44mag.ogg'
-	pump_sound = 'sound/f13weapons/cowboyrepeaterreload.ogg'
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 3
-	can_scope = TRUE
-	scope_state = "leveraction_scope"
-	scope_x_offset = 11
-	scope_y_offset = 21
-
-/obj/item/gun/ballistic/shotgun/automatic/hunting/brush
-	name = "brush gun"
-	desc = "A short lever action rifle chambered in the heavy 45-70 round. Issued to NCR Veteran Rangers in the absence of heavier weaponry."
-	icon_state = "brushgun"
-	item_state = "brushgun"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube4570
-	fire_sound = 'sound/f13weapons/brushgunfire.ogg'
-	pump_sound = 'sound/f13weapons/cowboyrepeaterreload.ogg'
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 3
-	can_scope = TRUE
-	scope_state = "leveraction_scope"
-	scope_x_offset = 11
-	scope_y_offset = 21
-
-/obj/item/gun/ballistic/shotgun/antimateriel
-	name = "anti-materiel rifle"
-	desc = "A heavy, high-powered sniper rifle chambered in .50 caliber ammunition, custom-made for use by the New California Republic Rangers. Although relatively austere, you're still pretty sure it could take the head off a deathclaw."
-	icon_state = "sniper-mag"
-	item_state = "sniper"
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/antimateriel
-	fire_sound = 'sound/f13weapons/antimaterielfire.ogg'
-	pump_sound = 'sound/f13weapons/antimaterielreload.ogg'
-	zoomable = TRUE
-	zoom_amt = 10
-	zoom_out_amt = 13
-	force = 25
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	recoil = 1 //have fun
-	fire_delay = 6
-	//projectile_speed = 0
-
-/obj/item/gun/ballistic/shotgun/kar98k
-	name = "\improper karabiner 98k"
-	desc = "An old military service rifle from World War 2. This model was rechambered in .308."
-	icon_state = "kar98"
-	item_state = "308"
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/kar98
-	fire_sound = 'sound/f13weapons/boltfire.ogg'
-	fire_delay = 5
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	can_scope = TRUE
-	extra_damage = 10
-	extra_penetration = 0.2
-	scope_state = "kar_scope"
-	scope_x_offset = 12
-	scope_y_offset = 23
-	pump_sound = 'sound/weapons/boltpump.ogg'
-
-/obj/item/gun/ballistic/revolver/widowmaker
-	name = "winchester widowmaker"
-	desc = "A Winchester Widowmaker double-barreled 12 gauge shotgun, with mahogany furniture"
-	icon_state = "widowmaker"
-	item_state = "dshotgun1"
 	force = 20
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
-	sawn_desc = "Someone took the time to chop the last few inches off the barrel and stock of this shotgun. Now, the wide spread of this hand-cannon's short-barreled shots makes it perfect for short-range crowd control."
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 1
-	fire_sound = 'sound/f13weapons/max_sawn_off.ogg'
-
-/obj/item/gun/ballistic/revolver/widowmaker/attackby(obj/item/A, mob/user, params)
-	..()
-	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter))
-		sawoff(user)
-	if(istype(A, /obj/item/melee/transforming/energy))
-		var/obj/item/melee/transforming/energy/W = A
-		if(W.active)
-			sawoff(user)
-
-/obj/item/gun/ballistic/shotgun/mosin
-	name = "mosin nagant m38"
-	desc = "A classic Russian bolt action chambered in 7.62. Now all you need is some vodka."
-	icon_state = "moistnugget"
-	item_state = "moistnugget"
-	slot_flags = 0 //no ITEM_SLOT_BACK sprite, alas
-	inaccuracy_modifier = 0.5
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction
-	can_scope = TRUE
-	scope_state = "mosin_scope"
-	scope_x_offset = 3
-	scope_y_offset = 13
-	can_bayonet = TRUE
-	bayonet_state = "lasmusket"
-	knife_x_offset = 22
-	knife_y_offset = 21
-	extra_damage = 5
-	pump_sound = 'sound/weapons/boltpump.ogg'
-	fire_sound = 'sound/f13weapons/boltfire.ogg'
-	suppressor_state = "rifle_suppressor"
-	can_suppress = TRUE
-	suppressor_x_offset = 25
-	suppressor_y_offset = 30
-
-/obj/item/gun/ballistic/shotgun/lasmusket
-	name = "Laser Musket"
-	desc = "In the wasteland, one must make do. And making do is what the creator of this weapon does. Made from metal scraps, electronic parts. an old rifle stock and a Nuka Cola bottle full of dreams, the Laser Musket is sure to stop anything in their tracks and make those raiders think twice."
-	icon_state = "las_musket"
-	item_state = "las_musket"
-	slot_flags = 0 //no ITEM_SLOT_BACK sprite, alas
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/lasmusket
-	//nocase = TRUE
-	var/bolt_open = FALSE
-	can_bayonet = TRUE
-	fire_delay = 15
-	knife_x_offset = 23
-	knife_y_offset = 21
-	bayonet_state = "lasmusket"
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	isenergy = TRUE
-	can_scope = TRUE
-	scope_state = "lasmusket_scope"
-	scope_x_offset = 9
-	scope_y_offset = 20
-	fire_sound = 'sound/f13weapons/lasmusket_fire.ogg'
-	pump_sound = 'sound/f13weapons/lasmusket_crank.ogg'
-	equipsound = 'sound/f13weapons/equipsounds/aep7equip.ogg'
-
-/obj/item/gun/ballistic/shotgun/plasmacaster
-	name = "Plasma Musket"
-	desc = "An experimental weapon..."
-	icon_state = "las_musket"
-	item_state = "las_musket"
-	slot_flags = 0 //no ITEM_SLOT_BACK sprite, alas
-	mag_type = /obj/item/ammo_box/magazine/internal/plasmacaster
-	var/bolt_open = FALSE
-	can_bayonet = TRUE
-	fire_delay = 20
-	bayonet_state = "lasmusket"
-	knife_x_offset = 23
-	knife_y_offset = 21
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
-	isenergy = TRUE
-	can_scope = TRUE
-	scope_state = "lasmusket_scope"
-	scope_x_offset = 9
-	scope_y_offset = 20
-	fire_sound = 'sound/f13weapons/lasmusket_fire.ogg'
-	pump_sound = 'sound/f13weapons/lasmusket_crank.ogg'
-	equipsound = 'sound/f13weapons/equipsounds/aep7equip.ogg'
+	automatic_burst_overlay = FALSE
+	semi_auto = TRUE
+	untinkerable = TRUE

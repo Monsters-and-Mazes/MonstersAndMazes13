@@ -77,11 +77,11 @@
 	icon_state = "blueprint2"
 
 /obj/item/blueprint/misc/stim
-	name = "Stimpack blueprint"
+	name = "stimpack blueprint"
 	desc = "Stimpacks"
 
 /obj/item/blueprint/misc/superstims
-	name = "Super Stimpack blueprint"
+	name = "super stimpack blueprint"
 	desc = "Super stims"
 
 //weapon blueprints
@@ -254,25 +254,25 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/stack/prefabs/mWeaponParts
-	name = "Metal Weapon Parts"
+	name = "metal weapon parts"
 	desc = ""
 	//icon_state = ""
 	merge_type = /obj/item/stack/prefabs/mWeaponParts
 
 /obj/item/stack/prefabs/wWeaponParts
-	name = "Wooden Weapon Parts"
+	name = "wooden weapon parts"
 	desc = ""
 	//icon_state = ""
 	merge_type = /obj/item/stack/prefabs/wWeaponParts
 
 /obj/item/stack/prefabs/pWeaponParts
-	name = "Plastic Weapon Parts"
+	name = "plastic weapon parts"
 	desc = ""
 	//icon_state = ""
 	merge_type = /obj/item/stack/prefabs/pWeaponParts
 
 /obj/item/stack/prefabs/psWeaponParts
-	name = "Plasteel Weapon Parts"
+	name = "plasteel weapon parts"
 	desc = ""
 	//icon_state = ""
 	merge_type = /obj/item/stack/prefabs/psWeaponParts
@@ -304,7 +304,7 @@
 	var/obj/item/advanced_crafting_components/alloys/alloys
 	var/obj/item/advanced_crafting_components/receiver/receiver
 	var/obj/item/advanced_crafting_components/assembly/assembly
-	name = "Simple Weapon Frame"
+	name = "simple weapon frame"
 	desc = ""
 	icon_state = "gunframe"
 
@@ -447,7 +447,7 @@
 	var/obj/item/advanced_crafting_components/alloys/alloys
 	var/obj/item/advanced_crafting_components/receiver/receiver
 	var/obj/item/advanced_crafting_components/assembly/assembly
-	name = "Complex Weapon Frame"
+	name = "complex weapon frame"
 	desc = ""
 	icon_state = "gunframe"
 
@@ -477,13 +477,13 @@
 				qdel(src)
 		else if(screw&&trigger&&boltsimple&&actionsimple&&m556barrel&&stockwood)//varmint
 			if(istype(src,/obj/item/prefabs/complex/complexWeaponFrame/low))
-				var/obj/item/B = new /obj/item/gun/ballistic/automatic/varmint
+				var/obj/item/B = new /obj/item/gun/ballistic/rifle/mag/varmint
 				B.forceMove(usr.loc)
 				to_chat(usr,"You make a [B]")
 				qdel(src)
 		else if(screw&&trigger&&boltsimple&&actionsimple&&m44barrel&&stockwood)//trail carbine
 			if(istype(src,/obj/item/prefabs/complex/complexWeaponFrame/low))
-				var/obj/item/B = new /obj/item/gun/ballistic/shotgun/automatic/hunting/trail
+				var/obj/item/B = new /obj/item/gun/ballistic/rifle/automatic/hunting/trail
 				B.forceMove(usr.loc)
 				to_chat(usr,"You make a [B]")
 				qdel(src)
@@ -659,51 +659,51 @@
 		screw = W
 
 /obj/item/prefabs/complex/simpleWeaponFrame/low
-	name = "Simple Weapon Frame (crude)"
+	name = "simple weapon frame (crude)"
 	desc = ""
 	icon_state = "gunframe"
 
 /obj/item/prefabs/complex/complexWeaponFrame/low
-	name = "Complex Weapon Frame (crude)"
+	name = "complex weapon frame (crude)"
 	desc = ""
 	icon_state = "gunframe"
 
 /obj/item/prefabs/complex/simpleWeaponFrame/mid
-	name = "Simple Weapon Frame (fair)"
+	name = "simple weapon frame (fair)"
 	desc = ""
 	//icon_state = ""
 
 /obj/item/prefabs/complex/complexWeaponFrame/mid
-	name = "Complex Weapon Frame (fair)"
+	name = "complex weapon frame (fair)"
 	desc = ""
 	//icon_state = ""
 
 /obj/item/prefabs/complex/simpleWeaponFrame/high
-	name = "Simple Weapon Frame (masterwork)"
+	name = "simple weapon frame (masterwork)"
 	desc = ""
 	//icon_state = ""
 
 /obj/item/prefabs/complex/complexWeaponFrame/high
-	name = "Complex Weapon Frame (masterwork)"
+	name = "complex weapon frame (masterwork)"
 	desc = ""
 	//icon_state = ""
 
 //moulds
 /obj/item/prefabs/mould
-	name = "Mould"
+	name = "mould"
 	desc = ""
 	icon_state = "mould"
 
 /obj/item/prefabs/mould/action/simple
-	name = "Simple Action Mould"
+	name = "simple action mould"
 	desc = ""
 
 /obj/item/prefabs/mould/action/auto
-	name = "Automatic Action Mould"
+	name = "automatic action mould"
 	desc = ""
 
 /obj/item/prefabs/mould/barrel/shotgun
-	name = "Shotgun Barrel Mould"
+	name = "shotgun barrel mould"
 	desc = ""
 /obj/item/prefabs/mould/barrel/m357
 	name = ".357 Barrel Mould"
@@ -738,46 +738,46 @@
 	desc = ""
 
 /obj/item/prefabs/mould/bolt/simple
-	name = "Simple Bolt Mould"
+	name = "simple bolt mould"
 	desc = ""
 
 /obj/item/prefabs/mould/bolt/high
-	name = "Advanced Bolt Mould"
+	name = "advanced bolt mould"
 	desc = ""
 
 /obj/item/prefabs/mould/trigger
-	name = "Trigger Mould"
+	name = "trigger mould"
 	desc = ""
 
 /obj/item/prefabs/mould/stock
-	name = "Stock Mould"
+	name = "stock mould"
 	desc = ""
 
 /obj/item/prefabs/mould/screw
-	name = "Screw Mould"
+	name = "screw mould"
 	desc = ""
 
 /obj/item/prefabs/mould/simpleWeaponFrame
-	name = "Simple Weapon Frame Mould"
+	name = "simple weapon frame mould"
 	desc = ""
 
 /obj/item/prefabs/mould/complexWeaponFrame
-	name = "Complex Weapon Frame Mould"
+	name = "complex weapon frame mould"
 	desc = ""
 
 //components
 /obj/item/prefabs/complex/action/simple
-	name = "Simple Action"
+	name = "simple action"
 	desc = ""
 	icon_state = "action"
 
 /obj/item/prefabs/complex/action/auto
-	name = "Automatic Action"
+	name = "automatic action"
 	desc = ""
 	icon_state = "action"
 
 /obj/item/prefabs/complex/barrel
-	name = "Barrel"
+	name = "barrel"
 	desc = ""
 	icon_state = "barrel"
 
@@ -816,82 +816,82 @@
 	desc = ""
 
 /obj/item/prefabs/complex/bolt
-	name = "Bolt"
+	name = "bolt"
 	desc = ""
 	icon_state = "bolt"
 
 /obj/item/prefabs/complex/barrel/shotgun
-	name = "Shotgun Barrel"
+	name = "shotgun barrel"
 	desc = ""
 	icon_state = "barrel"
 
 /obj/item/prefabs/complex/bolt/simple
-	name = "Simple Bolt"
+	name = "simple bolt"
 	desc = ""
 	icon_state = "bolt"
 
 /obj/item/prefabs/complex/bolt/high
-	name = "Advanced Bolt"
+	name = "advanced bolt"
 	desc = ""
 
 /obj/item/prefabs/complex/trigger
-	name = "Trigger"
+	name = "trigger"
 	desc = ""
 	icon_state = "trigger"
 
 /obj/item/prefabs/complex/stock
-	name = "Stock"
+	name = "stock"
 	desc = ""
 	icon_state = "stockwood"
 
 /obj/item/prefabs/complex/stock/low
-	name = "Wooden Stock"
+	name = "wooden stock"
 	desc = ""
 	icon_state = "stockwood"
 
 /obj/item/prefabs/complex/stock/mid
-	name = "Plastic Stock"
+	name = "plastic stock"
 	desc = ""
 	icon_state = "stock"
 
 /obj/item/prefabs/complex/screw
-	name = "Screw"
+	name = "screw"
 	desc = ""
 	icon_state = "screw"
 
 //plasma
 /obj/item/advanced_crafting_components/flux
-	name = "Flux capacitator"
+	name = "flux capacitator"
 	desc = "An energy weapon part, a craftsman might want to have this."
 	icon_state = "flux"
 
 //lasers
 /obj/item/advanced_crafting_components/lenses
-	name = "Focused crystal lenses"
+	name = "focused crystal lenses"
 	desc = "An energy weapon part, a craftsman might want to have this."
 	icon_state = "lenses"
 
 //general energy
 /obj/item/advanced_crafting_components/conductors
-	name = "Superconductor coil"
+	name = "superconductor coil"
 	desc = "An energy weapon part, a craftsman might want to have this."
 	icon_state = "conductor"
 
 //general ballistics
 /obj/item/advanced_crafting_components/receiver
-	name = "Advanced modular receiver"
+	name = "advanced modular receiver"
 	desc = "A ballistic weapon part, a craftsman might want to have this."
 	icon_state = "receiver"
 
 //rifles
 /obj/item/advanced_crafting_components/assembly
-	name = "Pre-war weapon assembly"
+	name = "pre-war weapon assembly"
 	desc = "A ballistic weapon part, a craftsman might want to have this."
 	icon_state = "weapon_parts_1"
 
 //general
 /obj/item/advanced_crafting_components/alloys
-	name = "Superlight alloys"
+	name = "superlight alloys"
 	desc = "A general crafting part, a craftsman might want to have this."
 	icon_state = "alloys"
 
@@ -916,6 +916,11 @@
 	desc = "Increases burst size, attach to a compatible weapon. Cannot be removed."
 	icon_state = "burstcam"
 
+/obj/item/attachments/bullet_speed
+	name = "extended barrel"
+	desc = "Improves bullet speed, attach to a compatible weapon. Cannot be removed."
+	icon_state = "barrel"
+
 /obj/item/attachments/auto_sear
 	name = "auto sear"
 	desc = "A rare gun part that allows certain weapons to have select fire capabilities. Cannot be removed."
@@ -929,66 +934,61 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/list/Loot = list() //List of items
 
-/obj/item/salvage/low
-	name = "Pre-war salvage"
-	desc = "Some pre-war salvage, it could contain some useful materials if dissasembled using a workbench..."
-	icon_state = "salvage"
-	Loot = list(/obj/item/stack/crafting/metalparts/five,
-				/obj/item/stack/ore/blackpowder/two,
-				/obj/item/stack/crafting/electronicparts/three,
-				/obj/item/stack/sheet/lead/five,
-				/obj/item/stack/sheet/metal/ten,
-				/obj/item/stack/sheet/cloth/five,
-				/obj/item/stack/sheet/leather/five,
-				/obj/item/scrap/research,
-				/obj/item/stock_parts/cell/ammo/ec,
-				/obj/item/stack/crafting/goodparts
-				)
-
 /obj/item/salvage/crafting
 	name = "salvaged components"
 	desc = "Some salvaged components, it could contain some useful materials if dissasembled using a workbench..."
 	icon_state = "salvagecomponents"
-	Loot = list(/obj/item/crafting/diode,
-				/obj/item/crafting/transistor,
-				/obj/item/crafting/capacitor,
-				/obj/item/crafting/fuse,
-				/obj/item/crafting/resistor,
-				/obj/item/crafting/switch_crafting,
-				/obj/item/crafting/bulb,
-				/obj/item/crafting/board,
-				/obj/item/crafting/buzzer,
-				/obj/item/crafting/frame,
-				/obj/item/crafting/small_gear,
-				/obj/item/crafting/large_gear,
-				/obj/item/crafting/duct_tape,
-				/obj/item/crafting/coffee_pot,
-				/obj/item/crafting/wonderglue,
-				/obj/item/crafting/turpentine,
-				/obj/item/crafting/abraxo,
-				/obj/item/crafting/igniter,
-				/obj/item/crafting/timer,
-				/obj/item/crafting/sensor,
-				/obj/item/crafting/lunchbox)
+	Loot = list(/obj/item/crafting/diode = 5,
+				/obj/item/crafting/transistor = 5,
+				/obj/item/crafting/capacitor = 5,
+				/obj/item/crafting/fuse = 5,
+				/obj/item/crafting/resistor = 3,
+				/obj/item/crafting/switch_crafting = 3,
+				/obj/item/crafting/board = 5,
+				/obj/item/crafting/frame = 5,
+				/obj/item/crafting/small_gear = 1,
+				/obj/item/crafting/large_gear = 1,
+				/obj/item/crafting/duct_tape = 3,
+				/obj/item/crafting/coffee_pot = 3,
+				/obj/item/crafting/wonderglue = 1,
+				/obj/item/crafting/turpentine = 1,
+				/obj/item/crafting/abraxo = 3,
+				/obj/item/crafting/lunchbox = 1
+				)
 
+/obj/item/salvage/low
+	name = "pre-war salvage"
+	desc = "Some pre-war salvage, it could contain some useful materials if dissasembled using a workbench..."
+	icon_state = "salvage"
+	Loot = list(/obj/item/stack/sheet/metal/ten,
+				/obj/item/stack/sheet/cloth/five,
+				/obj/item/stack/sheet/leather/five,
+				/obj/item/stack/ore/blackpowder/two,
+				/obj/item/stack/crafting/metalparts/five,
+				/obj/item/stack/crafting/goodparts,
+				/obj/item/stack/crafting/electronicparts/three,
+				/obj/item/crafting/tube
+				)
 
 /obj/item/salvage/high
-	name = "Advanced pre-war salvage"
+	name = "advanced pre-war salvage"
 	desc = "Some advanced pre-war salvage, it could contain some useful materials if dissasembled using a workbench..."
 	icon_state = "goodsalvage"
-	Loot = list(/obj/item/blueprint/research,
-				/obj/item/advanced_crafting_components/receiver,
-				/obj/item/advanced_crafting_components/assembly,
-				/obj/item/advanced_crafting_components/alloys,
-				/obj/item/reagent_containers/hypospray/medipen/stimpak,
-				/obj/item/weldingtool/advanced,
-				/obj/item/stock_parts/cell/ammo/mfc,
-				/obj/item/stock_parts/cell/ammo/ecp,
-				/obj/item/megaphone)
+	Loot = list(/obj/item/blueprint/research = 5,
+				/obj/item/advanced_crafting_components/receiver = 2,
+				/obj/item/advanced_crafting_components/assembly = 2,
+				/obj/item/advanced_crafting_components/alloys = 2,
+				/obj/item/advanced_crafting_components/flux = 1,
+				/obj/item/advanced_crafting_components/lenses = 1,
+				/obj/item/advanced_crafting_components/conductors = 1,
+				/obj/item/crafting/grenade_casing = 3,
+				/obj/item/crafting/servo = 5 ,
+				/obj/item/weldingtool/advanced = 5
+				)
 
 /obj/item/experimental
-	name = "Experimental component"
-	desc = "What could this do..."
+	name = "servo repair kit"
+	desc = "These appear to be used for repairing powerarmor sets..."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "radio-multitool"
 
@@ -998,10 +998,10 @@
 		to_chat(usr, "You can't improve [W.name]...")
 		return
 	if(istype(W, /obj/item/gun/ballistic))
-		gun(W, user)
+		to_chat(usr, "You can't improve [W.name]...")
 		return
 	if(istype(W, /obj/item/gun/energy))
-		egun(W, user)
+		to_chat(usr, "You can't improve [W.name]...")
 		return
 	if(istype(W, /obj/item/clothing/suit/armor/f13/power_armor))
 		parmor(W, user)
@@ -1010,14 +1010,12 @@
 		pahat(W, user)
 		return
 	if(istype(W, /obj/item/clothing/suit/armor))
-		armor(W, user)
+		to_chat(usr, "You can't improve [W.name]...")
 		return
-	if(istype(W, /obj/item/clothing/head))
-		hat(W, user)
-		return
-	
+
 /obj/item
 	var/tinkered = 0
+	var/untinkerable = FALSE
 
 /obj/item/experimental/proc/reroll(obj/item/W, mob/user)
 	var/obj/item/item = W.type
@@ -1027,244 +1025,43 @@
 		return
 	to_chat(user,"You destroy the item in the process.")
 
-/obj/item/experimental/proc/gun(obj/item/W, mob/user)
-	if(istype(W,/obj/item/gun/ballistic/automatic/shotgun))
-		to_chat(usr, "You can't improve [W.name]...")
-		return
-	var/obj/item/gun/ballistic/B = W 
-
-	var/dmgmod = rand(-10,10)
-	var/penmod = rand(-10,10)
-	var/spdmod = rand(-10,10)
-	var/overall = dmgmod+penmod-spdmod
-	var/prefix
-
-	if(HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		dmgmod += 4
-		penmod += 4
-		spdmod += 4
-		overall = dmgmod+penmod-spdmod
-
-	if(B.tinkered > 0 && !HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		to_chat(usr, "You have already tinkered with this item.")
-		return
-	if(B.tinkered == 1)
-		reroll(B,user)
-		return
-	if(B.tinkered > 1 && HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		to_chat(usr, "You have already tinkered with this item too much.")
-		return
-
-	switch(overall)
-		if(-30 to -15)
-			prefix = "Ruined "
-		if(-15 to 0)
-			prefix = "Inferior "
-		if(0 to 15)
-			prefix = "Improved "
-		if(15 to 30)
-			prefix = "Superior "
-		if(30 to 100)
-			prefix = "Legendary "
-	
-	B.extra_damage += (dmgmod)
-	B.extra_penetration += (penmod/60)
-	B.fire_delay += (spdmod/5)
-	B.name = prefix + B.name
-	B.tinkered += 1
-	B.desc += " Extra damage: [B.extra_damage]; Extra penetration: [B.extra_penetration]; Fire delay: [B.fire_delay]"
-
-	to_chat(usr, "You tinker with the gun making [W.name]...")
-	qdel(src)
-
-
-/obj/item/experimental/proc/egun(obj/item/W, mob/user)
-	var/obj/item/gun/energy/E = W
-
-	var/dmgmod = rand(-10,10)
-	var/penmod = rand(-10,10)
-	var/spdmod = rand(-10,10)
-	var/overall = dmgmod+penmod-spdmod
-	var/prefix
-
-	if(HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		dmgmod += 4
-		penmod += 4
-		spdmod += 4
-		overall = dmgmod+penmod-spdmod
-	
-	if(E.tinkered > 0 && !HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		to_chat(usr, "You have already tinkered with this item.")
-		return
-	if(E.tinkered == 1)
-		reroll(E,user)
-		return
-	if(E.tinkered > 1 && HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		to_chat(usr, "You have already tinkered with this item too much.")
-		return
-
-	switch(overall)
-		if(-30 to -15)
-			prefix = "Ruined "
-		if(-15 to 0)
-			prefix = "Inferior "
-		if(0 to 15)
-			prefix = "Improved "
-		if(15 to 30)
-			prefix = "Superior "
-		if(30 to 100)
-			prefix = "Legendary "
-	
-	E.extra_damage += (dmgmod)
-	E.extra_penetration += (penmod/60)
-	E.fire_delay += (spdmod/5)
-	//E.ammo_type[1].delay += spdmod
-	E.name = prefix + E.name
-	E.tinkered += 1
-	E.desc += " Extra damage: [E.extra_damage]; Extra penetration: [E.extra_penetration]; Fire delay: [E.fire_delay]"
-
-	to_chat(usr, "You tinker with the energy gun making [W.name]...")
-	qdel(src)
-
-/obj/item/experimental/proc/armor(obj/item/W, mob/user)
-	var/obj/item/clothing/suit/armor/A = W
-
-	var/tiermod = rand(-10,10)
-	var/spdmod = rand(-10,10)
-	var/prefix
-	var/overall = tiermod - spdmod
-
-	if(HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		tiermod += 4
-		spdmod += -4
-
-	if(A.tinkered > 0 && !HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		to_chat(usr, "You have already tinkered with this item.")
-		return
-	if(A.tinkered == 1)
-		reroll(A,user)
-		return
-	if(A.tinkered > 1 && HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		to_chat(usr, "You have already tinkered with this item too much.")
-		return
-
-	switch(overall)
-		if(-20 to -10)
-			prefix = "Ruined "
-		if(-10 to 0)
-			prefix = "Inferior "
-		if(0 to 10)
-			prefix = "Improved "
-		if(10 to 20)
-			prefix = "Superior "
-		if(20 to 100)
-			prefix = "Legendary "
-
-	A.armor.linemelee += tiermod*3
-	A.armor.linebullet += tiermod*3
-	A.armor.linelaser += tiermod*3
-	A.slowdown += (spdmod/75)
-	A.name = prefix + A.name
-	A.tinkered += 1
-	A.desc += " Armor: Melee: [A.armor.linemelee], Bullet: [A.armor.linebullet], Laser: [A.armor.linelaser]; Speed: [A.slowdown]"
-
-	to_chat(usr, "You tinker with the armor making [W.name]...")
-	qdel(src)
-
-/obj/item/experimental/proc/hat(obj/item/W, mob/user)
-	var/obj/item/clothing/head/H = W
-
-	var/tiermod = rand(-10,10)
-	var/spdmod = rand(-10,10)
-	var/prefix
-	var/overall = tiermod - spdmod
-
-	if(HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		tiermod += 4
-		spdmod += -4
-
-	if(H.tinkered > 0 && !HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		to_chat(usr, "You have already tinkered with this item.")
-		return
-	if(H.tinkered == 1)
-		reroll(H,user)
-		return
-	if(H.tinkered > 1 && HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		to_chat(usr, "You have already tinkered with this item too much.")
-		return
-
-	switch(overall)
-		if(-20 to -10)
-			prefix = "Ruined "
-		if(-10 to 0)
-			prefix = "Inferior "
-		if(0 to 10)
-			prefix = "Improved "
-		if(10 to 20)
-			prefix = "Superior "
-		if(20 to 100)
-			prefix = "Legendary "
-
-	H.armor.linemelee += tiermod*3
-	H.armor.linebullet += tiermod*3
-	H.armor.linelaser += tiermod*3
-	H.slowdown += (spdmod/75)
-	H.name = prefix + H.name
-	H.tinkered += 1
-	H.desc += " Armor: Melee: [H.armor.linemelee], Bullet: [H.armor.linebullet], Laser: [H.armor.linelaser]; Speed: [H.slowdown]"
-
-	to_chat(usr, "You tinker with the armor making [W.name]...")
-	qdel(src)
-			
 /obj/item/experimental/proc/parmor(obj/item/W, mob/user)
 	var/obj/item/clothing/suit/armor/f13/power_armor/A = W
 	//chance to upgrade all t45b versions to salvaged t45b, chance to upgrade salvaged t45b to t45b (new sprotes, t8 armor with no slowdown)
-	if(prob(20))
+	if(prob(40))
 		if(istype(A,/obj/item/clothing/suit/armor/f13/power_armor/raiderpa))//ups raider to salvaged
-			new /obj/item/clothing/suit/armor/f13/power_armor/t45b/restored(user.loc)
+			new /obj/item/clothing/suit/armor/f13/power_armor/t45d(user.loc)
 			qdel(A)
 			return
 		if(istype(A,/obj/item/clothing/suit/armor/f13/power_armor/hotrod))//ups hotrod to salvaged
-			new /obj/item/clothing/suit/armor/f13/power_armor/t45b/restored(user.loc)
+			new /obj/item/clothing/suit/armor/f13/power_armor/t45d(user.loc)
 			qdel(A)
 			return
 		if(istype(A, /obj/item/clothing/suit/armor/f13/power_armor/t45b))
-			new /obj/item/clothing/suit/armor/f13/power_armor/t45b/restored(user.loc)
+			new /obj/item/clothing/suit/armor/f13/power_armor/t45d(user.loc)
 			qdel(A)
 			return
-	if(prob(10)&&!HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		qdel(A)
-		to_chat(user,"You ruin the armor completely, destroying it in the process...")
-	if(prob(5)&&HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		qdel(A)
-		to_chat(user,"You ruin the armor completely, destroying it in the process...")
 	qdel(src)
 
 /obj/item/experimental/proc/pahat(obj/item/W, mob/user)
 	var/obj/item/clothing/head/helmet/f13/power_armor/H = W
-	if(prob(20))
+	if(prob(50))
 		if(istype(H,/obj/item/clothing/head/helmet/f13/power_armor/raiderpa_helm))//ups raider to salvaged
-			new /obj/item/clothing/head/helmet/f13/power_armor/t45b/restored(user.loc)
+			new /obj/item/clothing/head/helmet/f13/power_armor/t45d(user.loc)
 			qdel(H)
 			return
 		if(istype(H,/obj/item/clothing/head/helmet/f13/power_armor/hotrod))//ups hotrod to salvaged
-			new /obj/item/clothing/head/helmet/f13/power_armor/t45b/restored(user.loc)
+			new /obj/item/clothing/head/helmet/f13/power_armor/t45d(user.loc)
 			qdel(H)
 			return
 		if(istype(H, /obj/item/clothing/head/helmet/f13/power_armor/t45b))
-			new /obj/item/clothing/head/helmet/f13/power_armor/t45b/restored(user.loc)
+			new /obj/item/clothing/head/helmet/f13/power_armor/t45d(user.loc)
 			qdel(H)
 			return
-	if(prob(10)&&!HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		qdel(H)
-		to_chat(user,"You ruin the helmet completely, destroying it in the process...")
-	if(prob(5)&&HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
-		qdel(H)
-		to_chat(user,"You ruin the helmet completely, destroying it in the process...")
 	qdel(src)
 
 /obj/item/invention
-	name = "Invention"
+	name = "invention"
 	desc = "What could this be..."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "radio-multitool"
@@ -1278,30 +1075,30 @@
 
 	var/obj/item/item
 
-	var/list/vhigh = list(/obj/item/melee/powerfist, /obj/item/nullrod/claymore/chainsaw_sword)
+	var/list/vhigh = list(/obj/item/melee/powerfist, /obj/item/nullrod/claymore/chainsaw_sword, /obj/item/twohanded/thermic_lance)
 
 	var/list/high = list(/obj/item/shishkebabpack, /obj/item/gun/energy/gammagun, /obj/item/clothing/suit/armor/f13/sulphitearmor,
-	/obj/item/clothing/head/helmet/f13/sulphitehelm, /obj/item/melee/powerfist/moleminer, /obj/item/circuitboard/machine/chem_master, 
+	/obj/item/clothing/head/helmet/f13/sulphitehelm, /obj/item/melee/powerfist/moleminer, /obj/item/circuitboard/machine/chem_master,
 	/obj/item/circuitboard/machine/cell_charger)
 
 	var/list/mid = list(/obj/item/twohanded/fireaxe/bmprsword, /obj/item/twohanded/sledgehammer, /obj/item/shield/makeshift,/obj/item/gun/ballistic/automatic/autopipe,
-	/obj/item/gun/ballistic/shotgun/lasmusket, /obj/item/gun/ballistic/shotgun/plasmacaster, /obj/item/clothing/suit/armor/f13/metalarmor,
+	/obj/item/grenade/homemade/dynamite, /obj/item/clothing/suit/armor/f13/metalarmor, /obj/item/gun/ballistic/rifle/enfield, /obj/item/gun/ballistic/rifle/mag/varmint,
 	/obj/item/clothing/head/helmet/f13/raider/eyebot, /obj/item/clothing/head/helmet/knight/f13/metal/reinforced)
 
-	var/list/low = list(/obj/item/gun/ballistic/revolver/zipgun,/obj/item/gun/ballistic/revolver/pipe_rifle,/obj/item/fishingrod,/obj/item/grenade/iedcasing,
+	var/list/low = list(/obj/item/gun/ballistic/revolver/pipe_rifle,/obj/item/fishingrod,/obj/item/grenade/homemade/firebomb,
 	/obj/item/clothing/suit/armor/f13/slam, /obj/item/clothing/suit/armor/f13/raider/raidermetal,/obj/item/clothing/head/helmet/f13/raidermetal,
-	/obj/item/clothing/head/helmet/knight/f13/metal, /obj/item/melee/unarmed/punchdagger)
+	/obj/item/clothing/head/helmet/knight/f13/metal)
 
-	if(prob(60)||prob(30)&&HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
+	if(prob(60))
 		item = pick(low)
 		new item(user.loc)
-	if(prob(30)||prob(15)&&HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
+	if(prob(30))
 		item = pick(mid)
 		new item(user.loc)
-	if(prob(9)||prob(4.5)&&HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
+	if(prob(9))
 		item = pick(high)
 		new item(user.loc)
-	if(prob(1)||prob(0.5)&&HAS_TRAIT(user,TRAIT_MASTER_GUNSMITH))
+	if(prob(1))
 		item = pick(vhigh)
 		new item(user.loc)
 

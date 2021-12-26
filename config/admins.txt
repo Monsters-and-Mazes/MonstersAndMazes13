@@ -10,5 +10,3 @@
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
 JKJudgeX=Host
-Zyymurgy=Admin
-therealgoatwhisperer=Moderator

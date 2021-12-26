@@ -224,7 +224,7 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/five_tires
-	name = "Tire Pile"
+	name = "tire pile"
 	desc = "A pile of tires."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "five_t"
@@ -232,7 +232,7 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/two_tire
-	name = "Tires"
+	name = "tires"
 	desc = "A set of two tires, now where are the other two?"
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "two_t"
@@ -240,7 +240,7 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/one_tire
-	name = "Tire"
+	name = "tire"
 	desc = "A single tire."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "one_t"
@@ -248,7 +248,7 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/halftire
-	name = "Buried Tire"
+	name = "buried tire"
 	desc = "Its not treasure, but it is partially buried."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "half_t"
@@ -258,7 +258,7 @@
 	layer = TURF_LAYER
 
 /obj/structure/wreck/trash/four_barrels
-	name = "Barrels"
+	name = "barrels"
 	desc = "Some metal barrels."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "four_b"
@@ -266,7 +266,7 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/three_barrels
-	name = "Barrels"
+	name = "barrels"
 	desc = "Some metal barrels."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "three_b"
@@ -274,7 +274,7 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/two_barrels
-	name = "Barrels"
+	name = "barrels"
 	desc = "Some metal barrels."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "two_b"
@@ -282,7 +282,7 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/one_barrel
-	name = "Barrels"
+	name = "barrels"
 	desc = "Some metal barrels."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "one_b"
@@ -290,7 +290,7 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/engine
-	name = "Engine"
+	name = "engine"
 	desc = "If only you picked the automechanics perk."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "engine"
@@ -298,7 +298,7 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/autoshaft
-	name = "Automobile Shaft"
+	name = "automobile shaft"
 	desc = "It probably was in a vehicle at one time."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "auto_shaft"
@@ -308,7 +308,7 @@
 	layer = TURF_LAYER
 
 /obj/structure/wreck/trash/bus_door
-	name = "Lonely Bus Door"
+	name = "bus door"
 	desc = "A bus door, missing the rest of the bus."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "bus_door"
@@ -318,7 +318,7 @@
 	layer = TURF_LAYER
 
 /obj/structure/wreck/trash/secway
-	name = "Broken Secway"
+	name = "broken segway"
 	desc = "Looks like the axle was split in half."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "secwaybroke"
@@ -326,15 +326,15 @@
 	bound_height = 32
 
 /obj/structure/wreck/trash/brokenvendor
-	name = "Broken Vendor"
-	desc = "Looks like it it fell down by force."
+	name = "broken vendor"
+	desc = "Looks like it was knocked down by force."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "technical_pile3"
 	bound_width = 32
 	bound_height = 32
 
 /obj/structure/wreck/trash/machinepile
-	name = "Broken Machinery"
+	name = "broken machinery"
 	desc = "Looks like broken machinery."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "technical_pile1"
@@ -352,17 +352,17 @@
 			inuse = FALSE
 			return //the tool fails this check, so stop
 		user.visible_message("[user] starts disassembling [src].")
-		if(!I.use_tool(src, user, 0, volume=100)) //here is the dilemma, use_tool doesn't work like do_after, so moving away screws it(?)
+		if(!I.use_tool(src, user, 0, volume=50)) //here is the dilemma, use_tool doesn't work like do_after, so moving away screws it(?)
 			inuse = FALSE
 			return //you can't use the tool, so stop
-		for(var/i1 in 1 to 2) //so, I hate waiting 30 seconds straight... what if we wait 10 seconds 3 times? (yes, its the same, but it'll feel more!)
-			if(!do_after(user, 10 SECONDS*W.toolspeed, target = src)) //this is my work around, because do_After does have a move away
+		for(var/i1 in 1 to 2) //so, I hate waiting 30 seconds straight... what if we wait 5 seconds 3 times? (yes, its the same, but it'll feel more!)
+			if(!do_after(user, 5 SECONDS*W.toolspeed, target = src)) //this is my work around, because do_After does have a move away
 				user.visible_message("[user] stops disassembling [src].")
 				inuse = FALSE
 				return //you did something, like moving, so stop
 			var/fake_dismantle = pick("plating", "rod", "rim", "part of the frame")
 			user.visible_message("[user] slices through a [fake_dismantle].")
-			I.play_tool_sound(src, 100)
+			I.play_tool_sound(src, 50)
 		var/turf/usr_turf = get_turf(user)
 		for(var/i2 in 1 to rand(3,5)) //also changing this a little. IDEA: perhaps a mechanic skill could affect the amount dropped instead
 			if(prob(25))
@@ -376,7 +376,7 @@
 
 
 /obj/structure/wreck/trash/machinepiletwo
-	name = "Broken Machinery"
+	name = "broken machinery"
 	desc = "Looks like broken machinery."
 	icon = 'icons/fallout/trash.dmi'
 	icon_state = "technical_pile2"
@@ -393,17 +393,17 @@
 			inuse = FALSE
 			return //the tool fails this check, so stop
 		user.visible_message("[user] starts disassembling [src].")
-		if(!I.use_tool(src, user, 0, volume=100)) //here is the dilemma, use_tool doesn't work like do_after, so moving away screws it(?)
+		if(!I.use_tool(src, user, 0, volume=50)) //here is the dilemma, use_tool doesn't work like do_after, so moving away screws it(?)
 			inuse = FALSE
 			return //you can't use the tool, so stop
-		for(var/i1 in 1 to 2) //so, I hate waiting 30 seconds straight... what if we wait 10 seconds 3 times? (yes, its the same, but it'll feel more!)
-			if(!do_after(user, 10 SECONDS, target = src)) //this is my work around, because do_After does have a move away
+		for(var/i1 in 1 to 2) //so, I hate waiting 30 seconds straight... what if we wait 5 seconds 3 times? (yes, its the same, but it'll feel more!)
+			if(!do_after(user, 5 SECONDS, target = src)) //this is my work around, because do_After does have a move away
 				user.visible_message("[user] stops disassembling [src].")
 				inuse = FALSE
 				return //you did something, like moving, so stop
 			var/fake_dismantle = pick("plating", "rod", "rim", "part of the frame")
 			user.visible_message("[user] slices through a [fake_dismantle].")
-			I.play_tool_sound(src, 100)
+			I.play_tool_sound(src, 50)
 		var/turf/usr_turf = get_turf(user)
 		for(var/i2 in 1 to rand(3,5)) //also changing this a little. IDEA: perhaps a mechanic skill could affect the amount dropped instead
 			if(prob(25))

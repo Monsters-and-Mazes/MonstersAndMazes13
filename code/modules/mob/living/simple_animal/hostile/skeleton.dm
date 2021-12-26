@@ -69,7 +69,7 @@
 	speed = 2
 	gold_core_spawnable = NO_SPAWN
 	speak_chance = 1
-	speak = list("THE GODS WILL IT!","DEUS VULT!","REMOVE KABAB!")
+	speak = list("THE GODS WILL IT!","DEUS VULT!","SPIRITS WILL!")
 	force_threshold = 10 //trying to simulate actually having armor
 	obj_damage = 50
 	melee_damage_lower = 25
@@ -121,7 +121,7 @@
 	attack_verb_continuous = "blasts"
 	attack_verb_simple = "blast"
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
-	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer)
+	loot = list(/obj/effect/decal/remains/plasma)
 
 /mob/living/simple_animal/hostile/skeleton/plasmaminer/Initialize()
 	. = ..()

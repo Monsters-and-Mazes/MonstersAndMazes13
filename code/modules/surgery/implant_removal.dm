@@ -3,7 +3,18 @@
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/extract_implant, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
-	requires_trait = 2
+	requires_trait = 1
+
+/datum/surgery/cavity_implant/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
+	if(HAS_TRAIT(user,TRAIT_SURGERY_LOW))
+		return TRUE
+	if(HAS_TRAIT(user,TRAIT_SURGERY_MID))
+		return TRUE
+	if(HAS_TRAIT(user,TRAIT_SURGERY_HIGH))
+		return TRUE
+	else
+		return FALSE
+
 //extract implant
 /datum/surgery_step/extract_implant
 	name = "extract implant"
@@ -15,17 +26,17 @@
 		I = O
 		break
 	if(I)
-		display_results(user, target, "<span class='notice'>You begin to extract [I] from [target]'s [target_zone]...</span>",
+		display_results(user, target, SPAN_NOTICE("You begin to extract [I] from [target]'s [target_zone]..."),
 			"[user] begins to extract [I] from [target]'s [target_zone].",
 			"[user] begins to extract something from [target]'s [target_zone].")
 	else
-		display_results(user, target, "<span class='notice'>You look for an implant in [target]'s [target_zone]...</span>",
+		display_results(user, target, SPAN_NOTICE("You look for an implant in [target]'s [target_zone]..."),
 			"[user] looks for an implant in [target]'s [target_zone].",
 			"[user] looks for something in [target]'s [target_zone].")
 
 /datum/surgery_step/extract_implant/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(I)
-		display_results(user, target, "<span class='notice'>You successfully remove [I] from [target]'s [target_zone].</span>",
+		display_results(user, target, SPAN_NOTICE("You successfully remove [I] from [target]'s [target_zone]."),
 			"[user] successfully removes [I] from [target]'s [target_zone]!",
 			"[user] successfully removes something from [target]'s [target_zone]!")
 		I.removed(target)
@@ -40,14 +51,14 @@
 			case.imp = I
 			I.forceMove(case)
 			case.update_icon()
-			display_results(user, target, "<span class='notice'>You place [I] into [case].</span>",
+			display_results(user, target, SPAN_NOTICE("You place [I] into [case]."),
 				"[user] places [I] into [case]!",
 				"[user] places it into [case]!")
 		else
 			qdel(I)
 
 	else
-		to_chat(user, "<span class='warning'>You can't find anything in [target]'s [target_zone]!</span>")
+		to_chat(user, SPAN_WARNING("You can't find anything in [target]'s [target_zone]!"))
 	return 1
 /datum/surgery/implant_removal/mechanic
 	name = "implant removal"

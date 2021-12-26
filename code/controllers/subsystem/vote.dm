@@ -378,16 +378,8 @@ SUBSYSTEM_DEF(vote)
 					if(C)
 						C.post_status("shuttle") // austation end
 	if(restart)
-		var/active_admins = 0
-		for(var/client/C in GLOB.admins)
-			if(!C.is_afk() && check_rights_for(C, R_SERVER))
-				active_admins = 1
-				break
-		if(!active_admins)
-			SSticker.Reboot("Restart vote successful.", "restart vote")
-		else
-			to_chat(world, "<span style='boldannounce'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
-			message_admins("A restart vote has passed, but there are active admins on with +server, so it has been canceled. If you wish, you may restart the server.")
+		SSshuttle.emergency.request()
+		message_admins("A restart vote has passed and the train has been automatically called. [ADMIN_RECALL(src)]")
 
 	return .
 
@@ -444,7 +436,7 @@ SUBSYSTEM_DEF(vote)
 		if(started_time)
 			var/next_allowed_time = (started_time + CONFIG_GET(number/vote_delay))
 			if(mode)
-				to_chat(usr, "<span class='warning'>There is already a vote in progress! please wait for it to finish.</span>")
+				to_chat(usr, SPAN_WARNING("There is already a vote in progress! please wait for it to finish."))
 				return 0
 
 			var/admin = FALSE
@@ -453,7 +445,7 @@ SUBSYSTEM_DEF(vote)
 				admin = TRUE
 
 			if(next_allowed_time > world.time && !admin)
-				to_chat(usr, "<span class='warning'>A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!</span>")
+				to_chat(usr, SPAN_WARNING("A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!"))
 				return 0
 
 		SEND_SOUND(world, sound('sound/f13/mysterious_stranger.ogg'))

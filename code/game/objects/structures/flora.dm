@@ -3,13 +3,6 @@
 	max_integrity = 150
 	anchored = TRUE
 
-// MM13 branches
-/obj/structure/flora/branches
-	name = "branches"
-	desc = "A few branches."
-	icon = 'icons/mm13/vegetation.dmi'
-	icon_state = "branches"
-
 //trees
 /obj/structure/flora/tree
 	name = "tree"
@@ -24,9 +17,9 @@
 		if(W.sharpness && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), 'sound/effects/wood_cutting.ogg', 100, 0, 0)
-			user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
+			user.visible_message(SPAN_NOTICE("[user] begins to cut down [src] with [W]."),SPAN_NOTICE("You begin to cut down [src] with [W]."), "You hear the sound of sawing.")
 			if(do_after(user, 1000/W.force, target = src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
-				user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
+				user.visible_message(SPAN_NOTICE("[user] fells [src] with the [W]."),SPAN_NOTICE("You fell [src] with the [W]."), "You hear the sound of a tree falling.")
 				playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
 				for(var/i=1 to log_amount)
 					new /obj/item/grown/log/tree(get_turf(src))
@@ -69,7 +62,7 @@
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/a_gift/anything
+	var/gift_type = /obj/item/a_gift
 	var/list/ckeys_that_took = list()
 
 /obj/structure/flora/tree/pine/xmas/presents/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
@@ -80,9 +73,9 @@
 		return
 
 	if(ckeys_that_took[user.ckey])
-		to_chat(user, "<span class='warning'>There are no presents with your name on.</span>")
+		to_chat(user, SPAN_WARNING("There are no presents with your name on."))
 		return
-	to_chat(user, "<span class='warning'>After a bit of rummaging, you locate a gift with your name on it!</span>")
+	to_chat(user, SPAN_WARNING("After a bit of rummaging, you locate a gift with your name on it!"))
 	ckeys_that_took[user.ckey] = TRUE
 	var/obj/item/G = new gift_type(src)
 	user.put_in_hands(G)
@@ -192,8 +185,12 @@
 	. = ..()
 
 //newbushes
+
 /obj/structure/flora/ausbushes
+	name = "bush"
+	desc = "Some kind of plant."
 	icon = 'icons/obj/flora/ausflora.dmi'
+	icon_state = "firstbush_1"
 
 /obj/structure/flora/ausbushes/Initialize()
 	if(icon_state == "firstbush_1")
@@ -387,9 +384,9 @@
 		return ..()
 	if(flags_1 & NODECONSTRUCT_1)
 		return ..()
-	to_chat(user, "<span class='notice'>You start mining...</span>")
+	to_chat(user, SPAN_NOTICE("You start mining..."))
 	if(W.use_tool(src, user, 40, volume=50))
-		to_chat(user, "<span class='notice'>You finish mining the rock.</span>")
+		to_chat(user, SPAN_NOTICE("You finish mining the rock."))
 		if(mineResult && mineAmount)
 			new mineResult(get_turf(src), mineAmount)
 		SSblackbox.record_feedback("tally", "pick_used_mining", 1, W.type)
