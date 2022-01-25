@@ -3,7 +3,7 @@
 	name = "ladder"
 	desc = "A sturdy metal ladder."
 	icon = 'icons/obj/structures.dmi'
-	icon_state = "ladder11"
+	icon_state = "woodladder11"
 	anchored = TRUE
 	var/obj/structure/ladder/down   //the ladder below this one
 	var/obj/structure/ladder/up     //the ladder above this one
@@ -147,19 +147,6 @@
 		down.up = null
 		down.update_icon()
 	up = down = null
-
-/obj/structure/ladder/update_icon_state()
-	if(up && down)
-		icon_state = "ladder11"
-
-	else if(up)
-		icon_state = "ladder10"
-
-	else if(down)
-		icon_state = "manhole_open"
-
-	else	//wtf make your ladders properly assholes
-		icon_state = "ladder00"
 
 /obj/structure/ladder/singularity_pull()
 	if (!(resistance_flags & INDESTRUCTIBLE))

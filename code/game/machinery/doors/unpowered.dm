@@ -23,7 +23,7 @@
 /obj/machinery/door/unpowered/wooddoor
 	icon = 'icons/obj/doors/wasteland_doors.dmi' //
 	name = "wooden door"
-	icon_state = "room1" //
+	icon_state = "wood" //
 	max_integrity = 60
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
 	assemblytype = /obj/item/stack/sheet/mineral/wood/five
