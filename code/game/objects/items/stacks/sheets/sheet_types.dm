@@ -958,7 +958,7 @@ GLOBAL_LIST_INIT(hay_recipes, list ( \
 
 /obj/item/stack/sheet/hay
 	name = "hay"
-	desc = "A bundle of hay. Useful for weaving. Hail the Wickerman." //Brahmin can't currently eat this.
+	desc = "A bundle of hay. Useful for weaving. Hail the Wickerman." //bovine can't currently eat this.
 	singular_name = "hay stalk"
 	icon_state = "sheet-hay"
 	item_state = "sheet-hay"

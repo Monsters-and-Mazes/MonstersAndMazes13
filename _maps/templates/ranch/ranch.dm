@@ -1,19 +1,19 @@
-/obj/effect/landmark/map_load_mark/brahmin_ranch_random
+/obj/effect/landmark/map_load_mark/bovine_ranch_random
 	name = "Ranch House"
-	templates = list( "brahmin_ranch_1","brahmin_ranch_2","brahmin_ranch_3" )
+	templates = list( "bovine_ranch_1","bovine_ranch_2","bovine_ranch_3" )
 
 /datum/map_template/fallout/ranch1
-	name = "Brahmin Ranch"
-	id = "brahmin_ranch_1"
-	mappath = "_maps/map_files/templates/ranch/brahmin_ranch_1.dmm"
+	name = "bovine Ranch"
+	id = "bovine_ranch_1"
+	mappath = "_maps/map_files/templates/ranch/bovine_ranch_1.dmm"
 
 /datum/map_template/fallout/ranch2
-	name = "Brahmin Ranch V2"
-	id = "brahmin_ranch_2"
-	mappath = "_maps/map_files/templates/ranch/brahmin_ranch_2.dmm"
+	name = "bovine Ranch V2"
+	id = "bovine_ranch_2"
+	mappath = "_maps/map_files/templates/ranch/bovine_ranch_2.dmm"
 
 /datum/map_template/fallout/ranch3
-	name = "Brahmin Ranch V3"
-	id = "brahmin_ranch_3"
-	mappath = "_maps/map_files/templates/ranch/brahmin_ranch_3.dmm"
+	name = "bovine Ranch V3"
+	id = "bovine_ranch_3"
+	mappath = "_maps/map_files/templates/ranch/bovine_ranch_3.dmm"
 

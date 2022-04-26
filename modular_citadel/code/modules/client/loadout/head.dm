@@ -68,8 +68,8 @@
 
 //Cowboy Stuff
 /datum/gear/head/cowboy
-	name = "brahmin leather cowboy hat"
-	path = /obj/item/clothing/head/helmet/f13/brahmincowboyhat
+	name = "bovine leather cowboy hat"
+	path = /obj/item/clothing/head/helmet/f13/bovinecowboyhat
 
 /datum/gear/head/cowboy_alt
 	name = "Rusted Cowboy Hat"

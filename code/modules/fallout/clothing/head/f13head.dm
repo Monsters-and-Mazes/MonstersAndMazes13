@@ -722,11 +722,11 @@
 	dynamic_hair_suffix = ""
 	dynamic_fhair_suffix = ""
 
-/obj/item/clothing/head/helmet/f13/brahmincowboyhat
-	name = "brahmin leather cowboy hat"
-	desc = "(II) A cowboy hat made from brahmin hides."
-	icon_state = "brahmin_leather_cowboy_hat"
-	item_state = "brahmin_leather_cowboy_hat"
+/obj/item/clothing/head/helmet/f13/bovinecowboyhat
+	name = "bovine leather cowboy hat"
+	desc = "(II) A cowboy hat made from bovine hides."
+	icon_state = "bovine_leather_cowboy_hat"
+	item_state = "bovine_leather_cowboy_hat"
 	armor = list("tier" = 2, "energy" = 15, "bomb" = 70, "bio" = 70, "rad" = 70, "fire" = 70, "acid" = 15)
 	flags_inv = HIDEEARS|HIDEHAIR
 

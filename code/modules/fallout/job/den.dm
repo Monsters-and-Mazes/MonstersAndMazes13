@@ -195,7 +195,7 @@ Mayor
 	..()
 	uniform = pick(
 		/obj/item/clothing/under/f13/settler, \
-		/obj/item/clothing/under/f13/brahminm, \
+		/obj/item/clothing/under/f13/bovinem, \
 		/obj/item/clothing/under/f13/machinist, \
 		/obj/item/clothing/under/f13/lumberjack, \
 		/obj/item/clothing/under/f13/roving)
@@ -495,7 +495,7 @@ Mayor
 
 /datum/outfit/loadout/rugged
 	name = "Rugged"
-	head = /obj/item/clothing/head/helmet/f13/brahmincowboyhat
+	head = /obj/item/clothing/head/helmet/f13/bovinecowboyhat
 	uniform = /obj/item/clothing/under/f13/cowboyb
 	suit = /obj/item/clothing/suit/f13/cowboybvest
 	gloves = /obj/item/clothing/gloves/color/brown
@@ -524,7 +524,7 @@ Mayor
 	name = "Diner"
 	head = /obj/item/clothing/head/soft/mime
 	glasses = /obj/item/clothing/glasses/orange
-	uniform = /obj/item/clothing/under/f13/brahminf
+	uniform = /obj/item/clothing/under/f13/bovinef
 	neck = /obj/item/clothing/neck/apron/chef
 	gloves = /obj/item/clothing/gloves/color/white
 	shoes = /obj/item/clothing/shoes/f13/military/ncr

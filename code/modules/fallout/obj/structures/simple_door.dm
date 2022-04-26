@@ -237,7 +237,7 @@
 // Fallout 13 general doors directory
 
 /obj/structure/simple_door/tentflap_leather
-	name = "brahminskin tent entrance"
+	name = "bovineskin tent entrance"
 	icon_state = "tentflap_leather"
 	door_type = "tentflap_leather"
 	base_opacity = TRUE
@@ -257,14 +257,14 @@
 	close_sound = 'sound/effects//footstep/hardbarefoot5.ogg'
 
 // weathered white door
-/obj/structure/simple_door/house 
+/obj/structure/simple_door/house
 	icon_state = "house"
 	door_type = "house"
 	can_disasemble = TRUE
 	can_hold_padlock = TRUE
 
 // cleaned and repainted white
-/obj/structure/simple_door/house/clean 
+/obj/structure/simple_door/house/clean
 	icon_state = "houseclean"
 	door_type = "houseclean"
 

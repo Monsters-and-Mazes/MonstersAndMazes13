@@ -582,7 +582,7 @@
 	name = "ranger biscuit"
 	bitesize = 2
 	icon_state = "k_ration_cracker"
-	tastes = list("biscuit" = 1, "brahmin butter" = 1)
+	tastes = list("biscuit" = 1, "bovine butter" = 1)
 
 /obj/item/reagent_containers/food/snacks/hotdog
 	name = "hotdog"

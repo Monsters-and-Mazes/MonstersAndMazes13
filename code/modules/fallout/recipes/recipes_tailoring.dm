@@ -65,7 +65,7 @@
 /datum/crafting_recipe/leather_jacket
 	name = "leather jacket"
 	result = /obj/item/clothing/suit/armor/f13/leather_jacket
-	reqs = list(/obj/item/stack/sheet/animalhide/brahmin = 2,
+	reqs = list(/obj/item/stack/sheet/animalhide/bovine = 2,
 				/obj/item/stack/sheet/durathread = 1)
 	tools = list(TOOL_WORKBENCH)
 	time = 60
@@ -76,7 +76,7 @@
 	name = "combat jacket"
 	result = /obj/item/clothing/suit/armor/f13/leather_jacket/combat
 	reqs = list(/obj/item/clothing/suit/armor/f13/leather_jacket = 1,
-				/obj/item/stack/sheet/animalhide/brahmin = 1,
+				/obj/item/stack/sheet/animalhide/bovine = 1,
 				/obj/item/stack/sheet/animalhide/gecko = 1,
 				/obj/item/stack/sheet/leather = 1)
 	tools = list(TOOL_WORKBENCH)
@@ -526,7 +526,7 @@
 
 /datum/crafting_recipe/cowboyhatrustic
 	name = "rustic leather cowboy hat"
-	result = /obj/item/clothing/head/helmet/f13/brahmincowboyhat
+	result = /obj/item/clothing/head/helmet/f13/bovinecowboyhat
 	reqs = list(/obj/item/stack/sheet/leather = 2,
 				/obj/item/stack/sheet/cloth = 1)
 	tools = list(TOOL_WORKBENCH)
@@ -763,19 +763,19 @@
 	category = CAT_CLOTHING
 	subcategory = CAT_GENCLOTHES
 
-/datum/crafting_recipe/brahmin
-	name = "male brahmin-skin outfit"
+/datum/crafting_recipe/bovine
+	name = "male bovine-skin outfit"
 	result = /obj/item/clothing/under/f13/mercadv
-	reqs = list(/obj/item/stack/sheet/animalhide/brahmin = 1)
+	reqs = list(/obj/item/stack/sheet/animalhide/bovine = 1)
 	tools = list(TOOL_WORKBENCH)
 	time = 15
 	category = CAT_CLOTHING
 	subcategory = CAT_GENCLOTHES
 
-/datum/crafting_recipe/fbrahmin
-	name = "female brahmin-skin outfit"
-	result = /obj/item/clothing/under/f13/female/brahmin
-	reqs = list(/obj/item/stack/sheet/animalhide/brahmin = 1)
+/datum/crafting_recipe/fbovine
+	name = "female bovine-skin outfit"
+	result = /obj/item/clothing/under/f13/female/bovine
+	reqs = list(/obj/item/stack/sheet/animalhide/bovine = 1)
 	tools = list(TOOL_WORKBENCH)
 	time = 15
 	category = CAT_CLOTHING

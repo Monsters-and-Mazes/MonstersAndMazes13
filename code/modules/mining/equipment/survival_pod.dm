@@ -344,12 +344,12 @@
 
 /obj/item/survivalcapsule/farm
 	name = "Farm-N-Go Vault-Tec C.A.M.P."
-	desc = "A ready to go, loaded farming plot with three brahmin, and a small living quarter. C.A.M.P. packed and designed by Vault-tec.  Shake it and throw it!"
+	desc = "A ready to go, loaded farming plot with three bovine, and a small living quarter. C.A.M.P. packed and designed by Vault-tec.  Shake it and throw it!"
 	template_id = "shelter_golf"
 
 /obj/item/survivalcapsule/fortuneteller
 	name = "Occult Vault-Tec C.A.M.P."
-	desc = "A camp with three brahmin and all your supernatural needs. C.A.M.P. packed and designed by Vault-tec.  Shake it and throw it!"
+	desc = "A camp with three bovine and all your supernatural needs. C.A.M.P. packed and designed by Vault-tec.  Shake it and throw it!"
 	template_id = "shelter_hotel"
 
 /obj/item/survivalcapsule/blacksmith

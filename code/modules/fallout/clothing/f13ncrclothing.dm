@@ -154,7 +154,7 @@
 
 /obj/item/clothing/head/f13/ncr_stetson
 	name = "NCR air cavalry stetson"
-	desc = "(VI) A black brahmin leather stetson, authorized for usage amongst all troopers assigned to Air Cavalry units."
+	desc = "(VI) A black bovine leather stetson, authorized for usage amongst all troopers assigned to Air Cavalry units."
 	icon_state = "ncr_stetson"
 	item_state = "ncr_stetson"
 	armor = list("tier" = 6, "energy" = 20, "bomb" = 25, "bio" = 30, "rad" = 20, "fire" = 60, "acid" = 0)

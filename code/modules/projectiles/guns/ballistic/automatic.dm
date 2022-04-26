@@ -508,7 +508,7 @@
 //M1/NCR Carbine			Keywords: NCR, 10mm, Semi-Auto, 12/24 rounds, 'Long Barrel', No Autosear (!)
 /obj/item/gun/ballistic/automatic/m1carbine/ncr
 	name = "M1/N carbine"
-	desc = "The M1 Carbine is a renowned carbine that's been in service since WW2. This varient seems to sport a few modernizations alongside an NCR design in brahmin leather on its stock."
+	desc = "The M1 Carbine is a renowned carbine that's been in service since WW2. This varient seems to sport a few modernizations alongside an NCR design in bovine leather on its stock."
 	icon_state = "ncr-m1carbine"
 	can_automatic = FALSE
 	untinkerable = TRUE

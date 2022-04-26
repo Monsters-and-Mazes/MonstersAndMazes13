@@ -148,10 +148,10 @@
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/tribalshield
-	name = "Tribal Brahmin Shield"
+	name = "Tribal bovine Shield"
 	always_availible = FALSE
 	reqs = list(
 			/obj/item/stack/sheet/mineral/wood = 10,
-			/obj/item/stack/sheet/animalhide/brahmin = 2)
+			/obj/item/stack/sheet/animalhide/bovine = 2)
 	result = /obj/item/shield/tribal
 	category = CAT_PRIMAL

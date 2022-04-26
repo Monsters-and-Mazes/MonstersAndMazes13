@@ -47,16 +47,16 @@
 		return ..()
 
 /////BARRICADE TYPES AND TENTS///////
-//Yeah the new tents go here. Sue me. Use cloth for more posh places like NCR, brahmin skin for tribals/legion//
+//Yeah the new tents go here. Sue me. Use cloth for more posh places like NCR, bovine skin for tribals/legion//
 //You'll find train turfs here too. Sue me.
 
 /obj/structure/barricade/tentleathercorner
-	name = "brahmin skin tent"
+	name = "bovine skin tent"
 	icon = 'icons/fallout/turfs/walls/tents.dmi'
 	icon_state = "leather_corner"
 
 /obj/structure/barricade/tentleatheredge
-	name = "brahmin skin tent"
+	name = "bovine skin tent"
 	icon = 'icons/fallout/turfs/walls/tents.dmi'
 	icon_state = "leather_edge"
 

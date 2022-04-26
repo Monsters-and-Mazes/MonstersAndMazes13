@@ -212,7 +212,7 @@
 
 /obj/item/storage/box/ration/menu_one/PopulateContents()
 	. = ..()
-	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/brahmin_chili(src)
+	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/bovine_chili(src)
 	new /obj/item/reagent_containers/food/snacks/lollipop(src)
 	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/crackers(src)
 	new /obj/item/reagent_containers/food/snacks/sosjerky/ration(src)
@@ -303,7 +303,7 @@
 
 /obj/item/storage/box/ration/menu_seven/PopulateContents()
 	. = ..()
-	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/brahmin_burger(src)
+	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/bovine_burger(src)
 	new /obj/item/reagent_containers/food/snacks/chocolatebar(src)
 	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/crackers(src)
 	new /obj/item/reagent_containers/food/snacks/sosjerky/ration(src)
@@ -362,7 +362,7 @@
 
 /obj/item/storage/box/ration/menu_eleven/PopulateContents()
 	. = ..()
-	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/brahmin_dogs(src)
+	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/bovine_dogs(src)
 	new /obj/item/reagent_containers/food/snacks/lollipop(src)
 	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/crackers(src)
 	new /obj/item/reagent_containers/food/snacks/sosjerky/ration(src)
@@ -437,8 +437,8 @@
 	new /obj/item/reagent_containers/food/snacks/f13/canned/ncr/cranberry_cobbler(src)
 	new /obj/item/storage/box/matches(src)
 	new /obj/item/clothing/mask/cigarette/cigar/ncr(src)
-	
-//	
+
+//
 //Healing Items
 /obj/item/storage/box/medicine
 	name = "box of medication"
@@ -470,7 +470,7 @@
 /obj/item/storage/box/medicine/powder10/PopulateContents()
 	for(var/i in 1 to 10)
 		new /obj/item/reagent_containers/pill/patch/healingpowder(src)
-//		
+//
 
 //Poultices
 /obj/item/storage/box/medicine/poultice5
@@ -524,4 +524,4 @@
 /obj/item/storage/box/medicine/superstimpak10/PopulateContents()
 	for(var/i in 1 to 10)
 		new /obj/item/reagent_containers/hypospray/medipen/stimpak/super(src)
-//		
+//

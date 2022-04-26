@@ -6,14 +6,14 @@
 
 /obj/item/storage/survivalkit/PopulateContents()
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
+	new /obj/item/reagent_containers/pill/patch/healpoultice(src)
 	new /obj/item/stack/medical/gauze(src)
 	new /obj/item/flashlight/flare(src)
-	new /obj/item/reagent_containers/pill/radx(src)
+	new /obj/item/reagent_containers/glass/bottle/charcoal(src)
 
 /obj/item/storage/survivalkit_tribal
 	name = "survival kit"
-	desc = "A robust leather pouch containing the essentials for wasteland survival."
+	desc = "A robust leather pouch containing the essentials for overworld survival."
 	icon_state = "survivalkit"
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -26,7 +26,7 @@
 
 /obj/item/storage/survivalkit_adv
 	name = "survival kit"
-	desc = "A robust leather pouch containing the essentials for wasteland survival."
+	desc = "A robust leather pouch containing the essentials for overworld survival."
 	icon_state = "survivalkit"
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -34,12 +34,12 @@
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak/super(src)
 	new /obj/item/stack/medical/gauze(src)
-	new /obj/item/flashlight/seclite(src)
-	new /obj/item/reagent_containers/pill/radx(src)
+	new /obj/item/flashlight/lantern(src)
+	new /obj/item/reagent_containers/glass/bottle/charcoal(src)
 
 /obj/item/storage/survivalkit_aid
 	name = "individual first aid kit"
-	desc = "A robust leather pouch containing the essentials for trauma care."
+	desc = "A robust leather pouch containing the essentials for overworld survival."
 	icon_state = "ifak"
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -50,14 +50,14 @@
 
 /obj/item/storage/survivalkit_aid/PopulateContents()
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
+	new /obj/item/reagent_containers/pill/patch/healpoultice(src)
 	new /obj/item/stack/medical/gauze(src)
 	new /obj/item/stack/medical/suture(src)
 	new /obj/item/stack/medical/ointment(src)
 
 /obj/item/storage/survivalkit_aid_adv
 	name = "advanced-individual first aid kit"
-	desc = "A robust leather pouch containing the essentials for trauma care."
+	desc = "A robust leather pouch containing the essentials for overworld survival."
 	icon_state = "ifak"
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -68,7 +68,7 @@
 
 /obj/item/storage/survivalkit_aid_adv/PopulateContents()
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/medipen/stimpak/super(src)
+	new /obj/item/reagent_containers/pill/patch/healpoultice(src)
 	new /obj/item/stack/medical/gauze/adv(src)
 	new /obj/item/stack/medical/suture/medicated(src)
 	new /obj/item/stack/medical/mesh(src)
