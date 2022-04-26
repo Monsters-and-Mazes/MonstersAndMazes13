@@ -432,13 +432,13 @@
 	icon_state = "c_ration_1"
 	trash = /obj/item/trash/f13/c_ration_1
 
-/obj/item/reagent_containers/food/snacks/f13/canned/ncr/brahmin_chili
-	name = "c-ration entree - 'Brahmin Meatchunks in Fava Bean Chili'"
+/obj/item/reagent_containers/food/snacks/f13/canned/ncr/bovine_chili
+	name = "c-ration entree - 'bovine Meatchunks in Fava Bean Chili'"
 	desc = "A canned food product containing the entree portion of a military combat ration."
-	tastes = list("brahmin" = 4, "beans" = 2, "spicy chili" = 2)
+	tastes = list("bovine" = 4, "beans" = 2, "spicy chili" = 2)
 	foodtype = MEAT | VEGETABLES
 	filling_color = "#38170d"
-	
+
 /obj/item/reagent_containers/food/snacks/f13/canned/ncr/bighorner_sausage
 	name = "c-ration entree - 'Bighorner Franks in Tato Sauce'"
 	desc = "A canned food product containing the entree portion of a military combat ration."
@@ -469,13 +469,13 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/f13/moleratstew
 
 /obj/item/reagent_containers/food/snacks/f13/canned/ncr/ham_and_eggs
-	name = "c-ration entree - 'Brahmin Ham and Mirelurk Eggs'"
+	name = "c-ration entree - 'bovine Ham and Mirelurk Eggs'"
 	desc = "A canned food product containing the entree portion of a military combat ration."
 	tastes = list("ham" = 4, "EXTREMELY fishy eggs" = 4)
 	foodtype = MEAT | VEGETABLES | GROSS
 
-/obj/item/reagent_containers/food/snacks/f13/canned/ncr/brahmin_burger
-	name = "c-ration entree - 'Brahmin Burger'"
+/obj/item/reagent_containers/food/snacks/f13/canned/ncr/bovine_burger
+	name = "c-ration entree - 'bovine Burger'"
 	desc = "A canned food product containing the entree portion of a military combat ration."
 	tastes = list("a pretty damn good burger" = 4)
 	foodtype = MEAT | GRAIN
@@ -500,8 +500,8 @@
 	tastes = list("gamey meat" = 3, "tato sauce" = 3)
 	foodtype = MEAT | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/f13/canned/ncr/brahmin_dogs
-	name = "c-ration entree - 'Brahmin Dogs'"
+/obj/item/reagent_containers/food/snacks/f13/canned/ncr/bovine_dogs
+	name = "c-ration entree - 'bovine Dogs'"
 	desc = "A canned food product containing the entree portion of a military combat ration."
 	tastes = list("a pretty damn good hotdog" = 4)
 	foodtype = MEAT | VEGETABLES
@@ -540,7 +540,7 @@
 	foodtype = SUGAR | FRUIT | GRAIN
 
 /obj/item/reagent_containers/food/snacks/f13/canned/ncr/breakfast
-	name = "k-ration entree - 'Brahmin Chorizo Con Huevos'"
+	name = "k-ration entree - 'bovine Chorizo Con Huevos'"
 	desc = "A canned food product containing the entree portion of a military combat ration."
 	icon_state = "k_ration_can"
 	tastes = list("rich beef" = 3, "peppers" = 3, "eggs" = 2)
@@ -551,7 +551,7 @@
 	name = "k-ration entree - 'Baja Enchiladas'"
 	desc = "A canned food product containing the entree portion of a military combat ration, a star with the initials 'A.F' is stamped on the can."
 	icon_state = "k_ration_can"
-	tastes = list("corn tortilla" = 2, "stewed brahmin" = 3, "picante salsa" = 3)
+	tastes = list("corn tortilla" = 2, "stewed bovine" = 3, "picante salsa" = 3)
 	trash = /obj/item/trash/f13/k_ration
 	foodtype = MEAT | GRAIN
 
@@ -562,7 +562,7 @@
 	tastes = list("beef luncheon loaf" = 3, "jalapeno peppers and spices" = 2)
 	trash = /obj/item/trash/f13/k_ration
 	foodtype = MEAT
-	
+
 /obj/item/reagent_containers/food/snacks/f13/broiled_death_claw
 	name = "broiled deathclaw"
 	desc = "All the flavor seared in for extra kick."
@@ -571,7 +571,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("deathclaw meat" = 3, "butter" = 1)
 	foodtype = MEAT
-	
+
 /obj/item/reagent_containers/food/snacks/f13/fire_ant_fricassee
 	name = "fire ant fricassee"
 	desc = "Breaded fire ant meat soaked in cram."
@@ -579,53 +579,53 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12)
 	tastes = list("Fire Ant Meat" = 2, "flour" = 1, "cram" = 1)
-	foodtype = MEAT | GRAIN 
-	
-/obj/item/reagent_containers/food/snacks/f13/fried_brahmin_skin
-	name = "brahmin cracklings"
+	foodtype = MEAT | GRAIN
+
+/obj/item/reagent_containers/food/snacks/f13/fried_bovine_skin
+	name = "bovine cracklings"
 	desc = "Cracklings are the solid material which remains after rendering animal fat and skin to produce lard, tallow, or schmaltz. It is often eaten as a snack food or made into animal feed. It is also used in cooking."
-	icon_state = "fried_brahmin_skin"
+	icon_state = "fried_bovine_skin"
 	filling_color = "#CD5C5C"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("crispy skin" = 1)
 	foodtype = MEAT
-	
+
 /obj/item/reagent_containers/food/snacks/f13/molerat_manicotti
 	name = "molerat manicotti"
 	desc = "Molerat meat wrapped in a pasta tube."
 	icon_state = "molerat_manicotti"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 12) 
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12)
 	tastes = list("molerat Meat" = 2, "dough" = 1)
 	foodtype = MEAT | GRAIN
-	
+
 /obj/item/reagent_containers/food/snacks/f13/chitlins_con_carne
 	name = "chitlins con carne"
 	desc = "Uses EVERY part of the cazador!"
 	icon_state = "chitlins_con_carne"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20) 
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20)
 	tastes = list("cazador meat" = 2, "dough" = 1)
 	foodtype = MEAT | GRAIN
-	
+
 /obj/item/reagent_containers/food/snacks/f13/fried_molerat_lung
 	name = "fried molerat lung"
 	desc = "Halfway to molerat haggis."
 	icon_state = "fried_molerat_lung"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 12) 
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12)
 	tastes = list("molerat lung" = 2)
-	foodtype = MEAT 
-	
+	foodtype = MEAT
+
 /obj/item/reagent_containers/food/snacks/f13/tato_surpise
 	name = "tato suprise"
 	desc = "The surprise is Tato."
 	icon_state = "tato_surpise"
 	bonus_reagents = list(/datum/reagent/medicine/antitoxin = 0.01, /datum/reagent/medicine/salglu_solution = 0.01, /datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 3) 
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("tato" = 2, "xander" = 1)
-	foodtype = MEAT 
-	
+	foodtype = MEAT
+
 /obj/item/reagent_containers/food/snacks/f13/radscorpion_en_croute
 	name = "radscorpion en croute"
 	desc = "Radscorpion meat pie, no stingers included."
@@ -634,23 +634,23 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("cooked insect guts" = 2, "pastry dough" = 1)
 	foodtype = MEAT | GRAIN
-	
+
 /obj/item/reagent_containers/food/snacks/f13/deathclaw_egg_omelette
 	name = "deathclaw egg omelette"
 	desc = "An omelette made from a pristine deathclaw eggs."
 	icon_state = "deathclaw_egg_omelette"
-	bonus_reagents = list (/datum/reagent/consumable/nutriment/vitamin = 12, /datum/reagent/medicine/omnizine = 40, /datum/reagent/medicine/dexalin = 10) 
+	bonus_reagents = list (/datum/reagent/consumable/nutriment/vitamin = 12, /datum/reagent/medicine/omnizine = 40, /datum/reagent/medicine/dexalin = 10)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 80)
 	tastes = list("deathclaw eggs" = 2, "deathclaw Meat" = 2, "cheese" = 1)
 	foodtype = MEAT | DAIRY
-	
+
 /obj/item/reagent_containers/food/snacks/f13/baked_nightstalker_tail
 	name = "baked nightstalker tail"
 	desc = "Shake it to hear it rattle!"
 	icon_state = "baked_nightstalker_tail"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	foodtype = MEAT
-	
+
 /obj/item/reagent_containers/food/snacks/f13/gecko_kebab
 	name = "gecko kebab"
 	desc = "Would you like to buy a nice kebab?"

@@ -59,7 +59,7 @@
 	..()
 	uniform = pick(
 		/obj/item/clothing/under/f13/settler, \
-		/obj/item/clothing/under/f13/brahminm, \
+		/obj/item/clothing/under/f13/bovinem, \
 		/obj/item/clothing/under/f13/machinist, \
 		/obj/item/clothing/under/f13/lumberjack, \
 		/obj/item/clothing/under/f13/roving)
@@ -68,13 +68,12 @@
 		/obj/item/clothing/suit/f13/veteran, \
 		/obj/item/clothing/suit/toggle/labcoat/f13/wanderer, \
 		/obj/item/clothing/suit/armor/f13/leatherarmor)
-	l_pocket = 	/obj/item/reagent_containers/food/drinks/flask
-	r_pocket = /obj/item/flashlight/flare
+	l_pocket = 	 /obj/item/reagent_containers/food/snacks/baguette
+	r_pocket = /obj/item/flashlight/lantern
 	belt = 	/obj/item/kitchen/knife/combat/survival
 	backpack_contents = list(
-		/obj/item/reagent_containers/hypospray/medipen/stimpak=2, \
-		/obj/item/storage/bag/money/small/wastelander, \
-		/obj/item/kitchen/knife)
+		/obj/item/reagent_containers/pill/patch/healpoultice=2, \
+		/obj/item/kitchen/knife/bowie)
 
 /datum/outfit/loadout/salvager
 	name = "Salvager"

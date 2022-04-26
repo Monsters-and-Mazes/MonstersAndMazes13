@@ -204,8 +204,8 @@
 	name = "Civilian ClothesMate"
 	desc = "A vending machine for civilian and waster disguises."
 	products = list(/obj/item/clothing/neck/mantle/poncho = 5,
-					/obj/item/clothing/under/f13/brahminf = 2,
-					/obj/item/clothing/under/f13/brahminm = 2,
+					/obj/item/clothing/under/f13/bovinef = 2,
+					/obj/item/clothing/under/f13/bovinem = 2,
 					/obj/item/clothing/under/f13/caravan = 2,
 					/obj/item/clothing/under/f13/caravaneer = 2,
 					/obj/item/clothing/under/f13/cowboyb = 2,

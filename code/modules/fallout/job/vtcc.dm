@@ -1034,7 +1034,7 @@
 	name = "Outer Wall Citizen"
 	jobtype = /datum/job/vtcc/f13outerwall
 
-	uniform = /obj/item/clothing/under/f13/brahminm
+	uniform = /obj/item/clothing/under/f13/bovinem
 	shoes = /obj/item/clothing/shoes/workboots
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
@@ -1056,7 +1056,7 @@
 /datum/outfit/loadout/refugee
 	name = "Refugee"
 	backpack_contents = list(
-	/obj/item/clothing/suit/armor/f13/brahmin_leather_duster=1,
+	/obj/item/clothing/suit/armor/f13/bovine_leather_duster=1,
 	/obj/item/claymore/machete/pipe/tireiron=1,
 	/obj/item/shield/riot/buckler=1,
 	/obj/item/gun/ballistic/automatic/pistol/m1911=1,

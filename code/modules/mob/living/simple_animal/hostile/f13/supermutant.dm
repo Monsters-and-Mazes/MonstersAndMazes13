@@ -73,16 +73,16 @@
 
 /mob/living/simple_animal/pet/dog/mutant    //This is a supermutant, totally not a dog, and he is friendly
 	name = "Brah-Min"
-	desc = "A large, docile supermutant. Adopted by Kebab-town as a sort of watch dog for their brahmin herd."
+	desc = "A large, docile supermutant. Adopted by Kebab-town as a sort of watch dog for their bovine herd."
 	icon = 'icons/fallout/mobs/supermutant.dmi'
-	icon_state = "hulk_brahmin_s"
-	icon_dead = "hulk_brahmin_s"
+	icon_state = "hulk_bovine_s"
+	icon_dead = "hulk_bovine_s"
 	maxHealth = 300
 	health = 300
 	speak_chance = 7 //30 //Oh my god he never shuts up.
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_size = MOB_SIZE_LARGE
-	speak = list("Hey! These my brahmins!", "And I say, HEY-YEY-AAEYAAA-EYAEYAA! HEY-YEY-AAEYAAA-EYAEYAA! I SAID HEY, what's going on?", "What do you want from my brahmins?!", "Me gonna clean brahmin poop again now!", "I love brahmins, brahmins are good, just poop much!", "Do not speak to my brahmins ever again, you hear?!", "Bad raiders come to steal my brahmins - I crush with shovel!", "Do not come to my brahmins! Do not touch my brahmins! Do not look at my brahmins!", "I'm watching you, and my brahmins watch too!", "Brahmins say moo, and I'm saying - hey, get your ugly face out of my way!", "I... I remember, before the fire... THERE WERE NO BRAHMINS!", "No! No wind brahmin here! Wind brahmin lie!")
+	speak = list("Hey! These my bovines!", "And I say, HEY-YEY-AAEYAAA-EYAEYAA! HEY-YEY-AAEYAAA-EYAEYAA! I SAID HEY, what's going on?", "What do you want from my bovines?!", "Me gonna clean bovine poop again now!", "I love bovines, bovines are good, just poop much!", "Do not speak to my bovines ever again, you hear?!", "Bad raiders come to steal my bovines - I crush with shovel!", "Do not come to my bovines! Do not touch my bovines! Do not look at my bovines!", "I'm watching you, and my bovines watch too!", "bovines say moo, and I'm saying - hey, get your ugly face out of my way!", "I... I remember, before the fire... THERE WERE NO bovineS!", "No! No wind bovine here! Wind bovine lie!")
 	speak_emote = list("shouts", "yells")
 	emote_hear = list("yawns", "mumbles","sighs")
 	emote_see = list("raises his shovel", "shovels some dirt away", "waves his shovel above his head angrily")
@@ -96,7 +96,7 @@
 	icon_state = icon_dead
 	anchored = FALSE
 	if(!gibbed)
-		visible_message(SPAN_DANGER("\the [src] shouts something incoherent about brahmins for the last time and stops moving..."))
+		visible_message(SPAN_DANGER("\the [src] shouts something incoherent about bovines for the last time and stops moving..."))
 	..()
 
 /mob/living/simple_animal/hostile/supermutant/meleemutant

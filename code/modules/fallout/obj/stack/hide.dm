@@ -39,9 +39,9 @@
 	icon_state = "sheet-hide"
 	merge_type = /obj/item/stack/sheet/animalhide/radstag
 
-/obj/item/stack/sheet/animalhide/brahmin
-	name = "brahmin skin"
-	desc = "The by-product of brahmin farming."
-	singular_name = "brahmin skin piece"
-	icon_state = "sheet-hide" //ToDo: Brahmin Mat
-	merge_type = /obj/item/stack/sheet/animalhide/brahmin
+/obj/item/stack/sheet/animalhide/bovine
+	name = "bovine skin"
+	desc = "The by-product of bovine farming."
+	singular_name = "bovine skin piece"
+	icon_state = "sheet-hide" //ToDo: bovine Mat
+	merge_type = /obj/item/stack/sheet/animalhide/bovine

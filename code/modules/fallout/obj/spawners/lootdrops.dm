@@ -178,7 +178,7 @@
 	/obj/item/clothing/shoes/f13/brownie = 1,
 	/obj/item/clothing/shoes/f13/tan = 1,
 	/obj/item/clothing/shoes/f13/rag = 1,
-	/obj/item/clothing/under/f13/brahmin = 1,
+	/obj/item/clothing/under/f13/bovine = 1,
 	/obj/item/clothing/under/f13/settler = 1,
 	/obj/item/clothing/suit/f13/vest = 1)
 */

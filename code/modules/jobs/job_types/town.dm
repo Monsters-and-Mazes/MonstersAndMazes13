@@ -41,19 +41,20 @@ Mayor
 	name = "Castellan"
 	jobtype = /datum/job/town/castellan
 
-//	ears = 			/obj/item/radio/headset/headset_den
-//	id =            /obj/item/card/id/silver/mayor
+//	ears =
+//	id =
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
-//	l_pocket = /obj/item/storage/bag/money/small/settler
-//	r_pocket = /obj/item/flashlight/flare
-//	belt = /obj/item/gun/ballistic/revolver/colt357
+//	l_pocket =
+	r_pocket = /obj/item/flashlight/lantern
+//	belt =
 	shoes = 		/obj/item/clothing/shoes/f13/tan
-	uniform = /obj/item/clothing/under/f13/gentlesuit
-	suit = /obj/item/clothing/suit/armor/f13/town/mayor
-	head = /obj/item/clothing/head/f13/town/mayor
+	uniform = /obj/item/clothing/under/f13/jamrock
+//	suit =
+	head = /obj/item/clothing/head/crown
 	backpack_contents = list(
-		/obj/item/clothing/head/f13/town/big = 1)
+		/obj/item/clothing/head/crown/fancy = 1, \
+		/obj/item/clothing/under/f13/priestess = 1)
 
 /*--------------------------------------------------------------*/
 
@@ -66,7 +67,7 @@ Mayor
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Castellan"
-	description = "As the chief law enforcer of the Town, your job is to keep the peace, settle local disputes, and keep your townsfolk safe from external threats and alive."
+	description = "As the chief law enforcer of the Town, your job is to keep the peace, settle local disputes, guide the guards, and keep your townsfolk safe from external threats and alive."
 	selection_color = "#d7b088"
 
 	outfit = /datum/outfit/job/town/guardcaptain
@@ -78,27 +79,26 @@ Mayor
 	name = "Guard Captain"
 	jobtype = /datum/job/town/guardcaptain
 
-//	id = /obj/item/card/id/dogtag/sheriff
+//	id =
 	belt = null
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 
-//	ears = 			/obj/item/radio/headset/headset_den
-	uniform =  		/obj/item/clothing/under/f13/sheriff
-//	neck =			/obj/item/storage/belt/holster
+//	ears =
+	uniform =  		/obj/item/clothing/under/mm13/guard
+//	neck =
 	shoes = 		/obj/item/clothing/shoes/f13/cowboy
-	suit = 			/obj/item/clothing/suit/armor/f13/town/sheriff
-	head = 			/obj/item/clothing/head/f13/town/sheriff
-//	glasses =		/obj/item/clothing/glasses/sunglasses
-//	l_hand = 		/obj/item/gun/ballistic/shotgun/automatic/hunting/brush
-	l_pocket =		/obj/item/storage/bag/money/small/den
+//	suit =
+//	head =
+//	glasses =
+//	l_hand =
+//	l_pocket =
 	backpack_contents = list(
-		/obj/item/storage/box/deputy_badges=1, \
-		/obj/item/restraints/handcuffs=1, \
+		/obj/item/restraints/handcuffs/sinew=1, \
 		/obj/item/melee/classic_baton=1, \
 		/obj/item/kitchen/knife/combat)
-//	r_pocket = /obj/item/flashlight/flare
-//	belt = /obj/item/gun/ballistic/revolver/m29/peacekeeper
+	r_pocket = /obj/item/flashlight/lantern
+//	belt =
 
 /datum/outfit/job/town/guardcaptain/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
@@ -118,7 +118,7 @@ Mayor
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the Guard Captain and the Castellan"
-	description = "Working alongside the Sheriff you've known them for a while, having worked with them under the previous Sheriff - you bagged many a bandit and raider together on the road. These days you patrol the areas outside of town, tracking down bounties on the run and keeping the settlers safe from harm."
+	description = "Working under the Guard Captain your job is to keep the town safe and follow orders, sometimes in that order."
 	selection_color = "#dcba97"
 	exp_requirements = 12
 	exp_type = EXP_TYPE_DEN
@@ -131,20 +131,20 @@ Mayor
 	name = "Guard"
 	jobtype = /datum/job/town/guard
 
-//	ears = 			/obj/item/radio/headset/headset_den
-	id =            /obj/item/card/id/dogtag/deputy
+//	ears =
+//	id =
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
-	l_pocket = /obj/item/storage/bag/money/small/settler
-//	r_pocket = /obj/item/flashlight/flare
-//	r_hand = /obj/item/gun/ballistic/shotgun/automatic/hunting/trail
-	suit = 			/obj/item/clothing/suit/armor/f13/town/deputy
-	head =	/obj/item/clothing/head/f13/town/deputy
-//	belt = /obj/item/gun/ballistic/revolver/colt357
+//	l_pocket =
+	r_pocket = /obj/item/flashlight/lantern
+//	r_hand =
+//	suit =
+//	head =
+//	belt =
 	shoes = 		/obj/item/clothing/shoes/f13/explorer
 	uniform = /obj/item/clothing/under/f13/cowboyb
 	backpack_contents = list(
-		/obj/item/restraints/handcuffs=1, \
+		/obj/item/restraints/handcuffs/sinew=1, \
 		/obj/item/kitchen/knife/combat)
 
 /datum/outfit/job/town/guard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -177,12 +177,12 @@ Mayor
 	name = "Farmer"
 	jobtype = /datum/job/town/farmer
 
-	id = /obj/item/card/id/dogtag/town
-//	ears = 			/obj/item/radio/headset/headset_den
+//	id =
+//	ears =
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
-	l_pocket = /obj/item/storage/bag/money/small/settler
-//	r_pocket = /obj/item/flashlight/flare
+//	l_pocket =
+	r_pocket = /obj/item/flashlight/lantern
 	belt = /obj/item/storage/bag/plants
 	backpack_contents = list(
 		/obj/item/cultivator=1, \
@@ -194,9 +194,8 @@ Mayor
 	..()
 	uniform = pick(
 		/obj/item/clothing/under/f13/settler, \
-		/obj/item/clothing/under/f13/brahminm, \
-		/obj/item/clothing/under/f13/lumberjack, \
-		/obj/item/clothing/under/f13/roving)
+		/obj/item/clothing/under/f13/bovine, \
+		/obj/item/clothing/under/f13/lumberjack,)
 
 /*--------------------------------------------------------------*/
 
@@ -224,12 +223,12 @@ Mayor
 	jobtype = /datum/job/town/miner
 
 	id = /obj/item/card/id/dogtag/town
-//	ears = /obj/item/radio/headset/headset_den
+//	ears =
 	suit = /obj/item/clothing/suit/armor/f13/raider/iconoclast/
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	l_pocket = /obj/item/storage/bag/money/small/settler
-//	r_pocket = /obj/item/flashlight/flare
+	r_pocket = /obj/item/flashlight/lantern
 	r_hand = /obj/item/pickaxe
 	belt = /obj/item/storage/bag/ore
 	shoes = /obj/item/clothing/shoes/workboots
@@ -284,7 +283,7 @@ Mayor
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	id = /obj/item/card/id/dendoctor
 	l_pocket = /obj/item/storage/bag/money/small/settler
-//	r_pocket = /obj/item/flashlight/flare
+	r_pocket = /obj/item/flashlight/lantern
 	backpack_contents = list(
 		/obj/item/reagent_containers/hypospray/medipen/stimpak=2, \
 		/obj/item/storage/firstaid/regular,
@@ -463,7 +462,7 @@ Mayor
 
 /datum/outfit/loadout/rugged
 	name = "Rugged"
-	head = /obj/item/clothing/head/helmet/f13/brahmincowboyhat
+	head = /obj/item/clothing/head/helmet/f13/bovinecowboyhat
 	uniform = /obj/item/clothing/under/f13/cowboyb
 	suit = /obj/item/clothing/suit/f13/cowboybvest
 	gloves = /obj/item/clothing/gloves/color/brown
@@ -492,7 +491,7 @@ Mayor
 	name = "Diner"
 	head = /obj/item/clothing/head/soft/mime
 	glasses = /obj/item/clothing/glasses/orange
-	uniform = /obj/item/clothing/under/f13/brahminf
+	uniform = /obj/item/clothing/under/f13/bovinef
 //	suit = /obj/item/clothing/suit/apron/chef
 	gloves = /obj/item/clothing/gloves/color/white
 	shoes = /obj/item/clothing/shoes/f13/military/ncr

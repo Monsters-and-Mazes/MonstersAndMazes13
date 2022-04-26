@@ -1,6 +1,6 @@
 /datum/reagent/drug/jet
 	name = "Jet Inhalant"
-	description = "A chemical used to induce a euphoric high derived from brahmin dung. Fast-acting, powerful, and highly addictive."
+	description = "A chemical used to induce a euphoric high derived from bovine dung. Fast-acting, powerful, and highly addictive."
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose_threshold = 20
 	addiction_threshold = 12.5

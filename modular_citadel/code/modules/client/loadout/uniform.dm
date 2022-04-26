@@ -11,9 +11,9 @@
 	name = "caravaneer outfit"
 	path = /obj/item/clothing/under/f13/caravaneer
 
-/datum/gear/uniform/brahminskin
-	name = "brahmin skin outfit"
-	path = /obj/item/clothing/under/f13/brahminm
+/datum/gear/uniform/bovineskin
+	name = "bovine skin outfit"
+	path = /obj/item/clothing/under/f13/bovinem
 
 /datum/gear/uniform/doctorfatigues
 	name = "doctor fatigues"

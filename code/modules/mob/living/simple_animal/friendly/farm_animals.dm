@@ -192,8 +192,8 @@
 			if((prob(3)))
 				is_calf = 0
 				udder = new()
-				if (name == "brahmin calf")
-					name = "brahmin"
+				if (name == "bovine calf")
+					name = "bovine"
 				else
 					name = "cow"
 				visible_message("<span class='alertalien'>[src] has fully grown.</span>")
@@ -589,14 +589,14 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	footstep_type = FOOTSTEP_MOB_SHOE
 
-/mob/living/simple_animal/cow/brahmin
-	name = "brahmin"
-	desc = "Brahmin or brahma are mutated cattle with two heads and looking udderly ridiculous.<br>Known for their milk, just don't tip them over."
+/mob/living/simple_animal/cow/bovine
+	name = "bovine"
+	desc = "bovine or brahma are mutated cattle with two heads and looking udderly ridiculous.<br>Known for their milk, just don't tip them over."
 	icon = 'icons/mob/wastemobs.dmi'
-	icon_state = "brahmin"
-	icon_living = "brahmin"
-	icon_dead = "brahmin_dead"
-	icon_gib = "brahmin_gib"
+	icon_state = "bovine"
+	icon_living = "bovine"
+	icon_dead = "bovine_dead"
+	icon_gib = "bovine_gib"
 	speak = list("moo?","moo","MOOOOOO")
 	speak_emote = list("moos","moos hauntingly")
 	emote_hear = list("brays.")
@@ -613,33 +613,33 @@
 	attack_verb_continuous = "kicks"
 	attack_verb_simple = "kick"
 	attack_sound = 'sound/weapons/punch1.ogg'
-	young_type = /mob/living/simple_animal/cow/brahmin/calf
+	young_type = /mob/living/simple_animal/cow/bovine/calf
 	emote_hear = list("brays.")
 	var/obj/item/inventory_back
 	speak_chance = 0.4
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 8, /obj/item/reagent_containers/food/snacks/rawbrahminliver = 1, /obj/item/reagent_containers/food/snacks/rawbrahmintongue = 2, /obj/item/stack/sheet/animalhide/brahmin = 3)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 8, /obj/item/reagent_containers/food/snacks/rawbovineliver = 1, /obj/item/reagent_containers/food/snacks/rawbovinetongue = 2, /obj/item/stack/sheet/animalhide/bovine = 3)
 
 
-/mob/living/simple_animal/cow/brahmin/calf
-	name = "brahmin calf"
+/mob/living/simple_animal/cow/bovine/calf
+	name = "bovine calf"
 	is_calf = 1
 
-/mob/living/simple_animal/cow/brahmin/calf/Initialize()
+/mob/living/simple_animal/cow/bovine/calf/Initialize()
 	. = ..()
 	resize = 0.7
 	update_transform()
 
-/mob/living/simple_animal/cow/brahmin/sgtsillyhorn
+/mob/living/simple_animal/cow/bovine/sgtsillyhorn
 	name = "Sergeant Sillyhorn"
 	desc = "A distinguished war veteran alongside his junior enlisted sidekick, Corporal McCattle. The two of them wear a set of golden rings, smelted from captured Centurions."
 	emote_see = list("shakes its head.","swishes its tail eagerly.")
 	speak_chance = 2
 
 //////
-//Tangle of mess for brahmin packs
+//Tangle of mess for bovine packs
 //////
 /*
-/mob/living/simple_animal/cow/brahmin/show_inv(mob/user)
+/mob/living/simple_animal/cow/bovine/show_inv(mob/user)
 	user.set_machine(src)
 	if(user.stat)
 		return
@@ -654,7 +654,7 @@
 	onclose(user, "mob[real_name]")
 	return
 
-mob/living/simple_animal/cow/brahmin/Topic(href, href_list)
+mob/living/simple_animal/cow/bovine/Topic(href, href_list)
 	if(usr.stat)
 		return
 
@@ -668,7 +668,7 @@ mob/living/simple_animal/cow/brahmin/Topic(href, href_list)
 				if(inventory_back)
 					inventory_back.forceMove(drop_location())
 					inventory_back = null
-					update_brahmin_fluff()
+					update_bovine_fluff()
 					regenerate_icons()
 				else
 					to_chat(usr, "<span class='danger'>There is nothing to remove from its [remove_from].</span>")
@@ -700,9 +700,9 @@ mob/living/simple_animal/cow/brahmin/Topic(href, href_list)
 						to_chat(usr, "<span class='warning'>\The [item_to_add] is stuck to your hand, you cannot put it on [src]'s back!</span>")
 						return
 
-					//The objects that brahmin can wear on their backs.
+					//The objects that bovine can wear on their backs.
 					var/allowed = FALSE
-					if(ispath(item_to_add.brahmin_fashion, /datum/brahmin_fashion/back))
+					if(ispath(item_to_add.bovine_fashion, /datum/bovine_fashion/back))
 						allowed = TRUE
 
 					if(!allowed)
@@ -717,7 +717,7 @@ mob/living/simple_animal/cow/brahmin/Topic(href, href_list)
 
 					item_to_add.forceMove(src)
 					src.inventory_back = item_to_add
-					update_brahmin_fluff()
+					update_bovine_fluff()
 					regenerate_icons()
 
 		show_inv(usr)
@@ -725,7 +725,7 @@ mob/living/simple_animal/cow/brahmin/Topic(href, href_list)
 		..()
 */
 
-/mob/living/simple_animal/cow/brahmin/proc/update_brahmin_fluff() //none of this should do anything for now, but it may be used for updating sprites later
+/mob/living/simple_animal/cow/bovine/proc/update_bovine_fluff() //none of this should do anything for now, but it may be used for updating sprites later
 	// First, change back to defaults
 	name = real_name
 	desc = initial(desc)
@@ -735,15 +735,15 @@ mob/living/simple_animal/cow/brahmin/Topic(href, href_list)
 	desc = initial(desc)
 	set_light(0)
 /*
-	if(inventory_back && inventory_back.brahmin_fashion)
-		var/datum/brahmin_fashion/BF = new inventory_back.brahmin_fashion(src)
+	if(inventory_back && inventory_back.bovine_fashion)
+		var/datum/bovine_fashion/BF = new inventory_back.bovine_fashion(src)
 		BF.apply(src)
 
-/mob/living/simple_animal/cow/brahmin/regenerate_icons()
+/mob/living/simple_animal/cow/bovine/regenerate_icons()
 	..()
 	if(inventory_back)
 		var/image/back_icon
-		var/datum/brahmin_fashion/BF = new inventory_back.brahmin_fashion(src)
+		var/datum/bovine_fashion/BF = new inventory_back.bovine_fashion(src)
 
 		if(!BF.obj_icon_state)
 			BF.obj_icon_state = inventory_back.icon_state

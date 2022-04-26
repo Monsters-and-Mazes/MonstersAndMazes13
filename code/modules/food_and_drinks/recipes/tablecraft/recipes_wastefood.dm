@@ -177,14 +177,14 @@
 	result = /obj/item/reagent_containers/food/snacks/f13/fire_ant_fricassee
 	category = CAT_FOOD
 	subcategory = CAT_WASTEFOOD
-	
-/datum/crafting_recipe/food/fried_brahmin_skin
-	name = "Fried brahmin skin"
+
+/datum/crafting_recipe/food/fried_bovine_skin
+	name = "Fried bovine skin"
 	reqs = list(
-		/obj/item/stack/sheet/animalhide/brahmin = 2,
+		/obj/item/stack/sheet/animalhide/bovine = 2,
 		/obj/item/reagent_containers/food/snacks/butter = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/f13/fried_brahmin_skin
+	result = /obj/item/reagent_containers/food/snacks/f13/fried_bovine_skin
 	category = CAT_FOOD
 	subcategory = CAT_WASTEFOOD
 	

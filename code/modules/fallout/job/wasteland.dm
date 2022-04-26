@@ -660,7 +660,7 @@ Outlaw
 	r_hand = /obj/item/book/granter/trait/selection/waster
 	uniform = pick(
 		/obj/item/clothing/under/f13/settler, \
-		/obj/item/clothing/under/f13/brahminm, \
+		/obj/item/clothing/under/f13/bovinem, \
 		/obj/item/clothing/under/f13/machinist, \
 		/obj/item/clothing/under/f13/lumberjack, \
 		/obj/item/clothing/under/f13/roving)
@@ -738,7 +738,7 @@ Outlaw
 /datum/outfit/loadout/legcit
 	name = "Legion Citizen"
 	suit = /obj/item/clothing/suit/curator
-	uniform = /obj/item/clothing/under/f13/brahmin
+	uniform = /obj/item/clothing/under/f13/bovine
 	shoes = /obj/item/clothing/shoes/roman
 	head = /obj/item/clothing/head/scarecrow_hat
 	gloves = /obj/item/clothing/gloves/legion
@@ -796,7 +796,7 @@ Outlaw
 /datum/outfit/loadout/fieldhand
 	name = "Field Hand"
 	neck = /obj/item/clothing/neck/apron/labor
-	uniform = /obj/item/clothing/under/f13/brahmin
+	uniform = /obj/item/clothing/under/f13/bovine
 	gloves = /obj/item/clothing/gloves/botanic_leather
 	mask = /obj/item/clothing/mask/bandana
 	l_hand = /obj/item/claymore/machete
@@ -893,10 +893,10 @@ Outlaw
 
 /datum/outfit/loadout/trapper
 	name = "Trapper"
-	suit = /obj/item/clothing/suit/armor/f13/brahmin_leather_duster
+	suit = /obj/item/clothing/suit/armor/f13/bovine_leather_duster
 	uniform = /obj/item/clothing/under/f13/worn
 	shoes = /obj/item/clothing/shoes/f13/military/leather
-	head = /obj/item/clothing/head/helmet/f13/brahmincowboyhat
+	head = /obj/item/clothing/head/helmet/f13/bovinecowboyhat
 	gloves = /obj/item/clothing/gloves/f13/leather/fingerless
 	glasses = /obj/item/clothing/glasses/orange
 	l_hand = /obj/item/shovel/trench

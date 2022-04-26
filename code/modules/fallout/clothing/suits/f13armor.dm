@@ -73,7 +73,7 @@
 
 /obj/item/clothing/suit/armor/f13/leatherarmor
 	name = "leather armor"
-	desc = "(III) Your basic all leather apparel. Finely crafted from tanned brahmin hide."
+	desc = "(III) Your basic all leather apparel. Finely crafted from tanned bovine hide."
 	icon_state = "leather_armor"
 	item_state = "leather_armor"
 	armor = list("tier" = 3, "energy" = 25, "bomb" = 32, "bio" = 0, "rad" = 10, "fire" = 30, "acid" = 35)
@@ -83,7 +83,7 @@
 	name = "reinforced leather armor"
 	icon_state = "leather_armor_2"
 	item_state = "leather_armor_2"
-	desc = "(IV) An enhanced version of the basic leather armor with extra layers of protection. Finely crafted from tanned brahmin hide."
+	desc = "(IV) An enhanced version of the basic leather armor with extra layers of protection. Finely crafted from tanned bovine hide."
 	armor = list("tier" = 4, "energy" = 30, "bomb" = 35, "bio" = 0, "rad" = 15, "fire" = 40, "acid" = 35)
 
 /obj/item/clothing/suit/armor/f13/metalarmor
@@ -659,11 +659,11 @@
 	icon_state = "battlecoat_tan"
 	item_state = "maxson_battlecoat"
 
-/obj/item/clothing/suit/armor/f13/brahmin_leather_duster
-	name = "brahmin leather duster"
-	desc = "(III) A duster fashioned with tanned brahmin hide. It appears to be more durable than a normal duster. The leather is laser resistant."
-	icon_state = "brahmin_leather_duster"
-	item_state = "brahmin_leather_duster"
+/obj/item/clothing/suit/armor/f13/bovine_leather_duster
+	name = "bovine leather duster"
+	desc = "(III) A duster fashioned with tanned bovine hide. It appears to be more durable than a normal duster. The leather is laser resistant."
+	icon_state = "bovine_leather_duster"
+	item_state = "bovine_leather_duster"
 	armor = list("tier" = 3, "energy" = 35, "bomb" = 35, "bio" = 40, "rad" = 10, "fire" = 60, "acid" = 10)
 
 /obj/item/clothing/suit/armor/f13/rustedcowboy

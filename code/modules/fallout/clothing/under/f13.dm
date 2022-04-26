@@ -49,19 +49,19 @@
 
 //Settlers
 
-/obj/item/clothing/under/f13/brahminm
-	name = "brahmin skin outfit"
+/obj/item/clothing/under/f13/bovinem
+	name = "bovine skin outfit"
 	desc = "A basic outfit consisting of a white shirt and patched trousers with Y-shaped suspenders."
-	icon_state = "brahmin_m"
-	item_state = "brahmin_m"
-	item_color = "brahmin_m"
+	icon_state = "bovine_m"
+	item_state = "bovine_m"
+	item_color = "bovine_m"
 
-/obj/item/clothing/under/f13/brahminf
-	name = "brahmin skin outfit"
+/obj/item/clothing/under/f13/bovinef
+	name = "bovine skin outfit"
 	desc = "A basic outfit consisting of a white shirt and patched trousers with Y-shaped suspenders."
-	icon_state = "brahmin_f"
-	item_state = "brahmin_f_s"
-	item_color = "brahmin_f"
+	icon_state = "bovine_f"
+	item_state = "bovine_f_s"
+	item_color = "bovine_f"
 
 /obj/item/clothing/under/f13/doctorm
 	name = "doctor fatigues"
@@ -246,14 +246,14 @@
 
 /obj/item/clothing/under/f13/cowboyb
 	name = "cowboy outfit"
-	desc = "A dirt brown cowboy outfit. Specially usefull for herding brahmins."
+	desc = "A dirt brown cowboy outfit. Specially usefull for herding bovines."
 	icon_state = "cowboyb"
 	item_state = "cowboyb"
 	item_color = "cowboyb"
 
 /obj/item/clothing/under/f13/cowboyg
 	name = "cowboy outfit"
-	desc = "A dirt grey cowboy outfit. Specially usefull for herding brahmins."
+	desc = "A dirt grey cowboy outfit. Specially usefull for herding bovines."
 	icon_state = "cowboyg"
 	item_state = "cowboyg"
 	item_color = "cowboyg"
@@ -708,19 +708,19 @@
 	item_color = "settler"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 20, "fire" = 20, "acid" = 40)
 
-/obj/item/clothing/under/f13/brahmin //Male version
-	name = "male brahmin-skin outfit"
+/obj/item/clothing/under/f13/bovine //Male version
+	name = "male bovine-skin outfit"
 	desc = "A basic male outfit consisting of a white shirt and patched trousers with Y-shaped suspenders."
-	icon_state = "brahmin_m"
+	icon_state = "bovine_m"
 	item_state = "brownjsuit"
-	item_color = "brahmin_m"
+	item_color = "bovine_m"
 
-/obj/item/clothing/under/f13/female/brahmin //Female version
-	name = "female brahmin-skin outfit"
+/obj/item/clothing/under/f13/female/bovine //Female version
+	name = "female bovine-skin outfit"
 	desc = "A basic female outfit consisting of a rolled-up long-sleeve shirt and patched trousers with Y-shaped suspenders.<br>Fitted for female wastelanders."
-	icon_state = "brahmin_f"
+	icon_state = "bovine_f"
 	item_state = "brownjsuit"
-	item_color = "brahmin_f"
+	item_color = "bovine_f"
 
 /obj/item/clothing/under/f13/doctor //Male version
 	name = "male doctor fatigues"
@@ -1123,8 +1123,8 @@
 /obj/item/clothing/under/f13/keksweater
 	name = "red sweater"
 	desc = "A dark red-sweater with some cargo-pants. Perfect for when it just gets too cold down in local air-conditioned areas."
-	icon_state = "brahminsss"
-	item_state = "brahminsss"
+	icon_state = "bovinesss"
+	item_state = "bovinesss"
 
 /obj/item/clothing/under/f13/locust
 	name = "locust uniform"
