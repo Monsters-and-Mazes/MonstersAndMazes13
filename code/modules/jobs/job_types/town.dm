@@ -48,8 +48,8 @@ Mayor
 //	l_pocket =
 	r_pocket = /obj/item/flashlight/lantern
 //	belt =
-	shoes = 		/obj/item/clothing/shoes/f13/tan
-	uniform = /obj/item/clothing/under/f13/jamrock
+	shoes = /obj/item/clothing/shoes/mm13/boots
+	uniform = /obj/item/clothing/under/mm13/castellan
 //	suit =
 	head = /obj/item/clothing/head/crown
 	backpack_contents = list(
@@ -85,9 +85,9 @@ Mayor
 	satchel = /obj/item/storage/backpack/satchel/explorer
 
 //	ears =
-	uniform =  		/obj/item/clothing/under/mm13/guard
+	uniform = /obj/item/clothing/under/mm13/guard
 //	neck =
-	shoes = 		/obj/item/clothing/shoes/f13/cowboy
+	shoes = /obj/item/clothing/shoes/mm13/boots
 //	suit =
 //	head =
 //	glasses =
@@ -141,8 +141,8 @@ Mayor
 //	suit =
 //	head =
 //	belt =
-	shoes = 		/obj/item/clothing/shoes/f13/explorer
-	uniform = /obj/item/clothing/under/f13/cowboyb
+	shoes = /obj/item/clothing/shoes/mm13/boots
+	uniform = /obj/item/clothing/under/mm13/guard
 	backpack_contents = list(
 		/obj/item/restraints/handcuffs/sinew=1, \
 		/obj/item/kitchen/knife/combat)
@@ -188,14 +188,14 @@ Mayor
 		/obj/item/cultivator=1, \
 		/obj/item/hatchet=1,
 		/obj/item/shovel/spade=1)
-	shoes = 		/obj/item/clothing/shoes/workboots
+	shoes = /obj/item/clothing/shoes/mm13/sandals
 
 /datum/outfit/job/town/farmer/pre_equip(mob/living/carbon/human/H)
 	..()
 	uniform = pick(
-		/obj/item/clothing/under/f13/settler, \
+		/obj/item/clothing/under/f13/lumberjack, \
 		/obj/item/clothing/under/f13/bovine, \
-		/obj/item/clothing/under/f13/lumberjack,)
+		/obj/item/clothing/under/f13/rustic,)
 
 /*--------------------------------------------------------------*/
 
@@ -224,16 +224,16 @@ Mayor
 
 	id = /obj/item/card/id/dogtag/town
 //	ears =
-	suit = /obj/item/clothing/suit/armor/f13/raider/iconoclast/
+	suit = /obj/item/clothing/suit/overalls
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	l_pocket = /obj/item/storage/bag/money/small/settler
 	r_pocket = /obj/item/flashlight/lantern
 	r_hand = /obj/item/pickaxe
 	belt = /obj/item/storage/bag/ore
-	shoes = /obj/item/clothing/shoes/workboots
+	shoes = /obj/item/clothing/shoes/mm13/boots
 	backpack_contents = list(
-		/obj/item/mining_scanner=1, \
+		/obj/item/mining_scanner/prospector=1, \
 		/obj/item/shovel=1, \
 		/obj/item/kitchen/knife/combat)
 
@@ -274,21 +274,18 @@ Mayor
 	name = "Doctor"
 	jobtype = /datum/job/town/apothecary
 	chemwhiz = TRUE
-	uniform = /obj/item/clothing/under/f13/medic
+	uniform = /obj/item/clothing/under/mm13/apothecary
 //	ears = /obj/item/radio/headset/headset_den
-	neck = /obj/item/clothing/neck/stethoscope
-	suit = /obj/item/clothing/suit/toggle/labcoat
-	backpack = /obj/item/storage/backpack/medic
-	satchel = /obj/item/storage/backpack/satchel/med
-	shoes = /obj/item/clothing/shoes/sneakers/white
+//	neck =
+//	suit =
+	backpack = /obj/item/storage/backpack/satchel/explorer
+	satchel = /obj/item/storage/backpack/satchel/explorer
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	id = /obj/item/card/id/dendoctor
 	l_pocket = /obj/item/storage/bag/money/small/settler
 	r_pocket = /obj/item/flashlight/lantern
 	backpack_contents = list(
-		/obj/item/reagent_containers/hypospray/medipen/stimpak=2, \
-		/obj/item/storage/firstaid/regular,
-		/obj/item/clothing/accessory/armband/medblue  \
-		)
+		/obj/item/reagent_containers/pill/patch/healpoultice = 4 )
 /datum/outfit/job/town/apothecary/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
 	if(visualsOnly)
@@ -410,7 +407,7 @@ Mayor
 	backpack = /obj/item/storage/backpack/cultpack
 	satchel = /obj/item/storage/backpack/cultpack
 	gloves =		/obj/item/clothing/gloves/fingerless
-	shoes = 		/obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/mm13/sandals
 	backpack = 		/obj/item/storage/backpack/cultpack
 	satchel = 		/obj/item/storage/backpack/cultpack
 //	r_hand = 		/obj/item/gun/ballistic/revolver/m29
@@ -454,7 +451,7 @@ Mayor
 	id = /obj/item/card/id/dogtag/town
 	ears = /obj/item/radio/headset/headset_den
 //	belt = /obj/item/gun/ballistic/revolver/caravan_shotgun
-	shoes = /obj/item/clothing/shoes/workboots/mining
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	backpack = /obj/item/storage/backpack/satchel/leather
 	backpack_contents = list(
 		/obj/item/storage/bag/money/small/settler = 1
@@ -466,7 +463,7 @@ Mayor
 	uniform = /obj/item/clothing/under/f13/cowboyb
 	suit = /obj/item/clothing/suit/f13/cowboybvest
 	gloves = /obj/item/clothing/gloves/color/brown
-	shoes = /obj/item/clothing/shoes/f13/brownie
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 
 /datum/outfit/loadout/frontier
 	name = "Frontier"
@@ -475,7 +472,7 @@ Mayor
 	uniform = /obj/item/clothing/under/f13/westender
 	suit = /obj/item/clothing/suit/f13/westender
 	gloves = /obj/item/clothing/gloves/fingerless
-	shoes = /obj/item/clothing/shoes/f13/fancy
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 
 /datum/outfit/loadout/richmantender
 	name = "Fancy"
@@ -484,7 +481,7 @@ Mayor
 	uniform = /obj/item/clothing/under/rank/bartender
 	suit = /obj/item/clothing/suit/toggle/lawyer/black
 	gloves = /obj/item/clothing/gloves/fingerless
-	shoes = /obj/item/clothing/shoes/f13/fancy
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	neck = /obj/item/clothing/neck/tie/black
 
 /datum/outfit/loadout/diner
@@ -494,8 +491,7 @@ Mayor
 	uniform = /obj/item/clothing/under/f13/bovinef
 //	suit = /obj/item/clothing/suit/apron/chef
 	gloves = /obj/item/clothing/gloves/color/white
-	shoes = /obj/item/clothing/shoes/f13/military/ncr
-
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 /*--------------------------------------------------------------*/
 /datum/job/town/chef
 	title = "Chef"
@@ -535,7 +531,7 @@ Mayor
 	suit = /obj/item/clothing/suit/jacket/miljacket
 	uniform = /obj/item/clothing/under/f13/merca
 	gloves = /obj/item/clothing/gloves/f13/leather
-	shoes = /obj/item/clothing/shoes/f13/explorer
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	backpack_contents = list(/obj/item/reagent_containers/food/drinks/flask = 1)
 
 /datum/outfit/loadout/bum
@@ -544,7 +540,7 @@ Mayor
 //	suit = /obj/item/clothing/suit/poncho
 	uniform = /obj/item/clothing/under/f13/rag
 	gloves = /obj/item/clothing/gloves/f13/handwraps
-	shoes = /obj/item/clothing/shoes/f13/rag
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	backpack_contents = list(/obj/item/storage/bag/trash = 1, /obj/item/reagent_containers/food/drinks/bottle/whiskey = 1)
 
 /datum/outfit/loadout/properlady
@@ -552,7 +548,7 @@ Mayor
 	head = /obj/item/clothing/head/beret/black
 	suit = /obj/item/clothing/under/sailordress
 	gloves = /obj/item/clothing/gloves/f13/lace
-	shoes = /obj/item/clothing/shoes/f13/fancy
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	backpack_contents = list(/obj/item/reagent_containers/food/drinks/bottle/wine = 1)
 
 /datum/outfit/loadout/propergent
@@ -560,7 +556,7 @@ Mayor
 	head = /obj/item/clothing/head/f13/beaver
 	suit = /obj/item/clothing/suit/f13/cowboybvest
 	uniform = /obj/item/clothing/under/f13/bartenderalt
-	shoes = /obj/item/clothing/shoes/f13/fancy
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	backpack_contents = list(/obj/item/storage/box/matches = 1, /obj/item/storage/fancy/cigarettes/cigars = 1)
 
 /datum/outfit/loadout/hombre
@@ -569,7 +565,7 @@ Mayor
 	suit = /obj/item/clothing/suit/f13/duster
 	uniform = /obj/item/clothing/under/f13/cowboyb
 	gloves = /obj/item/clothing/gloves/f13/leather
-	shoes = /obj/item/clothing/shoes/f13/cowboy
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	backpack_contents = list()
 
 /datum/outfit/job/town/settler
@@ -580,7 +576,7 @@ Mayor
 	id = /obj/item/card/id/dogtag/town
 	ears = /obj/item/radio/headset/headset_den
 	uniform = /obj/item/clothing/under/f13/settler
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	r_pocket = /obj/item/flashlight/flare
 	r_hand = /obj/item/book/granter/trait/selection
@@ -611,11 +607,13 @@ Mayor
 	name = "Peasant"
 	jobtype = /datum/job/town/peasant
 	head = 		/obj/item/clothing/head/helmet/f13/wayfarer/hunter
-	uniform = 	/obj/item/clothing/under/f13/wayfarer/hunter
+	uniform = 	/obj/item/clothing/under/mm13/peasant
 	gloves = 	/obj/item/clothing/gloves/f13/handwraps
 	shoes = 	/obj/item/clothing/shoes/f13/rag
 //	suit = 		/obj/item/clothing/suit/armor/f13/tribe_armor
 	id = 		/obj/item/card/id/tribetattoo
+	backpack_contents = list(
+		/obj/item/clothing/under/mm13/peasantdress = 1)
 
 
 /datum/job/town/hunter
@@ -825,9 +823,10 @@ Mayor
 	satchel = /obj/item/storage/backpack/satchel
 	duffelbag = /obj/item/storage/backpack/duffelbag
 	gloves = /obj/item/clothing/gloves/fingerless
-	l_pocket = /obj/item/storage/bag/money/small/den
-	r_pocket = /obj/item/flashlight/flare
+//	l_pocket =
+	r_pocket = /obj/item/flashlight/lantern
 	shoes = /obj/item/clothing/shoes/f13/explorer
+	suit = /obj/item/clothing/suit/mm13/gambeson
 	backpack_contents = list()
 
 /datum/outfit/job/den/f13shopkeeper/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

@@ -211,3 +211,9 @@
 /obj/item/clothing/neck/mantle/alt/polychromic/ComponentInitialize()
 	. = ..()
 	AddElement(/datum/element/polychromic, poly_colors, 3)
+
+/obj/item/clothing/neck/mantle/mmfur //sprider's pretty fur so new and beautiful for mm13
+	name = "furs"
+	desc = "animal pelt or pelts of unknown origin,very fancy and seemingly well assembled."
+	icon = 'icons/mm13/mmsprites1.dmi'
+	mob_overlay_icon = 'icons/mm13/mmsprites2.dmi'
