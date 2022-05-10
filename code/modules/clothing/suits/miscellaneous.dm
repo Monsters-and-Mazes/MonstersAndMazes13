@@ -1030,3 +1030,11 @@
 	desc = "(I) A set of denim overalls."
 	icon_state = "overalls"
 	item_state = "overalls"
+
+/obj/item/clothing/suit/mm13/gambeson
+	name = "gambeson"
+	desc = "Thick fabric outerwear made to protect almost as good as real armour."
+	icon_state = "gambeson"
+	item_state = "gambeson"
+	icon = 'icons/mm13/mmsprites1.dmi'
+	mob_overlay_icon = 'icons/mm13/mmsprites2.dmi'

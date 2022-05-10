@@ -504,3 +504,17 @@
 	var/recent_uses = 0
 	var/broken_hailer = 0
 	var/safety = TRUE
+
+//mm13 sprider's chain coif
+
+/obj/item/clothing/mask/mm13/chaincoif
+	name = "chain coif"
+	desc = "It's chainmail for the head! Just hope they dont aim for the eyes."
+	icon = 'icons/mm13/mmsprites1.dmi'
+	mob_overlay_icon = 'icons/mm13/mmsprites2.dmi'
+	icon_state = "chaincoif"
+	item_state = "chaincoif"
+	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	flags_cover = MASKCOVERSMOUTH
+	visor_flags_inv = HIDEFACE
+	visor_flags_cover = MASKCOVERSMOUTH

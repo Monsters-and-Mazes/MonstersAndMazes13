@@ -556,3 +556,24 @@
 	icon_state = "lily_crown"
 	dynamic_hair_suffix = ""
 	attack_verb = list("crowned")
+
+
+//mm13 hats here, the beautiful sprider made these (at least as of 05/06/22)
+
+/obj/item/clothing/head/mm13
+	name = "template"
+	desc = "mm13 head template."
+	icon = 'icons/mm13/mmsprites1.dmi'
+
+/obj/item/clothing/head/mm13/crown
+	name = "Royal crown"
+	desc = "A beautiful golden crown fine crafted for the castellan."
+	icon_state = "crown"
+	dynamic_hair_suffix = ""
+	attack_verb = list("crowned")
+
+/obj/item/clothing/head/mm13/kettle
+	name = "kettle helmet"
+	desc = "Iron kettle styled helmet for your decorated soldiers."
+	icon_state = "kettle"
+	armor = list("tier" = 5,"energy" = 30, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50)

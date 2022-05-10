@@ -267,3 +267,17 @@
 	equip_delay_other = 20
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+
+/obj/item/clothing/gloves/guardgloves
+	name = "guard gloves"
+	desc = "Standard issue wool gloves made for all seasons with leather pads to help grip the swords."
+	icon = 'icons/mm13/mmsprites1.dmi'
+	icon_state = "guardgloves"
+	item_state = "guardgloves"
+	mob_overlay_icon = 'icons/mm13/mmsprites2.dmi'
+	item_color = null	//So they don't wash.
+	transfer_prints = TRUE
+	strip_delay = 40
+	equip_delay_other = 20
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT

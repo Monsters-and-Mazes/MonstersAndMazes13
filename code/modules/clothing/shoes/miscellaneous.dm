@@ -513,8 +513,31 @@
 	to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
 	B.use(10)
 	icon_state = initial(icon_state)
-	
+
 /obj/item/clothing/shoes/swagshoes
 	name = "swag shoes"
 	desc = "They got me for my foams!"
 	icon_state = "SwagShoes"
+
+//mm13 shoes beyond this point
+
+/obj/item/clothing/shoes/mm13
+	name = "template"
+	desc = "template for mm13 shoes, if you see me theres a problem!"
+	icon = 'icons/mm13/mmsprites1.dmi'
+	mob_overlay_icon = 'icons/mm13/mmsprites2.dmi'
+
+/obj/item/clothing/shoes/mm13/clogs
+	name = "clogs"
+	desc = "Your typical clogs, slightly worn but no holes."
+	icon_state = "clogs"
+
+/obj/item/clothing/shoes/mm13/sandals
+	name = "sandals"
+	desc = "Your typical sandals, slightly dusty and almost falling apart but they are holding in there."
+	icon_state = "sandals"
+
+/obj/item/clothing/shoes/mm13/boots
+	name = "boots"
+	desc = "Your typical boots, slightly worn, solid exterior with a soft interior perfect for winter ."
+	icon_state = "boots"
