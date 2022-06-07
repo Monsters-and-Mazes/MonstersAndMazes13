@@ -694,24 +694,24 @@ Mayor
 	name = "Herbalist"
 	jobtype = /datum/job/town/herbalist
 	chemwhiz = TRUE
-	uniform = /obj/item/clothing/under/f13/science
+//	uniform = /obj/item/clothing/under/f13/science
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel/
 	shoes = /obj/item/clothing/shoes/mm13/clogs
 	id = /obj/item/card/id/dendoctor
-	l_pocket = NULL
+//	l_pocket = NULL
 	r_pocket = /obj/item/flashlight/lantern
 	backpack_contents = list(
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/deus,\
 		/obj/item/reagent_containers/food/snacks/grown/broc,\
-		/obj/item/reagent_containers/food/snacks/grown/xander \
-		/obj/item/reagent_containers/food/snacks/grown/cannabis \
-		/obj/item/reagent_containers/food/snacks/grown/coyotetobacco \
-		/obj/item/reagent_containers/food/snacks/grown/datura \
-		/obj/item/reagent_containers/food/snacks/grown/feracactus \
-		/obj/item/reagent_containers/food/snacks/grown/fungus \
-		/obj/item/reagent_containers/food/snacks/grown/holymelon \
-		/obj/item/reagent_containers/food/snacks/grown/peach \
+		/obj/item/reagent_containers/food/snacks/grown/xander, \
+		/obj/item/reagent_containers/food/snacks/grown/cannabis, \
+		/obj/item/reagent_containers/food/snacks/grown/coyotetobacco, \
+		/obj/item/reagent_containers/food/snacks/grown/datura, \
+		/obj/item/reagent_containers/food/snacks/grown/feracactus, \
+		/obj/item/reagent_containers/food/snacks/grown/fungus, \
+		/obj/item/reagent_containers/food/snacks/grown/holymelon, \
+		/obj/item/reagent_containers/food/snacks/grown/peach, \
 		/obj/item/storage/bag/plants
 		)
 /datum/outfit/job/town/herbalist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -829,7 +829,7 @@ Mayor
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel
 	duffelbag = /obj/item/storage/backpack/duffelbag
-	gloves = /obj/item/clothing/gloves/mm13/guardgloves
+//	gloves = /obj/item/clothing/gloves/mm13/guardgloves
 //	l_pocket =
 	r_pocket = /obj/item/flashlight/lantern
 	shoes = /obj/item/clothing/shoes/mm13/darkboots
