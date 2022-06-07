@@ -564,6 +564,7 @@
 	name = "template"
 	desc = "mm13 head template."
 	icon = 'icons/mm13/mmsprites1.dmi'
+	mob_overlay_icon = 'icons/mm13/mmsprites2.dmi'
 
 /obj/item/clothing/head/mm13/crown
 	name = "Royal crown"
@@ -577,3 +578,9 @@
 	desc = "Iron kettle styled helmet for your decorated soldiers."
 	icon_state = "kettle"
 	armor = list("tier" = 5,"energy" = 30, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50)
+
+/obj/item/clothing/head/mm13/caphelm
+	name = "Guard Captain's helmet"
+	desc = "Iron helmet specially forged for your decorated guard captain."
+	icon_state = "caphelm"
+	armor = list("tier" = 6,"energy" = 40, "bomb" = 60, "bio" = 100, "rad" = 25, "fire" = 60, "acid" = 60)

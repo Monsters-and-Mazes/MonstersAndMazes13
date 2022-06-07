@@ -37,8 +37,9 @@
 
 /obj/item/clothing/neck/apron/labor/forge
 	name = "forgemasters apron"
-	desc = "A heavy leather apron designed for protecting the user when metalforging and help carry some minor tools. The bull insignia marks the wearer as a Forgemaster."
-	icon_state = "forge"
+	desc = "A heavy leather apron designed for protecting the user when metalforging and help carry some minor tools."
+	icon = 'icons/mm13/mmsprites1.dmi'
+	icon_state = "apron"
 	heat_protection = CHEST|GROIN|LEGS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/crafter

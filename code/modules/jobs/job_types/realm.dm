@@ -16,34 +16,6 @@
 	access = list(ACCESS_BAR, ACCESS_GATEWAY)
 	minimal_access = list(ACCESS_BAR, ACCESS_GATEWAY)
 
-/datum/outfit/job/town/guard
-	name = "Guard"
-	jobtype = /datum/job/town/guard
-
-//	ears = 			/obj/item/radio/headset/headset_den
-	id =            /obj/item/card/id/dogtag/deputy
-	backpack = /obj/item/storage/backpack/satchel/explorer
-	satchel = /obj/item/storage/backpack/satchel/explorer
-	l_pocket = /obj/item/storage/bag/money/small/settler
-//	r_pocket = /obj/item/flashlight/flare
-//	r_hand = /obj/item/gun/ballistic/shotgun/automatic/hunting/trail
-	suit = 			/obj/item/clothing/suit/armor/f13/town/deputy
-	head =	/obj/item/clothing/head/f13/town/deputy
-//	belt = /obj/item/gun/ballistic/revolver/colt357
-	shoes = 		/obj/item/clothing/shoes/f13/explorer
-	uniform = /obj/item/clothing/under/f13/cowboyb
-	backpack_contents = list(
-		/obj/item/restraints/handcuffs=1, \
-		/obj/item/kitchen/knife/combat)
-
-/datum/outfit/job/town/guard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-	if(visualsOnly)
-		return
-	ADD_TRAIT(H, TRAIT_HARD_YARDS, src)
-
-
-
 
 /datum/outfit/job/realm/adventurer
 	name = "Adventurer"
@@ -59,7 +31,6 @@
 	..()
 	uniform = pick(
 		/obj/item/clothing/under/f13/settler, \
-		/obj/item/clothing/under/f13/bovinem, \
 		/obj/item/clothing/under/f13/machinist, \
 		/obj/item/clothing/under/f13/lumberjack, \
 		/obj/item/clothing/under/f13/roving)
