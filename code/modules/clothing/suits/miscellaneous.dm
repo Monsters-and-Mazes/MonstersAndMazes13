@@ -1031,6 +1031,8 @@
 	icon_state = "overalls"
 	item_state = "overalls"
 
+//mm13 sprites beyond this point, as of 05/12/22 these are all made by sprider who is beautiful and wonderful and amazing
+
 /obj/item/clothing/suit/mm13/gambeson
 	name = "gambeson"
 	desc = "Thick fabric outerwear made to protect almost as good as real armour."
@@ -1038,3 +1040,23 @@
 	item_state = "gambeson"
 	icon = 'icons/mm13/mmsprites1.dmi'
 	mob_overlay_icon = 'icons/mm13/mmsprites2.dmi'
+	armor = list("tier" = 5,"energy" = 30, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50)
+
+/obj/item/clothing/suit/mm13/caparmor
+	name = "Guard Captain's armor"
+	desc = "Thick layers of fabric and chainmail to be both functional and fashionable. It was well made just for the town's guard captain and is a status symbol."
+	icon_state = "caparmor"
+	item_state = "caparmor"
+	icon = 'icons/mm13/mmsprites1.dmi'
+	mob_overlay_icon = 'icons/mm13/mmsprites2.dmi'
+	armor = list("tier" = 6,"energy" = 40, "bomb" = 60, "bio" = 100, "rad" = 25, "fire" = 60, "acid" = 60)
+
+/obj/item/clothing/suit/mm13/cleric
+	name = "Clerical Robes"
+	desc = "Flowing cotton dyed and sewn in an instantly distinguishable pattern, signifying the cleric."
+	icon_state = "cleric"
+	item_state = "cleric"
+	icon = 'icons/mm13/mmsprites1.dmi'
+	mob_overlay_icon = 'icons/mm13/mmsprites2.dmi'
+	armor = list("tier" = 2,"energy" = 10, "bomb" = 20, "bio" = 90, "rad" = 10, "fire" = 20, "acid" = 20)
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT

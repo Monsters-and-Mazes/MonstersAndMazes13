@@ -539,5 +539,10 @@
 
 /obj/item/clothing/shoes/mm13/boots
 	name = "boots"
-	desc = "Your typical boots, slightly worn, solid exterior with a soft interior perfect for winter ."
+	desc = "Your typical boots, slightly worn, solid exterior with a soft interior perfect for winter."
 	icon_state = "boots"
+
+/obj/item/clothing/shoes/mm13/darkboots
+	name = "dark boots"
+	desc = "Your typical boots, slightly worn, solid exterior with a soft interior perfect for winter."
+	icon_state = "darkboots"

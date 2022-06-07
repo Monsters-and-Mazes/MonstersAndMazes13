@@ -41,8 +41,8 @@ Mayor
 	name = "Castellan"
 	jobtype = /datum/job/town/castellan
 
-//	ears =
-//	id =
+	ears = null
+	id = null
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 //	l_pocket =
@@ -79,17 +79,17 @@ Mayor
 	name = "Guard Captain"
 	jobtype = /datum/job/town/guardcaptain
 
-//	id =
+	id = null
 	belt = null
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 
-//	ears =
+	ears = null
 	uniform = /obj/item/clothing/under/mm13/guard
 //	neck =
 	shoes = /obj/item/clothing/shoes/mm13/boots
-//	suit =
-//	head =
+	suit = /obj/item/clothing/suit/mm13/caparmor
+	head = /obj/item/clothing/head/mm13/caphelm
 //	glasses =
 //	l_hand =
 //	l_pocket =
@@ -98,7 +98,7 @@ Mayor
 		/obj/item/melee/classic_baton=1, \
 		/obj/item/kitchen/knife/combat)
 	r_pocket = /obj/item/flashlight/lantern
-//	belt =
+	belt = /obj/item/storage/belt/waistsheath
 
 /datum/outfit/job/town/guardcaptain/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
@@ -131,21 +131,24 @@ Mayor
 	name = "Guard"
 	jobtype = /datum/job/town/guard
 
-//	ears =
-//	id =
+	id = null
+	belt = null
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
-//	l_pocket =
-	r_pocket = /obj/item/flashlight/lantern
-//	r_hand =
-//	suit =
-//	head =
-//	belt =
-	shoes = /obj/item/clothing/shoes/mm13/boots
+	ears = null
 	uniform = /obj/item/clothing/under/mm13/guard
+//	neck =
+	shoes = /obj/item/clothing/shoes/mm13/boots
+	suit = /obj/item/clothing/suit/mm13/gambeson
+	head = /obj/item/clothing/head/mm13/kettle
+//	glasses =
+//	l_hand =
+//	l_pocket =
 	backpack_contents = list(
 		/obj/item/restraints/handcuffs/sinew=1, \
 		/obj/item/kitchen/knife/combat)
+	r_pocket = /obj/item/flashlight/lantern
+	belt = /obj/item/storage/belt/waistsheath
 
 /datum/outfit/job/town/guard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
@@ -177,8 +180,8 @@ Mayor
 	name = "Farmer"
 	jobtype = /datum/job/town/farmer
 
-//	id =
-//	ears =
+	id = null
+	ears = null
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 //	l_pocket =
@@ -194,7 +197,6 @@ Mayor
 	..()
 	uniform = pick(
 		/obj/item/clothing/under/f13/lumberjack, \
-		/obj/item/clothing/under/f13/bovine, \
 		/obj/item/clothing/under/f13/rustic,)
 
 /*--------------------------------------------------------------*/
@@ -222,8 +224,8 @@ Mayor
 	name = "Miner"
 	jobtype = /datum/job/town/miner
 
-	id = /obj/item/card/id/dogtag/town
-//	ears =
+	id = null
+	ears = null
 	suit = /obj/item/clothing/suit/overalls
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
@@ -271,18 +273,18 @@ Mayor
 	minimal_access = list(ACCESS_BAR, ACCESS_CLONING)
 
 /datum/outfit/job/town/apothecary
-	name = "Doctor"
+	name = "Apothecary"
 	jobtype = /datum/job/town/apothecary
 	chemwhiz = TRUE
 	uniform = /obj/item/clothing/under/mm13/apothecary
-//	ears = /obj/item/radio/headset/headset_den
+	ears = null
 //	neck =
 //	suit =
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	shoes = /obj/item/clothing/shoes/mm13/clogs
-	id = /obj/item/card/id/dendoctor
-	l_pocket = /obj/item/storage/bag/money/small/settler
+	id = null
+//	l_pocket =
 	r_pocket = /obj/item/flashlight/lantern
 	backpack_contents = list(
 		/obj/item/reagent_containers/pill/patch/healpoultice = 4 )
@@ -300,7 +302,7 @@ Mayor
 	faction = "Town"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Castellan"
+	supervisors = "the Castellan, your patron god."
 	description = "You are a beacon of faith. Guide the Town and any others who wish to be led on spiritual matters, and try to build your flock. Perhaps there are interesting religious artifacts or some architecture that would be worth studying or protecting?"
 	selection_color = "#dcba97"
 
@@ -310,28 +312,32 @@ Mayor
 	outfit = /datum/outfit/job/town/cleric
 
 	loadout_options = list(
-	/datum/outfit/loadout/standardpreacher, //Robes, Book
-	/datum/outfit/loadout/atompreacher, //Atoms Judgement, Followers Robes
-	)
-
+	/datum/outfit/loadout/standardpreacher,
+	/datum/outfit/loadout/nightcleric )
 	access = list(ACCESS_BAR)
 	minimal_access = list(ACCESS_BAR)
 
 
-/datum/outfit/loadout/atompreacher
-	name = "Atom's Devout"
-	l_hand = /obj/item/twohanded/sledgehammer/atomsjudgement
+/datum/outfit/loadout/nightcleric
+	name = "Moon watcher"
+	l_hand = /obj/item/reagent_containers/food/snacks/grown/moonflower
 	backpack_contents = list(
-		/obj/item/clothing/under/f13/atombeliever=1,
-		/obj/item/clothing/under/f13/atomfaithful=3,
-		/obj/item/clothing/head/helmet/f13/atombeliever=1
+		/obj/item/autosurgeon=1,
+		/obj/item/organ/eyes/night_vision=1
+		)
+
+/datum/outfit/loadout/healcleric
+	name = "Divine resurrection"
+	l_hand = /obj/item/gun/magic/wand/resurrection
+	backpack_contents = list(
+		/obj/item/gun/magic/wand/book/healing,
 		)
 
 /datum/outfit/loadout/standardpreacher
-	name = "Protector of the Faith"
-	l_hand = /obj/item/nullrod
+	name = "Naturalist"
+//	l_hand =
 	backpack_contents = list(
-		/obj/item/reagent_containers/hypospray/medipen/stimpak=2
+		/obj/item/reagent_containers/food/snacks/grown/ambrosia/gaia = 1
 		)
 
 /datum/job/town/cleric/after_spawn(mob/living/H, mob/M)
@@ -398,24 +404,22 @@ Mayor
 /datum/outfit/job/town/cleric
 	name = "Cleric"
 	jobtype = /datum/job/town/cleric
-//	ears = /obj/item/radio/headset/headset_den
+	ears = null
 	belt = null
-
-	id = /obj/item/card/id/dogtag/town
+	id = null
 	uniform = /obj/item/clothing/under/rank/chaplain
-//	backpack_contents = list(/obj/item/camera/spooky = 1)
+	suit = /obj/item/clothing/suit/mm13/cleric
 	backpack = /obj/item/storage/backpack/cultpack
 	satchel = /obj/item/storage/backpack/cultpack
-	gloves =		/obj/item/clothing/gloves/fingerless
+//	gloves =
 	shoes = /obj/item/clothing/shoes/mm13/sandals
 	backpack = 		/obj/item/storage/backpack/cultpack
 	satchel = 		/obj/item/storage/backpack/cultpack
 //	r_hand = 		/obj/item/gun/ballistic/revolver/m29
-//	r_pocket = /obj/item/flashlight/flare
+	r_pocket = /obj/item/flashlight/lantern
 	backpack_contents = list(
-		/obj/item/reagent_containers/food/drinks/flask=1, \
 		/obj/item/storage/fancy/candle_box, \
-		/obj/item/storage/bag/money/small/settler)
+		/obj/item/reagent_containers/pill/patch/healpoultice =2)
 
 /*--------------------------------------------------------------*/
 
@@ -434,11 +438,7 @@ Mayor
 
 	outfit = /datum/outfit/job/town/innkeeper
 
-	loadout_options = list(
-	/datum/outfit/loadout/rugged,
-	/datum/outfit/loadout/frontier,
-	/datum/outfit/loadout/richmantender,
-	/datum/outfit/loadout/diner)
+//	loadout_options = list()
 
 	access = list(ACCESS_BAR, ACCESS_KITCHEN)
 	minimal_access = list(ACCESS_BAR, ACCESS_KITCHEN)
@@ -446,26 +446,25 @@ Mayor
 /datum/outfit/job/town/innkeeper
 	name = "Innkeeper"
 	jobtype = /datum/job/town/innkeeper
-
-	uniform = /obj/item/clothing/under/f13/bartenderalt
-	id = /obj/item/card/id/dogtag/town
-	ears = /obj/item/radio/headset/headset_den
+	uniform = /obj/item/clothing/under/mm13/fancykeeper
+	id = null
+//	l_pocket =
+	r_pocket = /obj/item/flashlight/lantern
+	ears = null
 //	belt = /obj/item/gun/ballistic/revolver/caravan_shotgun
 	shoes = /obj/item/clothing/shoes/mm13/clogs
 	backpack = /obj/item/storage/backpack/satchel/leather
 	backpack_contents = list(
-		/obj/item/storage/bag/money/small/settler = 1
-		)
+	/obj/item/clothing/under/mm13/innkeepess = 1)
 
-/datum/outfit/loadout/rugged
+///datum/outfit/loadout/rugged
 	name = "Rugged"
-	head = /obj/item/clothing/head/helmet/f13/bovinecowboyhat
 	uniform = /obj/item/clothing/under/f13/cowboyb
 	suit = /obj/item/clothing/suit/f13/cowboybvest
 	gloves = /obj/item/clothing/gloves/color/brown
 	shoes = /obj/item/clothing/shoes/mm13/clogs
 
-/datum/outfit/loadout/frontier
+///datum/outfit/loadout/frontier
 	name = "Frontier"
 	head = /obj/item/clothing/head/bowler
 	mask = /obj/item/clothing/mask/fakemoustache
@@ -474,7 +473,7 @@ Mayor
 	gloves = /obj/item/clothing/gloves/fingerless
 	shoes = /obj/item/clothing/shoes/mm13/clogs
 
-/datum/outfit/loadout/richmantender
+///datum/outfit/loadout/richmantender
 	name = "Fancy"
 	head = /obj/item/clothing/head/fedora
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -484,11 +483,10 @@ Mayor
 	shoes = /obj/item/clothing/shoes/mm13/clogs
 	neck = /obj/item/clothing/neck/tie/black
 
-/datum/outfit/loadout/diner
+///datum/outfit/loadout/diner
 	name = "Diner"
 	head = /obj/item/clothing/head/soft/mime
 	glasses = /obj/item/clothing/glasses/orange
-	uniform = /obj/item/clothing/under/f13/bovinef
 //	suit = /obj/item/clothing/suit/apron/chef
 	gloves = /obj/item/clothing/gloves/color/white
 	shoes = /obj/item/clothing/shoes/mm13/clogs
@@ -606,7 +604,7 @@ Mayor
 /datum/outfit/job/town/peasant
 	name = "Peasant"
 	jobtype = /datum/job/town/peasant
-	head = 		/obj/item/clothing/head/helmet/f13/wayfarer/hunter
+//	head =
 	uniform = 	/obj/item/clothing/under/mm13/peasant
 	gloves = 	/obj/item/clothing/gloves/f13/handwraps
 	shoes = 	/obj/item/clothing/shoes/f13/rag
@@ -682,7 +680,7 @@ Mayor
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Castellan"
-	description = "As the herbalist, it is important to grow and harvest medicinal and other useful plants for the town's benefit."
+	description = "As the herbalist, it is important to grow, harvest, and be knowledgeable about medicinal and other useful plants for the town's benefit. You are a scholar and a worker who should be able to aid the apothecary and the farmer."
 	selection_color = "#dcba97"
 
 	exp_requirements = 12
@@ -696,17 +694,25 @@ Mayor
 	name = "Herbalist"
 	jobtype = /datum/job/town/herbalist
 	chemwhiz = TRUE
-	uniform = /obj/item/clothing/under/f13/medic
-	backpack = /obj/item/storage/backpack/medic
-	satchel = /obj/item/storage/backpack/satchel/med
-	shoes = /obj/item/clothing/shoes/sneakers/white
+	uniform = /obj/item/clothing/under/f13/science
+	backpack = /obj/item/storage/backpack
+	satchel = /obj/item/storage/backpack/satchel/
+	shoes = /obj/item/clothing/shoes/mm13/clogs
 	id = /obj/item/card/id/dendoctor
-	l_pocket = /obj/item/storage/bag/money/small/settler
-//	r_pocket = /obj/item/flashlight/flare
+	l_pocket = NULL
+	r_pocket = /obj/item/flashlight/lantern
 	backpack_contents = list(
-		/obj/item/reagent_containers/hypospray/medipen/stimpak=2, \
-		/obj/item/storage/firstaid/regular,
-		/obj/item/clothing/accessory/armband/medblue  \
+		/obj/item/reagent_containers/food/snacks/grown/ambrosia/deus,\
+		/obj/item/reagent_containers/food/snacks/grown/broc,\
+		/obj/item/reagent_containers/food/snacks/grown/xander \
+		/obj/item/reagent_containers/food/snacks/grown/cannabis \
+		/obj/item/reagent_containers/food/snacks/grown/coyotetobacco \
+		/obj/item/reagent_containers/food/snacks/grown/datura \
+		/obj/item/reagent_containers/food/snacks/grown/feracactus \
+		/obj/item/reagent_containers/food/snacks/grown/fungus \
+		/obj/item/reagent_containers/food/snacks/grown/holymelon \
+		/obj/item/reagent_containers/food/snacks/grown/peach \
+		/obj/item/storage/bag/plants
 		)
 /datum/outfit/job/town/herbalist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
@@ -817,16 +823,17 @@ Mayor
 	jobtype = /datum/job/den/f13shopkeeper
 
 	id = /obj/item/card/id/dogtag/town
-	uniform = /obj/item/clothing/under/f13/roving
+	uniform = /obj/item/clothing/under/mm13/smith
 	ears = /obj/item/radio/headset/headset_den
+	neck = /obj/item/clothing/neck/apron/labor/forge
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel
 	duffelbag = /obj/item/storage/backpack/duffelbag
-	gloves = /obj/item/clothing/gloves/fingerless
+	gloves = /obj/item/clothing/gloves/mm13/guardgloves
 //	l_pocket =
 	r_pocket = /obj/item/flashlight/lantern
-	shoes = /obj/item/clothing/shoes/f13/explorer
-	suit = /obj/item/clothing/suit/mm13/gambeson
+	shoes = /obj/item/clothing/shoes/mm13/darkboots
+	suit = null
 	backpack_contents = list()
 
 /datum/outfit/job/den/f13shopkeeper/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

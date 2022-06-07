@@ -226,7 +226,7 @@ Villager
 */
 
 /datum/job/tribal/f13villager
-	title = "Villager"
+	title = "Tribesman"
 	flag = F13VILLAGER
 	department_flag = TRIBAL
 	faction = "Village"
