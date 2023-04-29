@@ -80,6 +80,7 @@
 /mob/living/proc/MobBump(mob/M)
 	//Even if we don't push/swap places, we "touched" them, so spread fire
 	spreadFire(M)
+	SEND_SIGNAL(src, COMSIG_LIVING_MOB_BUMP, M)
 
 	if(now_pushing)
 		return TRUE
