@@ -350,3 +350,29 @@
 	if(ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
 		H.say("LIGHTNINGBOLT!!", forced = "spell")
+
+/obj/effect/proc_holder/spell/pointed/morph
+	name = "Morph"
+	desc = "Assume the appearance of the targetted object."
+	clothes_req = NONE
+	invocation = "AR' VITAS!"
+	invocation_type = "whisper"
+	range = 4
+	selection_type = "view"
+	aim_assist = FALSE
+
+	action_icon = 'icons/mob/animal.dmi'
+	action_icon_state = "morph"
+
+
+/obj/effect/proc_holder/spell/pointed/morph/Trigger(mob/user, skip_can_cast)
+	if(can_cast())
+		var/datum/component/disguise = user.GetComponent(/datum/component/disguise)
+		if(disguise)
+			qdel(disguise)
+			return
+	return ..()
+	
+/obj/effect/proc_holder/spell/pointed/morph/cast(list/targets, mob/user)
+	user.AddComponent(/datum/component/disguise, targets[1])
+	return TRUE

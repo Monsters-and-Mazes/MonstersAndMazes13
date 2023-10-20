@@ -385,6 +385,13 @@
 	new real_type(loc)
 	return INITIALIZE_HINT_QDEL
 
+/obj/item/book/granter/spell/morph
+	spell = /obj/effect/proc_holder/spell/pointed/morph
+	spellname = "morph"
+	icon_state = "ms_teachings"
+	desc = "This book can't seem to hold one appearance for more than a moment."
+	remarks = list("Blend into the surroundings..", "Ah, so THAT'S how the morphs do it!", "Why is this page filled with lard..?", "It would probably be clever if I morphed into a cigarette..", "This page just shows a guy chasing a barrel..", "\"How to avoid the uncanny valley.. Step one, you don't\"..?")
+
 ///MARTIAL ARTS///
 
 /obj/item/book/granter/martial

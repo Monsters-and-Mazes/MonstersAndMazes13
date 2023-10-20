@@ -942,3 +942,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 
 /obj/effect/landmark/start/f13/followersscientist
 	name = "Followers Scientist"
+
+
+/obj/effect/landmark/maze_warp
+	name = "Maze Warp Destination"
+
+/obj/effect/landmark/maze_warp/Initialize()
+	. = ..()
+	GLOB.maze_warps += loc
+	return INITIALIZE_HINT_QDEL

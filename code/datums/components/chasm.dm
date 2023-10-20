@@ -83,7 +83,7 @@
 	if(!AM || QDELETED(AM) || SEND_SIGNAL(AM, COMSIG_MOVABLE_CHASM_DROP, src))
 		return
 	falling_atoms[AM] = (falling_atoms[AM] || 0) + 1
-	var/turf/T = target_turf
+	var/turf/T = islist(target_turf) ? pick(target_turf) : target_turf
 
 	if(T)
 		// send to the turf below
